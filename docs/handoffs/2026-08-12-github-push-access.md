@@ -1,44 +1,34 @@
-# GitHub push access on Daniel's Mac
+# GitHub push access on Daniel's Mac — RESOLVED
 
-## What is happening
+**No action needed.** Logged here so the setup is on record.
 
-Commits are landing locally but `git push origin main` hangs and never completes.
-Cause: `credential.helper` is `osxkeychain` with no stored GitHub credential, and the
-GitHub CLI is not installed, so git sits waiting on a username/password prompt that a
-non-interactive session cannot answer.
+## What was wrong
 
-```
-$ git remote -v
-origin  https://github.com/healingoasis/studio.git
+Commits landed locally but `git push` hung forever. `credential.helper` was `osxkeychain`
+with no stored GitHub credential and no GitHub CLI installed, so git sat waiting on a
+prompt that a non-interactive session could never answer. Read access worked (public
+repo over HTTPS), so the clone had succeeded and hidden the problem until the first push.
 
-$ which gh
-gh not found
+## What was done (2026-08-12)
 
-$ git config --get credential.helper
-osxkeychain
-```
+- GitHub CLI v2.97.0 installed **without sudo**, matching the existing Node setup:
+  unpacked to `~/.local/share/gh`, symlinked at `~/.local/bin/gh`, quarantine attribute
+  stripped, and `~/.local/bin` prepended to PATH in `~/.zshrc`.
+- Daniel ran `gh auth login --web` himself in the terminal. Authenticated as
+  **`ApolloVantage`**, with push rights to `healingoasis/studio` — so org membership was
+  already in place.
+- `gh auth setup-git` was run. Note that `credential.helper` still reads `osxkeychain`;
+  the credential landed in the keychain during the auth flow and pushes work, so this was
+  left alone rather than layering a second helper on top.
+- Verified: `8bff76d..a7ed0a2 main -> main`, working tree clean, local and origin level.
 
-Practical effect: **Dan cannot see Daniel's progress.** Two commits are sitting on
-Daniel's machine only —
+## Worth knowing
 
-- `8bff76d` Studio scaffold
-- `d5451ce` Idea: student intake portal, with a mockup Daniel can click
-
-## What Dan needs to do
-
-Pick whichever is easiest to support:
-
-1. Install the GitHub CLI and run `gh auth login` with Daniel (browser flow, no token
-   for Daniel to copy or store), which also wires git's credential helper; or
-2. Create a fine-grained personal access token scoped to `healingoasis/studio` and store
-   it in the keychain for `https://github.com`; or
-3. Switch the remote to SSH and add a key for Daniel's Mac.
-
-Option 1 is probably the kindest — nothing for Daniel to keep track of.
-
-Worth confirming afterwards that `git push` completes without prompting, since the whole
-"commit and push often so Dan sees progress" flow in `AGENTS.md` depends on it.
+- Daniel's GitHub username is `ApolloVantage`, which does not obviously map to his name —
+  handy to know when reading commit history or adding him to things.
+- The `gh` install lives in his home folder, so a macOS upgrade will not remove it, but it
+  will not auto-update either. Re-running the same unpack-and-symlink steps updates it.
 
 ## Related
 
-- `docs/handoffs/2026-08-12-shopify-access.md` — same setup pass on the same machine.
+- `docs/handoffs/2026-08-12-shopify-access.md` — still open, same setup pass.
