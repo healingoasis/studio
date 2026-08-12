@@ -7,125 +7,113 @@
   html, body { width:1080px; height:1350px; }
   body {
     font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
-    background:#FBF8F5;
-    -webkit-font-smoothing:antialiased;
+    background:#FBF8F5; -webkit-font-smoothing:antialiased;
   }
   .flyer { position:relative; width:1080px; height:1350px; overflow:hidden; background:#FBF8F5; }
 
-  /* ---------- HERO ---------- */
-  .hero { position:relative; width:1080px; height:648px; overflow:hidden; }
-  .hero img.bg {
-    width:1080px; height:648px; object-fit:cover; object-position:center 9%;
-    display:block; filter:saturate(1.06) contrast(1.03);
+  /* ---------- PHOTO ---------- */
+  .photo { position:relative; width:1080px; height:600px; overflow:hidden; background:#231413; }
+  .photo img.bg {
+    width:1080px; height:600px; object-fit:cover; object-position:center 15%;
+    display:block; filter:saturate(1.05) contrast(1.02);
   }
-  .hero .scrim {
+  .photo .scrim {
     position:absolute; inset:0;
-    background:
-      linear-gradient(180deg, rgba(20,8,8,.72) 0%, rgba(20,8,8,.20) 26%, rgba(20,8,8,0) 45%,
-                              rgba(20,8,8,.55) 76%, rgba(20,8,8,.90) 100%);
+    background:linear-gradient(180deg, rgba(20,8,8,.66) 0%, rgba(20,8,8,.24) 17%, rgba(20,8,8,0) 34%);
   }
-
   .brandbar {
     position:absolute; top:0; left:0; right:0; height:112px;
-    display:flex; align-items:center; gap:20px; padding:0 54px;
+    display:flex; align-items:center; gap:19px; padding:0 50px;
   }
-  .brandbar img { width:76px; height:76px; object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,.5)); }
+  .brandbar img { width:74px; height:74px; object-fit:contain; border-radius:8px; }
   .brandbar .name {
-    color:#fff; font-size:25px; font-weight:600; letter-spacing:.055em; line-height:1.22;
-    text-transform:uppercase; text-shadow:0 2px 10px rgba(0,0,0,.65);
+    color:#fff; font-size:24px; font-weight:600; letter-spacing:.055em; line-height:1.22;
+    text-transform:uppercase; text-shadow:0 2px 10px rgba(0,0,0,.7);
   }
-  .brandbar .name span { display:block; font-size:16px; font-weight:500; letter-spacing:.19em; color:#F3C9C0; }
+  .brandbar .name span { display:block; font-size:15px; font-weight:500; letter-spacing:.19em; color:#F3C9C0; }
 
-  .herotext { position:absolute; left:54px; right:54px; bottom:44px; }
+  /* equine inset */
+  .inset {
+    position:absolute; right:50px; bottom:-62px; width:178px; height:178px;
+    border-radius:50%; overflow:hidden; border:6px solid #231413; z-index:5;
+    box-shadow:0 8px 26px rgba(0,0,0,.45);
+  }
+  .inset img { position:absolute; width:268px; height:auto; left:-56px; top:-30px;
+               filter:brightness(1.28) contrast(1.06) saturate(1.05); }
+
+  /* ---------- HEADLINE BLOCK ---------- */
+  .headline { height:228px; background:#231413; padding:30px 50px 0; }
   .eyebrow {
     display:inline-block; background:#8B0000; color:#fff;
-    font-size:19px; font-weight:700; letter-spacing:.20em; text-transform:uppercase;
-    padding:11px 20px 10px; border-radius:3px; margin-bottom:20px;
+    font-size:18px; font-weight:700; letter-spacing:.20em; text-transform:uppercase;
+    padding:10px 18px 9px; border-radius:3px; margin-bottom:18px;
   }
-  h1 {
-    color:#fff; font-size:83px; line-height:.94; font-weight:700; letter-spacing:-.022em;
-    text-shadow:0 3px 26px rgba(0,0,0,.72);
+  h1 { color:#fff; font-size:64px; line-height:1; font-weight:700; letter-spacing:-.024em; }
+  h1 em {
+    font-style:normal; display:block; font-size:29px; font-weight:600; letter-spacing:.005em;
+    margin-top:15px; color:#FFD9CF;
   }
-  h1 em { font-style:normal; display:block; font-size:41px; font-weight:600; letter-spacing:.005em;
-          margin-top:15px; color:#FFE9E2; text-transform:none; }
-
-  /* dog inset */
-  .inset {
-    position:absolute; right:54px; top:138px; width:172px; height:172px;
-    border-radius:50%; overflow:hidden; border:5px solid #fff;
-    box-shadow:0 10px 34px rgba(0,0,0,.55);
-  }
-  .inset img { width:100%; height:100%; object-fit:cover; object-position:center 32%; }
 
   /* ---------- URGENCY BAND ---------- */
   .band {
-    height:104px; background:#8B0000; color:#fff;
-    display:flex; align-items:center; justify-content:center; gap:30px;
+    height:92px; background:#8B0000; color:#fff;
+    display:flex; align-items:center; justify-content:center; gap:26px;
   }
-  .band .big { font-size:36px; font-weight:700; letter-spacing:.005em; }
-  .band .rule { width:2px; height:46px; background:rgba(255,255,255,.42); }
-  .band .seats { font-size:31px; font-weight:600; letter-spacing:.01em; color:#FFD9CF; }
+  .band .big { font-size:33px; font-weight:700; }
+  .band .rule { width:2px; height:42px; background:rgba(255,255,255,.42); }
+  .band .seats { font-size:29px; font-weight:600; color:#FFD9CF; }
   .band .seats b { color:#fff; font-weight:800; }
 
-  /* ---------- BODY ---------- */
-  .body { padding:38px 54px 0; }
-  .lede {
-    font-size:27px; line-height:1.42; color:#3A2A28; font-weight:500; margin-bottom:30px;
-  }
+  /* ---------- FACTS ---------- */
+  .body { height:236px; padding:24px 50px 0; }
+  .lede { font-size:24px; line-height:1.36; color:#3A2A28; font-weight:500; margin-bottom:18px; }
   .lede b { color:#8B0000; font-weight:700; }
-
-  .facts { display:grid; grid-template-columns:1fr 1fr; gap:16px 30px; }
-  .fact { display:flex; gap:15px; align-items:flex-start; }
+  .facts { display:grid; grid-template-columns:1fr 1fr; gap:11px 28px; }
+  .fact { display:flex; gap:13px; align-items:flex-start; }
   .tick {
-    flex:none; width:31px; height:31px; border-radius:50%; background:#8B0000; color:#fff;
-    font-size:17px; font-weight:800; display:flex; align-items:center; justify-content:center;
-    margin-top:2px;
+    flex:none; width:28px; height:28px; border-radius:50%; background:#8B0000; color:#fff;
+    font-size:15px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-top:2px;
   }
-  .fact div.t { font-size:23px; line-height:1.3; color:#2C2220; font-weight:600; }
-  .fact div.t span { display:block; font-size:19px; font-weight:500; color:#6A5A57; margin-top:3px; }
+  .fact div.t { font-size:21px; line-height:1.28; color:#2C2220; font-weight:600; }
+  .fact div.t span { display:block; font-size:18px; font-weight:500; color:#6A5A57; margin-top:2px; }
 
   /* ---------- CTA ---------- */
   .cta {
-    position:absolute; left:0; right:0; bottom:0; height:214px;
-    background:#231413; color:#fff; padding:30px 54px 0;
+    height:194px; background:#231413; color:#fff; padding:26px 50px 0;
     display:flex; align-items:flex-start; justify-content:space-between;
   }
-  .cta .left { padding-top:4px; max-width:640px; }
-  .cta .apply { font-size:21px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#F0A9A0; }
-  .cta .url { font-size:38px; font-weight:700; margin-top:9px; letter-spacing:-.014em; white-space:nowrap; }
-  .cta .contact { font-size:22px; margin-top:12px; color:#D9C9C6; font-weight:500; }
+  .cta .left { max-width:650px; }
+  .cta .apply { font-size:20px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#F0A9A0; }
+  .cta .url { font-size:37px; font-weight:700; margin-top:8px; letter-spacing:-.014em; white-space:nowrap; }
+  .cta .contact { font-size:21px; margin-top:11px; color:#D9C9C6; font-weight:500; }
   .cta .contact b { color:#fff; font-weight:700; }
-  .cta .right { text-align:right; padding-top:2px; width:300px; flex:none; }
-  .cta .right .dep {
-    display:block; background:#8B0000;
-    border-radius:6px; padding:14px 18px; font-size:22px; font-weight:700; line-height:1.28;
-  }
-  .cta .right .dep span { display:block; font-size:16px; font-weight:500; color:#FFD9CF; margin-top:4px; letter-spacing:.03em; }
-  .cta .right .ce { font-size:15px; color:#A8918D; margin-top:12px; line-height:1.45; }
+  .cta .right { text-align:right; width:296px; flex:none; }
+  .cta .right .dep { display:block; background:#8B0000; border-radius:6px; padding:13px 17px;
+                     font-size:21px; font-weight:700; line-height:1.28; }
+  .cta .right .dep span { display:block; font-size:15px; font-weight:500; color:#FFD9CF; margin-top:3px; }
+  .cta .right .ce { font-size:14px; color:#A8918D; margin-top:11px; line-height:1.45; }
 </style>
 </head>
 <body>
 <div class="flyer">
 
-  <div class="hero">
+  <div class="photo">
     <img class="bg" src="data:image/jpeg;base64,{{HERO_B64}}">
     <div class="scrim"></div>
-
     <div class="brandbar">
       <img src="data:image/png;base64,{{LOGO_B64}}">
       <div class="name">Healing Oasis Wellness Center
         <span>Postgraduate Veterinary Education</span>
       </div>
     </div>
-
-    <div class="herotext">
-      <div class="eyebrow">Now Enrolling &middot; 2026&ndash;2027</div>
-      <h1>Veterinary<br>Acupuncture
-        <em>Certification Program &mdash; Canine &amp; Equine</em>
-      </h1>
-    </div>
-
     <div class="inset"><img src="data:image/jpeg;base64,{{DOG_B64}}"></div>
+  </div>
+
+  <div class="headline">
+    <div class="eyebrow">Now Enrolling &middot; 2026&ndash;2027</div>
+    <h1>Veterinary Acupuncture
+      <em>Certification Program &mdash; Canine &amp; Equine</em>
+    </h1>
   </div>
 
   <div class="band">
@@ -137,10 +125,8 @@
   <div class="body">
     <div class="lede">
       Put needles in your hands, not just in a textbook. <b>132 hours</b> of supervised
-      training across five modules &mdash; taught small, taught hands-on, on real canine
-      and equine patients.
+      training across five modules, on real canine and equine patients.
     </div>
-
     <div class="facts">
       <div class="fact"><div class="tick">&#10003;</div>
         <div class="t">132 supervised hours<span>Five modules, Sept 2026 &ndash; Feb 2027</span></div></div>
@@ -160,7 +146,7 @@
       <div class="contact"><b>262-898-1680</b> &nbsp;&middot;&nbsp; info@healingoasis.edu</div>
     </div>
     <div class="right">
-      <div class="dep">$200 deposit holds your seat<span>or pay in full online</span></div>
+      <div class="dep">$200 deposit<br>holds your seat<span>or pay in full online</span></div>
       <div class="ce">CE contact hours provided by the AHVMA,<br>an AVMA-HOD-recognized organization.</div>
     </div>
   </div>

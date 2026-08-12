@@ -3,8 +3,9 @@
 **Image:** `acupuncture-flyer-facebook.png` (1080 x 1350, portrait — takes up the most
 room in the Facebook feed)
 
-**Photos used:** Acupuncture source kit — `equine_needle_8788.jpg` (hero),
-`canine_hands_on_7072.jpg` (circle inset)
+**Photos used** (both from the Acupuncture folder, both show needles in place):
+- `IMG_9459.png` — boxer standing calm with needles in the head and neck (main photo)
+- `IMG_1625.jpeg` — horse set up for electro-acupuncture (circle inset)
 
 ---
 
