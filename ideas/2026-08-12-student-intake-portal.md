@@ -46,3 +46,8 @@ who stops fielding those emails and chasing paperwork by hand before every modul
 ## Log
 
 - 2026-08-12: idea captured, mockup built with real program names and prices from the store
+- 2026-08-12: turned into a real local web app in `apps/student-intake-portal/`. It now
+  reads 39 actual students out of Shopify — who they are, which program and class, what
+  they paid and when, what is still owed — and sorts them into nothing paid / deposit
+  only / part paid / paid in full. Paperwork colours are still invented. Still needs
+  Daniel's corrections to the document list.

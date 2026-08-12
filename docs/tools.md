@@ -6,7 +6,11 @@ this machine (env vars in `.env.local`, CLIs installed). Check with
 
 ## The Shopify store (healing-oasis-us.myshopify.com)
 
-- [ ] Wired on this machine
+- [x] Wired on this machine (reading, since 2026-08-12)
+- The app credentials in `.env.local` reach the Admin API through a client-credentials
+  grant. The token they return carries write scopes too, so the "no changes without
+  Daniel's yes" rule is convention rather than a locked door — see
+  `docs/claude/notes/2026-08-12-shopify-admin-access.md`.
 - Daniel is the store owner. The store runs programs, CE seminars, the conference,
   merch, and bales. Purchases for programs go through a custom multi-step form.
 - Once wired: the agent can read products, orders, and customers, and can make
