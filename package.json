@@ -1,0 +1,7 @@
+{
+  "name": "healingoasis-studio",
+  "private": true,
+  "scripts": {
+    "check-env": "bash scripts/check-env.sh"
+  }
+}

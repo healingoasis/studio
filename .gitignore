@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+.next/
+.turbo/
+out/
+*.tsbuildinfo
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Runtime-written data (NEVER tracked) — see SKILL.md "Repository layout"
+.data/
+tmp/
+
+# Note: data/ is intentionally NOT ignored. It holds tracked source-of-truth
+# seeds and fixtures only. Runtime persistence belongs in .data/ or tmp/.
+
+# Local tooling
+.DS_Store
+*.log
+coverage/
+.vscode/
+.idea/
+
+# Local key files (service accounts etc.)
+.secrets/
