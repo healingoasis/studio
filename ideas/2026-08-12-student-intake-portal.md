@@ -35,13 +35,22 @@ who stops fielding those emails and chasing paperwork by hand before every modul
 
 ## Open questions
 
-- The exact list of required documents needs Daniel's eyes — the mockup uses a sensible
-  draft list that should be corrected.
-- Does the document list differ between VSMT, VMRT, and Acupuncture?
+- ~~The exact list of required documents~~ — answered 2026-08-12 from Daniel's
+  admissions comparison document. The lists differ by program and are now in
+  `apps/student-intake-portal/lib/documents.ts`.
+- Several requirements only apply to some applicants (the non-vet waiver, the
+  final-semester student waiver, the out-of-North-America paperwork, the NBCE score for
+  chiropractors on Acupuncture). Knowing which apply means knowing each applicant's
+  credential, which Shopify does not hold. Where does that come from — the application
+  form in the portal?
+- Cranio/Sacral has admissions requirements too, so it is treated as a fourth program
+  here even though the store sells it as an event ticket. Is that right?
 - Who is allowed to move a document to green — any staff member, or specific people?
 - How do students actually send documents in today? (Email, portal upload, mail?)
 - Real version needs a login and a place to store files; that is a Dan conversation
   since it involves student PII.
+- The existing enrollments portal (`github.com/healingoasis/portal`) already handles
+  applications, signatures and documents. This may belong there rather than here.
 
 ## Log
 
@@ -51,3 +60,8 @@ who stops fielding those emails and chasing paperwork by hand before every modul
   they paid and when, what is still owed — and sorts them into nothing paid / deposit
   only / part paid / paid in full. Paperwork colours are still invented. Still needs
   Daniel's corrections to the document list.
+- 2026-08-12: Daniel supplied the real admissions requirements (Healing Oasis Admissions
+  Requirements Comparison, covering VSMT, VMRT, Acupuncture and Cranio/Sacral). The
+  document lists are now real and differ per program, and a neutral grey "not needed"
+  state was added for requirements that only apply to some applicants — Daniel's four
+  colours still mean exactly what he said they mean.

@@ -4,9 +4,10 @@ import { useMemo, useState } from "react";
 import {
   count_statuses,
   documents_for,
-  DOCUMENTS,
+  documents_for_program,
   STATUS_LABEL,
   STATUS_LEGEND,
+  STATUS_NOTE,
   STATUS_ORDER,
   type DocStatus,
   type DocumentState,
@@ -78,6 +79,14 @@ const initials = (name: string) =>
     .toUpperCase() || "?";
 
 function Icon({ status }: { status: DocStatus }) {
+  if (status === "not_required") {
+    return (
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="6.25" stroke="currentColor" strokeWidth="1.6" />
+        <path d="M5.4 8h5.2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
+    );
+  }
   if (status === "not_started") {
     return (
       <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -174,7 +183,7 @@ export default function Portal({
   const [docs, set_docs] = useState<DocMap>(() => {
     const map: DocMap = {};
     for (const s of students) {
-      map[s.student_id] = documents_for(s.student_id, s.standing);
+      map[s.student_id] = documents_for(s.student_id, s.program.key, s.standing);
     }
     return map;
   });
@@ -207,12 +216,6 @@ export default function Portal({
 
       const next_index = (STATUS_ORDER.indexOf(entry.status) + 1) % STATUS_ORDER.length;
       const next = STATUS_ORDER[next_index] ?? "not_started";
-      const notes: Record<DocStatus, string | null> = {
-        not_started: "We have nothing yet",
-        in_progress: "Received, being checked by the office",
-        approved: null,
-        needs_update: "Expiring soon — please send a current copy",
-      };
 
       return {
         ...prev,
@@ -220,8 +223,11 @@ export default function Portal({
           ...student_docs,
           [doc_id]: {
             status: next,
-            note: notes[next],
-            updated_on: next === "not_started" ? null : loaded_at.slice(0, 10),
+            note: STATUS_NOTE[next],
+            updated_on:
+              next === "not_started" || next === "not_required"
+                ? null
+                : loaded_at.slice(0, 10),
           },
         },
       };
@@ -231,7 +237,8 @@ export default function Portal({
   if (!current) return null;
 
   const current_docs = docs[current.student_id] ?? {};
-  const current_counts = count_statuses(current_docs);
+  const current_counts = count_statuses(current.program.key, current_docs);
+  const current_list = documents_for_program(current.program.key);
   const outstanding =
     current_counts.not_started + current_counts.in_progress + current_counts.needs_update;
 
@@ -344,14 +351,15 @@ export default function Portal({
               <div>
                 <h2>Your paperwork</h2>
                 <p className="sub">
-                  {current_counts.approved} of {DOCUMENTS.length} good to go
+                  {current_counts.approved} of {current_counts.required} good to go ·{" "}
+                  {current.program.short_name} requirements
                 </p>
               </div>
-              <p className="sub">Pretend data</p>
+              <p className="sub">Statuses are pretend</p>
             </div>
             <Legend />
             <ul className="docs">
-              {DOCUMENTS.map((d) => {
+              {current_list.map((d) => {
                 const entry = current_docs[d.doc_id];
                 if (!entry) return null;
                 return (
@@ -365,6 +373,7 @@ export default function Portal({
                       <span className="doc-main">
                         <span className="name">{d.name}</span>
                         {entry.note ? <span className="note">{entry.note}</span> : null}
+                        {d.only_if ? <span className="only-if">{d.only_if}</span> : null}
                       </span>
                       <span className="doc-when">{short_date(entry.updated_on)}</span>
                       <span className="doc-chip">
@@ -520,7 +529,7 @@ export default function Portal({
                 <tbody>
                   {visible.map((s) => {
                     const s_docs = docs[s.student_id] ?? {};
-                    const counts = count_statuses(s_docs);
+                    const counts = count_statuses(s.program.key, s_docs);
                     return (
                       <tr
                         key={s.student_id}
@@ -548,7 +557,7 @@ export default function Portal({
                         </td>
                         <td>
                           <div className="strip">
-                            {DOCUMENTS.map((d) => (
+                            {documents_for_program(s.program.key).map((d) => (
                               <i
                                 key={d.doc_id}
                                 className={s_docs[d.doc_id]?.status ?? "not_started"}
@@ -556,7 +565,7 @@ export default function Portal({
                             ))}
                           </div>
                           <div className="roster-sub">
-                            {counts.approved} of {DOCUMENTS.length} ready
+                            {counts.approved} of {counts.required} ready
                           </div>
                         </td>
                         <td>

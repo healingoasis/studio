@@ -442,6 +442,14 @@ select {
   background: var(--st-renew-bg);
 }
 
+/* Deliberately colourless: "not needed" is the absence of a requirement, not one of
+   the four statuses, so it must not read as a fifth colour in the code. */
+.chip.not_required {
+  color: var(--ink-faint);
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
 /* ---------- filter row ---------- */
 
 .filters {
@@ -530,6 +538,22 @@ select {
 
 .doc.needs_update .bar {
   background: var(--st-renew);
+}
+
+.doc.not_required .bar {
+  background: var(--line);
+}
+
+.doc.not_required .doc-main .name {
+  color: var(--ink-faint);
+}
+
+.only-if {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 2px;
+  font-style: italic;
 }
 
 .doc-main {
@@ -680,6 +704,10 @@ th.num {
 
 .strip i.needs_update {
   background: var(--st-renew);
+}
+
+.strip i.not_required {
+  background: var(--line);
 }
 
 /* ---------- pay ---------- */

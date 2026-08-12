@@ -21,13 +21,29 @@ are on, which class, what they have paid, when, and what is still owed. Built fr
 last few hundred orders; anyone who only ever bought merch, a seminar, or a conference
 ticket is filtered out.
 
-**Invented:** every document status. Nothing tracks paperwork today, so there is nothing
+**Real:** the required-document lists, taken from Daniel's admissions comparison document
+(the VSMT, VMRT, Acupuncture and Cranio/Sacral application forms, 2026). They differ per
+program, so each program carries its own list in `lib/documents.ts`.
+
+**Invented:** every document *status*. Nothing tracks paperwork today, so there is nothing
 to read. Statuses are generated from a hash of the customer id, biased by how far along
 they are on payments, so a given person always shows the same thing instead of
-reshuffling on each load. See `lib/documents.ts`.
+reshuffling on each load.
 
-The required-document list in `lib/documents.ts` is a **draft** and needs Daniel to
-correct it against what the programs actually require.
+## The fifth state
+
+Daniel specified four colours: red nothing, yellow in progress, green good to go, orange
+needs a new or updated document. Several real requirements only apply to some applicants
+— the non-veterinary waiver, the final-semester student waiver, the out-of-North-America
+paperwork, the NBCE score for chiropractors on Acupuncture.
+
+Those get a **neutral grey "not needed"**, deliberately colourless so it does not read as
+a fifth colour in the code, and they are excluded from the "x of y good to go" count.
+Each one also shows the rule that decides whether it applies.
+
+Which applicants those conditions apply to is not knowable from Shopify — it needs the
+applicant's credential, which lives on the application form. For now the grey states are
+generated along with the rest.
 
 ## Student data never lands on disk
 

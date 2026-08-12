@@ -2,7 +2,7 @@ import { fetch_recent_orders, type RawOrder } from "./shopify";
 
 // ---------------------------------------------------------------- programs
 
-export type ProgramKey = "vsmt" | "vmrt" | "acupuncture";
+export type ProgramKey = "vsmt" | "vmrt" | "acupuncture" | "cranio";
 
 export type Program = {
   key: ProgramKey;
@@ -35,6 +35,13 @@ export const PROGRAMS: Record<ProgramKey, Program> = {
     tuition: 8375.0,
     balance_handle: "acupuncture-program-balance",
   },
+  cranio: {
+    key: "cranio",
+    short_name: "Cranio/Sacral",
+    full_name: "Cranio/Sacral Adjusting Techniques with Applied Kinesiology",
+    tuition: 682.0,
+    balance_handle: "cranio-sacral-2026",
+  },
 };
 
 /**
@@ -46,6 +53,8 @@ const SETTLED_TOLERANCE = 300;
 
 function program_of(title: string): ProgramKey | null {
   const t = title.toLowerCase();
+  // Cranio first: its full title mentions applied kinesiology, not the other programmes.
+  if (/cranio|applied kinesiolog/.test(t)) return "cranio";
   if (/\bvsmt\b|spinal manipulat/.test(t)) return "vsmt";
   if (/\bvmrt\b|massage|rehabilitation/.test(t)) return "vmrt";
   if (/acupuncture/.test(t)) return "acupuncture";
@@ -145,7 +154,12 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
       (a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)
     );
 
-    const tally: Record<ProgramKey, number> = { vsmt: 0, vmrt: 0, acupuncture: 0 };
+    const tally: Record<ProgramKey, number> = {
+      vsmt: 0,
+      vmrt: 0,
+      acupuncture: 0,
+      cranio: 0,
+    };
     for (const order of sorted) {
       for (const li of order.line_items) {
         if (is_fee_line(li.title)) continue;
