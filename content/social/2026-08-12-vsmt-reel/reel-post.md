@@ -28,7 +28,7 @@ shape reels actually travel in.
 | 0.0–1.8 | Close on hands reading a horse's back | She's not petting him. **She's reading his spine.** |
 | 1.8–3.1 | Two sets of hands working along a heeler's spine on the mat | This is veterinary spinal manipulation. |
 | 3.1–4.4 | Student adjusting a horse | **226 hours** of training. |
-| 4.4–5.8 | Canine practicum | Over **100 hours** hands-on. |
+| 4.4–5.8 | Chocolate dog in the arena, hands along the back | Over **100 hours** hands-on. |
 | 5.8–7.1 | Small horse practicum | On real dogs and horses. |
 | 7.1–8.4 | Canine adjustment | Not models. Not videos. |
 | 8.4–9.8 | Instructor with two students on a dog | **3–4 students** per instructor. |
@@ -39,11 +39,14 @@ shape reels actually travel in.
 | 15.1–17.0 | Equine adjustment (callback to the opening) | **20 seats.** That's the whole class. |
 | 17.0–20.0 | End card | Next class starts January 13, 2027 · healingoasis.edu |
 
-**Clips used** (all from the VSMT folder): IMG_8753, IMG_7092, IMG_5135, IMG_7087,
+**Clips used** (all from the VSMT folder): IMG_8753, IMG_7092, IMG_5135, IMG_7527,
 IMG_5107, IMG_7093, IMG_7114, IMG_5127, IMG_7013, IMG_7091, IMG_8760, IMG_8751
 
-Beat 2 was originally IMG_7112 (the dog moving its head) — swapped out on Daniel's call
-for IMG_7092, which shows hands running along the spine and matches the caption better.
+Two clips were swapped out on Daniel's call, both dogs whose heads were being handled:
+beat 2 was IMG_7112 (now IMG_7092) and beat 4 was IMG_7087 (now IMG_7527).
+
+`shot-list.png` is a numbered contact sheet of all 13 shots with their timecodes — use it
+to point at a shot by number instead of describing it.
 
 ## Caption (copy and paste)
 

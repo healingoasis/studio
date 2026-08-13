@@ -11,7 +11,8 @@ import {
   type DocStatus,
   type DocumentState,
 } from "@/lib/documents";
-import { product_url, type Shelves, type ShopItem } from "@/lib/shop";
+import Link from "next/link";
+import { detail_url, type Shelves, type ShopItem } from "@/lib/shop";
 import type { PaymentStanding, Student } from "@/lib/students";
 
 const STORE = "https://healing-oasis-us.myshopify.com/products/";
@@ -159,13 +160,7 @@ function MerchShelf({ items }: { items: ShopItem[] }) {
   return (
     <div className="merch-shelf">
       {items.map((i) => (
-        <a
-          key={i.handle}
-          className="merch"
-          href={product_url(i.handle)}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link key={i.handle} className="merch" href={detail_url(i.handle)}>
           <span className="merch-photo">
             {i.image ? (
               // Plain img on purpose: next/image wants sharp, which this workspace skips.
@@ -184,32 +179,26 @@ function MerchShelf({ items }: { items: ShopItem[] }) {
             </span>
             {i.choices ? <span className="merch-choices">{i.choices}</span> : null}
           </span>
-        </a>
+        </Link>
       ))}
     </div>
   );
 }
 
-/** Seminars and the conference have no photographs, so they stay as plain cards. */
-function SeminarShelf({ items }: { items: ShopItem[] }) {
+/** Seminars, the conference and other programmes have no photographs on the store. */
+function CardShelf({ items }: { items: ShopItem[] }) {
   if (items.length === 0) return null;
 
   return (
     <div className="shelf">
       {items.map((i) => (
-        <a
-          key={i.handle}
-          className="item"
-          href={product_url(i.handle)}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link key={i.handle} className="item" href={detail_url(i.handle)}>
           <span className="t">{i.title}</span>
           <span className="p">
             <Price item={i} />
             {!i.available ? <span className="muted"> · sold out</span> : null}
           </span>
-        </a>
+        </Link>
       ))}
     </div>
   );
@@ -601,17 +590,15 @@ export default function Portal({
                     <p>Remaining balance</p>
                     <div className="amount">{money(current.remaining)}</div>
                   </div>
-                  <a
+                  <Link
                     className="btn"
-                    href={STORE + current.program.balance_handle}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={detail_url(current.program.balance_handle)}
                   >
                     Pay balance
-                  </a>
+                  </Link>
                   <a
                     className="btn ghost"
-                    href={STORE + current.program.balance_handle}
+                    href={`${STORE}${current.program.balance_handle}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -645,13 +632,20 @@ export default function Portal({
             {shelves.seminars.length > 0 ? (
               <>
                 <p className="shelf-label">Seminars &amp; conference</p>
-                <SeminarShelf items={shelves.seminars} />
+                <CardShelf items={shelves.seminars} />
+              </>
+            ) : null}
+
+            {shelves.programs.length > 0 ? (
+              <>
+                <p className="shelf-label">Other programs</p>
+                <CardShelf items={shelves.programs} />
               </>
             ) : null}
 
             <p className="card-foot">
-              Prices and photographs come straight from the shop. Clicking one opens its
-              page on the store to buy it there.
+              Prices and photographs come straight from the shop. Click anything to read
+              about it; the buy button is at the bottom of its page.
             </p>
           </section>
         </div>

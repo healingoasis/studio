@@ -31,7 +31,18 @@ export type ShopItem = {
 export type Shelves = {
   merchandise: ShopItem[];
   seminars: ShopItem[];
+  programs: ShopItem[];
 };
+
+/** Where a student lands to read about something before deciding. */
+export const detail_url = (handle: string) => `/shop/${handle}`;
+
+/**
+ * Shopify's cart permalink. Following it puts the chosen variant in the basket and goes
+ * straight to the store's checkout — the buying happens on Shopify, never here.
+ */
+export const checkout_url = (variant_id: number, quantity = 1) =>
+  `${STORE}/cart/${variant_id}:${quantity}`;
 
 type FeedVariant = {
   title: string;
@@ -53,20 +64,29 @@ type FeedProduct = {
   images: FeedImage[];
 };
 
-/** Programme tuition and internal test products are not things to browse. */
-const NOT_FOR_SALE_HERE = new Set(["Programs", "LAB"]);
+/** Internal test products are never shown. */
+const INTERNAL = /\btest\b|do not buy/i;
 
 /** Trade stands and sponsorships are for exhibitors, not students. */
 const EXHIBITOR = /exhibitor|sponsor|booth|presenter|ally|dine & learn/i;
 
+/**
+ * Of the programme products, only the full-tuition ones belong on a browse shelf.
+ * Deposits and outstanding balances are steps in an enrolment someone already has.
+ */
+const PROGRAM_TO_BROWSE = /pay in full|full tuition/i;
+
 /** Ask Shopify's CDN for a sensible size rather than shipping full-resolution photos. */
 function sized(src: string, width: number): string {
+  // The .js endpoint returns protocol-relative URLs, which would resolve to http:// on
+  // a local page and fail. The product feed returns absolute ones.
+  const absolute = src.startsWith("//") ? `https:${src}` : src;
   try {
-    const url = new URL(src);
+    const url = new URL(absolute);
     url.searchParams.set("width", String(width));
     return url.toString();
   } catch {
-    return src;
+    return absolute;
   }
 }
 
@@ -133,7 +153,7 @@ function to_item(product: FeedProduct): ShopItem | null {
 let cache: { at: number; shelves: Shelves } | null = null;
 const CACHE_MS = 5 * 60 * 1000;
 
-const EMPTY: Shelves = { merchandise: [], seminars: [] };
+const EMPTY: Shelves = { merchandise: [], seminars: [], programs: [] };
 
 export async function load_shelves(): Promise<Shelves> {
   if (cache && Date.now() - cache.at < CACHE_MS) return cache.shelves;
@@ -154,14 +174,20 @@ export async function load_shelves(): Promise<Shelves> {
 
   const merchandise: ShopItem[] = [];
   const seminars: ShopItem[] = [];
+  const programs: ShopItem[] = [];
 
   for (const product of products) {
     const type = product.product_type ?? "";
-    if (NOT_FOR_SALE_HERE.has(type)) continue;
+    if (type === "LAB" || INTERNAL.test(product.title)) continue;
     if (EXHIBITOR.test(product.title)) continue;
 
     const item = to_item(product);
     if (!item) continue;
+
+    if (type === "Programs") {
+      if (PROGRAM_TO_BROWSE.test(product.title)) programs.push(item);
+      continue;
+    }
 
     if (type === "Event Tickets") {
       seminars.push(item);
@@ -175,8 +201,131 @@ export async function load_shelves(): Promise<Shelves> {
 
   merchandise.sort((a, b) => a.price_min - b.price_min);
   seminars.sort((a, b) => a.price_min - b.price_min);
+  programs.sort((a, b) => a.title.localeCompare(b.title));
 
-  const shelves: Shelves = { merchandise, seminars };
+  const shelves: Shelves = { merchandise, seminars, programs };
   cache = { at: Date.now(), shelves };
   return shelves;
+}
+
+// ---------------------------------------------------------------- one product
+
+export type ProductVariant = {
+  id: number;
+  title: string;
+  /** One entry per option, in the same order as `options`. */
+  options: string[];
+  price: number;
+  compare_at: number | null;
+  available: boolean;
+};
+
+export type ProductDetail = {
+  handle: string;
+  title: string;
+  description_html: string;
+  images: string[];
+  options: { name: string; values: string[] }[];
+  variants: ProductVariant[];
+  price_min: number;
+  price_max: number;
+  available: boolean;
+};
+
+/**
+ * Descriptions are written by the school in Shopify's editor, so they arrive as HTML.
+ * Rather than trust it, everything is thrown away except a short list of formatting
+ * tags, and every attribute is dropped apart from an http(s) link target.
+ */
+const ALLOWED_TAGS = new Set([
+  "p", "br", "strong", "b", "em", "i", "u", "ul", "ol", "li",
+  "h2", "h3", "h4", "span", "div", "a", "blockquote",
+]);
+
+function sanitize(html: string): string {
+  const without_blocks = html.replace(
+    /<(script|style|iframe|object|embed|form)[\s\S]*?<\/\1\s*>/gi,
+    ""
+  );
+
+  return without_blocks.replace(
+    /<\/?([a-zA-Z0-9-]+)([^>]*)>/g,
+    (match, raw_tag: string, attrs: string) => {
+      const tag = raw_tag.toLowerCase();
+      if (!ALLOWED_TAGS.has(tag)) return "";
+      if (match.startsWith("</")) return `</${tag}>`;
+
+      if (tag === "a") {
+        const href = /href\s*=\s*["']([^"']*)["']/i.exec(attrs)?.[1] ?? "";
+        if (!/^https?:\/\//i.test(href)) return "<a>";
+        return `<a href="${href.replace(/"/g, "&quot;")}" target="_blank" rel="noopener noreferrer">`;
+      }
+
+      return `<${tag}>`;
+    }
+  );
+}
+
+type DetailVariant = {
+  id: number;
+  title: string;
+  options: string[];
+  price: number;
+  compare_at_price: number | null;
+  available: boolean;
+};
+
+type DetailResponse = {
+  handle: string;
+  title: string;
+  description: string | null;
+  images: string[];
+  options: { name: string; values: string[] }[];
+  variants: DetailVariant[];
+};
+
+/** Prices from this endpoint arrive in cents, unlike the product feed. */
+const from_cents = (n: number) => n / 100;
+
+export async function load_product(handle: string): Promise<ProductDetail | null> {
+  if (!/^[a-z0-9][a-z0-9-]{0,120}$/i.test(handle)) return null;
+
+  let body: DetailResponse;
+  try {
+    const response = await fetch(`${STORE}/products/${handle}.js`, { cache: "no-store" });
+    if (!response.ok) return null;
+    body = (await response.json()) as DetailResponse;
+  } catch (error) {
+    console.error(`[student-intake] could not load product ${handle}:`, error);
+    return null;
+  }
+
+  if (!body?.variants?.length) return null;
+  if (INTERNAL.test(body.title)) return null;
+
+  const variants: ProductVariant[] = body.variants.map((v) => ({
+    id: v.id,
+    title: v.title,
+    options: v.options ?? [],
+    price: from_cents(v.price),
+    compare_at:
+      v.compare_at_price && v.compare_at_price > v.price
+        ? from_cents(v.compare_at_price)
+        : null,
+    available: v.available,
+  }));
+
+  const prices = variants.map((v) => v.price);
+
+  return {
+    handle: body.handle,
+    title: body.title,
+    description_html: sanitize(body.description ?? ""),
+    images: (body.images ?? []).map((src) => sized(src, 900)),
+    options: (body.options ?? []).filter((o) => !NO_REAL_CHOICE.test(o.name)),
+    variants,
+    price_min: Math.min(...prices),
+    price_max: Math.max(...prices),
+    available: variants.some((v) => v.available),
+  };
 }

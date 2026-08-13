@@ -13,7 +13,7 @@ let segs = [
     Seg(file: "IMG_8753", start: 2.5,  dur: 1.80, cap: "k01", zoom:  1),
     Seg(file: "IMG_7092", start: 4.0,  dur: 1.30, cap: "k02", zoom: -1),
     Seg(file: "IMG_5135", start: 3.0,  dur: 1.30, cap: "k03", zoom:  1),
-    Seg(file: "IMG_7087", start: 5.0,  dur: 1.35, cap: "k04", zoom: -1),
+    Seg(file: "IMG_7527", start: 4.0,  dur: 1.35, cap: "k04", zoom: -1),
     Seg(file: "IMG_5107", start: 2.0,  dur: 1.35, cap: "k05", zoom:  1),
     Seg(file: "IMG_7093", start: 3.0,  dur: 1.30, cap: "k06", zoom: -1),
     Seg(file: "IMG_7114", start: 1.5,  dur: 1.40, cap: "k07", zoom:  1),
