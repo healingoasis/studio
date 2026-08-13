@@ -56,9 +56,25 @@ but note the recovery only stays exact while base prices are whole dollars.
 
 ## Buying something
 
-Clicking merchandise or a seminar opens `/shop/<handle>` — photographs, the store's own
-description, the choices to make, and a buy button at the bottom. Picking a different
-option updates both the price and what the button will buy.
+Clicking merchandise or a seminar opens `/shop/<handle>` — photographs, then the store's
+own description, then everything about money at the bottom: the choices, the price, the
+card-fee line and the buy button.
+
+**Price never appears at the top.** Someone should read what a thing is before being
+asked what it costs. Picking a different option updates both the price and what the
+button will buy.
+
+Where a product's variants cost different amounts, **each choice carries its own price**
+— the conference offers Veterinary Technician, Doctors, APRVT Candidate and ACVSMR
+Resident at four different rates, so someone picks by their own credential and sees the
+cost on the button. Where every variant costs the same (hoodie sizes) the prices are left
+off, and where there is only one thing to pick (a single "Regular" registration) the
+chooser is hidden entirely — one price, one button.
+
+`ProductDetail.options` deliberately keeps Shopify's full option list, placeholders
+included, because a variant's `options` array is positional. Filtering it would misalign
+the indices used to match a selection back to a variant; `is_real_option` decides what
+the view shows instead.
 
 **Programs work differently.** The store sells one product per cohort ("VSMT 2027 Spring
 Class — Pay in Full"), which is right for taking money but wrong for browsing — someone

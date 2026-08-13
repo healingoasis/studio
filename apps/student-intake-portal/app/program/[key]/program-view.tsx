@@ -78,14 +78,6 @@ export default function ProgramView({
           </fieldset>
         ) : null}
 
-        <p className="product-price">
-          {variant ? money(variant.price) : money(cohort.product.price_min)}
-        </p>
-
-        {variant ? (
-          <FeeLine total={variant.price} fee_included={cohort.product.fee_included} />
-        ) : null}
-
         {cohort.product.description_html ? (
           <div
             className="product-copy"
@@ -98,6 +90,14 @@ export default function ProgramView({
         )}
 
         <div className="buy">
+          <p className="product-price">
+            {variant ? money(variant.price) : money(cohort.product.price_min)}
+          </p>
+
+          {variant ? (
+            <FeeLine total={variant.price} fee_included={cohort.product.fee_included} />
+          ) : null}
+
           {variant?.available ? (
             <>
               <div className="buy-options">

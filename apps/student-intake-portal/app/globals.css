@@ -1242,10 +1242,9 @@ th.num {
 .chooser {
   border: 0;
   padding: 0;
-  margin: 22px 0 0;
+  margin: 0 0 20px;
 }
 
-/* On a programme page the choice comes before the price, so it needs its own gap. */
 .chooser + .product-price {
   margin-top: 22px;
 }
@@ -1267,6 +1266,10 @@ th.num {
 }
 
 .choice {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   font: inherit;
   font-size: 13.5px;
   font-weight: 550;
@@ -1274,8 +1277,27 @@ th.num {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 9px;
-  padding: 9px 15px;
+  padding: 10px 15px;
   cursor: pointer;
+  text-align: left;
+}
+
+/* Each choice carries its own price, so a registration type can be picked by cost. */
+.choice-price {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+
+.choice[aria-pressed="true"] .choice-price {
+  color: var(--accent-ink);
+  opacity: 0.85;
+}
+
+.choice .muted {
+  font-size: 11.5px;
 }
 
 .choice:hover {

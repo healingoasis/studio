@@ -240,6 +240,10 @@ function sized(src: string, width: number): string {
 /** Shopify gives every product an option even when there is nothing to choose. */
 const NO_REAL_CHOICE = /^(title|default)$/i;
 
+/** An option is only worth showing when there is more than one thing to pick. */
+export const is_real_option = (option: { name: string; values: string[] }): boolean =>
+  !NO_REAL_CHOICE.test(option.name) && option.values.filter(Boolean).length > 1;
+
 function list_words(values: string[]): string {
   if (values.length <= 1) return values[0] ?? "";
   const last = values[values.length - 1];
@@ -483,7 +487,10 @@ export async function load_product(handle: string): Promise<ProductDetail | null
     title: body.title,
     description_html: sanitize(body.description ?? ""),
     images: (body.images ?? []).map((src) => sized(src, 900)),
-    options: (body.options ?? []).filter((o) => !NO_REAL_CHOICE.test(o.name)),
+    // Kept whole, including any single-value or placeholder option, because a variant's
+    // `options` array is positional — filtering here would misalign the indices used to
+    // match a selection back to a variant. The view decides what is worth showing.
+    options: body.options ?? [],
     variants,
     price_min: Math.min(...prices),
     price_max: Math.max(...prices),

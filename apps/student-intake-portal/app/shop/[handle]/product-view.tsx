@@ -1,7 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { breakdown, CARD_FEE_RATE, checkout_url, type ProductDetail } from "@/lib/shop";
+import {
+  breakdown,
+  CARD_FEE_RATE,
+  checkout_url,
+  is_real_option,
+  type ProductDetail,
+} from "@/lib/shop";
 
 const money = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -46,6 +52,24 @@ export default function ProductView({ product }: { product: ProductDetail }) {
       v.options.every((value, index) => value === chosen[index])
     );
   }, [product, chosen]);
+
+  /** Only options with something to pick; a lone "Regular" is not a choice. */
+  const shown_options = product.options
+    .map((option, index) => ({ option, index }))
+    .filter(({ option }) => is_real_option(option));
+
+  const prices_vary = product.price_min !== product.price_max;
+
+  /** What picking this value would cost, given everything else already chosen. */
+  function price_if(index: number, value: string): number | null {
+    if (!prices_vary) return null;
+    const candidate = [...chosen];
+    candidate[index] = value;
+    const match = product.variants.find((v) =>
+      v.options.every((option_value, i) => option_value === candidate[i])
+    );
+    return match ? match.price : null;
+  }
 
   function choose(index: number, value: string) {
     set_chosen((prev) => {
@@ -99,27 +123,6 @@ export default function ProductView({ product }: { product: ProductDetail }) {
       <div className="product-detail">
         <h1>{product.title}</h1>
 
-        <p className="product-price">
-          {variant ? (
-            money(variant.price)
-          ) : varies ? (
-            <>
-              {money(product.price_min)}
-              <span className="to">–</span>
-              {money(product.price_max)}
-            </>
-          ) : (
-            money(product.price_min)
-          )}
-          {variant?.compare_at ? (
-            <span className="was">{money(variant.compare_at)}</span>
-          ) : null}
-        </p>
-
-        {variant ? (
-          <FeeLine total={variant.price} fee_included={product.fee_included} />
-        ) : null}
-
         {product.description_html ? (
           <div
             className="product-copy"
@@ -131,30 +134,55 @@ export default function ProductView({ product }: { product: ProductDetail }) {
           </p>
         )}
 
-        {product.options.map((option, index) => (
-          <fieldset className="chooser" key={option.name}>
-            <legend>{option.name}</legend>
-            <div className="choices">
-              {option.values.map((value) => {
-                const in_stock = value_available(index, value);
-                return (
-                  <button
-                    key={value}
-                    type="button"
-                    className="choice"
-                    aria-pressed={chosen[index] === value}
-                    onClick={() => choose(index, value)}
-                  >
-                    {value}
-                    {!in_stock ? <span className="muted"> · sold out</span> : null}
-                  </button>
-                );
-              })}
-            </div>
-          </fieldset>
-        ))}
-
         <div className="buy">
+          {shown_options.map(({ option, index }) => (
+            <fieldset className="chooser" key={option.name}>
+              <legend>{option.name}</legend>
+              <div className="choices">
+                {option.values.map((value) => {
+                  const in_stock = value_available(index, value);
+                  const price = price_if(index, value);
+                  return (
+                    <button
+                      key={value}
+                      type="button"
+                      className="choice"
+                      aria-pressed={chosen[index] === value}
+                      onClick={() => choose(index, value)}
+                    >
+                      <span className="choice-name">{value}</span>
+                      {price !== null ? (
+                        <span className="choice-price">{money(price)}</span>
+                      ) : null}
+                      {!in_stock ? <span className="muted">sold out</span> : null}
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+          ))}
+
+          <p className="product-price">
+            {variant ? (
+              money(variant.price)
+            ) : varies ? (
+              <>
+                {money(product.price_min)}
+                <span className="to">–</span>
+                {money(product.price_max)}
+              </>
+            ) : (
+              money(product.price_min)
+            )}
+            {variant?.compare_at ? (
+              <span className="was">{money(variant.compare_at)}</span>
+            ) : null}
+          </p>
+
+          {variant ? (
+            <FeeLine total={variant.price} fee_included={product.fee_included} />
+          ) : null}
+
           {variant?.available ? (
             <>
               <a className="btn big" href={checkout_url(variant.id)}>
