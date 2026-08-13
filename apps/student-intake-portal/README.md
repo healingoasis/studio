@@ -31,6 +31,24 @@ out underneath ("Cover or Full Bale", "4 flavors · 8oz or 16oz"). This matters:
 photo shows the full bale at $387.75 while the cover alone is $224.38, so a single
 cheapest-variant price against that photo would misrepresent what someone is buying.
 
+## Buying something
+
+Clicking anything on a shelf opens `/shop/<handle>` — photographs, the store's own
+description, the choices to make, and a buy button at the bottom. Picking a different
+option updates both the price and what the button will buy.
+
+**Buy now** follows a Shopify cart permalink, which drops that exact variant in the
+basket and lands on the store's checkout. Every part of paying happens on Shopify; this
+app never touches money, a card, or an order.
+
+Product descriptions are HTML written in Shopify's editor. They are **sanitised before
+rendering**: everything is discarded except a short list of formatting tags, every
+attribute is dropped, and links survive only if they are `http(s)` and are forced to
+`rel="noopener noreferrer"`.
+
+Test products (`TEST`, `do not buy`) and exhibitor or sponsorship products are excluded
+everywhere — a student should never be sold a trade stand.
+
 **Real:** the required-document lists, taken from Daniel's admissions comparison document
 (the VSMT, VMRT, Acupuncture and Cranio/Sacral application forms, 2026). They differ per
 program, so each program carries its own list in `lib/documents.ts`.
@@ -106,6 +124,7 @@ lib/shop.ts         the shop shelves, from the store's public product feed
 lib/documents.ts    the requirement lists, and the invented starting statuses
 lib/uploads.ts      saving, replacing, removing and reading back uploaded files
 app/api/documents/  upload, change status, remove, and serve a file back
+app/shop/[handle]/  one product: photos, description, choices, buy button
 app/page.tsx        server component, fetches, handles failure in plain language
 app/portal.tsx      the whole interface
 mockup.html         the original static mockup, kept for reference

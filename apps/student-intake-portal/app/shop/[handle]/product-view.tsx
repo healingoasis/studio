@@ -41,39 +41,35 @@ export default function ProductView({ product }: { product: ProductDetail }) {
   const varies = product.price_min !== product.price_max;
 
   return (
-    <div className="product">
-      <div className="product-media">
-        {main_image ? (
-          <>
-            <div className="product-photo">
-              {/* Plain img on purpose: next/image wants sharp, which this workspace skips. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={main_image} alt={product.title} />
-            </div>
-            {product.images.length > 1 ? (
-              <div className="thumbs">
-                {product.images.map((src, index) => (
-                  <button
-                    key={src}
-                    type="button"
-                    className={`thumb ${index === photo ? "on" : ""}`}
-                    aria-label={`Photo ${index + 1} of ${product.images.length}`}
-                    aria-pressed={index === photo}
-                    onClick={() => set_photo(index)}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt="" />
-                  </button>
-                ))}
-              </div>
-            ) : null}
-          </>
-        ) : (
-          <div className="product-photo empty">
-            <span>No photograph on the store yet</span>
+    // Programmes and seminars have no photographs on the store, so they read as one
+    // column rather than leaving half the page empty.
+    <div className={`product ${main_image ? "" : "no-photo"}`}>
+      {main_image ? (
+        <div className="product-media">
+          <div className="product-photo">
+            {/* Plain img on purpose: next/image wants sharp, which this workspace skips. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={main_image} alt={product.title} />
           </div>
-        )}
-      </div>
+          {product.images.length > 1 ? (
+            <div className="thumbs">
+              {product.images.map((src, index) => (
+                <button
+                  key={src}
+                  type="button"
+                  className={`thumb ${index === photo ? "on" : ""}`}
+                  aria-label={`Photo ${index + 1} of ${product.images.length}`}
+                  aria-pressed={index === photo}
+                  onClick={() => set_photo(index)}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt="" />
+                </button>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
 
       <div className="product-detail">
         <h1>{product.title}</h1>

@@ -1046,11 +1046,9 @@ th.num {
   display: block;
 }
 
-.product-photo.empty {
-  display: grid;
-  place-items: center;
-  color: var(--ink-faint);
-  font-size: 13px;
+.product.no-photo {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 720px;
 }
 
 .thumbs {
