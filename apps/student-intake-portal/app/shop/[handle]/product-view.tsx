@@ -8,6 +8,7 @@ import {
   is_real_option,
   type ProductDetail,
 } from "@/lib/shop";
+import { CoverHero, tone_of } from "../../cover";
 
 const money = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -93,6 +94,17 @@ export default function ProductView({ product }: { product: ProductDetail }) {
     // Programmes and seminars have no photographs on the store, so they read as one
     // column rather than leaving half the page empty.
     <div className={`product ${main_image ? "" : "no-photo"}`}>
+      {/* Nothing on the store to show, so the shelf card's cover carries over — the same
+          colour and wording as the card that was clicked, rather than a blank page. It
+          carries the heading too, instead of repeating the title underneath itself. */}
+      {!main_image ? (
+        <CoverHero
+          title={product.title}
+          tone={tone_of(product.handle)}
+          kicker={/conference/i.test(product.title) ? "Conference" : "Seminar"}
+        />
+      ) : null}
+
       {main_image ? (
         <div className="product-media">
           <div className="product-photo">
@@ -121,7 +133,7 @@ export default function ProductView({ product }: { product: ProductDetail }) {
       ) : null}
 
       <div className="product-detail">
-        <h1>{product.title}</h1>
+        {main_image ? <h1>{product.title}</h1> : null}
 
         {product.description_html ? (
           <div

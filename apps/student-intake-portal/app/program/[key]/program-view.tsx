@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { breakdown, CARD_FEE_RATE, checkout_url } from "@/lib/shop";
+import { CoverHero } from "../../cover";
 import { FeeLine } from "../../shop/[handle]/product-view";
 import type { Cohort } from "./page";
 
@@ -12,10 +13,12 @@ export default function ProgramView({
   short_name,
   full_name,
   cohorts,
+  tone,
 }: {
   short_name: string;
   full_name: string;
   cohorts: Cohort[];
+  tone: number;
 }) {
   // Open on the first class someone can still join.
   const [picked, set_picked] = useState(() => {
@@ -52,9 +55,14 @@ export default function ProgramView({
 
   return (
     <div className="product no-photo">
+      <CoverHero
+        title={short_name}
+        kicker="Program"
+        tone={tone}
+        subtitle={full_name}
+      />
+
       <div className="product-detail">
-        <p className="eyebrow">{short_name}</p>
-        <h1>{full_name}</h1>
 
         {cohorts.length > 1 ? (
           <fieldset className="chooser">

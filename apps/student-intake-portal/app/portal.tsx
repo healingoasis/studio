@@ -22,6 +22,7 @@ import {
   type ShopItem,
 } from "@/lib/shop";
 import type { PaymentStanding, Student } from "@/lib/students";
+import { Cover, tone_of } from "./cover";
 
 /**
  * Someone applying is chasing paperwork, so that is the whole page. Someone enrolled has
@@ -158,28 +159,6 @@ function Legend() {
       ))}
     </div>
   );
-}
-
-/**
- * A stand-in cover for the things the store has no photograph of — the programs, the
- * seminars, the conference. Set as type on a tinted panel rather than a stock image, so
- * it reads as a deliberate cover instead of pretending to be a photo of something.
- * The moment a real photograph is uploaded to Shopify it takes over automatically.
- */
-function Cover({ title, tone, kicker }: { title: string; tone: number; kicker?: string }) {
-  return (
-    <span className={`cover tone-${tone % 5}`}>
-      {kicker ? <span className="cover-kicker">{kicker}</span> : null}
-      <span className="cover-title">{title}</span>
-    </span>
-  );
-}
-
-/** Steady per product, so a given seminar keeps the same colour between loads. */
-function tone_of(seed: string): number {
-  let h = 0;
-  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
-  return h;
 }
 
 /** Merchandise, seminars and the conference, all as picture cards. */

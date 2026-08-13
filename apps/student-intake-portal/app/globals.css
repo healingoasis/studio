@@ -1160,6 +1160,45 @@ th.num {
   max-width: 720px;
 }
 
+/* The shelf card's cover, carried onto the page it opens. */
+.cover-hero {
+  position: relative;
+  inset: auto;
+  display: flex;
+  min-height: 168px;
+  border-radius: 13px;
+  padding: 22px 26px;
+  margin-bottom: 26px;
+  overflow: hidden;
+}
+
+.cover-hero .cover-kicker,
+.cover-hero .cover-title,
+.cover-hero .cover-subtitle {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.cover-hero .cover-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.cover-hero .cover-kicker {
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.cover-hero .cover-subtitle {
+  margin-top: 7px;
+  font-size: 14px;
+  opacity: 0.82;
+}
+
 .thumbs {
   display: flex;
   gap: 8px;

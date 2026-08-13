@@ -35,8 +35,12 @@ export default async function ProgramPage({
   params: Promise<{ key: string }>;
 }) {
   const { key } = await params;
-  const group = program_group(key, (await load_shelves()).programs);
+  const { programs } = await load_shelves();
+  const group = program_group(key, programs);
   if (!group) notFound();
+
+  // Same tone as the shelf card, so opening one lands somewhere that looks related.
+  const tone = programs.findIndex((g) => g.key === key);
 
   const loaded = await Promise.all(
     group.cohorts.map(async (c) => {
@@ -69,6 +73,7 @@ export default async function ProgramPage({
         short_name={group.short_name}
         full_name={group.full_name}
         cohorts={cohorts}
+        tone={tone}
       />
     </main>
   );
