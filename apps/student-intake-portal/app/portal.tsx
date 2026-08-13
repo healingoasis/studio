@@ -23,8 +23,6 @@ import {
 } from "@/lib/shop";
 import type { PaymentStanding, Student } from "@/lib/students";
 
-const STORE = "https://healing-oasis-us.myshopify.com/products/";
-
 /**
  * Someone applying is chasing paperwork, so that is the whole page. Someone enrolled has
  * a record that keeps growing, so the paperwork becomes one tab of several. Grades,
@@ -822,14 +820,6 @@ export default function Portal({
                   >
                     Pay balance
                   </Link>
-                  <a
-                    className="btn ghost"
-                    href={`${STORE}${current.program.balance_handle}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Set up a payment plan
-                  </a>
                 </>
               ) : (
                 <div className="pay-text">
