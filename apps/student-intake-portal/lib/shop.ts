@@ -28,14 +28,30 @@ export type ShopItem = {
   available: boolean;
 };
 
+/**
+ * A programme, not one of its classes. The store sells a separate product per cohort
+ * ("VSMT 2027 Spring Class — Pay in Full"), which is the right way to take money but the
+ * wrong way to browse: someone deciding whether to do VSMT does not want to read four
+ * near-identical cards. The classes become a choice once they are on the programme page.
+ */
+export type ProgramGroup = {
+  key: string;
+  short_name: string;
+  full_name: string;
+  /** Cohort product handles, earliest class first. */
+  handles: string[];
+};
+
 export type Shelves = {
   merchandise: ShopItem[];
   seminars: ShopItem[];
-  programs: ShopItem[];
+  programs: ProgramGroup[];
 };
 
 /** Where a student lands to read about something before deciding. */
 export const detail_url = (handle: string) => `/shop/${handle}`;
+
+export const program_url = (key: string) => `/program/${key}`;
 
 /**
  * Shopify's cart permalink. Following it puts the chosen variant in the basket and goes
@@ -75,6 +91,60 @@ const EXHIBITOR = /exhibitor|sponsor|booth|presenter|ally|dine & learn/i;
  * Deposits and outstanding balances are steps in an enrolment someone already has.
  */
 const PROGRAM_TO_BROWSE = /pay in full|full tuition/i;
+
+/**
+ * Names live here rather than being imported from lib/students.ts, which reaches for
+ * node:fs through the Shopify client and so cannot be pulled into the browser bundle.
+ */
+const PROGRAM_NAMES: { key: string; short_name: string; full_name: string; match: RegExp }[] = [
+  { key: "vsmt", short_name: "VSMT", full_name: "Veterinary Spinal Manipulative Therapy", match: /\bvsmt\b|spinal manipulat/i },
+  { key: "vmrt", short_name: "VMRT", full_name: "Veterinary Massage & Rehabilitation Therapy", match: /\bvmrt\b|massage|rehabilitation/i },
+  { key: "acupuncture", short_name: "Acupuncture", full_name: "Veterinary Acupuncture", match: /acupuncture/i },
+];
+
+const SEASON_ORDER: Record<string, number> = { spring: 1, summer: 2, fall: 3, winter: 4 };
+
+/** "VSMT 2027 Spring Class — Pay in Full" → sortable, and "Spring 2027" to show. */
+export function class_term_of(title: string): { label: string; sort: number } {
+  const a = /(20\d\d)\s*(spring|summer|fall|winter)/i.exec(title);
+  const b = /(spring|summer|fall|winter)\s*(20\d\d)/i.exec(title);
+
+  const year = a?.[1] ?? b?.[2];
+  const season = (a?.[2] ?? b?.[1])?.toLowerCase();
+
+  if (!year || !season) return { label: "Next available class", sort: 0 };
+
+  const pretty = season.charAt(0).toUpperCase() + season.slice(1);
+  return {
+    label: `${pretty} ${year}`,
+    sort: Number(year) * 10 + (SEASON_ORDER[season] ?? 0),
+  };
+}
+
+function group_programs(items: { handle: string; title: string }[]): ProgramGroup[] {
+  const groups: ProgramGroup[] = [];
+
+  for (const meta of PROGRAM_NAMES) {
+    const cohorts = items
+      .filter((i) => meta.match.test(i.title))
+      .sort((a, b) => class_term_of(a.title).sort - class_term_of(b.title).sort);
+
+    if (cohorts.length === 0) continue;
+
+    groups.push({
+      key: meta.key,
+      short_name: meta.short_name,
+      full_name: meta.full_name,
+      handles: cohorts.map((c) => c.handle),
+    });
+  }
+
+  return groups;
+}
+
+export function program_group(key: string, groups: ProgramGroup[]): ProgramGroup | null {
+  return groups.find((g) => g.key === key) ?? null;
+}
 
 /** Ask Shopify's CDN for a sensible size rather than shipping full-resolution photos. */
 function sized(src: string, width: number): string {
@@ -174,7 +244,7 @@ export async function load_shelves(): Promise<Shelves> {
 
   const merchandise: ShopItem[] = [];
   const seminars: ShopItem[] = [];
-  const programs: ShopItem[] = [];
+  const cohorts: { handle: string; title: string }[] = [];
 
   for (const product of products) {
     const type = product.product_type ?? "";
@@ -185,7 +255,9 @@ export async function load_shelves(): Promise<Shelves> {
     if (!item) continue;
 
     if (type === "Programs") {
-      if (PROGRAM_TO_BROWSE.test(product.title)) programs.push(item);
+      if (PROGRAM_TO_BROWSE.test(product.title)) {
+        cohorts.push({ handle: product.handle, title: product.title });
+      }
       continue;
     }
 
@@ -201,9 +273,12 @@ export async function load_shelves(): Promise<Shelves> {
 
   merchandise.sort((a, b) => a.price_min - b.price_min);
   seminars.sort((a, b) => a.price_min - b.price_min);
-  programs.sort((a, b) => a.title.localeCompare(b.title));
 
-  const shelves: Shelves = { merchandise, seminars, programs };
+  const shelves: Shelves = {
+    merchandise,
+    seminars,
+    programs: group_programs(cohorts),
+  };
   cache = { at: Date.now(), shelves };
   return shelves;
 }

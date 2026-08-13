@@ -33,9 +33,16 @@ cheapest-variant price against that photo would misrepresent what someone is buy
 
 ## Buying something
 
-Clicking anything on a shelf opens `/shop/<handle>` — photographs, the store's own
+Clicking merchandise or a seminar opens `/shop/<handle>` — photographs, the store's own
 description, the choices to make, and a buy button at the bottom. Picking a different
 option updates both the price and what the button will buy.
+
+**Programs work differently.** The store sells one product per cohort ("VSMT 2027 Spring
+Class — Pay in Full"), which is right for taking money but wrong for browsing — someone
+deciding whether to do VSMT does not want four near-identical cards. So the shelf shows
+**one card per program with no price**, and `/program/<key>` turns the cohorts into a
+"choose a class" control. Picking a class swaps in that class's module schedule and
+price, and the enrol button buys that exact class.
 
 **Buy now** follows a Shopify cart permalink, which drops that exact variant in the
 basket and lands on the store's checkout. Every part of paying happens on Shopify; this
@@ -125,6 +132,7 @@ lib/documents.ts    the requirement lists, and the invented starting statuses
 lib/uploads.ts      saving, replacing, removing and reading back uploaded files
 app/api/documents/  upload, change status, remove, and serve a file back
 app/shop/[handle]/  one product: photos, description, choices, buy button
+app/program/[key]/  one program: choose a class, then its schedule, price and enrol
 app/page.tsx        server component, fetches, handles failure in plain language
 app/portal.tsx      the whole interface
 mockup.html         the original static mockup, kept for reference

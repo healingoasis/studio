@@ -918,6 +918,26 @@ th.num {
   font-variant-numeric: tabular-nums;
 }
 
+.item.program .t {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.program-full {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.item.program .p {
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
 /* ---------- merchandise ---------- */
 
 .merch-shelf {
@@ -1145,6 +1165,11 @@ th.num {
   border: 0;
   padding: 0;
   margin: 22px 0 0;
+}
+
+/* On a programme page the choice comes before the price, so it needs its own gap. */
+.chooser + .product-price {
+  margin-top: 22px;
 }
 
 .chooser legend {

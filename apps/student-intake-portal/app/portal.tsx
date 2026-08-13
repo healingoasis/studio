@@ -12,7 +12,13 @@ import {
   type DocumentState,
 } from "@/lib/documents";
 import Link from "next/link";
-import { detail_url, type Shelves, type ShopItem } from "@/lib/shop";
+import {
+  detail_url,
+  program_url,
+  type ProgramGroup,
+  type Shelves,
+  type ShopItem,
+} from "@/lib/shop";
 import type { PaymentStanding, Student } from "@/lib/students";
 
 const STORE = "https://healing-oasis-us.myshopify.com/products/";
@@ -185,7 +191,31 @@ function MerchShelf({ items }: { items: ShopItem[] }) {
   );
 }
 
-/** Seminars, the conference and other programmes have no photographs on the store. */
+/**
+ * One card per programme rather than per class, and no price. Which class and what it
+ * costs are decisions for the programme's own page, not the shelf.
+ */
+function ProgramShelf({ groups }: { groups: ProgramGroup[] }) {
+  if (groups.length === 0) return null;
+
+  return (
+    <div className="shelf">
+      {groups.map((g) => (
+        <Link key={g.key} className="item program" href={program_url(g.key)}>
+          <span className="t">{g.short_name}</span>
+          <span className="program-full">{g.full_name}</span>
+          <span className="p">
+            {g.handles.length === 1
+              ? "1 class open"
+              : `${g.handles.length} classes open`}
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+/** Seminars and the conference have no photographs on the store. */
 function CardShelf({ items }: { items: ShopItem[] }) {
   if (items.length === 0) return null;
 
@@ -647,7 +677,7 @@ export default function Portal({
             {shelves.programs.length > 0 ? (
               <>
                 <p className="shelf-label">Other programs</p>
-                <CardShelf items={shelves.programs} />
+                <ProgramShelf groups={shelves.programs} />
               </>
             ) : null}
 
