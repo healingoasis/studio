@@ -24,12 +24,22 @@ ticket is filtered out.
 **Real, read from the store's public product feed:** the shop shelves — product titles,
 prices, photographs and whether something is sold out.
 
-Only merchandise has photographs on the store; the programs, seminars and conference have
-none. Rather than leave those shelves looking unfinished, they get a **typographic cover**
-— the title set on a tinted panel. It is deliberately not a stock photo, because a
-stand-in that looks like a photograph of something implies a photograph of that thing.
-**Upload a real photo to any of those products in Shopify and it takes over
-automatically** — nothing here needs changing.
+Only merchandise has photographs on the store. For the programs, seminars and conference,
+real class photographs are used instead — copied in from Daniel's Mac
+(`~/Documents/Claude/Photos:videos`) and mapped in `lib/local_photos.ts`.
+
+**These are not committed.** `.gitignore` excludes `apps/*/public/photos/` because **this
+repo is public** and the photographs show identifiable students, staff and clients. They
+work on this machine and go no further. Anyone else cloning this repo falls back to the
+typographic cover automatically.
+
+The right home for them is the Shopify products themselves. Store images always take
+priority over this map, so uploading them there makes `lib/local_photos.ts` redundant —
+and puts them where the website can use them too.
+
+Where neither exists, the **typographic cover** stands in: the title set on a tinted
+panel. Deliberately not stock photography, because a stand-in that looks like a
+photograph of something implies a photograph of *that* thing.
 
 Prices show as a **range wherever a product's variants differ**, with the choices spelled
 out underneath ("Cover or Full Bale", "4 flavors · 8oz or 16oz"). This matters: a bale

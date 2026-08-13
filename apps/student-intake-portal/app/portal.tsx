@@ -216,7 +216,12 @@ function ProgramShelf({ groups }: { groups: ProgramGroup[] }) {
       {groups.map((g, index) => (
         <Link key={g.key} className="merch" href={program_url(g.key)}>
           <span className="merch-photo">
-            <Cover title={g.short_name} kicker="Program" tone={index} />
+            {g.image ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={g.image} alt={g.image_alt} loading="lazy" decoding="async" />
+            ) : (
+              <Cover title={g.short_name} kicker="Program" tone={index} />
+            )}
           </span>
           <span className="merch-body">
             <span className="merch-title">{g.full_name}</span>

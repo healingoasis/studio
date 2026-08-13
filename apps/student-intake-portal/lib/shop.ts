@@ -6,6 +6,8 @@
  * credentials. Nothing here is personal data.
  */
 
+import { local_photo, local_photo_alt } from "./local_photos";
+
 const STORE = "https://healing-oasis-us.myshopify.com";
 
 export const product_url = (handle: string) => `${STORE}/products/${handle}`;
@@ -49,6 +51,9 @@ export type ProgramGroup = {
   full_name: string;
   /** Earliest class first. */
   cohorts: ProgramCohort[];
+  /** A class photograph, where there is one for this program. */
+  image: string | null;
+  image_alt: string;
 };
 
 export type Shelves = {
@@ -213,6 +218,8 @@ function group_programs(
         handle: c.handle,
         deposit_handle: deposit_for(c, deposits, meta.match),
       })),
+      image: local_photo(meta.key),
+      image_alt: local_photo_alt(meta.key, meta.full_name),
     });
   }
 
@@ -293,8 +300,9 @@ function to_item(product: FeedProduct): ShopItem | null {
     price_max,
     compare_at: compare && compare > price_min ? compare : null,
     choices: describe_choices(product.options ?? []),
-    image: image ? sized(image.src, 600) : null,
-    image_alt: image?.alt || product.title,
+    // The store's own photo wins; a class photograph from Daniel's Mac fills the gap.
+    image: image ? sized(image.src, 600) : local_photo(product.handle),
+    image_alt: image?.alt || local_photo_alt(product.handle, product.title),
     available: variants.some((v) => v.available),
     // The feed returns tags as an array, but a comma-separated string on some stores.
     fee_included: includes_card_fee(
@@ -482,11 +490,14 @@ export async function load_product(handle: string): Promise<ProductDetail | null
 
   const prices = variants.map((v) => v.price);
 
+  const store_images = (body.images ?? []).map((src) => sized(src, 900));
+  const stand_in = local_photo(body.handle);
+
   return {
     handle: body.handle,
     title: body.title,
     description_html: sanitize(body.description ?? ""),
-    images: (body.images ?? []).map((src) => sized(src, 900)),
+    images: store_images.length > 0 ? store_images : stand_in ? [stand_in] : [],
     // Kept whole, including any single-value or placeholder option, because a variant's
     // `options` array is positional — filtering here would misalign the indices used to
     // match a selection back to a variant. The view decides what is worth showing.

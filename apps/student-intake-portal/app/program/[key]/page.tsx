@@ -74,6 +74,8 @@ export default async function ProgramPage({
         full_name={group.full_name}
         cohorts={cohorts}
         tone={tone}
+        image={group.image}
+        image_alt={group.image_alt}
       />
     </main>
   );

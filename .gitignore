@@ -19,6 +19,10 @@ out/
 .data/
 tmp/
 
+# Class photographs copied in from Daniel's Mac. This repo is PUBLIC, and these show
+# identifiable students, staff and clients — they stay on the machine.
+apps/*/public/photos/
+
 # Note: data/ is intentionally NOT ignored. It holds tracked source-of-truth
 # seeds and fixtures only. Runtime persistence belongs in .data/ or tmp/.
 

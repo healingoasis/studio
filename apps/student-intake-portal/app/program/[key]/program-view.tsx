@@ -14,11 +14,15 @@ export default function ProgramView({
   full_name,
   cohorts,
   tone,
+  image,
+  image_alt,
 }: {
   short_name: string;
   full_name: string;
   cohorts: Cohort[];
   tone: number;
+  image: string | null;
+  image_alt: string;
 }) {
   // Open on the first class someone can still join.
   const [picked, set_picked] = useState(() => {
@@ -55,12 +59,25 @@ export default function ProgramView({
 
   return (
     <div className="product no-photo">
-      <CoverHero
-        title={short_name}
-        kicker="Program"
-        tone={tone}
-        subtitle={full_name}
-      />
+      {image ? (
+        <div className="photo-hero">
+          {/* Plain img on purpose: next/image wants sharp, which this workspace skips. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={image} alt={image_alt} />
+          <div className="photo-hero-text">
+            <p className="cover-kicker">Program</p>
+            <h1 className="cover-title">{short_name}</h1>
+            <p className="cover-subtitle">{full_name}</p>
+          </div>
+        </div>
+      ) : (
+        <CoverHero
+          title={short_name}
+          kicker="Program"
+          tone={tone}
+          subtitle={full_name}
+        />
+      )}
 
       <div className="product-detail">
 
