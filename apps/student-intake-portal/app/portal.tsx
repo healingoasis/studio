@@ -161,21 +161,6 @@ function Legend() {
 }
 
 /**
- * A single price where there is one, the whole range where there is not. A bale photo
- * shows the full bale, so showing only the cover price against it would mislead.
- */
-function Price({ item }: { item: ShopItem }) {
-  if (item.price_min === item.price_max) return <>{money(item.price_min)}</>;
-  return (
-    <>
-      {money(item.price_min)}
-      <span className="to">–</span>
-      {money(item.price_max)}
-    </>
-  );
-}
-
-/**
  * A stand-in cover for the things the store has no photograph of — the programs, the
  * seminars, the conference. Set as type on a tinted panel rather than a stock image, so
  * it reads as a deliberate cover instead of pretending to be a photo of something.
@@ -217,21 +202,23 @@ function ItemShelf({ items }: { items: ShopItem[] }) {
               // eslint-disable-next-line @next/next/no-img-element
               <img src={i.image} alt={i.image_alt} loading="lazy" decoding="async" />
             ) : (
-              <Cover title={i.title} tone={tone_of(i.handle)} />
+              <Cover
+                title={i.title}
+                tone={tone_of(i.handle)}
+                kicker={/conference/i.test(i.title) ? "Conference" : "Seminar"}
+              />
             )}
             {!i.available ? <span className="sold-out">Sold out</span> : null}
           </span>
-          <span className="merch-body">
-            {/* The stand-in cover already carries the title, so do not print it twice. */}
-            {i.image ? <span className="merch-title">{i.title}</span> : null}
-            <span className="merch-price">
-              <Price item={i} />
-              {i.compare_at ? (
-                <span className="was">{money(i.compare_at)}</span>
-              ) : null}
+          {/* No price on a shelf card: what a thing is comes before what it costs. The
+              body is skipped entirely when the cover already says everything, rather
+              than leaving an empty band under it. */}
+          {i.image || i.choices ? (
+            <span className="merch-body">
+              {i.image ? <span className="merch-title">{i.title}</span> : null}
+              {i.choices ? <span className="merch-choices">{i.choices}</span> : null}
             </span>
-            {i.choices ? <span className="merch-choices">{i.choices}</span> : null}
-          </span>
+          ) : null}
         </Link>
       ))}
     </div>
