@@ -43,9 +43,11 @@ Every price on the store already has a **3.4% card processing fee baked in**, ma
 at $8,467 — a student sees only the higher number and cannot tell what the school
 actually charges.
 
-Detail and program pages therefore show the split: what it costs, the card processing,
-and the total by card — plus a line saying a check costs the base amount. The rate lives
-in one place, `CARD_FEE_RATE` in `lib/shop.ts`.
+Detail and program pages carry **one quiet line under the price** — "Includes 3.4% card
+processing ($285.00) · $8,389.00 by check". Deliberately not a full invoice breakdown:
+which way to pay is chosen at Shopify's checkout, so this only has to be formal and
+complete, not persuade anyone. The rate lives in one place, `CARD_FEE_RATE` in
+`lib/shop.ts`.
 
 Every listed price on the store divides back to a whole dollar at this rate (checked
 across all 36 products and every variant), so the base is recovered by rounding rather

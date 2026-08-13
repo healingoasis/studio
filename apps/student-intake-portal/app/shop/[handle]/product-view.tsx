@@ -9,40 +9,25 @@ const money = (n: number) =>
 const fee_percent = `${(CARD_FEE_RATE * 100).toFixed(1)}%`;
 
 /**
- * The store lists prices with the card fee already in them, which hides what the school
- * actually charges. This shows both, the way the website does.
+ * The listed price already has the card fee in it, so a $200 deposit reads as $206.80.
+ * One line under the price says so — enough to be straight about it without turning
+ * every page into an invoice. Which way to pay is chosen at checkout.
  */
-export function Breakdown({
+export function FeeLine({
   total,
   fee_included,
-  label = "Cost",
 }: {
   total: number;
   fee_included: boolean;
-  label?: string;
 }) {
   const split = breakdown(total, fee_included);
   if (!split) return null;
 
   return (
-    <dl className="breakdown">
-      <div>
-        <dt>{label}</dt>
-        <dd>{money(split.base)}</dd>
-      </div>
-      <div>
-        <dt>Card processing ({fee_percent})</dt>
-        <dd>{money(split.fee)}</dd>
-      </div>
-      <div className="breakdown-total">
-        <dt>Total paid by card</dt>
-        <dd>{money(split.total)}</dd>
-      </div>
-      <p className="breakdown-note">
-        Paying by check or bank transfer costs {money(split.base)} — the {fee_percent}{" "}
-        covers the card processing only.
-      </p>
-    </dl>
+    <p className="fee-line">
+      Includes {fee_percent} card processing ({money(split.fee)}) ·{" "}
+      {money(split.base)} by check
+    </p>
   );
 }
 
@@ -131,6 +116,10 @@ export default function ProductView({ product }: { product: ProductDetail }) {
           ) : null}
         </p>
 
+        {variant ? (
+          <FeeLine total={variant.price} fee_included={product.fee_included} />
+        ) : null}
+
         {product.description_html ? (
           <div
             className="product-copy"
@@ -166,10 +155,6 @@ export default function ProductView({ product }: { product: ProductDetail }) {
         ))}
 
         <div className="buy">
-          {variant ? (
-            <Breakdown total={variant.price} fee_included={product.fee_included} />
-          ) : null}
-
           {variant?.available ? (
             <>
               <a className="btn big" href={checkout_url(variant.id)}>

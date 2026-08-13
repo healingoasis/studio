@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { breakdown, CARD_FEE_RATE, checkout_url } from "@/lib/shop";
-import { Breakdown } from "../../shop/[handle]/product-view";
+import { FeeLine } from "../../shop/[handle]/product-view";
 import type { Cohort } from "./page";
 
 const money = (n: number) =>
@@ -82,6 +82,10 @@ export default function ProgramView({
           {variant ? money(variant.price) : money(cohort.product.price_min)}
         </p>
 
+        {variant ? (
+          <FeeLine total={variant.price} fee_included={cohort.product.fee_included} />
+        ) : null}
+
         {cohort.product.description_html ? (
           <div
             className="product-copy"
@@ -94,22 +98,6 @@ export default function ProgramView({
         )}
 
         <div className="buy">
-          {variant ? (
-            <Breakdown
-              total={variant.price}
-              fee_included={cohort.product.fee_included}
-              label="Tuition"
-            />
-          ) : null}
-
-          {deposit_variant && cohort.deposit ? (
-            <Breakdown
-              total={deposit_variant.price}
-              fee_included={cohort.deposit.fee_included}
-              label="Deposit"
-            />
-          ) : null}
-
           {variant?.available ? (
             <>
               <div className="buy-options">
@@ -131,7 +119,9 @@ export default function ProgramView({
                 ) : null}
                 {deposit_variant?.available ? (
                   <>
-                    The deposit holds your place; the remaining{" "}
+                    The deposit
+                    {deposit_split ? ` (${money(deposit_split.base)} plus card processing)` : ""}{" "}
+                    holds your place; the remaining{" "}
                     <strong>{money(remaining_base ?? remaining_total)}</strong>
                     {remaining_base !== null
                       ? ` (${money(remaining_total)} by card)`
