@@ -6,7 +6,7 @@
  * credentials. Nothing here is personal data.
  */
 
-import { local_photo, local_photo_alt } from "./local_photos";
+import { local_hero, local_photo, local_photo_alt } from "./local_photos";
 
 const STORE = "https://healing-oasis-us.myshopify.com";
 
@@ -51,9 +51,11 @@ export type ProgramGroup = {
   full_name: string;
   /** Earliest class first. */
   cohorts: ProgramCohort[];
-  /** A class photograph, where there is one for this program. */
+  /** A class photograph for the shelf card, where there is one for this program. */
   image: string | null;
   image_alt: string;
+  /** A different frame for the program's own page. */
+  hero: string | null;
 };
 
 export type Shelves = {
@@ -220,6 +222,7 @@ function group_programs(
       })),
       image: local_photo(meta.key),
       image_alt: local_photo_alt(meta.key, meta.full_name),
+      hero: local_hero(meta.key),
     });
   }
 
@@ -491,7 +494,8 @@ export async function load_product(handle: string): Promise<ProductDetail | null
   const prices = variants.map((v) => v.price);
 
   const store_images = (body.images ?? []).map((src) => sized(src, 900));
-  const stand_in = local_photo(body.handle);
+  // A different frame from the one on the shelf card that led here.
+  const stand_in = local_hero(body.handle);
 
   return {
     handle: body.handle,

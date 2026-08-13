@@ -26,7 +26,12 @@ prices, photographs and whether something is sold out.
 
 Only merchandise has photographs on the store. For the programs, seminars and conference,
 real class photographs are used instead — copied in from Daniel's Mac
-(`~/Documents/Claude/Photos:videos`) and mapped in `lib/local_photos.ts`.
+(`~/Documents/Claude/Photos:videos` and the curated CE set under
+`Projects/CE Seminars/.../_review_v3/Photos`) and mapped in `lib/local_photos.ts`.
+
+**Two photographs each**, one for the shelf card and a different one for the page it
+opens. Seeing the same picture twice in two clicks makes a site feel thin; a second view
+of the same work makes it feel like there is more behind it.
 
 **These are not committed.** `.gitignore` excludes `apps/*/public/photos/` because **this
 repo is public** and the photographs show identifiable students, staff and clients. They
