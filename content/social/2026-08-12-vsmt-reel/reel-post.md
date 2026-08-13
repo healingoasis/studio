@@ -26,7 +26,7 @@ shape reels actually travel in.
 | Time | Shot | Words on screen |
 |------|------|-----------------|
 | 0.0–1.8 | Close on hands reading a horse's back | She's not petting him. **She's reading his spine.** |
-| 1.8–3.1 | Instructor guiding a student's hands on a dog | This is veterinary spinal manipulation. |
+| 1.8–3.1 | Two sets of hands working along a heeler's spine on the mat | This is veterinary spinal manipulation. |
 | 3.1–4.4 | Student adjusting a horse | **226 hours** of training. |
 | 4.4–5.8 | Canine practicum | Over **100 hours** hands-on. |
 | 5.8–7.1 | Small horse practicum | On real dogs and horses. |
@@ -39,8 +39,11 @@ shape reels actually travel in.
 | 15.1–17.0 | Equine adjustment (callback to the opening) | **20 seats.** That's the whole class. |
 | 17.0–20.0 | End card | Next class starts January 13, 2027 · healingoasis.edu |
 
-**Clips used** (all from the VSMT folder): IMG_8753, IMG_7112, IMG_5135, IMG_7087,
+**Clips used** (all from the VSMT folder): IMG_8753, IMG_7092, IMG_5135, IMG_7087,
 IMG_5107, IMG_7093, IMG_7114, IMG_5127, IMG_7013, IMG_7091, IMG_8760, IMG_8751
+
+Beat 2 was originally IMG_7112 (the dog moving its head) — swapped out on Daniel's call
+for IMG_7092, which shows hands running along the spine and matches the caption better.
 
 ## Caption (copy and paste)
 

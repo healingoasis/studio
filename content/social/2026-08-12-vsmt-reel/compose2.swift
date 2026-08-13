@@ -11,7 +11,7 @@ let SRC = "/Users/danielrivera/Documents/Claude/Photos:videos/VSMT "
 struct Seg { let file: String; let start: Double; let dur: Double; let cap: String; let zoom: Int }
 let segs = [
     Seg(file: "IMG_8753", start: 2.5,  dur: 1.80, cap: "k01", zoom:  1),
-    Seg(file: "IMG_7112", start: 2.0,  dur: 1.30, cap: "k02", zoom: -1),
+    Seg(file: "IMG_7092", start: 4.0,  dur: 1.30, cap: "k02", zoom: -1),
     Seg(file: "IMG_5135", start: 3.0,  dur: 1.30, cap: "k03", zoom:  1),
     Seg(file: "IMG_7087", start: 5.0,  dur: 1.35, cap: "k04", zoom: -1),
     Seg(file: "IMG_5107", start: 2.0,  dur: 1.35, cap: "k05", zoom:  1),
