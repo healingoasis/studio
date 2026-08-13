@@ -738,8 +738,7 @@ export default function Portal({
               </div>
             )}
 
-            {tab_built && active_tab === "admission" ? <Legend /> : null}
-
+            {/* No legend here — every row already names its own status in words. */}
             {problem && tab_built ? (
               <p className="alert" role="alert">
                 {problem}
