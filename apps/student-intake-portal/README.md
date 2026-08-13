@@ -94,6 +94,28 @@ to read. Statuses are generated from a hash of the customer id, biased by how fa
 they are on payments, so a given person always shows the same thing instead of
 reshuffling on each load.
 
+## Two stages
+
+The page changes shape depending on where someone is, because what matters to them
+changes:
+
+**Applying** (anything still owed) — the whole page is about getting their admission
+paperwork in. No tabs, one list, front and centre.
+
+**Enrolled** (tuition settled) — the paperwork stops being the headline and becomes one
+tab of a student record: **Admission Documents**, **Student Documents**, then Grades,
+Evaluations and Diploma.
+
+Those last three are **deliberately empty** and marked "soon". They show where the thing
+is heading without inventing marks or certificates — there is no source to read them
+from yet. The empty panel says so plainly rather than showing a fake table.
+
+The switch is `remaining === 0 && paid > 0`, so it happens on its own when the last
+payment lands in Shopify.
+
+The Student Documents list is a **draft** and needs Daniel's corrections, the same way
+the admission lists did before he supplied the real ones.
+
 ## The fifth state
 
 Daniel specified four colours: red nothing, yellow in progress, green good to go, orange

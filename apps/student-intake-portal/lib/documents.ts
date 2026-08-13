@@ -165,6 +165,34 @@ export function documents_for_program(program: ProgramKey): DocumentDef[] {
   return PROGRAM_DOCUMENTS[program];
 }
 
+/**
+ * What the school collects and issues once someone is actually on the program, as
+ * opposed to getting in. DRAFT — Daniel needs to correct this against what really
+ * happens during a program.
+ */
+export const STUDENT_DOCUMENTS: DocumentDef[] = [
+  { doc_id: "attendance_record", name: "Attendance record" },
+  { doc_id: "practical_assessment", name: "Practical assessment" },
+  { doc_id: "case_studies", name: "Case study submissions" },
+  { doc_id: "course_evaluation", name: "Course evaluation form" },
+  {
+    doc_id: "insurance_renewal",
+    name: "Insurance renewal during the program",
+    expires: true,
+    only_if: "Only where cover lapses before the final module.",
+  },
+  { doc_id: "certificate_of_completion", name: "Certificate of completion" },
+];
+
+export function student_documents(): DocumentDef[] {
+  return STUDENT_DOCUMENTS;
+}
+
+/** Everything tracked for one student, both stages, for storage and counting. */
+export function all_documents(program: ProgramKey): DocumentDef[] {
+  return [...documents_for_program(program), ...STUDENT_DOCUMENTS];
+}
+
 // ---------------------------------------------------------------- pretend statuses
 
 export type UploadedFile = {
@@ -251,7 +279,7 @@ export function documents_for(
 ): Record<string, DocumentState> {
   const out: Record<string, DocumentState> = {};
 
-  for (const doc of documents_for_program(program)) {
+  for (const doc of all_documents(program)) {
     const seed = hash(student_id + ":" + doc.doc_id);
     const status = pick(seed, standing, doc);
     out[doc.doc_id] = {
@@ -280,7 +308,7 @@ export function merge_documents(
 
   const merged: Record<string, DocumentState> = { ...generated };
 
-  for (const doc of documents_for_program(program)) {
+  for (const doc of all_documents(program)) {
     const record = stored[doc.doc_id];
     if (!record) continue;
     merged[doc.doc_id] = {
@@ -297,8 +325,9 @@ export function merge_documents(
 
 export type StatusCounts = Record<DocStatus, number> & { required: number };
 
+/** Counts one list at a time, so admission and student paperwork tally separately. */
 export function count_statuses(
-  program: ProgramKey,
+  list: DocumentDef[],
   docs: Record<string, DocumentState>
 ): StatusCounts {
   const counts: StatusCounts = {
@@ -310,7 +339,7 @@ export function count_statuses(
     required: 0,
   };
 
-  for (const doc of documents_for_program(program)) {
+  for (const doc of list) {
     const state = docs[doc.doc_id];
     if (!state) continue;
     counts[state.status] += 1;

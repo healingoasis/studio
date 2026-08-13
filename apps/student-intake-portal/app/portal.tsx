@@ -8,7 +8,9 @@ import {
   STATUS_LABEL,
   STATUS_LEGEND,
   STATUS_ORDER,
+  student_documents,
   type DocStatus,
+  type DocumentDef,
   type DocumentState,
 } from "@/lib/documents";
 import Link from "next/link";
@@ -22,6 +24,28 @@ import {
 import type { PaymentStanding, Student } from "@/lib/students";
 
 const STORE = "https://healing-oasis-us.myshopify.com/products/";
+
+/**
+ * Someone applying is chasing paperwork, so that is the whole page. Someone enrolled has
+ * a record that keeps growing, so the paperwork becomes one tab of several. Grades,
+ * evaluations and the diploma are where this is heading; they are shown as empty tabs
+ * rather than invented, so the shape is visible without pretending the data exists.
+ */
+type Tab = "admission" | "student" | "grades" | "evaluations" | "diploma";
+
+const TABS: { key: Tab; label: string; built: boolean }[] = [
+  { key: "admission", label: "Admission Documents", built: true },
+  { key: "student", label: "Student Documents", built: true },
+  { key: "grades", label: "Grades", built: false },
+  { key: "evaluations", label: "Evaluations", built: false },
+  { key: "diploma", label: "Diploma", built: false },
+];
+
+const NOT_BUILT: Record<string, string> = {
+  grades: "Module results and overall standing would live here, once there is somewhere to read them from.",
+  evaluations: "Instructor evaluations and the student's own course feedback would live here.",
+  diploma: "The certificate itself, downloadable once the program is passed.",
+};
 
 const STANDING_LABEL: Record<PaymentStanding, string> = {
   nothing_paid: "Nothing paid yet",
@@ -267,6 +291,7 @@ export default function Portal({
   const [current_id, set_current_id] = useState(students[0]?.student_id ?? "");
   const [filter, set_filter] = useState<Filter>("all");
   const [privacy, set_privacy] = useState(false);
+  const [tab, set_tab] = useState<Tab>("admission");
   const [busy, set_busy] = useState<string | null>(null);
   const [problem, set_problem] = useState<string | null>(null);
   const [, start_transition] = useTransition();
@@ -358,13 +383,109 @@ export default function Portal({
     set_status(student_id, doc_id, STATUS_ORDER[next_index] ?? "not_started");
   }
 
+  /** One list of documents. Used for both the admission and the student tabs. */
+  function doc_list(student: Student, list: DocumentDef[], docs: Record<string, DocumentState>) {
+    return (
+      <ul className="docs">
+        {list.map((d) => {
+          const entry = docs[d.doc_id];
+          if (!entry) return null;
+          const working = busy === d.doc_id;
+
+          return (
+            <li key={d.doc_id}>
+              <div className={`doc ${entry.status} ${working ? "working" : ""}`}>
+                <span className="bar" />
+
+                <div className="doc-main">
+                  <span className="name">{d.name}</span>
+                  {entry.note ? <span className="note">{entry.note}</span> : null}
+                  {d.only_if ? <span className="only-if">{d.only_if}</span> : null}
+                  {entry.file ? (
+                    <span className="filed">
+                      <a
+                        href={`/api/documents/file?student_id=${encodeURIComponent(
+                          student.student_id
+                        )}&doc_id=${encodeURIComponent(d.doc_id)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {entry.file.file_name}
+                      </a>{" "}
+                      <span className="muted">
+                        · {file_size(entry.file.size)} · sent{" "}
+                        {short_date(entry.file.uploaded_at.slice(0, 10))}
+                      </span>
+                    </span>
+                  ) : null}
+                </div>
+
+                <span className="doc-when">{short_date(entry.updated_on)}</span>
+
+                <div className="doc-actions">
+                  <input
+                    type="file"
+                    className="visually-hidden"
+                    id={`file-${d.doc_id}`}
+                    ref={(el) => {
+                      file_inputs.current[d.doc_id] = el;
+                    }}
+                    accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.doc,.docx"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) upload(student.student_id, d.doc_id, file);
+                      e.target.value = "";
+                    }}
+                  />
+                  <label htmlFor={`file-${d.doc_id}`} className="mini primary">
+                    {working ? "Sending…" : entry.file ? "Replace" : "Upload"}
+                  </label>
+                  {entry.file ? (
+                    <button
+                      type="button"
+                      className="mini"
+                      disabled={working}
+                      onClick={() => remove(student.student_id, d.doc_id)}
+                    >
+                      Remove
+                    </button>
+                  ) : null}
+                </div>
+
+                <button
+                  type="button"
+                  className="doc-chip"
+                  disabled={working}
+                  title="Change the status"
+                  onClick={() => cycle(student.student_id, d.doc_id, entry.status)}
+                >
+                  <Chip status={entry.status} />
+                </button>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
   if (!current) return null;
 
   const current_docs = docs[current.student_id] ?? {};
-  const current_counts = count_statuses(current.program.key, current_docs);
-  const current_list = documents_for_program(current.program.key);
-  const outstanding =
-    current_counts.not_started + current_counts.in_progress + current_counts.needs_update;
+  const admission_list = documents_for_program(current.program.key);
+  const current_counts = count_statuses(admission_list, current_docs);
+
+  // Paid in full means enrolled, and an enrolled student gets a record with tabs rather
+  // than a page that is only about chasing their paperwork.
+  const enrolled = current.remaining === 0 && current.paid > 0;
+  const active_tab: Tab = enrolled ? tab : "admission";
+  const tab_built = TABS.find((t) => t.key === active_tab)?.built ?? true;
+
+  const shown_list =
+    active_tab === "student" ? student_documents() : admission_list;
+  const shown_counts = count_statuses(shown_list, current_docs);
+  const shown_outstanding =
+    shown_counts.not_started + shown_counts.in_progress + shown_counts.needs_update;
 
   return (
     <main className="wrap">
@@ -480,17 +601,47 @@ export default function Portal({
           </section>
 
           <section className="card">
-            <div className="card-head">
-              <div>
-                <h2>Your paperwork</h2>
-                <p className="sub">
-                  {current_counts.approved} of {current_counts.required} good to go ·{" "}
-                  {current.program.short_name} requirements
-                </p>
+            {enrolled ? (
+              <>
+                <div className="card-head">
+                  <div>
+                    <h2>{current.name.split(" ")[0]}&rsquo;s record</h2>
+                    <p className="sub">
+                      Enrolled on {current.program.short_name}
+                      {current.class_term ? ` — ${current.class_term}` : ""}
+                    </p>
+                  </div>
+                </div>
+                <div className="tabs" role="tablist">
+                  {TABS.map((t) => (
+                    <button
+                      key={t.key}
+                      type="button"
+                      role="tab"
+                      className="tab"
+                      aria-selected={tab === t.key}
+                      onClick={() => set_tab(t.key)}
+                    >
+                      {t.label}
+                      {!t.built ? <span className="soon">soon</span> : null}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="card-head">
+                <div>
+                  <h2>Your admission documents</h2>
+                  <p className="sub">
+                    {current_counts.approved} of {current_counts.required} good to go ·{" "}
+                    {current.program.short_name} requirements
+                  </p>
+                </div>
+                <p className="sub">Send a file for anything that is missing</p>
               </div>
-              <p className="sub">Send a file for anything that is missing</p>
-            </div>
-            <Legend />
+            )}
+
+            {tab_built ? <Legend /> : null}
 
             {problem ? (
               <p className="alert" role="alert">
@@ -498,101 +649,28 @@ export default function Portal({
               </p>
             ) : null}
 
-            <ul className="docs">
-              {current_list.map((d) => {
-                const entry = current_docs[d.doc_id];
-                if (!entry) return null;
-                const working = busy === d.doc_id;
+            {tab_built ? doc_list(current, shown_list, current_docs) : null}
 
-                return (
-                  <li key={d.doc_id}>
-                    <div className={`doc ${entry.status} ${working ? "working" : ""}`}>
-                      <span className="bar" />
-
-                      <div className="doc-main">
-                        <span className="name">{d.name}</span>
-                        {entry.note ? <span className="note">{entry.note}</span> : null}
-                        {d.only_if ? <span className="only-if">{d.only_if}</span> : null}
-                        {entry.file ? (
-                          <span className="filed">
-                            <a
-                              href={`/api/documents/file?student_id=${encodeURIComponent(
-                                current.student_id
-                              )}&doc_id=${encodeURIComponent(d.doc_id)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {entry.file.file_name}
-                            </a>{" "}
-                            <span className="muted">
-                              · {file_size(entry.file.size)} · sent{" "}
-                              {short_date(entry.file.uploaded_at.slice(0, 10))}
-                            </span>
-                          </span>
-                        ) : null}
-                      </div>
-
-                      <span className="doc-when">{short_date(entry.updated_on)}</span>
-
-                      <div className="doc-actions">
-                        <input
-                          type="file"
-                          className="visually-hidden"
-                          id={`file-${d.doc_id}`}
-                          ref={(el) => {
-                            file_inputs.current[d.doc_id] = el;
-                          }}
-                          accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.doc,.docx"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) upload(current.student_id, d.doc_id, file);
-                            e.target.value = "";
-                          }}
-                        />
-                        <label htmlFor={`file-${d.doc_id}`} className="mini primary">
-                          {working
-                            ? "Sending…"
-                            : entry.file
-                              ? "Replace"
-                              : "Upload"}
-                        </label>
-                        {entry.file ? (
-                          <button
-                            type="button"
-                            className="mini"
-                            disabled={working}
-                            onClick={() => remove(current.student_id, d.doc_id)}
-                          >
-                            Remove
-                          </button>
-                        ) : null}
-                      </div>
-
-                      <button
-                        type="button"
-                        className="doc-chip"
-                        disabled={working}
-                        title="Change the status"
-                        onClick={() =>
-                          cycle(current.student_id, d.doc_id, entry.status)
-                        }
-                      >
-                        <Chip status={entry.status} />
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-            <p className="card-foot">
-              {outstanding === 0
-                ? "Everything is in. Nothing else is needed."
-                : `${outstanding} ${
-                    outstanding === 1 ? "item still needs" : "items still need"
-                  } attention. Red and orange are waiting on the student; yellow is waiting on the office.`}{" "}
-              Uploading turns something yellow — it has arrived but nobody has checked it.
-              Click the coloured label to move it on.
-            </p>
+            {tab_built ? (
+              <p className="card-foot">
+                {shown_counts.approved} of {shown_counts.required} good to go.{" "}
+                {shown_outstanding === 0
+                  ? "Nothing else is needed here."
+                  : `${shown_outstanding} still ${
+                      shown_outstanding === 1 ? "needs" : "need"
+                    } attention — red and orange are waiting on the student, yellow on the office.`}{" "}
+                Uploading turns something yellow; click the coloured label to move it on.
+              </p>
+            ) : (
+              <div className="empty-tab">
+                <p className="empty-title">Not built yet</p>
+                <p>{NOT_BUILT[tab]}</p>
+                <p className="muted">
+                  Nothing is invented here on purpose — it will appear once there is a
+                  real source to read it from.
+                </p>
+              </div>
+            )}
           </section>
 
           <section className="card">
@@ -743,7 +821,11 @@ export default function Portal({
                 <tbody>
                   {visible.map((s) => {
                     const s_docs = docs[s.student_id] ?? {};
-                    const counts = count_statuses(s.program.key, s_docs);
+                    // The roster tracks getting people in, so it counts admission only.
+                    const counts = count_statuses(
+                      documents_for_program(s.program.key),
+                      s_docs
+                    );
                     return (
                       <tr
                         key={s.student_id}
