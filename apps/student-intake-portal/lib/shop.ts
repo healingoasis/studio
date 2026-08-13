@@ -26,6 +26,8 @@ export type ShopItem = {
   image: string | null;
   image_alt: string;
   available: boolean;
+  /** Listed prices already include the card fee, so they can be broken down. */
+  fee_included: boolean;
 };
 
 /**
@@ -67,6 +69,40 @@ export const program_url = (key: string) => `/program/${key}`;
 export const checkout_url = (variant_id: number, quantity = 1) =>
   `${STORE}/cart/${variant_id}:${quantity}`;
 
+// ---------------------------------------------------------------- the card fee
+
+/**
+ * The store's listed prices already include the card processing fee, marked by a
+ * `cc-fee-included` tag. Every price on the store divides back to a whole dollar at this
+ * rate — a $200 deposit lists at $206.80, an $8,189 balance at $8,467 — so a student
+ * sees only the higher number and cannot tell what the school actually charges.
+ * Splitting it out is the honest presentation, and matches how the website reads.
+ */
+export const CARD_FEE_RATE = 0.034;
+
+const CC_FEE_TAG = /cc[-\s]?fee[-\s]?included/i;
+
+export const includes_card_fee = (tags: string[] | undefined): boolean =>
+  (tags ?? []).some((t) => CC_FEE_TAG.test(t));
+
+export type Breakdown = { base: number; fee: number; total: number };
+
+/**
+ * Splits a listed price back into what the school charges and the card fee on top.
+ * Returns null when there is nothing to split, so callers can just show the price.
+ */
+export function breakdown(total: number, fee_included: boolean): Breakdown | null {
+  if (!fee_included || total <= 0) return null;
+
+  // Every base price on the store is a whole number of dollars, so rounding recovers it
+  // exactly rather than leaving a penny adrift.
+  const base = Math.round(total / (1 + CARD_FEE_RATE));
+  const fee = Math.round((total - base) * 100) / 100;
+
+  if (fee <= 0) return null;
+  return { base, fee, total };
+}
+
 type FeedVariant = {
   title: string;
   price: string;
@@ -82,6 +118,7 @@ type FeedProduct = {
   handle: string;
   title: string;
   product_type: string | null;
+  tags: string[] | string | null;
   options: FeedOption[];
   variants: FeedVariant[];
   images: FeedImage[];
@@ -255,6 +292,12 @@ function to_item(product: FeedProduct): ShopItem | null {
     image: image ? sized(image.src, 600) : null,
     image_alt: image?.alt || product.title,
     available: variants.some((v) => v.available),
+    // The feed returns tags as an array, but a comma-separated string on some stores.
+    fee_included: includes_card_fee(
+      Array.isArray(product.tags)
+        ? product.tags
+        : (product.tags ?? "").split(",").map((t) => t.trim())
+    ),
   };
 }
 
@@ -346,6 +389,7 @@ export type ProductDetail = {
   price_min: number;
   price_max: number;
   available: boolean;
+  fee_included: boolean;
 };
 
 /**
@@ -394,6 +438,7 @@ type DetailVariant = {
 type DetailResponse = {
   handle: string;
   title: string;
+  tags: string[] | null;
   description: string | null;
   images: string[];
   options: { name: string; values: string[] }[];
@@ -443,5 +488,6 @@ export async function load_product(handle: string): Promise<ProductDetail | null
     price_min: Math.min(...prices),
     price_max: Math.max(...prices),
     available: variants.some((v) => v.available),
+    fee_included: includes_card_fee(body.tags ?? undefined),
   };
 }

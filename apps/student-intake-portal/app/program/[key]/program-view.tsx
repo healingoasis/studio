@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { checkout_url } from "@/lib/shop";
+import { breakdown, CARD_FEE_RATE, checkout_url } from "@/lib/shop";
+import { Breakdown } from "../../shop/[handle]/product-view";
 import type { Cohort } from "./page";
 
 const money = (n: number) =>
@@ -31,6 +32,23 @@ export default function ProgramView({
   const deposit_variant = cohort.deposit
     ? (cohort.deposit.variants.find((v) => v.available) ?? cohort.deposit.variants[0])
     : null;
+
+  // What is left after the deposit, stated the same way the prices above are: what the
+  // school charges, and what it comes to on a card.
+  const remaining_total = Math.max(0, (variant?.price ?? 0) - (deposit_variant?.price ?? 0));
+
+  const tuition_split = variant
+    ? breakdown(variant.price, cohort.product.fee_included)
+    : null;
+  const deposit_split =
+    deposit_variant && cohort.deposit
+      ? breakdown(deposit_variant.price, cohort.deposit.fee_included)
+      : null;
+
+  const remaining_base =
+    tuition_split && deposit_split
+      ? Math.max(0, tuition_split.base - deposit_split.base)
+      : null;
 
   return (
     <div className="product no-photo">
@@ -76,6 +94,22 @@ export default function ProgramView({
         )}
 
         <div className="buy">
+          {variant ? (
+            <Breakdown
+              total={variant.price}
+              fee_included={cohort.product.fee_included}
+              label="Tuition"
+            />
+          ) : null}
+
+          {deposit_variant && cohort.deposit ? (
+            <Breakdown
+              total={deposit_variant.price}
+              fee_included={cohort.deposit.fee_included}
+              label="Deposit"
+            />
+          ) : null}
+
           {variant?.available ? (
             <>
               <div className="buy-options">
@@ -98,8 +132,12 @@ export default function ProgramView({
                 {deposit_variant?.available ? (
                   <>
                     The deposit holds your place; the remaining{" "}
-                    {money(Math.max(0, variant.price - deposit_variant.price))} is due
-                    before the first module and can be paid from your portal page.{" "}
+                    <strong>{money(remaining_base ?? remaining_total)}</strong>
+                    {remaining_base !== null
+                      ? ` (${money(remaining_total)} by card)`
+                      : ""}{" "}
+                    is due before the first module, and can be paid from your portal
+                    page.{" "}
                   </>
                 ) : null}
                 You will be taken to the Healing Oasis store to pay, and nothing is

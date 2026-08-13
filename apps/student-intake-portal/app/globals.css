@@ -1228,6 +1228,54 @@ th.num {
   cursor: default;
 }
 
+/* ---------- price breakdown ---------- */
+
+.breakdown {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+  max-width: 400px;
+  font-size: 13.5px;
+}
+
+.breakdown > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 4px 0;
+}
+
+.breakdown dt {
+  color: var(--ink-soft);
+}
+
+.breakdown dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.breakdown-total {
+  margin-top: 5px;
+  padding-top: 9px !important;
+  border-top: 1px solid var(--line);
+  font-weight: 600;
+}
+
+.breakdown-total dt {
+  color: var(--ink);
+}
+
+.breakdown-note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
 .buy-options {
   display: flex;
   flex-wrap: wrap;

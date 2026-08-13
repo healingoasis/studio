@@ -36,6 +36,22 @@ out underneath ("Cover or Full Bale", "4 flavors · 8oz or 16oz"). This matters:
 photo shows the full bale at $387.75 while the cover alone is $224.38, so a single
 cheapest-variant price against that photo would misrepresent what someone is buying.
 
+## The card fee
+
+Every price on the store already has a **3.4% card processing fee baked in**, marked by a
+`cc-fee-included` tag. That is why a $200 deposit lists at $206.80 and an $8,189 balance
+at $8,467 — a student sees only the higher number and cannot tell what the school
+actually charges.
+
+Detail and program pages therefore show the split: what it costs, the card processing,
+and the total by card — plus a line saying a check costs the base amount. The rate lives
+in one place, `CARD_FEE_RATE` in `lib/shop.ts`.
+
+Every listed price on the store divides back to a whole dollar at this rate (checked
+across all 36 products and every variant), so the base is recovered by rounding rather
+than left a penny adrift. **If the rate ever changes, that constant is the one edit** —
+but note the recovery only stays exact while base prices are whole dollars.
+
 ## Buying something
 
 Clicking merchandise or a seminar opens `/shop/<handle>` — photographs, the store's own
