@@ -24,12 +24,12 @@ const PHOTOS: Record<string, string> = {
 };
 
 const CAPTIONS: Record<string, string> = {
-  vsmt: "Students adjusting a horse during a VSMT module",
-  vmrt: "Rehabilitation work with a dog on the VMRT program",
+  vsmt: "Students working on a horse under instruction during a VSMT module",
+  vmrt: "Hands-on treatment table work during a VMRT module",
   acupuncture: "A patient during a veterinary acupuncture session",
-  "2026-conference-attendee-registration": "The Healing Oasis homecoming conference",
-  "cranio-sacral-2026": "Hands-on technique work during a seminar",
-  "applied-kinesiology-2026": "Students assessing a patient together",
+  "2026-conference-attendee-registration": "A presentation at the Healing Oasis homecoming conference",
+  "cranio-sacral-2026": "Gentle cranio-sacral work on a patient",
+  "applied-kinesiology-2026": "Applied kinesiology assessment during a seminar",
 };
 
 export function local_photo(key: string): string | null {

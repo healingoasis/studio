@@ -90,25 +90,44 @@ export default function ProductView({ product }: { product: ProductDetail }) {
   const main_image = product.images[photo] ?? product.images[0] ?? null;
   const varies = product.price_min !== product.price_max;
 
+  const is_conference = /conference/i.test(product.title);
+  const kicker = is_conference ? "Conference" : "Continuing education";
+
+  // Seminars and the conference lead with one photograph; merchandise gets a gallery.
+  const is_event = product.options.some((o) =>
+    /registration type/i.test(o.name)
+  );
+
   return (
     // Programmes and seminars have no photographs on the store, so they read as one
     // column rather than leaving half the page empty.
-    <div className={`product ${main_image ? "" : "no-photo"}`}>
-      {/* Nothing on the store to show, so the shelf card's cover carries over — the same
-          colour and wording as the card that was clicked, rather than a blank page. It
-          carries the heading too, instead of repeating the title underneath itself. */}
+    <div className={`product ${main_image && !is_event ? "" : "no-photo"}`}>
+      {/* A seminar or the conference: one class photograph, full width, with the title
+          laid over it. Merchandise keeps its gallery, since choosing a bale colour needs
+          thumbnails rather than a banner. */}
+      {is_event && main_image ? (
+        <div className="photo-hero">
+          {/* Plain img on purpose: next/image wants sharp, which this workspace skips. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={main_image} alt={product.title} />
+          <div className="photo-hero-text">
+            <p className="cover-kicker">{kicker}</p>
+            <h1 className="cover-title">{product.title}</h1>
+          </div>
+        </div>
+      ) : null}
+
       {!main_image ? (
         <CoverHero
           title={product.title}
           tone={tone_of(product.handle)}
-          kicker={/conference/i.test(product.title) ? "Conference" : "Seminar"}
+          kicker={kicker}
         />
       ) : null}
 
-      {main_image ? (
+      {main_image && !is_event ? (
         <div className="product-media">
           <div className="product-photo">
-            {/* Plain img on purpose: next/image wants sharp, which this workspace skips. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={main_image} alt={product.title} />
           </div>
@@ -133,7 +152,7 @@ export default function ProductView({ product }: { product: ProductDetail }) {
       ) : null}
 
       <div className="product-detail">
-        {main_image ? <h1>{product.title}</h1> : null}
+        {main_image && !is_event ? <h1>{product.title}</h1> : null}
 
         {product.description_html ? (
           <div
