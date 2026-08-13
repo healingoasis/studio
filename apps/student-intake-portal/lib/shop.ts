@@ -34,12 +34,19 @@ export type ShopItem = {
  * wrong way to browse: someone deciding whether to do VSMT does not want to read four
  * near-identical cards. The classes become a choice once they are on the programme page.
  */
+export type ProgramCohort = {
+  /** The pay-in-full product for this class. */
+  handle: string;
+  /** The matching deposit product, where the store has one. */
+  deposit_handle: string | null;
+};
+
 export type ProgramGroup = {
   key: string;
   short_name: string;
   full_name: string;
-  /** Cohort product handles, earliest class first. */
-  handles: string[];
+  /** Earliest class first. */
+  cohorts: ProgramCohort[];
 };
 
 export type Shelves = {
@@ -121,21 +128,54 @@ export function class_term_of(title: string): { label: string; sort: number } {
   };
 }
 
-function group_programs(items: { handle: string; title: string }[]): ProgramGroup[] {
+type ProgramProduct = { handle: string; title: string };
+
+/**
+ * Finds the deposit that belongs to a class. The store names most of them predictably
+ * (`vsmt-2026-fall-full` → `vsmt-2026-fall-deposit`), but not all — Acupuncture's is
+ * just `acupuncture-program` — so fall back to matching on programme and term.
+ */
+function deposit_for(
+  cohort: ProgramProduct,
+  deposits: ProgramProduct[],
+  match: RegExp
+): string | null {
+  const by_name = cohort.handle.replace(/-(full|pay-in-full)$/, "-deposit");
+  if (deposits.some((d) => d.handle === by_name)) return by_name;
+
+  const for_program = deposits.filter((d) => match.test(d.title));
+  if (for_program.length === 0) return null;
+
+  const term = class_term_of(cohort.title).sort;
+  const same_term = for_program.find((d) => class_term_of(d.title).sort === term);
+  if (same_term) return same_term.handle;
+
+  // A programme-wide deposit with no class in its name covers every class.
+  const generic = for_program.find((d) => class_term_of(d.title).sort === 0);
+  return generic?.handle ?? null;
+}
+
+function group_programs(
+  full_price: ProgramProduct[],
+  deposits: ProgramProduct[]
+): ProgramGroup[] {
   const groups: ProgramGroup[] = [];
 
   for (const meta of PROGRAM_NAMES) {
-    const cohorts = items
+    const classes = full_price
       .filter((i) => meta.match.test(i.title))
       .sort((a, b) => class_term_of(a.title).sort - class_term_of(b.title).sort);
 
-    if (cohorts.length === 0) continue;
+    if (classes.length === 0) continue;
 
     groups.push({
       key: meta.key,
       short_name: meta.short_name,
       full_name: meta.full_name,
-      handles: cohorts.map((c) => c.handle),
+      cohorts: classes.map((c) => ({
+        handle: c.handle,
+        deposit_handle: deposit_for(c, deposits, meta.match),
+      })),
     });
   }
 
@@ -244,7 +284,8 @@ export async function load_shelves(): Promise<Shelves> {
 
   const merchandise: ShopItem[] = [];
   const seminars: ShopItem[] = [];
-  const cohorts: { handle: string; title: string }[] = [];
+  const full_price: ProgramProduct[] = [];
+  const deposits: ProgramProduct[] = [];
 
   for (const product of products) {
     const type = product.product_type ?? "";
@@ -255,9 +296,9 @@ export async function load_shelves(): Promise<Shelves> {
     if (!item) continue;
 
     if (type === "Programs") {
-      if (PROGRAM_TO_BROWSE.test(product.title)) {
-        cohorts.push({ handle: product.handle, title: product.title });
-      }
+      const entry = { handle: product.handle, title: product.title };
+      if (PROGRAM_TO_BROWSE.test(product.title)) full_price.push(entry);
+      else if (/deposit/i.test(product.title)) deposits.push(entry);
       continue;
     }
 
@@ -277,7 +318,7 @@ export async function load_shelves(): Promise<Shelves> {
   const shelves: Shelves = {
     merchandise,
     seminars,
-    programs: group_programs(cohorts),
+    programs: group_programs(full_price, deposits),
   };
   cache = { at: Date.now(), shelves };
   return shelves;

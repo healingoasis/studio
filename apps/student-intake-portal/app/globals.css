@@ -882,62 +882,6 @@ th.num {
   margin: 0;
 }
 
-.shelf {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
-  gap: 11px;
-  padding: 11px 20px 20px;
-}
-
-.item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 13px 14px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--surface-2);
-  text-decoration: none;
-  color: inherit;
-}
-
-.item:hover {
-  border-color: var(--accent);
-}
-
-.item .t {
-  font-size: 13.5px;
-  font-weight: 550;
-  line-height: 1.35;
-}
-
-.item .p {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--ink-soft);
-  font-variant-numeric: tabular-nums;
-}
-
-.item.program .t {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-}
-
-.program-full {
-  font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.4;
-}
-
-.item.program .p {
-  margin-top: 4px;
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-faint);
-}
-
 /* ---------- merchandise ---------- */
 
 .merch-shelf {
@@ -979,6 +923,57 @@ th.num {
   display: block;
 }
 
+/* ---------- stand-in covers ---------- */
+
+.cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 16px;
+  text-align: left;
+  background: var(--cover-bg);
+  color: var(--cover-ink);
+}
+
+.cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 90% at 15% 0%,
+    rgba(255, 255, 255, 0.16),
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+.cover-kicker {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.cover-title {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.tone-0 { --cover-bg: #14494f; --cover-ink: #e6f2f2; }
+.tone-1 { --cover-bg: #3c5133; --cover-ink: #eaf1e4; }
+.tone-2 { --cover-bg: #52323f; --cover-ink: #f6e8ec; }
+.tone-3 { --cover-bg: #4a3a26; --cover-ink: #f4ece0; }
+.tone-4 { --cover-bg: #2f3a56; --cover-ink: #e8ecf7; }
+
 .sold-out {
   position: absolute;
   inset: auto 0 0 0;
@@ -1018,8 +1013,7 @@ th.num {
   color: var(--ink-faint);
 }
 
-.merch-price .to,
-.item .p .to {
+.merch-price .to {
   padding: 0 3px;
   color: var(--ink-faint);
 }
@@ -1234,11 +1228,18 @@ th.num {
   cursor: default;
 }
 
+.buy-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+}
+
 .buy-note {
-  margin: 11px 0 0;
+  margin: 13px 0 0;
   font-size: 12.5px;
   color: var(--ink-faint);
-  max-width: 46ch;
+  max-width: 56ch;
+  line-height: 1.55;
 }
 
 @media (max-width: 760px) {

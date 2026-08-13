@@ -153,8 +153,30 @@ function Price({ item }: { item: ShopItem }) {
   );
 }
 
-/** Merchandise, with the real product photo from the store. */
-function MerchShelf({ items }: { items: ShopItem[] }) {
+/**
+ * A stand-in cover for the things the store has no photograph of — the programs, the
+ * seminars, the conference. Set as type on a tinted panel rather than a stock image, so
+ * it reads as a deliberate cover instead of pretending to be a photo of something.
+ * The moment a real photograph is uploaded to Shopify it takes over automatically.
+ */
+function Cover({ title, tone, kicker }: { title: string; tone: number; kicker?: string }) {
+  return (
+    <span className={`cover tone-${tone % 5}`}>
+      {kicker ? <span className="cover-kicker">{kicker}</span> : null}
+      <span className="cover-title">{title}</span>
+    </span>
+  );
+}
+
+/** Steady per product, so a given seminar keeps the same colour between loads. */
+function tone_of(seed: string): number {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+/** Merchandise, seminars and the conference, all as picture cards. */
+function ItemShelf({ items }: { items: ShopItem[] }) {
   if (items.length === 0) {
     return (
       <p className="shelf-empty">
@@ -172,11 +194,14 @@ function MerchShelf({ items }: { items: ShopItem[] }) {
               // Plain img on purpose: next/image wants sharp, which this workspace skips.
               // eslint-disable-next-line @next/next/no-img-element
               <img src={i.image} alt={i.image_alt} loading="lazy" decoding="async" />
-            ) : null}
+            ) : (
+              <Cover title={i.title} tone={tone_of(i.handle)} />
+            )}
             {!i.available ? <span className="sold-out">Sold out</span> : null}
           </span>
           <span className="merch-body">
-            <span className="merch-title">{i.title}</span>
+            {/* The stand-in cover already carries the title, so do not print it twice. */}
+            {i.image ? <span className="merch-title">{i.title}</span> : null}
             <span className="merch-price">
               <Price item={i} />
               {i.compare_at ? (
@@ -199,34 +224,19 @@ function ProgramShelf({ groups }: { groups: ProgramGroup[] }) {
   if (groups.length === 0) return null;
 
   return (
-    <div className="shelf">
-      {groups.map((g) => (
-        <Link key={g.key} className="item program" href={program_url(g.key)}>
-          <span className="t">{g.short_name}</span>
-          <span className="program-full">{g.full_name}</span>
-          <span className="p">
-            {g.handles.length === 1
-              ? "1 class open"
-              : `${g.handles.length} classes open`}
+    <div className="merch-shelf">
+      {groups.map((g, index) => (
+        <Link key={g.key} className="merch" href={program_url(g.key)}>
+          <span className="merch-photo">
+            <Cover title={g.short_name} kicker="Program" tone={index} />
           </span>
-        </Link>
-      ))}
-    </div>
-  );
-}
-
-/** Seminars and the conference have no photographs on the store. */
-function CardShelf({ items }: { items: ShopItem[] }) {
-  if (items.length === 0) return null;
-
-  return (
-    <div className="shelf">
-      {items.map((i) => (
-        <Link key={i.handle} className="item" href={detail_url(i.handle)}>
-          <span className="t">{i.title}</span>
-          <span className="p">
-            <Price item={i} />
-            {!i.available ? <span className="muted"> · sold out</span> : null}
+          <span className="merch-body">
+            <span className="merch-title">{g.full_name}</span>
+            <span className="merch-choices">
+              {g.cohorts.length === 1
+                ? "1 class open"
+                : `${g.cohorts.length} classes open`}
+            </span>
           </span>
         </Link>
       ))}
@@ -664,22 +674,22 @@ export default function Portal({
               </div>
             </div>
 
-            <p className="shelf-label">Merchandise</p>
-            <MerchShelf items={shelves.merchandise} />
-
-            {shelves.seminars.length > 0 ? (
-              <>
-                <p className="shelf-label">Seminars &amp; conference</p>
-                <CardShelf items={shelves.seminars} />
-              </>
-            ) : null}
-
             {shelves.programs.length > 0 ? (
               <>
                 <p className="shelf-label">Other programs</p>
                 <ProgramShelf groups={shelves.programs} />
               </>
             ) : null}
+
+            {shelves.seminars.length > 0 ? (
+              <>
+                <p className="shelf-label">Seminars &amp; conference</p>
+                <ItemShelf items={shelves.seminars} />
+              </>
+            ) : null}
+
+            <p className="shelf-label">Merchandise</p>
+            <ItemShelf items={shelves.merchandise} />
 
             <p className="card-foot">
               Prices and photographs come straight from the shop. Click anything to read

@@ -22,9 +22,14 @@ last few hundred orders; anyone who only ever bought merch, a seminar, or a conf
 ticket is filtered out.
 
 **Real, read from the store's public product feed:** the shop shelves — product titles,
-prices, photographs and whether something is sold out. Merchandise is picked out by
-having a photograph, so anything new Dan photographs and publishes appears here on its
-own. Clicking a product opens its page on the store to buy it there.
+prices, photographs and whether something is sold out.
+
+Only merchandise has photographs on the store; the programs, seminars and conference have
+none. Rather than leave those shelves looking unfinished, they get a **typographic cover**
+— the title set on a tinted panel. It is deliberately not a stock photo, because a
+stand-in that looks like a photograph of something implies a photograph of that thing.
+**Upload a real photo to any of those products in Shopify and it takes over
+automatically** — nothing here needs changing.
 
 Prices show as a **range wherever a product's variants differ**, with the choices spelled
 out underneath ("Cover or Full Bale", "4 flavors · 8oz or 16oz"). This matters: a bale
@@ -43,6 +48,12 @@ deciding whether to do VSMT does not want four near-identical cards. So the shel
 **one card per program with no price**, and `/program/<key>` turns the cohorts into a
 "choose a class" control. Picking a class swaps in that class's module schedule and
 price, and the enrol button buys that exact class.
+
+Each class offers **pay in full or pay the deposit**, matching the website. Deposits are
+matched to their class by handle (`vsmt-2026-fall-full` → `vsmt-2026-fall-deposit`),
+falling back to matching on program and term — Acupuncture's deposit is just
+`acupuncture-program`, so the naming rule alone would miss it. The note under the buttons
+works out and states the balance that would remain.
 
 **Buy now** follows a Shopify cart permalink, which drops that exact variant in the
 basket and lands on the store's checkout. Every part of paying happens on Shopify; this

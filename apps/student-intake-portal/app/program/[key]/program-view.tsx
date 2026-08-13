@@ -28,6 +28,10 @@ export default function ProgramView({
   const variant =
     cohort.product.variants.find((v) => v.available) ?? cohort.product.variants[0];
 
+  const deposit_variant = cohort.deposit
+    ? (cohort.deposit.variants.find((v) => v.available) ?? cohort.deposit.variants[0])
+    : null;
+
   return (
     <div className="product no-photo">
       <div className="product-detail">
@@ -74,19 +78,32 @@ export default function ProgramView({
         <div className="buy">
           {variant?.available ? (
             <>
-              <a className="btn big" href={checkout_url(variant.id)}>
-                Enroll — {money(variant.price)}
-              </a>
+              <div className="buy-options">
+                <a className="btn big" href={checkout_url(variant.id)}>
+                  Pay in full — {money(variant.price)}
+                </a>
+                {deposit_variant?.available ? (
+                  <a className="btn big ghost" href={checkout_url(deposit_variant.id)}>
+                    Pay the deposit — {money(deposit_variant.price)}
+                  </a>
+                ) : null}
+              </div>
               <p className="buy-note">
                 {cohorts.length > 1 ? (
                   <>
-                    This enrolls you on the <strong>{cohort.label}</strong> class and takes
-                    you to the Healing Oasis store to pay.{" "}
+                    Either way you are enrolling on the{" "}
+                    <strong>{cohort.label}</strong> class.{" "}
                   </>
-                ) : (
-                  "This takes you to the Healing Oasis store to pay. "
-                )}
-                Nothing is charged until you finish checking out there.
+                ) : null}
+                {deposit_variant?.available ? (
+                  <>
+                    The deposit holds your place; the remaining{" "}
+                    {money(Math.max(0, variant.price - deposit_variant.price))} is due
+                    before the first module and can be paid from your portal page.{" "}
+                  </>
+                ) : null}
+                You will be taken to the Healing Oasis store to pay, and nothing is
+                charged until you finish checking out there.
               </p>
             </>
           ) : (

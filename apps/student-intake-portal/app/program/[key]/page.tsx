@@ -25,6 +25,8 @@ export async function generateMetadata({
 export type Cohort = {
   label: string;
   product: ProductDetail;
+  /** The deposit that holds a place on this class, where the store sells one. */
+  deposit: ProductDetail | null;
 };
 
 export default async function ProgramPage({
@@ -36,13 +38,24 @@ export default async function ProgramPage({
   const group = program_group(key, (await load_shelves()).programs);
   if (!group) notFound();
 
-  const loaded = await Promise.all(group.handles.map((h) => load_product(h)));
+  const loaded = await Promise.all(
+    group.cohorts.map(async (c) => {
+      const [product, deposit] = await Promise.all([
+        load_product(c.handle),
+        c.deposit_handle ? load_product(c.deposit_handle) : Promise.resolve(null),
+      ]);
+      return { product, deposit };
+    })
+  );
 
   const cohorts: Cohort[] = loaded
-    .filter((p): p is ProductDetail => p !== null)
-    .map((product) => ({
+    .filter((c): c is { product: ProductDetail; deposit: ProductDetail | null } =>
+      c.product !== null
+    )
+    .map(({ product, deposit }) => ({
       label: class_term_of(product.title).label,
       product,
+      deposit,
     }));
 
   if (cohorts.length === 0) notFound();
