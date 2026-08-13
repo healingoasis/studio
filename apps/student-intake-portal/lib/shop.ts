@@ -13,8 +13,16 @@ export const product_url = (handle: string) => `${STORE}/products/${handle}`;
 export type ShopItem = {
   handle: string;
   title: string;
-  price: number;
+  /**
+   * Products here have real variants at different prices — a bale cover is $224.38 while
+   * the full bale is $387.75, and the photo shows the full bale. Showing only the
+   * cheapest variant's price against that photo misleads, so both ends are carried.
+   */
+  price_min: number;
+  price_max: number;
   compare_at: number | null;
+  /** Plain-language summary of the choices, e.g. "Cover or Full Bale". */
+  choices: string | null;
   image: string | null;
   image_alt: string;
   available: boolean;
@@ -26,6 +34,7 @@ export type Shelves = {
 };
 
 type FeedVariant = {
+  title: string;
   price: string;
   compare_at_price: string | null;
   available: boolean;
@@ -33,10 +42,13 @@ type FeedVariant = {
 
 type FeedImage = { src: string; alt: string | null };
 
+type FeedOption = { name: string; values: string[] };
+
 type FeedProduct = {
   handle: string;
   title: string;
   product_type: string | null;
+  options: FeedOption[];
   variants: FeedVariant[];
   images: FeedImage[];
 };
@@ -58,22 +70,61 @@ function sized(src: string, width: number): string {
   }
 }
 
+/** Shopify gives every product an option even when there is nothing to choose. */
+const NO_REAL_CHOICE = /^(title|default)$/i;
+
+function list_words(values: string[]): string {
+  if (values.length <= 1) return values[0] ?? "";
+  const last = values[values.length - 1];
+  return `${values.slice(0, -1).join(", ")} or ${last}`;
+}
+
+function plural(name: string): string {
+  const lower = name.toLowerCase();
+  return lower.endsWith("s") ? lower : `${lower}s`;
+}
+
+/** "Cover or Full Bale", "4 sizes", "Beef & Pumpkin, Alaskan Cod or … · 8oz or 16oz". */
+function describe_choices(options: FeedOption[]): string | null {
+  const parts: string[] = [];
+
+  for (const option of options) {
+    if (NO_REAL_CHOICE.test(option.name)) continue;
+    const values = option.values.filter(Boolean);
+    if (values.length < 2) continue; // a single colour is not a choice
+    parts.push(values.length > 3 ? `${values.length} ${plural(option.name)}` : list_words(values));
+  }
+
+  return parts.length ? parts.join(" · ") : null;
+}
+
 function to_item(product: FeedProduct): ShopItem | null {
-  const variant = product.variants[0];
-  if (!variant) return null;
+  const variants = product.variants ?? [];
+  if (variants.length === 0) return null;
+
+  const prices = variants.map((v) => Number(v.price)).filter((n) => Number.isFinite(n));
+  if (prices.length === 0) return null;
+
+  const price_min = Math.min(...prices);
+  const price_max = Math.max(...prices);
+
+  // Only worth showing a "was" price against the cheapest variant, which is the one the
+  // headline price refers to.
+  const cheapest = variants.find((v) => Number(v.price) === price_min);
+  const compare = cheapest?.compare_at_price ? Number(cheapest.compare_at_price) : null;
 
   const image = product.images[0];
-  const compare = variant.compare_at_price ? Number(variant.compare_at_price) : null;
-  const price = Number(variant.price);
 
   return {
     handle: product.handle,
     title: product.title,
-    price,
-    compare_at: compare && compare > price ? compare : null,
+    price_min,
+    price_max,
+    compare_at: compare && compare > price_min ? compare : null,
+    choices: describe_choices(product.options ?? []),
     image: image ? sized(image.src, 600) : null,
     image_alt: image?.alt || product.title,
-    available: variant.available,
+    available: variants.some((v) => v.available),
   };
 }
 
@@ -122,8 +173,8 @@ export async function load_shelves(): Promise<Shelves> {
     if (item.image) merchandise.push(item);
   }
 
-  merchandise.sort((a, b) => a.price - b.price);
-  seminars.sort((a, b) => a.price - b.price);
+  merchandise.sort((a, b) => a.price_min - b.price_min);
+  seminars.sort((a, b) => a.price_min - b.price_min);
 
   const shelves: Shelves = { merchandise, seminars };
   cache = { at: Date.now(), shelves };

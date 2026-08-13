@@ -131,6 +131,21 @@ function Legend() {
   );
 }
 
+/**
+ * A single price where there is one, the whole range where there is not. A bale photo
+ * shows the full bale, so showing only the cover price against it would mislead.
+ */
+function Price({ item }: { item: ShopItem }) {
+  if (item.price_min === item.price_max) return <>{money(item.price_min)}</>;
+  return (
+    <>
+      {money(item.price_min)}
+      <span className="to">–</span>
+      {money(item.price_max)}
+    </>
+  );
+}
+
 /** Merchandise, with the real product photo from the store. */
 function MerchShelf({ items }: { items: ShopItem[] }) {
   if (items.length === 0) {
@@ -162,11 +177,12 @@ function MerchShelf({ items }: { items: ShopItem[] }) {
           <span className="merch-body">
             <span className="merch-title">{i.title}</span>
             <span className="merch-price">
-              {money(i.price)}
+              <Price item={i} />
               {i.compare_at ? (
                 <span className="was">{money(i.compare_at)}</span>
               ) : null}
             </span>
+            {i.choices ? <span className="merch-choices">{i.choices}</span> : null}
           </span>
         </a>
       ))}
@@ -190,7 +206,7 @@ function SeminarShelf({ items }: { items: ShopItem[] }) {
         >
           <span className="t">{i.title}</span>
           <span className="p">
-            {money(i.price)}
+            <Price item={i} />
             {!i.available ? <span className="muted"> · sold out</span> : null}
           </span>
         </a>

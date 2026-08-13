@@ -26,6 +26,11 @@ prices, photographs and whether something is sold out. Merchandise is picked out
 having a photograph, so anything new Dan photographs and publishes appears here on its
 own. Clicking a product opens its page on the store to buy it there.
 
+Prices show as a **range wherever a product's variants differ**, with the choices spelled
+out underneath ("Cover or Full Bale", "4 flavors · 8oz or 16oz"). This matters: a bale
+photo shows the full bale at $387.75 while the cover alone is $224.38, so a single
+cheapest-variant price against that photo would misrepresent what someone is buying.
+
 **Real:** the required-document lists, taken from Daniel's admissions comparison document
 (the VSMT, VMRT, Acupuncture and Cranio/Sacral application forms, 2026). They differ per
 program, so each program carries its own list in `lib/documents.ts`.
