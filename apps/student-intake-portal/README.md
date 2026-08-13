@@ -45,11 +45,33 @@ Which applicants those conditions apply to is not knowable from Shopify — it n
 applicant's credential, which lives on the application form. For now the grey states are
 generated along with the rest.
 
-## Student data never lands on disk
+## Uploads
 
-Names, emails, and orders are fetched server-side per request and rendered. Nothing is
-cached to the filesystem, written to this repo, or committed. The page is
+Every requirement has an **Upload** button. Sending a file:
+
+- saves it to `.data/intake-uploads/<student>/` at the top of the studio folder
+- turns the requirement **yellow** — it has arrived, but nobody has checked it
+- shows the file name, size and date, as a link that opens the document
+- offers **Replace** (the old file is deleted) and **Remove**
+
+Clicking the coloured status label moves it on — yellow to green when the office has
+checked it, orange when it is expiring. Uploads and status changes both persist; they
+survive a restart.
+
+Accepted: PDF, JPG, PNG, HEIC, WEBP, DOC, DOCX, up to 20 MB. Anything else is refused
+with a plain-language message. Document ids are validated against the known list and
+stored names are generated, so a crafted file name or id cannot write outside the folder.
+
+## Where student data lives
+
+Names, emails, and orders are fetched from Shopify server-side per request and rendered.
+Nothing from Shopify is cached to the filesystem or committed. The page is
 `force-dynamic` and `isrFlushToDisk` is off so Next cannot write a copy either.
+
+Uploaded documents **are** written to disk, in `.data/`, which `.gitignore` marks as
+never-tracked. They stay on this machine and go nowhere else. Those are real personal
+documents once Daniel starts using this for real, which is the main reason the live
+version needs Dan: proper storage, behind a login, with access control.
 
 There is a **Hide names** toggle in the header, which blurs names for screenshots and
 over-the-shoulder demos.
@@ -67,16 +89,23 @@ That tolerance is a prototype shortcut, not accounting.
 ## Shape of it
 
 ```
-lib/env.ts        reads .env.local from the repo root (Next only looks in the app folder)
-lib/shopify.ts    swaps app credentials for a short-lived token, runs Admin GraphQL
-lib/students.ts   turns orders into one row per person, works out standing and balance
-lib/documents.ts  the pretend paperwork
-app/page.tsx      server component, fetches, handles failure in plain language
-app/portal.tsx    the whole interface
-mockup.html       the original static mockup, kept for reference
+lib/env.ts          reads .env.local from the repo root (Next only looks in the app folder)
+lib/shopify.ts      swaps app credentials for a short-lived token, runs Admin GraphQL
+lib/students.ts     turns orders into one row per person, works out standing and balance
+lib/documents.ts    the requirement lists, and the invented starting statuses
+lib/uploads.ts      saving, replacing, removing and reading back uploaded files
+app/api/documents/  upload, change status, remove, and serve a file back
+app/page.tsx        server component, fetches, handles failure in plain language
+app/portal.tsx      the whole interface
+mockup.html         the original static mockup, kept for reference
 ```
 
 ## Not built yet
 
-Login, document upload, storage, writing anything back to Shopify. All of that needs a
-place to put student files, which is a Dan conversation because it holds PII.
+**No login.** Anyone who can reach the port can see every student and every uploaded
+document, and can upload on anyone's behalf. That is fine for a prototype running on one
+Mac and is the single biggest thing standing between this and something students could
+actually use.
+
+Also missing: storage that is not one folder on one laptop, notifications when something
+turns orange, and writing anything back to Shopify. All Dan conversations.

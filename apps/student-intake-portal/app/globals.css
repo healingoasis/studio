@@ -499,13 +499,8 @@ select {
   align-items: center;
   width: 100%;
   text-align: left;
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: 0;
   border-top: 1px solid var(--line-soft);
   padding: 13px 20px;
-  cursor: pointer;
 }
 
 .docs li:first-child .doc {
@@ -514,6 +509,92 @@ select {
 
 .doc:hover {
   background: var(--surface-2);
+}
+
+.doc.working {
+  opacity: 0.6;
+}
+
+/* ---------- upload controls ---------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.doc-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex: none;
+}
+
+.mini {
+  display: inline-flex;
+  align-items: center;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 550;
+  color: var(--ink-soft);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 5px 11px;
+  cursor: pointer;
+}
+
+.mini:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.mini.primary {
+  background: var(--accent-tint);
+  border-color: var(--accent-tint);
+  color: var(--ink);
+}
+
+.mini.primary:hover {
+  border-color: var(--accent);
+}
+
+.mini:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+/* The file input is hidden, so its focus ring has to land on the label instead. */
+.visually-hidden:focus-visible + .mini {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.filed {
+  display: block;
+  font-size: 12.5px;
+  margin-top: 3px;
+}
+
+.filed a {
+  color: var(--accent);
+  font-weight: 550;
+}
+
+.alert {
+  margin: 0;
+  padding: 11px 20px;
+  background: var(--st-none-bg);
+  color: var(--st-none);
+  font-size: 13px;
+  font-weight: 550;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .doc .bar {
@@ -592,9 +673,19 @@ select {
   text-align: right;
 }
 
-.doc-chip {
+button.doc-chip {
   flex: none;
   min-width: 132px;
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+button.doc-chip:disabled {
+  cursor: default;
 }
 
 /* ---------- tables ---------- */

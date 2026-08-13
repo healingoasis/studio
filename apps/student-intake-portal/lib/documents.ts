@@ -167,10 +167,27 @@ export function documents_for_program(program: ProgramKey): DocumentDef[] {
 
 // ---------------------------------------------------------------- pretend statuses
 
+export type UploadedFile = {
+  file_name: string;
+  size: number;
+  uploaded_at: string;
+};
+
 export type DocumentState = {
   status: DocStatus;
   updated_on: string | null;
   note: string | null;
+  /** Present once someone has actually sent the document in. */
+  file?: UploadedFile;
+  /** True when this came from a real upload or a real status change, not the pretend generator. */
+  real?: boolean;
+};
+
+/** What `lib/uploads.ts` keeps on disk. Kept plain so the client can be handed it. */
+export type StoredDocRecord = {
+  status: DocStatus;
+  updated_on: string;
+  file?: { file_name: string; size: number; uploaded_at: string };
 };
 
 export const STATUS_NOTE: Record<DocStatus, string | null> = {
@@ -246,6 +263,36 @@ export function documents_for(
   }
 
   return out;
+}
+
+/**
+ * Anything really sent in or really actioned wins over the invented status. So the more
+ * Daniel and the office actually use this, the less of it is pretend.
+ */
+export function merge_documents(
+  student_id: string,
+  program: ProgramKey,
+  standing: PaymentStanding,
+  stored: Record<string, StoredDocRecord> | undefined
+): Record<string, DocumentState> {
+  const generated = documents_for(student_id, program, standing);
+  if (!stored) return generated;
+
+  const merged: Record<string, DocumentState> = { ...generated };
+
+  for (const doc of documents_for_program(program)) {
+    const record = stored[doc.doc_id];
+    if (!record) continue;
+    merged[doc.doc_id] = {
+      status: record.status,
+      updated_on: record.updated_on,
+      note: record.file ? null : STATUS_NOTE[record.status],
+      ...(record.file ? { file: record.file } : {}),
+      real: true,
+    };
+  }
+
+  return merged;
 }
 
 export type StatusCounts = Record<DocStatus, number> & { required: number };

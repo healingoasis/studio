@@ -1,5 +1,7 @@
+import { merge_documents, type DocumentState } from "@/lib/documents";
 import { SetupError } from "@/lib/env";
 import { load_students } from "@/lib/students";
+import { load_records, student_key } from "@/lib/uploads";
 import Portal from "./portal";
 
 // Always read the store fresh. Nothing about real students is cached or written down.
@@ -60,5 +62,18 @@ export default async function Page() {
     );
   }
 
-  return <Portal students={students} loaded_at={new Date().toISOString()} />;
+  // Anything really uploaded or actioned overrides the invented paperwork statuses.
+  const records = await load_records();
+  const docs: Record<string, Record<string, DocumentState>> = {};
+
+  for (const student of students) {
+    docs[student.student_id] = merge_documents(
+      student.student_id,
+      student.program.key,
+      student.standing,
+      records[student_key(student.student_id)]
+    );
+  }
+
+  return <Portal students={students} docs={docs} />;
 }

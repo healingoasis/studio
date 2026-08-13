@@ -65,3 +65,7 @@ who stops fielding those emails and chasing paperwork by hand before every modul
   document lists are now real and differ per program, and a neutral grey "not needed"
   state was added for requirements that only apply to some applicants — Daniel's four
   colours still mean exactly what he said they mean.
+- 2026-08-12: documents can actually be uploaded now. A file sent against a requirement
+  is saved on the Mac, turns that requirement yellow, and can be opened, replaced or
+  removed. Status changes stick too. Next real blocker is a login — without one there is
+  nothing separating one student's documents from another's.

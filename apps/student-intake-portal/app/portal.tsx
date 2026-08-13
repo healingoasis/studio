@@ -1,13 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useRef, useMemo, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import {
   count_statuses,
-  documents_for,
   documents_for_program,
   STATUS_LABEL,
   STATUS_LEGEND,
-  STATUS_NOTE,
   STATUS_ORDER,
   type DocStatus,
   type DocumentState,
@@ -167,26 +166,27 @@ function Shelf({ items }: { items: typeof CE_ITEMS }) {
 
 type DocMap = Record<string, Record<string, DocumentState>>;
 
+const file_size = (bytes: number) =>
+  bytes >= 1024 * 1024
+    ? `${(bytes / 1024 / 1024).toFixed(1)} MB`
+    : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+
 export default function Portal({
   students,
-  loaded_at,
+  docs,
 }: {
   students: Student[];
-  loaded_at: string;
+  docs: DocMap;
 }) {
+  const router = useRouter();
   const [view, set_view] = useState<"student" | "office">("student");
   const [current_id, set_current_id] = useState(students[0]?.student_id ?? "");
   const [filter, set_filter] = useState<Filter>("all");
   const [privacy, set_privacy] = useState(false);
-
-  // Pretend paperwork, seeded per student so it stays put between clicks.
-  const [docs, set_docs] = useState<DocMap>(() => {
-    const map: DocMap = {};
-    for (const s of students) {
-      map[s.student_id] = documents_for(s.student_id, s.program.key, s.standing);
-    }
-    return map;
-  });
+  const [busy, set_busy] = useState<string | null>(null);
+  const [problem, set_problem] = useState<string | null>(null);
+  const [, start_transition] = useTransition();
+  const file_inputs = useRef<Record<string, HTMLInputElement | null>>({});
 
   const current = students.find((s) => s.student_id === current_id) ?? students[0];
 
@@ -207,31 +207,71 @@ export default function Portal({
     [students, filter]
   );
 
-  function cycle(student_id: string, doc_id: string) {
-    set_docs((prev) => {
-      const student_docs = prev[student_id];
-      if (!student_docs) return prev;
-      const entry = student_docs[doc_id];
-      if (!entry) return prev;
+  /** Everything below saves for real, then asks the server for a fresh page. */
+  async function send(
+    key: string,
+    run: () => Promise<Response>,
+    fallback: string
+  ): Promise<void> {
+    set_busy(key);
+    set_problem(null);
+    try {
+      const response = await run();
+      if (!response.ok) {
+        const body = (await response.json().catch(() => ({}))) as { error?: string };
+        set_problem(body.error ?? fallback);
+        return;
+      }
+      start_transition(() => router.refresh());
+    } catch {
+      set_problem(fallback);
+    } finally {
+      set_busy(null);
+    }
+  }
 
-      const next_index = (STATUS_ORDER.indexOf(entry.status) + 1) % STATUS_ORDER.length;
-      const next = STATUS_ORDER[next_index] ?? "not_started";
+  function upload(student_id: string, doc_id: string, file: File) {
+    const form = new FormData();
+    form.append("student_id", student_id);
+    form.append("doc_id", doc_id);
+    form.append("file", file);
 
-      return {
-        ...prev,
-        [student_id]: {
-          ...student_docs,
-          [doc_id]: {
-            status: next,
-            note: STATUS_NOTE[next],
-            updated_on:
-              next === "not_started" || next === "not_required"
-                ? null
-                : loaded_at.slice(0, 10),
-          },
-        },
-      };
-    });
+    void send(
+      doc_id,
+      () => fetch("/api/documents", { method: "POST", body: form }),
+      "That upload did not go through. Please try again."
+    );
+  }
+
+  function set_status(student_id: string, doc_id: string, status: DocStatus) {
+    void send(
+      doc_id,
+      () =>
+        fetch("/api/documents", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ student_id, doc_id, status }),
+        }),
+      "That change did not save. Please try again."
+    );
+  }
+
+  function remove(student_id: string, doc_id: string) {
+    void send(
+      doc_id,
+      () =>
+        fetch("/api/documents", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ student_id, doc_id }),
+        }),
+      "That could not be removed. Please try again."
+    );
+  }
+
+  function cycle(student_id: string, doc_id: string, from: DocStatus) {
+    const next_index = (STATUS_ORDER.indexOf(from) + 1) % STATUS_ORDER.length;
+    set_status(student_id, doc_id, STATUS_ORDER[next_index] ?? "not_started");
   }
 
   if (!current) return null;
@@ -278,12 +318,13 @@ export default function Portal({
       </div>
 
       <p className="note-band">
-        <b>Half real.</b>
+        <b>Prototype.</b>
         <span>
-          The people, programs, and payments below are your actual students, read live
-          from the store. The <b>paperwork colours are invented</b> — nothing tracks
-          documents yet, so those are there to show the shape of it. Click any document
-          to change its colour. Nothing is saved and nobody is charged.
+          The people, programs, and payments are your actual students, read live from the
+          store. <b>Uploads are real</b> — a file you send is saved on this Mac and stays
+          there. The starting paperwork colours are invented, since nothing tracked
+          documents before this; anything you upload or change from here on is real.
+          Nobody is charged.
         </span>
       </p>
 
@@ -355,31 +396,98 @@ export default function Portal({
                   {current.program.short_name} requirements
                 </p>
               </div>
-              <p className="sub">Statuses are pretend</p>
+              <p className="sub">Send a file for anything that is missing</p>
             </div>
             <Legend />
+
+            {problem ? (
+              <p className="alert" role="alert">
+                {problem}
+              </p>
+            ) : null}
+
             <ul className="docs">
               {current_list.map((d) => {
                 const entry = current_docs[d.doc_id];
                 if (!entry) return null;
+                const working = busy === d.doc_id;
+
                 return (
                   <li key={d.doc_id}>
-                    <button
-                      type="button"
-                      className={`doc ${entry.status}`}
-                      onClick={() => cycle(current.student_id, d.doc_id)}
-                    >
+                    <div className={`doc ${entry.status} ${working ? "working" : ""}`}>
                       <span className="bar" />
-                      <span className="doc-main">
+
+                      <div className="doc-main">
                         <span className="name">{d.name}</span>
                         {entry.note ? <span className="note">{entry.note}</span> : null}
                         {d.only_if ? <span className="only-if">{d.only_if}</span> : null}
-                      </span>
+                        {entry.file ? (
+                          <span className="filed">
+                            <a
+                              href={`/api/documents/file?student_id=${encodeURIComponent(
+                                current.student_id
+                              )}&doc_id=${encodeURIComponent(d.doc_id)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {entry.file.file_name}
+                            </a>{" "}
+                            <span className="muted">
+                              · {file_size(entry.file.size)} · sent{" "}
+                              {short_date(entry.file.uploaded_at.slice(0, 10))}
+                            </span>
+                          </span>
+                        ) : null}
+                      </div>
+
                       <span className="doc-when">{short_date(entry.updated_on)}</span>
-                      <span className="doc-chip">
+
+                      <div className="doc-actions">
+                        <input
+                          type="file"
+                          className="visually-hidden"
+                          id={`file-${d.doc_id}`}
+                          ref={(el) => {
+                            file_inputs.current[d.doc_id] = el;
+                          }}
+                          accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.doc,.docx"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) upload(current.student_id, d.doc_id, file);
+                            e.target.value = "";
+                          }}
+                        />
+                        <label htmlFor={`file-${d.doc_id}`} className="mini primary">
+                          {working
+                            ? "Sending…"
+                            : entry.file
+                              ? "Replace"
+                              : "Upload"}
+                        </label>
+                        {entry.file ? (
+                          <button
+                            type="button"
+                            className="mini"
+                            disabled={working}
+                            onClick={() => remove(current.student_id, d.doc_id)}
+                          >
+                            Remove
+                          </button>
+                        ) : null}
+                      </div>
+
+                      <button
+                        type="button"
+                        className="doc-chip"
+                        disabled={working}
+                        title="Change the status"
+                        onClick={() =>
+                          cycle(current.student_id, d.doc_id, entry.status)
+                        }
+                      >
                         <Chip status={entry.status} />
-                      </span>
-                    </button>
+                      </button>
+                    </div>
                   </li>
                 );
               })}
@@ -389,7 +497,9 @@ export default function Portal({
                 ? "Everything is in. Nothing else is needed."
                 : `${outstanding} ${
                     outstanding === 1 ? "item still needs" : "items still need"
-                  } attention. Red and orange are waiting on the student; yellow is waiting on the office.`}
+                  } attention. Red and orange are waiting on the student; yellow is waiting on the office.`}{" "}
+              Uploading turns something yellow — it has arrived but nobody has checked it.
+              Click the coloured label to move it on.
             </p>
           </section>
 
