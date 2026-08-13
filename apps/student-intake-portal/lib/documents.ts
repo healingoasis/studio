@@ -166,22 +166,20 @@ export function documents_for_program(program: ProgramKey): DocumentDef[] {
 }
 
 /**
- * What the school collects and issues once someone is actually on the program, as
- * opposed to getting in. DRAFT — Daniel needs to correct this against what really
- * happens during a program.
+ * Records the school issues TO the student — the opposite direction to admission
+ * documents. Students never upload these; the office publishes them so the student has
+ * the record and can review it. So there is no status to chase here: either it has been
+ * issued or it has not.
+ *
+ * DRAFT — Daniel needs to correct this against what the school actually sends out.
  */
 export const STUDENT_DOCUMENTS: DocumentDef[] = [
   { doc_id: "attendance_record", name: "Attendance record" },
-  { doc_id: "practical_assessment", name: "Practical assessment" },
-  { doc_id: "case_studies", name: "Case study submissions" },
-  { doc_id: "course_evaluation", name: "Course evaluation form" },
-  {
-    doc_id: "insurance_renewal",
-    name: "Insurance renewal during the program",
-    expires: true,
-    only_if: "Only where cover lapses before the final module.",
-  },
+  { doc_id: "module_results", name: "Module results" },
+  { doc_id: "practical_assessment", name: "Practical assessment result" },
+  { doc_id: "instructor_evaluation", name: "Instructor evaluation" },
   { doc_id: "certificate_of_completion", name: "Certificate of completion" },
+  { doc_id: "ce_certificate", name: "Continuing education certificate" },
 ];
 
 export function student_documents(): DocumentDef[] {
@@ -279,7 +277,10 @@ export function documents_for(
 ): Record<string, DocumentState> {
   const out: Record<string, DocumentState> = {};
 
-  for (const doc of all_documents(program)) {
+  // Only admission paperwork gets invented statuses. Records the school issues are left
+  // genuinely empty — nothing has been sent to anyone yet, and pretending otherwise
+  // would put fake results and certificates against real students' names.
+  for (const doc of documents_for_program(program)) {
     const seed = hash(student_id + ":" + doc.doc_id);
     const status = pick(seed, standing, doc);
     out[doc.doc_id] = {

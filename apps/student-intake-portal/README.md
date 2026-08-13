@@ -106,6 +106,23 @@ paperwork in. No tabs, one list, front and centre.
 tab of a student record: **Admission Documents**, **Student Documents**, then Grades,
 Evaluations and Diploma.
 
+## Which way documents travel
+
+This is the thing to get right, and it differs by tab:
+
+- **Admission Documents** — *student → school*. The only tab a student uploads to. Four
+  colours, chase-able, because the school is waiting on them.
+- **Everything else** — *school → student*. The office publishes a record; the student
+  reads it and never uploads. So there is no status to chase, only **Available** or
+  **Not issued yet**, and the four-colour legend is hidden.
+
+The **Send** and **Withdraw** controls on the issued tabs are office actions. This
+prototype has no login, so they are visible with a note saying a student would not see
+them — with a real login they would be behind staff permissions.
+
+Issued records start genuinely **empty**. Unlike the admission statuses, nothing is
+generated: fake results and certificates against a real student's name would be believed.
+
 Those last three are **deliberately empty** and marked "soon". They show where the thing
 is heading without inventing marks or certificates — there is no source to read them
 from yet. The empty panel says so plainly rather than showing a fake table.

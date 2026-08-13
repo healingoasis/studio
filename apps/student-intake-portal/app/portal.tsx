@@ -383,6 +383,103 @@ export default function Portal({
     set_status(student_id, doc_id, STATUS_ORDER[next_index] ?? "not_started");
   }
 
+  /**
+   * Records the school has issued. Read-only for the student — they never upload here,
+   * they just have the record. The office strip underneath is how something gets sent.
+   */
+  function record_list(student: Student, list: DocumentDef[], docs: Record<string, DocumentState>) {
+    const issued = list.filter((d) => docs[d.doc_id]?.file);
+
+    return (
+      <>
+        <ul className="docs">
+          {list.map((d) => {
+            const entry = docs[d.doc_id];
+            const file = entry?.file;
+            const working = busy === d.doc_id;
+
+            return (
+              <li key={d.doc_id}>
+                <div className={`doc record ${file ? "issued" : "awaiting"}`}>
+                  <span className="bar" />
+
+                  <div className="doc-main">
+                    <span className="name">{d.name}</span>
+                    {file ? (
+                      <span className="filed">
+                        <a
+                          href={`/api/documents/file?student_id=${encodeURIComponent(
+                            student.student_id
+                          )}&doc_id=${encodeURIComponent(d.doc_id)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {file.file_name}
+                        </a>{" "}
+                        <span className="muted">· {file_size(file.size)}</span>
+                      </span>
+                    ) : (
+                      <span className="note">
+                        Nothing has been sent to this student yet
+                      </span>
+                    )}
+                  </div>
+
+                  <span className="doc-when">
+                    {file ? short_date(file.uploaded_at.slice(0, 10)) : "—"}
+                  </span>
+
+                  <span className="doc-chip">
+                    <span className={`chip ${file ? "approved" : "not_required"}`}>
+                      <Icon status={file ? "approved" : "not_required"} />
+                      {file ? "Available" : "Not issued yet"}
+                    </span>
+                  </span>
+
+                  <div className="doc-actions">
+                    <input
+                      type="file"
+                      className="visually-hidden"
+                      id={`push-${d.doc_id}`}
+                      accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.doc,.docx"
+                      onChange={(e) => {
+                        const chosen = e.target.files?.[0];
+                        if (chosen) upload(student.student_id, d.doc_id, chosen);
+                        e.target.value = "";
+                      }}
+                    />
+                    <label htmlFor={`push-${d.doc_id}`} className="mini">
+                      {working ? "Sending…" : file ? "Replace" : "Send"}
+                    </label>
+                    {file ? (
+                      <button
+                        type="button"
+                        className="mini"
+                        disabled={working}
+                        onClick={() => remove(student.student_id, d.doc_id)}
+                      >
+                        Withdraw
+                      </button>
+                    ) : null}
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+
+        <p className="card-foot">
+          {issued.length === 0
+            ? "Nothing has been issued to this student yet."
+            : `${issued.length} of ${list.length} issued.`}{" "}
+          These are records the school sends out — the student reads them here and never
+          uploads to this tab. <strong>Send</strong> and <strong>Withdraw</strong> are
+          office controls; a student would not see them.
+        </p>
+      </>
+    );
+  }
+
   /** One list of documents. Used for both the admission and the student tabs. */
   function doc_list(student: Student, list: DocumentDef[], docs: Record<string, DocumentState>) {
     return (
@@ -641,26 +738,30 @@ export default function Portal({
               </div>
             )}
 
-            {tab_built ? <Legend /> : null}
+            {tab_built && active_tab === "admission" ? <Legend /> : null}
 
-            {problem ? (
+            {problem && tab_built ? (
               <p className="alert" role="alert">
                 {problem}
               </p>
             ) : null}
 
-            {tab_built ? doc_list(current, shown_list, current_docs) : null}
-
-            {tab_built ? (
-              <p className="card-foot">
-                {shown_counts.approved} of {shown_counts.required} good to go.{" "}
-                {shown_outstanding === 0
-                  ? "Nothing else is needed here."
-                  : `${shown_outstanding} still ${
-                      shown_outstanding === 1 ? "needs" : "need"
-                    } attention — red and orange are waiting on the student, yellow on the office.`}{" "}
-                Uploading turns something yellow; click the coloured label to move it on.
-              </p>
+            {active_tab === "admission" ? (
+              <>
+                {doc_list(current, shown_list, current_docs)}
+                <p className="card-foot">
+                  {shown_counts.approved} of {shown_counts.required} good to go.{" "}
+                  {shown_outstanding === 0
+                    ? "Nothing else is needed here."
+                    : `${shown_outstanding} still ${
+                        shown_outstanding === 1 ? "needs" : "need"
+                      } attention — red and orange are waiting on the student, yellow on the office.`}{" "}
+                  Uploading turns something yellow; click the coloured label to move it
+                  on.
+                </p>
+              </>
+            ) : active_tab === "student" ? (
+              record_list(current, shown_list, current_docs)
             ) : (
               <div className="empty-tab">
                 <p className="empty-title">Not built yet</p>

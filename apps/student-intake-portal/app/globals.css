@@ -707,6 +707,19 @@ select {
   background: var(--line);
 }
 
+/* Records the school issues, not paperwork the student owes. */
+.doc.record.issued .bar {
+  background: var(--st-ready);
+}
+
+.doc.record.awaiting .bar {
+  background: var(--line);
+}
+
+.doc.record.awaiting .doc-main .name {
+  color: var(--ink-faint);
+}
+
 .doc.not_required .doc-main .name {
   color: var(--ink-faint);
 }
