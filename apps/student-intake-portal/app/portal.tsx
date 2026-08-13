@@ -11,22 +11,10 @@ import {
   type DocStatus,
   type DocumentState,
 } from "@/lib/documents";
+import { product_url, type Shelves, type ShopItem } from "@/lib/shop";
 import type { PaymentStanding, Student } from "@/lib/students";
 
 const STORE = "https://healing-oasis-us.myshopify.com/products/";
-
-const CE_ITEMS = [
-  { title: "Cranio-sacral Adjusting Techniques", price: 682.0, handle: "cranio-sacral-2026" },
-  { title: "Applied Kinesiology for Veterinary Practice", price: 682.0, handle: "applied-kinesiology-2026" },
-  { title: "2026 Conference Registration", price: 465.3, handle: "2026-conference-attendee-registration" },
-];
-
-const MERCH_ITEMS = [
-  { title: "Hoodie", price: 51.7, handle: "hoodie" },
-  { title: "Beanie", price: 20.68, handle: "beanis" },
-  { title: "St Roccos Treats", price: 15.51, handle: "st-roccos-treats" },
-  { title: "Black Bale", price: 224.38, handle: "bales" },
-];
 
 const STANDING_LABEL: Record<PaymentStanding, string> = {
   nothing_paid: "Nothing paid yet",
@@ -143,19 +131,68 @@ function Legend() {
   );
 }
 
-function Shelf({ items }: { items: typeof CE_ITEMS }) {
+/** Merchandise, with the real product photo from the store. */
+function MerchShelf({ items }: { items: ShopItem[] }) {
+  if (items.length === 0) {
+    return (
+      <p className="shelf-empty">
+        The shop is not answering just now. It will be back on the next reload.
+      </p>
+    );
+  }
+
+  return (
+    <div className="merch-shelf">
+      {items.map((i) => (
+        <a
+          key={i.handle}
+          className="merch"
+          href={product_url(i.handle)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="merch-photo">
+            {i.image ? (
+              // Plain img on purpose: next/image wants sharp, which this workspace skips.
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={i.image} alt={i.image_alt} loading="lazy" decoding="async" />
+            ) : null}
+            {!i.available ? <span className="sold-out">Sold out</span> : null}
+          </span>
+          <span className="merch-body">
+            <span className="merch-title">{i.title}</span>
+            <span className="merch-price">
+              {money(i.price)}
+              {i.compare_at ? (
+                <span className="was">{money(i.compare_at)}</span>
+              ) : null}
+            </span>
+          </span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
+/** Seminars and the conference have no photographs, so they stay as plain cards. */
+function SeminarShelf({ items }: { items: ShopItem[] }) {
+  if (items.length === 0) return null;
+
   return (
     <div className="shelf">
       {items.map((i) => (
         <a
           key={i.handle}
           className="item"
-          href={STORE + i.handle}
+          href={product_url(i.handle)}
           target="_blank"
           rel="noopener noreferrer"
         >
           <span className="t">{i.title}</span>
-          <span className="p">{money(i.price)}</span>
+          <span className="p">
+            {money(i.price)}
+            {!i.available ? <span className="muted"> · sold out</span> : null}
+          </span>
         </a>
       ))}
     </div>
@@ -174,9 +211,11 @@ const file_size = (bytes: number) =>
 export default function Portal({
   students,
   docs,
+  shelves,
 }: {
   students: Student[];
   docs: DocMap;
+  shelves: Shelves;
 }) {
   const router = useRouter();
   const [view, set_view] = useState<"student" | "office">("student");
@@ -580,16 +619,23 @@ export default function Portal({
             <div className="card-head">
               <div>
                 <h2>Also available</h2>
-                <p className="sub">Seminars, the conference, and the shop</p>
+                <p className="sub">From the Healing Oasis shop</p>
               </div>
             </div>
-            <p className="shelf-label">Seminars &amp; conference</p>
-            <Shelf items={CE_ITEMS} />
+
             <p className="shelf-label">Merchandise</p>
-            <Shelf items={MERCH_ITEMS} />
+            <MerchShelf items={shelves.merchandise} />
+
+            {shelves.seminars.length > 0 ? (
+              <>
+                <p className="shelf-label">Seminars &amp; conference</p>
+                <SeminarShelf items={shelves.seminars} />
+              </>
+            ) : null}
+
             <p className="card-foot">
-              These open the real product pages. Nothing is added to a cart and nobody is
-              charged.
+              Prices and photographs come straight from the shop. Clicking one opens its
+              page on the store to buy it there.
             </p>
           </section>
         </div>
@@ -719,8 +765,8 @@ export default function Portal({
       )}
 
       <footer>
-        Read live from healing-oasis-us.myshopify.com · nothing is written back to the
-        store, and no student data is saved anywhere
+        Read live from healing-oasis-us.myshopify.com · nothing is ever written back to
+        the store · uploaded documents are saved on this Mac and nowhere else
       </footer>
     </main>
   );

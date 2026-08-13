@@ -1,6 +1,7 @@
 import { merge_documents, type DocumentState } from "@/lib/documents";
 import { SetupError } from "@/lib/env";
 import { load_students } from "@/lib/students";
+import { load_shelves } from "@/lib/shop";
 import { load_records, student_key } from "@/lib/uploads";
 import Portal from "./portal";
 
@@ -63,7 +64,7 @@ export default async function Page() {
   }
 
   // Anything really uploaded or actioned overrides the invented paperwork statuses.
-  const records = await load_records();
+  const [records, shelves] = await Promise.all([load_records(), load_shelves()]);
   const docs: Record<string, Record<string, DocumentState>> = {};
 
   for (const student of students) {
@@ -75,5 +76,5 @@ export default async function Page() {
     );
   }
 
-  return <Portal students={students} docs={docs} />;
+  return <Portal students={students} docs={docs} shelves={shelves} />;
 }

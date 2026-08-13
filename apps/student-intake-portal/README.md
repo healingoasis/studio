@@ -21,6 +21,11 @@ are on, which class, what they have paid, when, and what is still owed. Built fr
 last few hundred orders; anyone who only ever bought merch, a seminar, or a conference
 ticket is filtered out.
 
+**Real, read from the store's public product feed:** the shop shelves — product titles,
+prices, photographs and whether something is sold out. Merchandise is picked out by
+having a photograph, so anything new Dan photographs and publishes appears here on its
+own. Clicking a product opens its page on the store to buy it there.
+
 **Real:** the required-document lists, taken from Daniel's admissions comparison document
 (the VSMT, VMRT, Acupuncture and Cranio/Sacral application forms, 2026). They differ per
 program, so each program carries its own list in `lib/documents.ts`.
@@ -92,6 +97,7 @@ That tolerance is a prototype shortcut, not accounting.
 lib/env.ts          reads .env.local from the repo root (Next only looks in the app folder)
 lib/shopify.ts      swaps app credentials for a short-lived token, runs Admin GraphQL
 lib/students.ts     turns orders into one row per person, works out standing and balance
+lib/shop.ts         the shop shelves, from the store's public product feed
 lib/documents.ts    the requirement lists, and the invented starting statuses
 lib/uploads.ts      saving, replacing, removing and reading back uploaded files
 app/api/documents/  upload, change status, remove, and serve a file back
