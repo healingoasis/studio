@@ -427,6 +427,14 @@ export default function Portal({
                     ? "Due before the first module"
                     : "Tuition settled — thank you"}
                 </p>
+                {current.remaining > 0 ? (
+                  <Link
+                    className="btn tile-pay"
+                    href={detail_url(current.program.balance_handle)}
+                  >
+                    Pay balance
+                  </Link>
+                ) : null}
               </div>
             </div>
           </section>

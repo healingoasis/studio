@@ -357,6 +357,9 @@ select {
 .tile {
   padding: 17px 20px;
   border-left: 1px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .tile:first-child {
@@ -392,6 +395,14 @@ select {
 
 .tile.clear .v {
   color: var(--st-ready);
+}
+
+/* The same offer as the one further down the page, put where the number is. */
+.tile-pay {
+  margin-top: 12px;
+  font-size: 13px;
+  padding: 9px 16px;
+  border-radius: 8px;
 }
 
 /* ---------- chips ---------- */
