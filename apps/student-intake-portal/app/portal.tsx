@@ -563,7 +563,10 @@ export default function Portal({
         </div>
         <div className="masthead-tools">
           <Link className="toggle" href="/concept">
-            See a different shape
+            Concept: next step
+          </Link>
+          <Link className="toggle" href="/record">
+            Concept: student file
           </Link>
           <button
             type="button"

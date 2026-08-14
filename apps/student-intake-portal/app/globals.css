@@ -1755,3 +1755,346 @@ footer {
   color: var(--accent);
   text-decoration: none;
 }
+
+/* ---------- concept: the student file ---------- */
+
+.file {
+  padding-bottom: 72px;
+}
+
+.file-hero {
+  position: relative;
+  height: clamp(240px, 34vw, 380px);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.file-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  display: block;
+}
+
+.file-hero-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(9, 8, 7, 0.94) 4%,
+    rgba(9, 8, 7, 0.62) 46%,
+    rgba(9, 8, 7, 0.15) 88%
+  );
+}
+
+.file-hero-inner {
+  position: absolute;
+  inset: auto 0 0 0;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px 30px;
+  color: #fff;
+}
+
+.file-school {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.file-hero-inner h1 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5.4vw, 54px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  margin: 0;
+  color: #fff;
+}
+
+.file-program {
+  margin: 10px 0 0;
+  font-size: 15px;
+  opacity: 0.88;
+}
+
+.file-bar {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.file-back {
+  font-size: 13.5px;
+  font-weight: 550;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.file-back:hover {
+  color: var(--ink);
+}
+
+.file-body {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 34px 24px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 264px;
+  gap: 40px;
+  align-items: start;
+}
+
+.file-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.file-section-head h2 {
+  font-family: var(--serif);
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  margin: 0;
+}
+
+.file-section-head p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.file-progress {
+  height: 2px;
+  background: var(--line);
+  margin: 16px 0 26px;
+  overflow: hidden;
+}
+
+.file-progress span {
+  display: block;
+  height: 100%;
+  background: var(--st-ready);
+  transition: width 0.4s ease;
+}
+
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
+  gap: 14px;
+}
+
+/* Each requirement is a card on a shelf, with its state as a spine down the edge
+   rather than a badge competing with the name. */
+.file-card {
+  position: relative;
+  padding: 16px 16px 14px 19px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  min-height: 158px;
+}
+
+.file-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  bottom: -1px;
+  width: 3px;
+  border-radius: 4px 0 0 4px;
+  background: var(--line);
+}
+
+.file-card.approved::before { background: var(--st-ready); }
+.file-card.in_progress::before { background: var(--st-progress); }
+.file-card.not_started::before { background: var(--st-none); }
+.file-card.needs_update::before { background: var(--st-renew); }
+
+.file-card-kind {
+  margin: 0 0 8px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.file-card h3 {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -0.005em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.file-card-file,
+.file-card-empty {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.file-card-file {
+  color: var(--ink-soft);
+}
+
+.file-glyph {
+  margin-right: 6px;
+  color: var(--st-ready);
+}
+
+.file-card-empty {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.file-card-foot {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.file-state {
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.file-state.approved { color: var(--st-ready); }
+.file-state.in_progress { color: var(--st-progress); }
+.file-state.not_started { color: var(--st-none); }
+.file-state.needs_update { color: var(--st-renew); }
+.file-state.not_required { color: var(--ink-faint); }
+
+.file-when {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The money, pinned where it can always be answered without leading the page. */
+.file-aside {
+  position: sticky;
+  top: 24px;
+  padding: 22px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.file-seal {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+
+.file-money {
+  margin: 0;
+}
+
+.file-money > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.file-money dt {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.file-money dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.file-money-due {
+  border-bottom: 0 !important;
+  padding-top: 12px !important;
+}
+
+.file-money-due dt {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.file-money-due dd {
+  color: var(--st-renew);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.file-pay {
+  width: 100%;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.file-settled {
+  margin: 14px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--st-ready);
+}
+
+.file-note {
+  margin: 14px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
+.file-footer {
+  max-width: 1080px;
+  margin: 40px auto 0;
+  padding: 18px 24px 0;
+  border-top: 1px solid var(--line);
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 860px) {
+  .file-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .file-aside {
+    position: static;
+  }
+}
