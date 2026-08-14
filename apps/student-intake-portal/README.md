@@ -125,6 +125,26 @@ to read. Statuses are generated from a hash of the customer id, biased by how fa
 they are on payments, so a given person always shows the same thing instead of
 reshuffling on each load.
 
+## Two versions, kept in step
+
+There are two complete presentations of the same product, and Daniel picks one at the end:
+
+- **`/` — the portal.** A dashboard. Dense, tabular, everything at once. Carries the
+  office view.
+- **`/record` — the student file.** The programme's photograph across the top, the
+  student's name set into it, each requirement a card with its state as a spine down the
+  edge, the money pinned to one side.
+
+They must not drift apart, so **all behaviour is shared and only presentation differs**:
+
+- `lib/` — data, balances, requirement lists, uploads. One implementation.
+- `app/use-document-actions.ts` — uploading, replacing, removing, moving a status on.
+  A change to how uploading works reaches both views without being written twice.
+- `app/version-switch.tsx` — the switch between them, so either can be reached from the
+  other in one click.
+
+If a feature lands in one and not the other, that is a bug, not a design decision.
+
 ## Two stages
 
 The page changes shape depending on where someone is, because what matters to them

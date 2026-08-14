@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useState, useTransition } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   count_statuses,
@@ -24,6 +24,12 @@ import {
 } from "@/lib/shop";
 import type { PaymentStanding, Student } from "@/lib/students";
 import { Cover, tone_of } from "./cover";
+import {
+  document_href,
+  UPLOAD_ACCEPT,
+  useDocumentActions,
+} from "./use-document-actions";
+import { VersionSwitch } from "./version-switch";
 
 /**
  * Someone applying is chasing paperwork, so that is the whole page. Someone enrolled has
@@ -265,10 +271,7 @@ export default function Portal({
   const [filter, set_filter] = useState<Filter>("all");
   const [privacy, set_privacy] = useState(false);
   const [tab, set_tab] = useState<Tab>("admission");
-  const [busy, set_busy] = useState<string | null>(null);
-  const [problem, set_problem] = useState<string | null>(null);
-  const [, start_transition] = useTransition();
-  const file_inputs = useRef<Record<string, HTMLInputElement | null>>({});
+  const { busy, problem, upload, remove, cycle } = useDocumentActions();
 
   const current = students.find((s) => s.student_id === current_id) ?? students[0];
 
@@ -288,73 +291,6 @@ export default function Portal({
     () => (filter === "all" ? students : students.filter((s) => s.standing === filter)),
     [students, filter]
   );
-
-  /** Everything below saves for real, then asks the server for a fresh page. */
-  async function send(
-    key: string,
-    run: () => Promise<Response>,
-    fallback: string
-  ): Promise<void> {
-    set_busy(key);
-    set_problem(null);
-    try {
-      const response = await run();
-      if (!response.ok) {
-        const body = (await response.json().catch(() => ({}))) as { error?: string };
-        set_problem(body.error ?? fallback);
-        return;
-      }
-      start_transition(() => router.refresh());
-    } catch {
-      set_problem(fallback);
-    } finally {
-      set_busy(null);
-    }
-  }
-
-  function upload(student_id: string, doc_id: string, file: File) {
-    const form = new FormData();
-    form.append("student_id", student_id);
-    form.append("doc_id", doc_id);
-    form.append("file", file);
-
-    void send(
-      doc_id,
-      () => fetch("/api/documents", { method: "POST", body: form }),
-      "That upload did not go through. Please try again."
-    );
-  }
-
-  function set_status(student_id: string, doc_id: string, status: DocStatus) {
-    void send(
-      doc_id,
-      () =>
-        fetch("/api/documents", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ student_id, doc_id, status }),
-        }),
-      "That change did not save. Please try again."
-    );
-  }
-
-  function remove(student_id: string, doc_id: string) {
-    void send(
-      doc_id,
-      () =>
-        fetch("/api/documents", {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ student_id, doc_id }),
-        }),
-      "That could not be removed. Please try again."
-    );
-  }
-
-  function cycle(student_id: string, doc_id: string, from: DocStatus) {
-    const next_index = (STATUS_ORDER.indexOf(from) + 1) % STATUS_ORDER.length;
-    set_status(student_id, doc_id, STATUS_ORDER[next_index] ?? "not_started");
-  }
 
   /**
    * Records the school has issued. Read-only for the student — they never upload here,
@@ -381,9 +317,7 @@ export default function Portal({
                     {file ? (
                       <span className="filed">
                         <a
-                          href={`/api/documents/file?student_id=${encodeURIComponent(
-                            student.student_id
-                          )}&doc_id=${encodeURIComponent(d.doc_id)}`}
+                          href={document_href(student.student_id, d.doc_id)}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -414,7 +348,7 @@ export default function Portal({
                       type="file"
                       className="visually-hidden"
                       id={`push-${d.doc_id}`}
-                      accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.doc,.docx"
+                      accept={UPLOAD_ACCEPT}
                       onChange={(e) => {
                         const chosen = e.target.files?.[0];
                         if (chosen) upload(student.student_id, d.doc_id, chosen);
@@ -474,9 +408,7 @@ export default function Portal({
                   {entry.file ? (
                     <span className="filed">
                       <a
-                        href={`/api/documents/file?student_id=${encodeURIComponent(
-                          student.student_id
-                        )}&doc_id=${encodeURIComponent(d.doc_id)}`}
+                        href={document_href(student.student_id, d.doc_id)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -497,10 +429,7 @@ export default function Portal({
                     type="file"
                     className="visually-hidden"
                     id={`file-${d.doc_id}`}
-                    ref={(el) => {
-                      file_inputs.current[d.doc_id] = el;
-                    }}
-                    accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.doc,.docx"
+                    accept={UPLOAD_ACCEPT}
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       if (file) upload(student.student_id, d.doc_id, file);
@@ -590,12 +519,7 @@ export default function Portal({
           )}
         </div>
         <div className="masthead-tools">
-          <Link className="toggle" href="/concept">
-            Concept: next step
-          </Link>
-          <Link className="toggle" href="/record">
-            Concept: student file
-          </Link>
+          <VersionSwitch current="/" />
           <button
             type="button"
             className="toggle"

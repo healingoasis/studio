@@ -6,16 +6,25 @@ import {
   count_statuses,
   documents_for_program,
   STATUS_LABEL,
+  student_documents,
   type DocStatus,
+  type DocumentDef,
   type DocumentState,
 } from "@/lib/documents";
 import {
+  CARD_FEE_RATE,
   detail_url,
   program_url,
   type ProgramGroup,
   type ShopItem,
 } from "@/lib/shop";
 import type { Student } from "@/lib/students";
+import {
+  document_href,
+  UPLOAD_ACCEPT,
+  useDocumentActions,
+} from "../use-document-actions";
+import { VersionSwitch } from "../version-switch";
 import type { ProgramNote } from "./page";
 
 const money = (n: number) =>
@@ -41,6 +50,31 @@ const initials = (name: string) =>
     .slice(0, 2)
     .toUpperCase() || "?";
 
+const file_size = (bytes: number) =>
+  bytes >= 1024 * 1024
+    ? `${(bytes / 1024 / 1024).toFixed(1)} MB`
+    : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+
+type Section = "admission" | "student" | "grades" | "evaluations" | "diploma";
+
+const SECTIONS: { key: Section; label: string; built: boolean }[] = [
+  { key: "admission", label: "Admission" },
+  { key: "student", label: "Records" },
+  { key: "grades", label: "Grades" },
+  { key: "evaluations", label: "Evaluations" },
+  { key: "diploma", label: "Diploma" },
+].map((s) => ({ ...s, built: s.key === "admission" || s.key === "student" })) as {
+  key: Section;
+  label: string;
+  built: boolean;
+}[];
+
+const NOT_BUILT: Record<string, string> = {
+  grades: "Module results and overall standing will sit here once there is somewhere to read them from.",
+  evaluations: "Instructor evaluations and the student's own course feedback will sit here.",
+  diploma: "The certificate itself, to download once the program is passed.",
+};
+
 export default function RecordView({
   students,
   docs,
@@ -57,30 +91,176 @@ export default function RecordView({
   seminars: ShopItem[];
 }) {
   const [id, set_id] = useState(students[0]?.student_id ?? "");
+  const [section, set_section] = useState<Section>("admission");
+  const [privacy, set_privacy] = useState(false);
+
+  const { busy, problem, upload, remove, cycle } = useDocumentActions();
+
   const student = students.find((s) => s.student_id === id) ?? students[0];
   if (!student) return null;
+  // Pinned so the card builders below keep the narrowing.
+  const person = student;
 
-  const list = documents_for_program(student.program.key);
   const state = docs[student.student_id] ?? {};
-  const counts = count_statuses(list, state);
   const photo = photos[student.student_id];
+  const note = notes[`${student.program.key}::${student.class_term ?? ""}`];
+
+  const enrolled = student.remaining === 0 && student.paid > 0;
+  const active: Section = enrolled ? section : "admission";
+  const built = SECTIONS.find((s) => s.key === active)?.built ?? true;
+
+  const admission = documents_for_program(student.program.key);
+  const list = active === "student" ? student_documents() : admission;
+  const counts = count_statuses(list, state);
+
+  const at_intake =
+    student.standing === "nothing_paid" || student.standing === "deposit_only";
+  const stage = at_intake ? "Applying" : "Enrolled";
 
   const done = counts.approved;
   const total = counts.required;
   const pct = total > 0 ? Math.round((done / total) * 100) : 0;
 
-  const note = notes[`${student.program.key}::${student.class_term ?? ""}`];
-
-  // Someone still getting in reads differently from someone already on the programme.
-  const at_intake = student.standing === "nothing_paid" || student.standing === "deposit_only";
-  const stage = at_intake ? "Applying" : student.remaining > 0 ? "Enrolled" : "Enrolled";
-
   const other_programs = programs.filter((g) => g.key !== student.program.key);
+
+  /** Admission paperwork: the student sends it, the office checks it. */
+  function admission_card(d: DocumentDef) {
+    const entry = state[d.doc_id];
+    if (!entry) return null;
+    const status: DocStatus = entry.status;
+    const working = busy === d.doc_id;
+
+    return (
+      <article key={d.doc_id} className={`file-card ${status} ${working ? "working" : ""}`}>
+        <p className="file-card-kind">{d.only_if ? "If it applies" : "Required"}</p>
+        <h3>{d.name}</h3>
+
+        {entry.file ? (
+          <p className="file-card-file">
+            <a href={document_href(person.student_id, d.doc_id)} target="_blank" rel="noopener noreferrer">
+              {entry.file.file_name}
+            </a>
+            <span className="file-card-size">{file_size(entry.file.size)}</span>
+          </p>
+        ) : (
+          <p className="file-card-empty">
+            {status === "not_required" ? "Not needed for you" : "Nothing on file"}
+          </p>
+        )}
+
+        <div className="file-card-act">
+          <input
+            type="file"
+            className="visually-hidden"
+            id={`rec-${d.doc_id}`}
+            accept={UPLOAD_ACCEPT}
+            onChange={(e) => {
+              const chosen = e.target.files?.[0];
+              if (chosen) upload(person.student_id, d.doc_id, chosen);
+              e.target.value = "";
+            }}
+          />
+          <label htmlFor={`rec-${d.doc_id}`} className="mini primary">
+            {working ? "Sending…" : entry.file ? "Replace" : "Upload"}
+          </label>
+          {entry.file ? (
+            <button
+              type="button"
+              className="mini"
+              disabled={working}
+              onClick={() => remove(person.student_id, d.doc_id)}
+            >
+              Remove
+            </button>
+          ) : null}
+        </div>
+
+        <div className="file-card-foot">
+          <button
+            type="button"
+            className={`file-state ${status}`}
+            disabled={working}
+            title="Change the status"
+            onClick={() => cycle(person.student_id, d.doc_id, status)}
+          >
+            {STATUS_LABEL[status]}
+          </button>
+          {entry.updated_on ? (
+            <span className="file-when">{short_date(entry.updated_on)}</span>
+          ) : null}
+        </div>
+      </article>
+    );
+  }
+
+  /** Records the school issues: the student reads them and never uploads here. */
+  function issued_card(d: DocumentDef) {
+    const entry = state[d.doc_id];
+    const file = entry?.file;
+    const working = busy === d.doc_id;
+
+    return (
+      <article
+        key={d.doc_id}
+        className={`file-card ${file ? "approved" : "not_required"} ${working ? "working" : ""}`}
+      >
+        <p className="file-card-kind">Issued by the school</p>
+        <h3>{d.name}</h3>
+
+        {file ? (
+          <p className="file-card-file">
+            <a href={document_href(person.student_id, d.doc_id)} target="_blank" rel="noopener noreferrer">
+              {file.file_name}
+            </a>
+            <span className="file-card-size">{file_size(file.size)}</span>
+          </p>
+        ) : (
+          <p className="file-card-empty">Nothing sent yet</p>
+        )}
+
+        <div className="file-card-act">
+          <input
+            type="file"
+            className="visually-hidden"
+            id={`rec-send-${d.doc_id}`}
+            accept={UPLOAD_ACCEPT}
+            onChange={(e) => {
+              const chosen = e.target.files?.[0];
+              if (chosen) upload(person.student_id, d.doc_id, chosen);
+              e.target.value = "";
+            }}
+          />
+          <label htmlFor={`rec-send-${d.doc_id}`} className="mini">
+            {working ? "Sending…" : file ? "Replace" : "Send"}
+          </label>
+          {file ? (
+            <button
+              type="button"
+              className="mini"
+              disabled={working}
+              onClick={() => remove(person.student_id, d.doc_id)}
+            >
+              Withdraw
+            </button>
+          ) : null}
+        </div>
+
+        <div className="file-card-foot">
+          <span className={`file-state ${file ? "approved" : "not_required"}`}>
+            {file ? "Available" : "Not issued yet"}
+          </span>
+          {file ? (
+            <span className="file-when">
+              {short_date(file.uploaded_at.slice(0, 10))}
+            </span>
+          ) : null}
+        </div>
+      </article>
+    );
+  }
 
   return (
     <main className="file">
-      {/* The programme's own photograph, with the student set into it like a certificate
-          header. A school, not a control panel. */}
       <header className="file-hero">
         {photo?.src ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -89,7 +269,7 @@ export default function RecordView({
         <div className="file-hero-veil" />
         <div className="file-hero-inner">
           <p className="file-school">Healing Oasis Wellness Center</p>
-          <h1>{student.name}</h1>
+          <h1 className={privacy ? "private" : ""}>{student.name}</h1>
           <p className="file-program">
             <span className="file-stage">{stage}</span>
             {student.program.full_name}
@@ -99,84 +279,108 @@ export default function RecordView({
       </header>
 
       <div className="file-bar">
-        <Link href="/" className="file-back">
-          ← Back to the portal
-        </Link>
+        <div className="file-bar-left">
+          <VersionSwitch current="/record" />
+          <button
+            type="button"
+            className="toggle"
+            aria-pressed={privacy}
+            onClick={() => set_privacy((p) => !p)}
+          >
+            {privacy ? "Names hidden" : "Hide names"}
+          </button>
+        </div>
         <div className="picker">
           <label htmlFor="file-student">Viewing</label>
           <select
             id="file-student"
             value={student.student_id}
             onChange={(e) => set_id(e.target.value)}
+            className={privacy ? "private" : ""}
           >
             {students.map((s) => (
               <option key={s.student_id} value={s.student_id}>
-                {s.name}
+                {s.name} — {s.program.short_name}
               </option>
             ))}
           </select>
         </div>
       </div>
 
+      <p className="file-note-band">
+        <b>Prototype.</b> People, programs and payments are your actual students, read
+        live from the store. Uploads are real and stay on this Mac. Starting paperwork
+        colours are invented; anything changed from here on is real.
+      </p>
+
       <div className="file-body">
         <section className="file-main">
-          <div className="file-section-head">
-            <h2>Admission file</h2>
-            <p>
-              {done} of {total} complete
-            </p>
-          </div>
+          {enrolled ? (
+            <nav className="file-sections" aria-label="Sections of the record">
+              {SECTIONS.map((s) => (
+                <button
+                  key={s.key}
+                  type="button"
+                  className="file-section-tab"
+                  aria-current={active === s.key ? "true" : undefined}
+                  onClick={() => set_section(s.key)}
+                >
+                  {s.label}
+                  {!s.built ? <span className="soon">soon</span> : null}
+                </button>
+              ))}
+            </nav>
+          ) : null}
 
-          <div className="file-progress" aria-hidden="true">
-            <span style={{ width: `${pct}%` }} />
-          </div>
+          {built ? (
+            <>
+              <div className="file-section-head">
+                <h2>
+                  {active === "student" ? "Records issued to you" : "Admission file"}
+                </h2>
+                <p>
+                  {done} of {total} {active === "student" ? "issued" : "complete"}
+                </p>
+              </div>
 
-          <div className="file-grid">
-            {list.map((d) => {
-              const entry = state[d.doc_id];
-              if (!entry) return null;
-              const status: DocStatus = entry.status;
+              <div className="file-progress" aria-hidden="true">
+                <span style={{ width: `${pct}%` }} />
+              </div>
 
-              return (
-                <article key={d.doc_id} className={`file-card ${status}`}>
-                  <p className="file-card-kind">
-                    {d.only_if ? "If it applies" : "Required"}
-                  </p>
-                  <h3>{d.name}</h3>
+              {problem ? (
+                <p className="alert" role="alert">
+                  {problem}
+                </p>
+              ) : null}
 
-                  {entry.file ? (
-                    <p className="file-card-file">
-                      <span className="file-glyph" aria-hidden="true">
-                        ▤
-                      </span>
-                      {entry.file.file_name}
-                    </p>
-                  ) : (
-                    <p className="file-card-empty">
-                      {status === "not_required"
-                        ? "Not needed for you"
-                        : "Nothing on file"}
-                    </p>
-                  )}
+              <div className="file-grid">
+                {list.map((d) =>
+                  active === "student" ? issued_card(d) : admission_card(d)
+                )}
+              </div>
 
-                  <div className="file-card-foot">
-                    <span className={`file-state ${status}`}>
-                      {STATUS_LABEL[status]}
-                    </span>
-                    {entry.updated_on ? (
-                      <span className="file-when">
-                        {short_date(entry.updated_on)}
-                      </span>
-                    ) : null}
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+              <p className="file-hint">
+                {active === "student"
+                  ? "These are records the school sends out. Send and Withdraw are office controls; a student would not see them."
+                  : "Uploading turns a card yellow — it has arrived but nobody has checked it. Click the status to move it on."}
+              </p>
+            </>
+          ) : (
+            <div className="file-empty-section">
+              <p className="file-empty-title">Not built yet</p>
+              <p>{NOT_BUILT[active]}</p>
+              <p className="muted">
+                Nothing is invented here on purpose — it will appear once there is a real
+                source to read it from.
+              </p>
+            </div>
+          )}
         </section>
 
         <aside className="file-aside">
-          <div className="file-seal">{initials(student.name)}</div>
+          <div className={`file-seal ${privacy ? "private" : ""}`}>
+            {initials(student.name)}
+          </div>
 
           <dl className="file-money">
             <div>
@@ -194,10 +398,7 @@ export default function RecordView({
           </dl>
 
           {student.remaining > 0 ? (
-            <Link
-              className="btn file-pay"
-              href={detail_url(student.program.balance_handle)}
-            >
+            <Link className="btn file-pay" href={detail_url(student.program.balance_handle)}>
               Pay balance
             </Link>
           ) : (
@@ -205,8 +406,29 @@ export default function RecordView({
           )}
 
           <p className="file-note">
-            Figures are what the school charges. Card processing is added at checkout.
+            Figures are what the school charges. The {(CARD_FEE_RATE * 100).toFixed(1)}%
+            card processing is added at checkout.
           </p>
+
+          {student.payments.length > 0 ? (
+            <div className="file-ledger">
+              <p className="file-ledger-head">Payments</p>
+              {student.payments.map((p) => (
+                <div key={p.order_number} className="file-ledger-row">
+                  <span>
+                    {short_date(p.paid_on)}
+                    <span className="file-ledger-kind">
+                      {p.kind}
+                      {p.refunded ? " · refunded" : p.pending ? " · unpaid" : ""}
+                    </span>
+                  </span>
+                  <span className={p.refunded || p.pending ? "strike" : ""}>
+                    {money(p.base_amount)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </aside>
       </div>
 
@@ -275,7 +497,8 @@ export default function RecordView({
       </section>
 
       <footer className="file-footer">
-        A concept, shown beside the portal rather than replacing it. Same live data.
+        Read live from healing-oasis-us.myshopify.com · nothing is written back to the
+        store · uploaded documents stay on this Mac
       </footer>
     </main>
   );
