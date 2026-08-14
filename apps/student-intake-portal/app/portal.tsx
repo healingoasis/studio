@@ -251,10 +251,13 @@ export default function Portal({
   students,
   docs,
   shelves,
+  photos,
 }: {
   students: Student[];
   docs: DocMap;
   shelves: Shelves;
+  /** When given, the page opens with the student's programme photograph. */
+  photos?: Record<string, { src: string | null; alt: string }>;
 }) {
   const router = useRouter();
   const [view, set_view] = useState<"student" | "office">("student");
@@ -554,12 +557,37 @@ export default function Portal({
   const shown_outstanding =
     shown_counts.not_started + shown_counts.in_progress + shown_counts.needs_update;
 
+  const hero = photos?.[current.student_id];
+  const show_hero = Boolean(hero?.src) && view === "student";
+
   return (
-    <main className="wrap">
+    <main className={`wrap ${show_hero ? "wrap-hero" : ""}`}>
+      {show_hero && hero?.src ? (
+        <div className="portal-hero">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={hero.src} alt={hero.alt} />
+          <div className="portal-hero-veil" />
+          <div className="portal-hero-inner">
+            <p className="file-school">Healing Oasis Wellness Center</p>
+            <h1 className={privacy ? "private" : ""}>{current.name}</h1>
+            <p className="file-program">
+              {current.program.full_name}
+              {current.class_term ? ` · ${current.class_term}` : ""}
+            </p>
+          </div>
+        </div>
+      ) : null}
+
       <div className="masthead">
         <div>
-          <p className="eyebrow">Healing Oasis Wellness Center</p>
-          <h1>Student Intake</h1>
+          {show_hero ? (
+            <p className="masthead-quiet">Student intake</p>
+          ) : (
+            <>
+              <p className="eyebrow">Healing Oasis Wellness Center</p>
+              <h1>Student Intake</h1>
+            </>
+          )}
         </div>
         <div className="masthead-tools">
           <Link className="toggle" href="/concept">
@@ -610,17 +638,28 @@ export default function Portal({
         <div className="stack">
           <section className="card">
             <div className="identity">
-              <div className={`avatar ${privacy ? "private" : ""}`}>
-                {initials(current.name)}
-              </div>
-              <div className="identity-text">
-                <h2 className={privacy ? "private" : ""}>{current.name}</h2>
-                <p>
-                  {current.program.full_name} ({current.program.short_name})
-                  {current.class_term ? ` — ${current.class_term} class` : ""} ·{" "}
-                  {STANDING_LABEL[current.standing]}
-                </p>
-              </div>
+              {/* The hero above already carries the name and programme. */}
+              {!show_hero ? (
+                <>
+                  <div className={`avatar ${privacy ? "private" : ""}`}>
+                    {initials(current.name)}
+                  </div>
+                  <div className="identity-text">
+                    <h2 className={privacy ? "private" : ""}>{current.name}</h2>
+                    <p>
+                      {current.program.full_name} ({current.program.short_name})
+                      {current.class_term ? ` — ${current.class_term} class` : ""} ·{" "}
+                      {STANDING_LABEL[current.standing]}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <div className="identity-text">
+                  <p className="identity-standing">
+                    {STANDING_LABEL[current.standing]}
+                  </p>
+                </div>
+              )}
               <div className="picker">
                 <label htmlFor="student-select">Viewing</label>
                 <select

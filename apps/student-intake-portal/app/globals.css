@@ -2098,3 +2098,174 @@ footer {
     position: static;
   }
 }
+
+/* ---------- concept: portal with the file's hero ---------- */
+
+.wrap-hero {
+  padding-top: 0;
+}
+
+.portal-hero {
+  position: relative;
+  height: clamp(210px, 28vw, 320px);
+  margin: 0 -20px 4px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.portal-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  display: block;
+}
+
+.portal-hero-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(9, 8, 7, 0.94) 4%,
+    rgba(9, 8, 7, 0.6) 48%,
+    rgba(9, 8, 7, 0.12) 90%
+  );
+}
+
+.portal-hero-inner {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0 20px 24px;
+  color: #fff;
+}
+
+.portal-hero-inner h1 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4.8vw, 46px);
+  font-weight: 600;
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: #fff;
+}
+
+.masthead-quiet {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 550;
+  color: var(--ink-soft);
+}
+
+/* ---------- student file: programme and what else is open ---------- */
+
+.file-stage {
+  display: inline-block;
+  margin-right: 12px;
+  padding: 2px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+
+.file-strip {
+  max-width: 1080px;
+  margin: 46px auto 0;
+  padding: 0 24px;
+}
+
+.file-link {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.file-schedule {
+  margin-top: 18px;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  max-width: none;
+}
+
+.file-consider {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(252px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.consider {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.consider:hover {
+  border-color: var(--accent);
+}
+
+.consider-photo {
+  flex: none;
+  width: 88px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.consider-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.consider-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 13px 14px 13px 0;
+  min-width: 0;
+}
+
+.consider-kind {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.consider-title {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+
+.consider-meta {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.identity-standing {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}

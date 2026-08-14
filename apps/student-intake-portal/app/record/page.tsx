@@ -3,8 +3,21 @@ import { merge_documents, type DocumentState } from "@/lib/documents";
 import { SetupError } from "@/lib/env";
 import { load_students } from "@/lib/students";
 import { local_hero, local_photo_alt } from "@/lib/local_photos";
+import {
+  class_term_of,
+  load_product,
+  load_shelves,
+  type ProgramGroup,
+  type ShopItem,
+} from "@/lib/shop";
 import { load_records, student_key } from "@/lib/uploads";
 import RecordView from "./record-view";
+
+export type ProgramNote = {
+  /** The store's own description of the class this student is on. */
+  description_html: string;
+  handle: string;
+};
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -41,7 +54,8 @@ export default async function RecordPage() {
 
   if (students.length === 0) return null;
 
-  const records = await load_records();
+  const [records, shelves] = await Promise.all([load_records(), load_shelves()]);
+
   const docs: Record<string, Record<string, DocumentState>> = {};
   const photos: Record<string, { src: string | null; alt: string }> = {};
 
@@ -58,5 +72,37 @@ export default async function RecordPage() {
     };
   }
 
-  return <RecordView students={students} docs={docs} photos={photos} />;
+  // The class each student is actually on, so their own schedule can be shown rather
+  // than a generic blurb. Loaded once per programme rather than once per student.
+  const wanted = new Map<string, string>();
+  for (const s of students) {
+    const group = shelves.programs.find((g) => g.key === s.program.key);
+    if (!group) continue;
+    const cohort =
+      group.cohorts.find(
+        (c) => class_term_of(c.handle).label === (s.class_term ?? "")
+      ) ?? group.cohorts[0];
+    if (cohort) wanted.set(`${s.program.key}::${s.class_term ?? ""}`, cohort.handle);
+  }
+
+  const notes: Record<string, ProgramNote> = {};
+  await Promise.all(
+    [...wanted.entries()].map(async ([key, handle]) => {
+      const product = await load_product(handle);
+      if (product?.description_html) {
+        notes[key] = { description_html: product.description_html, handle };
+      }
+    })
+  );
+
+  return (
+    <RecordView
+      students={students}
+      docs={docs}
+      photos={photos}
+      notes={notes}
+      programs={shelves.programs satisfies ProgramGroup[]}
+      seminars={shelves.seminars satisfies ShopItem[]}
+    />
+  );
 }

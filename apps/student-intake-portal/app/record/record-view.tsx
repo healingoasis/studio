@@ -9,8 +9,14 @@ import {
   type DocStatus,
   type DocumentState,
 } from "@/lib/documents";
-import { detail_url } from "@/lib/shop";
+import {
+  detail_url,
+  program_url,
+  type ProgramGroup,
+  type ShopItem,
+} from "@/lib/shop";
 import type { Student } from "@/lib/students";
+import type { ProgramNote } from "./page";
 
 const money = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -39,10 +45,16 @@ export default function RecordView({
   students,
   docs,
   photos,
+  notes,
+  programs,
+  seminars,
 }: {
   students: Student[];
   docs: Record<string, Record<string, DocumentState>>;
   photos: Record<string, { src: string | null; alt: string }>;
+  notes: Record<string, ProgramNote>;
+  programs: ProgramGroup[];
+  seminars: ShopItem[];
 }) {
   const [id, set_id] = useState(students[0]?.student_id ?? "");
   const student = students.find((s) => s.student_id === id) ?? students[0];
@@ -56,6 +68,14 @@ export default function RecordView({
   const done = counts.approved;
   const total = counts.required;
   const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+  const note = notes[`${student.program.key}::${student.class_term ?? ""}`];
+
+  // Someone still getting in reads differently from someone already on the programme.
+  const at_intake = student.standing === "nothing_paid" || student.standing === "deposit_only";
+  const stage = at_intake ? "Applying" : student.remaining > 0 ? "Enrolled" : "Enrolled";
+
+  const other_programs = programs.filter((g) => g.key !== student.program.key);
 
   return (
     <main className="file">
@@ -71,6 +91,7 @@ export default function RecordView({
           <p className="file-school">Healing Oasis Wellness Center</p>
           <h1>{student.name}</h1>
           <p className="file-program">
+            <span className="file-stage">{stage}</span>
             {student.program.full_name}
             {student.class_term ? ` · ${student.class_term}` : ""}
           </p>
@@ -188,6 +209,70 @@ export default function RecordView({
           </p>
         </aside>
       </div>
+
+      {note ? (
+        <section className="file-strip">
+          <div className="file-section-head">
+            <h2>Your program</h2>
+            <Link className="file-link" href={program_url(student.program.key)}>
+              Full details →
+            </Link>
+          </div>
+          <div
+            className="file-schedule product-copy"
+            dangerouslySetInnerHTML={{ __html: note.description_html }}
+          />
+        </section>
+      ) : null}
+
+      <section className="file-strip">
+        <div className="file-section-head">
+          <h2>You might also consider</h2>
+          <p>Open to you as a student here</p>
+        </div>
+
+        <div className="file-consider">
+          {other_programs.map((g) => (
+            <Link key={g.key} className="consider" href={program_url(g.key)}>
+              <span className="consider-photo">
+                {g.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={g.image} alt={g.image_alt} loading="lazy" />
+                ) : null}
+              </span>
+              <span className="consider-body">
+                <span className="consider-kind">Program</span>
+                <span className="consider-title">{g.full_name}</span>
+                <span className="consider-meta">
+                  {g.cohorts.length === 1
+                    ? "1 class open"
+                    : `${g.cohorts.length} classes open`}
+                </span>
+              </span>
+            </Link>
+          ))}
+
+          {seminars.map((s) => (
+            <Link key={s.handle} className="consider" href={detail_url(s.handle)}>
+              <span className="consider-photo">
+                {s.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={s.image} alt={s.image_alt} loading="lazy" />
+                ) : null}
+              </span>
+              <span className="consider-body">
+                <span className="consider-kind">
+                  {/conference/i.test(s.title) ? "Conference" : "Continuing education"}
+                </span>
+                <span className="consider-title">{s.title}</span>
+                <span className="consider-meta">
+                  {s.choices ?? "Open for registration"}
+                </span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <footer className="file-footer">
         A concept, shown beside the portal rather than replacing it. Same live data.
