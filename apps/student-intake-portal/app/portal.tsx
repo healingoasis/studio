@@ -562,6 +562,9 @@ export default function Portal({
           <h1>Student Intake</h1>
         </div>
         <div className="masthead-tools">
+          <Link className="toggle" href="/concept">
+            See a different shape
+          </Link>
           <button
             type="button"
             className="toggle"

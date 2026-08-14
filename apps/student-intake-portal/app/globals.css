@@ -1544,3 +1544,214 @@ footer {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ---------- concept: a different shape ---------- */
+
+.concept {
+  max-width: 660px;
+}
+
+.concept-crumb {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.concept-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.concept-head {
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--line);
+}
+
+.concept-head h1 {
+  font-size: clamp(30px, 5vw, 42px);
+  letter-spacing: -0.02em;
+}
+
+.concept-sub {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.concept-picker {
+  margin: 20px 0 0;
+}
+
+/* The one action, given the weight of a headline rather than a row in a list. */
+.next-step {
+  margin-top: 30px;
+  padding: 26px 28px 28px;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.next-step.settled {
+  border-color: var(--st-ready);
+}
+
+.next-label {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.next-step.settled .next-label {
+  color: var(--st-ready);
+}
+
+.next-step h2 {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3.4vw, 29px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.next-why {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+.next-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.next-rest {
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* Sequence, not category: everything on one spine in the order it happens. */
+.track {
+  list-style: none;
+  margin: 34px 0 0;
+  padding: 0;
+}
+
+.track-item {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  padding: 0 0 26px 0;
+}
+
+.track-item::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 16px;
+  bottom: -2px;
+  width: 1px;
+  background: var(--line);
+}
+
+.track-item:last-child::before {
+  display: none;
+}
+
+.track-dot {
+  flex: none;
+  width: 13px;
+  height: 13px;
+  margin-top: 4px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  background: var(--ground);
+  position: relative;
+  z-index: 1;
+}
+
+.track-item.done .track-dot {
+  background: var(--st-ready);
+  border-color: var(--st-ready);
+}
+
+.track-item.now .track-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-tint);
+}
+
+.track-title {
+  margin: 0;
+  font-size: 15.5px;
+  font-weight: 600;
+}
+
+.track-detail {
+  margin: 3px 0 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.track-item.later .track-title,
+.track-item.later .track-detail {
+  color: var(--ink-faint);
+}
+
+.track-action {
+  display: inline-block;
+  margin-top: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.track-action:hover {
+  text-decoration: underline;
+}
+
+.everything {
+  margin-top: 12px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.everything summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.everything p {
+  margin: 12px 0 10px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.everything a {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
