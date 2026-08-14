@@ -82,6 +82,7 @@ export default function RecordView({
   notes,
   programs,
   seminars,
+  merchandise,
 }: {
   students: Student[];
   docs: Record<string, Record<string, DocumentState>>;
@@ -89,9 +90,11 @@ export default function RecordView({
   notes: Record<string, ProgramNote>;
   programs: ProgramGroup[];
   seminars: ShopItem[];
+  merchandise: ShopItem[];
 }) {
   const [id, set_id] = useState(students[0]?.student_id ?? "");
-  const [section, set_section] = useState<Section>("admission");
+  // Null until the reader picks one, so the sensible default can follow the student.
+  const [section, set_section] = useState<Section | null>(null);
   const [privacy, set_privacy] = useState(false);
 
   const { busy, problem, upload, remove, cycle } = useDocumentActions();
@@ -106,10 +109,21 @@ export default function RecordView({
   const note = notes[`${student.program.key}::${student.class_term ?? ""}`];
 
   const enrolled = student.remaining === 0 && student.paid > 0;
-  const active: Section = enrolled ? section : "admission";
-  const built = SECTIONS.find((s) => s.key === active)?.built ?? true;
 
   const admission = documents_for_program(student.program.key);
+  const admission_counts = count_statuses(admission, state);
+  const admission_done =
+    admission_counts.required > 0 &&
+    admission_counts.approved === admission_counts.required;
+
+  // Once someone is enrolled and their admission file is complete, that file is history.
+  // Opening on it would make them scroll past nine settled cards to reach anything live.
+  const active: Section = enrolled
+    ? (section ?? (admission_done ? "student" : "admission"))
+    : "admission";
+
+  const built = SECTIONS.find((s) => s.key === active)?.built ?? true;
+
   const list = active === "student" ? student_documents() : admission;
   const counts = count_statuses(list, state);
 
@@ -382,33 +396,40 @@ export default function RecordView({
             {initials(student.name)}
           </div>
 
-          <dl className="file-money">
-            <div>
-              <dt>Tuition</dt>
-              <dd>{money(student.tuition)}</dd>
-            </div>
-            <div>
-              <dt>Paid</dt>
-              <dd>{money(student.paid)}</dd>
-            </div>
-            <div className="file-money-due">
-              <dt>Balance</dt>
-              <dd>{money(student.remaining)}</dd>
-            </div>
-          </dl>
-
+          {/* Nothing owed means nothing to decide: one settled line instead of a
+              three-row sum, a button and a note about a fee that will not be charged. */}
           {student.remaining > 0 ? (
-            <Link className="btn file-pay" href={detail_url(student.program.balance_handle)}>
-              Pay balance
-            </Link>
-          ) : (
-            <p className="file-settled">Tuition settled</p>
-          )}
+            <>
+              <dl className="file-money">
+                <div>
+                  <dt>Tuition</dt>
+                  <dd>{money(student.tuition)}</dd>
+                </div>
+                <div>
+                  <dt>Paid</dt>
+                  <dd>{money(student.paid)}</dd>
+                </div>
+                <div className="file-money-due">
+                  <dt>Balance</dt>
+                  <dd>{money(student.remaining)}</dd>
+                </div>
+              </dl>
 
-          <p className="file-note">
-            Figures are what the school charges. The {(CARD_FEE_RATE * 100).toFixed(1)}%
-            card processing is added at checkout.
-          </p>
+              <Link className="btn file-pay" href={detail_url(student.program.balance_handle)}>
+                Pay balance
+              </Link>
+
+              <p className="file-note">
+                Figures are what the school charges. The{" "}
+                {(CARD_FEE_RATE * 100).toFixed(1)}% card processing is added at checkout.
+              </p>
+            </>
+          ) : (
+            <p className="file-settled">
+              Tuition settled
+              <span>{money(student.paid)} paid in full</span>
+            </p>
+          )}
 
           {student.payments.length > 0 ? (
             <div className="file-ledger">
@@ -490,6 +511,33 @@ export default function RecordView({
                 <span className="consider-meta">
                   {s.choices ?? "Open for registration"}
                 </span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="file-strip">
+        <div className="file-section-head">
+          <h2>From the shop</h2>
+          <p>Kit and merchandise</p>
+        </div>
+
+        <div className="file-consider">
+          {merchandise.map((m) => (
+            <Link key={m.handle} className="consider" href={detail_url(m.handle)}>
+              <span className="consider-photo">
+                {m.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={m.image} alt={m.image_alt} loading="lazy" />
+                ) : null}
+              </span>
+              <span className="consider-body">
+                <span className="consider-kind">
+                  {m.available ? "Merchandise" : "Sold out"}
+                </span>
+                <span className="consider-title">{m.title}</span>
+                <span className="consider-meta">{m.choices ?? "One option"}</span>
               </span>
             </Link>
           ))}

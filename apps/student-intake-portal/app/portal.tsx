@@ -270,7 +270,8 @@ export default function Portal({
   const [current_id, set_current_id] = useState(students[0]?.student_id ?? "");
   const [filter, set_filter] = useState<Filter>("all");
   const [privacy, set_privacy] = useState(false);
-  const [tab, set_tab] = useState<Tab>("admission");
+  // Null until the reader picks one, so the sensible default can follow the student.
+  const [tab, set_tab] = useState<Tab | null>(null);
   const { busy, problem, upload, remove, cycle } = useDocumentActions();
 
   const current = students.find((s) => s.student_id === current_id) ?? students[0];
@@ -477,7 +478,16 @@ export default function Portal({
   // Paid in full means enrolled, and an enrolled student gets a record with tabs rather
   // than a page that is only about chasing their paperwork.
   const enrolled = current.remaining === 0 && current.paid > 0;
-  const active_tab: Tab = enrolled ? tab : "admission";
+
+  // Once enrolled with a complete admission file, that file is history — opening on it
+  // means scrolling past settled rows to reach anything live.
+  const admission_done =
+    current_counts.required > 0 &&
+    current_counts.approved === current_counts.required;
+
+  const active_tab: Tab = enrolled
+    ? (tab ?? (admission_done ? "student" : "admission"))
+    : "admission";
   const tab_built = TABS.find((t) => t.key === active_tab)?.built ?? true;
 
   const shown_list =
@@ -703,7 +713,7 @@ export default function Portal({
             ) : (
               <div className="empty-tab">
                 <p className="empty-title">Not built yet</p>
-                <p>{NOT_BUILT[tab]}</p>
+                <p>{NOT_BUILT[active_tab]}</p>
                 <p className="muted">
                   Nothing is invented here on purpose — it will appear once there is a
                   real source to read it from.

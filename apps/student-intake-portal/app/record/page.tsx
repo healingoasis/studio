@@ -103,6 +103,7 @@ export default async function RecordPage() {
       notes={notes}
       programs={shelves.programs satisfies ProgramGroup[]}
       seminars={shelves.seminars satisfies ShopItem[]}
+      merchandise={shelves.merchandise satisfies ShopItem[]}
     />
   );
 }
