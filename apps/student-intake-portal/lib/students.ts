@@ -1,4 +1,27 @@
+import { CARD_FEE_RATE } from "./shop";
 import { fetch_recent_orders, type RawOrder } from "./shopify";
+
+const round2 = (n: number) => Math.round(n * 100) / 100;
+
+/**
+ * What the school actually charges, with the card processing taken back out.
+ *
+ * The store does this two different ways, so both are handled:
+ *  - most orders carry an explicit "Admin Fee" line beside a base-priced product, so the
+ *    fee is simply subtracted;
+ *  - deposits and balances are sold at a fee-inclusive price with no separate line, so
+ *    the rate is divided back out — but only when that lands on a whole dollar, which is
+ *    what tells us the fee was actually in there. Someone who paid by cheque already
+ *    paid the base, and dividing again would understate what they have paid.
+ */
+function without_card_fee(net_paid: number, fee_lines: number): number {
+  if (net_paid <= 0) return 0;
+  if (fee_lines > 0) return round2(net_paid - fee_lines);
+
+  const base = net_paid / (1 + CARD_FEE_RATE);
+  const whole = Math.round(base);
+  return Math.abs(base - whole) < 0.02 ? whole : round2(net_paid);
+}
 
 // ---------------------------------------------------------------- programs
 
@@ -45,11 +68,10 @@ export const PROGRAMS: Record<ProgramKey, Program> = {
 };
 
 /**
- * A balance within this much of zero counts as settled. Some students pay the base
- * price (by check, or with the card fee waived) while the store's list price includes
- * that fee, which would otherwise leave a phantom ~$285 owing.
+ * Both sides of the sum are now the school's own figures with no card fee in them, so
+ * this only has to absorb rounding and the odd few dollars, not a whole processing fee.
  */
-const SETTLED_TOLERANCE = 300;
+const SETTLED_TOLERANCE = 5;
 
 function program_of(title: string): ProgramKey | null {
   const t = title.toLowerCase();
@@ -102,7 +124,10 @@ export type Payment = {
   paid_on: string;
   kind: PaymentKind;
   label: string;
+  /** What the card was actually charged, so it reconciles with a bank statement. */
   amount: number;
+  /** The same payment with the card processing taken out. */
+  base_amount: number;
   refunded: boolean;
   /** Placed but nothing has cleared — an unpaid invoice, not money in the bank. */
   pending: boolean;
@@ -173,6 +198,11 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
     );
     const program = PROGRAMS[program_key];
 
+    // The store lists tuition with the card fee already in it. The profile shows what
+    // the school charges — VSMT reads $8,389, not $8,674 — and the fee appears at
+    // checkout, where paying by card or cheque is actually chosen.
+    const tuition = Math.round(program.tuition / (1 + CARD_FEE_RATE));
+
     const payments: Payment[] = [];
     let paid = 0;
 
@@ -183,9 +213,14 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
         .filter((li) => !is_fee_line(li.title))
         .map((li) => li.title);
 
+      const fee_lines = order.line_items
+        .filter((li) => is_fee_line(li.title))
+        .reduce((sum, li) => sum + li.original_total, 0);
+
       const amount = refunded ? 0 : order.net_payment;
       const pending = !refunded && amount <= 0 && order.total_price > 0;
-      paid += amount;
+      const base = without_card_fee(amount, fee_lines);
+      paid += base;
 
       payments.push({
         order_number: order.order_number,
@@ -193,18 +228,22 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
         kind: payment_kind(titles),
         label: titles[0] ?? order.line_items[0]?.title ?? "Order",
         amount: refunded || pending ? order.total_price : amount,
+        base_amount:
+          refunded || pending
+            ? without_card_fee(order.total_price, fee_lines)
+            : base,
         refunded,
         pending,
       });
     }
 
-    const raw_remaining = program.tuition - paid;
+    const raw_remaining = tuition - paid;
     const remaining = raw_remaining <= SETTLED_TOLERANCE ? 0 : raw_remaining;
 
     let standing: PaymentStanding;
     if (remaining === 0) standing = "paid_in_full";
     else if (paid <= 0) standing = "nothing_paid";
-    else if (paid <= program.tuition * 0.2) standing = "deposit_only";
+    else if (paid <= tuition * 0.2) standing = "deposit_only";
     else standing = "partly_paid";
 
     // An order that is still pending has cleared nothing, so it must not count as the
@@ -218,7 +257,7 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
       email: sorted[sorted.length - 1]?.customer_email ?? null,
       program,
       class_term: class_term(sorted.flatMap((o) => o.line_items.map((li) => li.title))),
-      tuition: program.tuition,
+      tuition,
       paid,
       remaining,
       standing,

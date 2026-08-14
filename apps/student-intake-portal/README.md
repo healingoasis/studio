@@ -212,13 +212,28 @@ over-the-shoulder demos.
 
 ## How balances are worked out
 
-Tuition comes from the program's own "pay in full" product, which already includes the
-card fee. Paid is the sum of net payments on that student's program orders (refunds and
-voids excluded, pending orders counted as not paid). Anything within $300 of settled is
-treated as settled, because students who pay by cheque or get the fee waived pay the base
-price and would otherwise show a phantom balance.
+**The profile shows the school's own figures, with card processing taken out.** VSMT
+tuition reads $8,389, a deposit reads $200. The 3.4% belongs at checkout, where paying by
+card or by check is actually chosen — not on a page about what someone owes the school.
 
-That tolerance is a prototype shortcut, not accounting.
+Tuition is the program's "pay in full" price divided back out of the fee. Paid is the sum
+of net payments on that student's program orders, each with its fee removed; refunds and
+voids are excluded and pending orders count as unpaid.
+
+Removing the fee has to cope with the store doing it two ways:
+
+- most orders carry an explicit **Admin Fee** line beside a base-priced product, so the
+  fee is simply subtracted;
+- deposits and balances are sold at a **fee-inclusive price** with no separate line, so
+  the rate is divided back out — but only when that lands on a whole dollar, which is
+  what tells us the fee was in there. Someone who paid by check already paid the base,
+  and dividing again would understate what they have paid.
+
+The payments table shows the base figure with **what the card was actually charged**
+underneath, so a row can still be matched against a bank statement.
+
+Settled tolerance is $5 — both sides of the sum are now base figures, so it only has to
+absorb rounding rather than a whole processing fee.
 
 ## Shape of it
 

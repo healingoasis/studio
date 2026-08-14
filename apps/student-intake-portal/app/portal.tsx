@@ -15,6 +15,7 @@ import {
 } from "@/lib/documents";
 import Link from "next/link";
 import {
+  CARD_FEE_RATE,
   detail_url,
   program_url,
   type ProgramGroup,
@@ -771,7 +772,12 @@ export default function Portal({
                       </td>
                       <td className="muted">{p.order_number}</td>
                       <td className={`num ${p.refunded || p.pending ? "strike" : ""}`}>
-                        {money(p.amount)}
+                        {money(p.base_amount)}
+                        {/* The card was charged more than this; show it so the row can
+                            be matched against a bank statement. */}
+                        {p.base_amount !== p.amount ? (
+                          <div className="charged">{money(p.amount)} charged</div>
+                        ) : null}
                       </td>
                     </tr>
                   ))}
@@ -799,9 +805,10 @@ export default function Portal({
               )}
             </div>
             <p className="card-foot">
-              Balances are worked out from what has come through the store, against the
-              program&rsquo;s list price. Where someone paid by cheque or had the card fee
-              waived, the number can be out by the fee. Not the books — a prototype.
+              Every figure here is what the school charges, with card processing taken
+              out. The {(CARD_FEE_RATE * 100).toFixed(1)}% is added at checkout, where
+              paying by card or by check is chosen. Worked out from what has come through
+              the store — a prototype, not the books.
             </p>
           </section>
 
