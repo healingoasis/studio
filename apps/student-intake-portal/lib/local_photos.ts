@@ -40,9 +40,9 @@ const HEROES: Record<string, string> = {
 };
 
 const CAPTIONS: Record<string, string> = {
-  vsmt: "Students working on a horse under instruction during a VSMT module",
-  vmrt: "Hands-on treatment table work during a VMRT module",
-  acupuncture: "A student placing a first needle during the acupuncture program",
+  vsmt: "A VSMT class working on a horse in the arena",
+  vmrt: "Rehabilitation work over cavaletti on the VMRT program",
+  acupuncture: "Needles placed along a horse during an acupuncture session",
   "2026-conference-attendee-registration": "A presentation at the Healing Oasis homecoming conference",
   "cranio-sacral-2026": "Gentle cranio-sacral work on a patient",
   "applied-kinesiology-2026": "Applied kinesiology assessment during a seminar",
