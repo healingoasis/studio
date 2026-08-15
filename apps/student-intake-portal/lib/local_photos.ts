@@ -40,7 +40,7 @@ const HEROES: Record<string, string> = {
 };
 
 const CAPTIONS: Record<string, string> = {
-  vsmt: "A VSMT class adjusting a dog in the arena",
+  vsmt: "An instructor and student adjusting a dog during a VSMT module",
   vmrt: "A practitioner assessing a dog on the VMRT program",
   acupuncture: "Needles placed along a dog during an acupuncture session",
   "2026-conference-attendee-registration": "A presentation at the Healing Oasis homecoming conference",
