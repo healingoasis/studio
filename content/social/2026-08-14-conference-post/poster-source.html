@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; }
+  body {
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:#FBF8F5; -webkit-font-smoothing:antialiased;
+  }
+  .poster { position:relative; width:1080px; height:1350px; overflow:hidden; background:#FBF8F5; }
+
+  /* ---------- photo band ---------- */
+  .band { position:relative; display:flex; height:500px; }
+  .cell { position:relative; flex:1; overflow:hidden; }
+  .cell img { width:100%; height:100%; object-fit:cover; display:block; }
+  .cell.a img { object-position:52% 34%; }
+  .cell.b img { object-position:50% 30%; }
+  .cell + .cell { border-left:4px solid #FBF8F5; }
+  .band .tint { position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,8,8,.42) 0%, rgba(20,8,8,0) 38%); }
+
+  .flag {
+    position:absolute; left:0; top:44px; z-index:3;
+    background:#8B0000; color:#fff; font-size:22px; font-weight:800;
+    letter-spacing:.14em; text-transform:uppercase; padding:14px 26px 12px 54px;
+  }
+
+  /* ---------- title ---------- */
+  .title { padding:36px 54px 0; height:330px; }
+  .top { display:flex; align-items:center; gap:18px; margin-bottom:18px; }
+  .top img { width:60px; height:60px; object-fit:contain; }
+  .top .eyebrow {
+    font-size:21px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+    color:#8B0000; line-height:1.3;
+  }
+  .top .eyebrow span { display:block; font-size:15px; font-weight:600; letter-spacing:.13em; color:#7A6A66; }
+  h1 { font-size:74px; line-height:.96; font-weight:700; letter-spacing:-.03em; color:#231413; }
+  .tagline { font-size:25px; font-weight:600; color:#5A4A47; margin-top:18px; line-height:1.3; }
+
+  /* ---------- date band ---------- */
+  .dates {
+    height:92px; background:#8B0000; color:#fff;
+    display:flex; align-items:center; justify-content:center; gap:22px;
+  }
+  .dates .d { font-size:37px; font-weight:800; letter-spacing:-.01em; }
+  .dates .dot { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.55); }
+  .dates .v { font-size:29px; font-weight:500; color:#FFD9CF; }
+
+  /* ---------- facts ---------- */
+  .facts { height:220px; padding:30px 54px 0; display:grid;
+           grid-template-columns:1fr 1fr; gap:20px 34px; align-content:start; }
+  .fact { display:flex; gap:14px; align-items:flex-start; }
+  .tick { flex:none; width:30px; height:30px; border-radius:50%; background:#8B0000; color:#fff;
+          font-size:16px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+  .fact .t { font-size:23px; font-weight:700; color:#231413; line-height:1.25; }
+  .fact .t span { display:block; font-size:19px; font-weight:500; color:#6A5A57; margin-top:3px; }
+
+  /* ---------- cta ---------- */
+  .cta { position:absolute; left:0; right:0; bottom:0; height:208px; background:#231413;
+         color:#fff; padding:28px 54px 0; display:flex; justify-content:space-between; align-items:flex-start; }
+  .cta .apply { font-size:20px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#F0A9A0; }
+  .cta .url { font-size:41px; font-weight:800; margin-top:9px; letter-spacing:-.018em; white-space:nowrap; }
+  .cta .ph { font-size:22px; margin-top:12px; color:#D9C9C6; font-weight:500; }
+  .cta .ph b { color:#fff; font-weight:700; }
+  .cta .right { width:330px; flex:none; text-align:right; }
+  .cta .deadline { display:block; background:#8B0000; border-radius:6px; padding:15px 18px;
+                   font-size:24px; font-weight:800; line-height:1.24; }
+  .cta .deadline span { display:block; font-size:16px; font-weight:500; color:#FFD9CF; margin-top:4px; }
+  .cta .save { font-size:17px; color:#B39C98; margin-top:13px; line-height:1.45; }
+  .cta .save b { color:#F0A9A0; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="band">
+    <div class="flag">Registration open</div>
+    <div class="cell a"><img src="data:image/jpeg;base64,{{SPEAKER}}"></div>
+    <div class="cell b"><img src="data:image/jpeg;base64,{{DOG}}"></div>
+    <div class="tint"></div>
+  </div>
+
+  <div class="title">
+    <div class="top">
+      <img src="data:image/png;base64,{{LOGO}}">
+      <div class="eyebrow">2026 Healing Oasis Conference
+        <span>Three days of integrative learning</span>
+      </div>
+    </div>
+    <h1>Resilience<br>in Motion</h1>
+    <div class="tagline">Comparative rehabilitation &amp; manual therapies for all beings</div>
+  </div>
+
+  <div class="dates">
+    <div class="d">October 23&ndash;25, 2026</div>
+    <div class="dot"></div>
+    <div class="v">Lombard, Illinois</div>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><div class="tick">&#10003;</div>
+      <div class="t">16 speakers<span>Board-certified specialists &amp; senior educators</span></div></div>
+    <div class="fact"><div class="tick">&#10003;</div>
+      <div class="t">Canine &amp; equine tracks<span>Pick your track on Saturday</span></div></div>
+    <div class="fact"><div class="tick">&#10003;</div>
+      <div class="t">CE credits<span>Same credit in person or online</span></div></div>
+    <div class="fact"><div class="tick">&#10003;</div>
+      <div class="t">Can&rsquo;t travel? Live stream it<span>Plus recordings afterward</span></div></div>
+  </div>
+
+  <div class="cta">
+    <div class="left">
+      <div class="apply">Register at</div>
+      <div class="url">healingoasis.edu</div>
+      <div class="ph"><b>262-898-1680</b> &nbsp;&middot;&nbsp; info@healingoasis.edu</div>
+    </div>
+    <div class="right">
+      <div class="deadline">Registration closes<br>October 12<span>Hotel block ends Sept 16</span></div>
+      <div class="save">Alumni save <b>15%</b> &middot; First responders<br>&amp; military save <b>20%</b></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
