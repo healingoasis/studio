@@ -40,12 +40,12 @@ const HEROES: Record<string, string> = {
 };
 
 const CAPTIONS: Record<string, string> = {
-  vsmt: "An instructor and student adjusting a dog during a VSMT module",
+  vsmt: "Students adjusting a dog together during a VSMT module",
   vmrt: "A practitioner assessing a dog on the VMRT program",
   acupuncture: "Needles placed along a dog during an acupuncture session",
   "2026-conference-attendee-registration": "A presentation at the Healing Oasis homecoming conference",
-  "cranio-sacral-2026": "Gentle hands-on head and neck work with a patient",
-  "applied-kinesiology-2026": "Hands-on assessment during a seminar",
+  "cranio-sacral-2026": "Cranio-sacral work on a patient",
+  "applied-kinesiology-2026": "Applied kinesiology assessment during a seminar",
 };
 
 export function local_photo(key: string): string | null {
