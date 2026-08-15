@@ -1763,7 +1763,8 @@ footer {
 
 .file-hero {
   position: relative;
-  height: clamp(240px, 34vw, 380px);
+  /* Tall enough that a full-bleed band does not crop the heads out of a class photo. */
+  height: clamp(300px, 40vw, 520px);
   overflow: hidden;
   background: var(--surface-2);
 }
@@ -2468,4 +2469,14 @@ button.file-state {
   padding: 30px 20px 34px;
   font-size: 13.5px;
   color: var(--ink-faint);
+}
+
+/* The programme they are already on: listed so nothing looks missing, marked so it is
+   not read as a suggestion. */
+.consider-own {
+  border-style: dashed;
+}
+
+.consider-own .consider-kind {
+  color: var(--accent);
 }

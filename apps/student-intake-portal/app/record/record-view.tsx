@@ -128,7 +128,12 @@ export default function RecordView({
   const total = counts.required;
   const pct = total > 0 ? Math.round((done / total) * 100) : 0;
 
-  const other_programs = programs.filter((g) => g.key !== student.program.key);
+  // Every programme is listed, including their own. Hiding it made the school look like
+  // it offers less than it does; marking it is clearer than leaving a gap.
+  const listed_programs = [
+    ...programs.filter((g) => g.key !== student.program.key),
+    ...programs.filter((g) => g.key === student.program.key),
+  ];
 
   /** Admission paperwork: the student sends it, the office checks it. */
   function admission_card(d: DocumentDef) {
@@ -472,25 +477,36 @@ export default function RecordView({
         </div>
 
         <div className="file-consider">
-          {other_programs.map((g) => (
-            <Link key={g.key} className="consider" href={program_url(g.key)}>
-              <span className="consider-photo">
-                {g.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={g.image} alt={g.image_alt} loading="lazy" />
-                ) : null}
-              </span>
-              <span className="consider-body">
-                <span className="consider-kind">Program</span>
-                <span className="consider-title">{g.full_name}</span>
-                <span className="consider-meta">
-                  {g.cohorts.length === 1
-                    ? "1 class open"
-                    : `${g.cohorts.length} classes open`}
+          {listed_programs.map((g) => {
+            const theirs = g.key === student.program.key;
+            return (
+              <Link
+                key={g.key}
+                className={`consider ${theirs ? "consider-own" : ""}`}
+                href={program_url(g.key)}
+              >
+                <span className="consider-photo">
+                  {g.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={g.image} alt={g.image_alt} loading="lazy" />
+                  ) : null}
                 </span>
-              </span>
-            </Link>
-          ))}
+                <span className="consider-body">
+                  <span className="consider-kind">
+                    {theirs ? "Your program" : "Program"}
+                  </span>
+                  <span className="consider-title">{g.full_name}</span>
+                  <span className="consider-meta">
+                    {theirs
+                      ? "You are enrolled on this"
+                      : g.cohorts.length === 1
+                        ? "1 class open"
+                        : `${g.cohorts.length} classes open`}
+                  </span>
+                </span>
+              </Link>
+            );
+          })}
 
           {seminars.map((s) => (
             <Link key={s.handle} className="consider" href={detail_url(s.handle)}>
