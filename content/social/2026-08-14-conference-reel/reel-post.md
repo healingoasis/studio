@@ -1,7 +1,26 @@
-# Conference reel — 20 seconds, built on FOMO
+# Conference reel — 21 seconds, built on FOMO
 
-**Video:** `conference-reel-20s.mp4` — 1080 x 1920, 30fps, 19.80 seconds, 21 MB.
-**Shot list:** `shot-list.png` — all 13 shots numbered, for review.
+**Video:** `conference-reel.mp4` — 1080 x 1920, **60fps**, 21.4 seconds, 35 MB.
+**Shot list:** `shot-list.png` — all 12 shots numbered, for review.
+
+## Finish work
+
+The first cut was hard cuts, linear zooms and 30fps — technically fine, visibly amateur.
+This version is graded for polish:
+
+- **Cross-dissolve on every cut** (0.28s), built on two video tracks with opacity ramps.
+  Nothing snaps any more; each shot melts into the next.
+- **Eased camera moves.** Each shot has a slow push or pull that accelerates and settles on
+  a cubic ease curve, approximated with 14 sub-ramps per shot. Linear zooms are what make
+  a slideshow look like a slideshow.
+- **60fps**, matching the source footage, so the motion is genuinely smoother rather than
+  just slower.
+- **A soft vignette across the whole reel**, which pulls the eye to centre and evens out
+  rooms shot under very different lighting.
+- **Longer holds** — 1.7–2.5s per shot instead of 1.2s. Less frantic reads as more
+  confident.
+- **Refined captions**: a small red rule above each line, lighter weight, eased fades.
+- Dropped the weakest shot (two attendees photographed from behind at a vendor table).
 
 **No sound on purpose.** Add trending audio in-app when posting.
 
@@ -18,22 +37,21 @@ Everything on screen is real footage of real attendees. Nothing generated, nothi
 
 | # | Time | Shot | Words on screen |
 |---|------|------|-----------------|
-| 1 | 0.0–1.9 | Exhibit hall corridor, full of people | This filled up **last year.** |
-| 2 | 1.9–3.2 | Close on hands doing manual therapy | You probably weren't in it. |
-| 3 | 3.2–4.5 | Speaker at the podium, mic'd | It happens again **in October.** |
-| 4 | 4.5–5.7 | Speaker mid-gesture at the whiteboard | **Three days.** Sixteen speakers. |
-| 5 | 5.7–6.9 | Speaker presenting | Canine and equine tracks. |
-| 6 | 6.9–8.1 | Speaker in profile against the screen | Human and animal, side by side. |
-| 7 | 8.1–9.3 | Therapy device demo, room seated behind | Hands on. Not just slides. |
-| 8 | 9.3–10.5 | Exhibit hall, attendees walking | An exhibit hall you'll actually use. |
-| 9 | 10.5–11.7 | Two attendees at a vendor table | Gear you can put your hands on. |
-| 10 | 11.7–13.0 | Attendees gathered between sessions | Can't travel? **Watch it live.** |
-| 11 | 13.0–14.2 | Attendees seated in the lecture hall | Same CE credit at home. |
-| 12 | 14.2–16.3 | Close on hands-on work (callback to shot 2) | **Don't miss it twice.** |
-| END | 16.3–19.8 | End card | Oct 23–25 · Lombard, IL or live from anywhere · closes Oct 12 |
+| 1 | 0.0–2.3 | Exhibit hall corridor, full of people | This filled up **last year.** |
+| 2 | 2.0–3.8 | Close on hands doing manual therapy | You probably weren't in it. |
+| 3 | 3.5–5.3 | Speaker at the podium, mic'd | It happens again **in October.** |
+| 4 | 5.1–6.8 | Speaker mid-gesture at the whiteboard | **Three days.** Sixteen speakers. |
+| 5 | 6.5–8.3 | Speaker presenting | Canine and equine tracks. |
+| 6 | 8.0–9.7 | Speaker in profile against the screen | Human and animal, side by side. |
+| 7 | 9.4–11.2 | Therapy device demo, room seated behind | Hands on. Not just slides. |
+| 8 | 10.9–12.6 | Exhibit hall, attendees walking | An exhibit hall you'll actually use. |
+| 9 | 12.4–14.2 | Attendees gathered between sessions | Can't travel? **Watch it live.** |
+| 10 | 13.9–15.6 | Attendees seated in the lecture hall | Same CE credit at home. |
+| 11 | 15.3–17.8 | Close on hands-on work (callback to shot 2) | **Don't miss it twice.** |
+| END | 17.5–21.4 | End card over the exhibit hall | Oct 23–25 · Lombard, IL or live from anywhere · closes Oct 12 |
 
 **Clips used** (Conference folder): C3834, C3816, C3844, C3818, C3804, C3842, C3814,
-C3826, C3832, C3812, C3806, C3816
+C3826, C3812, C3806, C3816, C3834
 
 ## Caption (copy and paste)
 
