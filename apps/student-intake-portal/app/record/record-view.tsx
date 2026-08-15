@@ -111,18 +111,11 @@ export default function RecordView({
   const enrolled = student.remaining === 0 && student.paid > 0;
 
   const admission = documents_for_program(student.program.key);
-  const admission_counts = count_statuses(admission, state);
-  const admission_done =
-    admission_counts.required > 0 &&
-    admission_counts.approved === admission_counts.required;
 
-  // Once someone is enrolled and their admission file is complete, that file is history.
-  // Opening on it would make them scroll past nine settled cards to reach anything live.
-  const active: Section = enrolled
-    ? (section ?? (admission_done ? "student" : "admission"))
-    : "admission";
-
-  const built = SECTIONS.find((s) => s.key === active)?.built ?? true;
+  // An enrolled record opens closed. Nothing is expanded until a section is chosen, so
+  // the page stays short and only the one area below the tabs ever changes.
+  const active: Section | null = enrolled ? section : "admission";
+  const built = active ? (SECTIONS.find((s) => s.key === active)?.built ?? true) : true;
 
   const list = active === "student" ? student_documents() : admission;
   const counts = count_statuses(list, state);
@@ -337,7 +330,9 @@ export default function RecordView({
                   type="button"
                   className="file-section-tab"
                   aria-current={active === s.key ? "true" : undefined}
-                  onClick={() => set_section(s.key)}
+                  onClick={() =>
+                    set_section((open) => (open === s.key ? null : s.key))
+                  }
                 >
                   {s.label}
                   {!s.built ? <span className="soon">soon</span> : null}
@@ -346,7 +341,9 @@ export default function RecordView({
             </nav>
           ) : null}
 
-          {built ? (
+          {!active ? (
+            <p className="tab-closed">Choose a section above to open it.</p>
+          ) : built ? (
             <>
               <div className="file-section-head">
                 <h2>

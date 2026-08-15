@@ -479,16 +479,12 @@ export default function Portal({
   // than a page that is only about chasing their paperwork.
   const enrolled = current.remaining === 0 && current.paid > 0;
 
-  // Once enrolled with a complete admission file, that file is history — opening on it
-  // means scrolling past settled rows to reach anything live.
-  const admission_done =
-    current_counts.required > 0 &&
-    current_counts.approved === current_counts.required;
-
-  const active_tab: Tab = enrolled
-    ? (tab ?? (admission_done ? "student" : "admission"))
-    : "admission";
-  const tab_built = TABS.find((t) => t.key === active_tab)?.built ?? true;
+  // An enrolled record opens closed. Nothing is expanded until a section is chosen, so
+  // the page stays short and only the one area below the tabs ever changes.
+  const active_tab: Tab | null = enrolled ? tab : "admission";
+  const tab_built = active_tab
+    ? (TABS.find((t) => t.key === active_tab)?.built ?? true)
+    : true;
 
   const shown_list =
     active_tab === "student" ? student_documents() : admission_list;
@@ -665,8 +661,10 @@ export default function Portal({
                       type="button"
                       role="tab"
                       className="tab"
-                      aria-selected={tab === t.key}
-                      onClick={() => set_tab(t.key)}
+                      aria-selected={active_tab === t.key}
+                      onClick={() =>
+                        set_tab((open) => (open === t.key ? null : t.key))
+                      }
                     >
                       {t.label}
                       {!t.built ? <span className="soon">soon</span> : null}
@@ -710,7 +708,7 @@ export default function Portal({
               </>
             ) : active_tab === "student" ? (
               record_list(current, shown_list, current_docs)
-            ) : (
+            ) : active_tab ? (
               <div className="empty-tab">
                 <p className="empty-title">Not built yet</p>
                 <p>{NOT_BUILT[active_tab]}</p>
@@ -719,6 +717,8 @@ export default function Portal({
                   real source to read it from.
                 </p>
               </div>
+            ) : (
+              <p className="tab-closed">Choose a section above to open it.</p>
             )}
           </section>
 

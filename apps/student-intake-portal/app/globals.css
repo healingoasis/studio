@@ -2459,3 +2459,12 @@ button.file-state {
   font-variant-numeric: tabular-nums;
   color: var(--ink-faint);
 }
+
+/* An enrolled record opens closed; this is the resting state of the one area that
+   changes when a section is chosen. */
+.tab-closed {
+  margin: 0;
+  padding: 30px 20px 34px;
+  font-size: 13.5px;
+  color: var(--ink-faint);
+}
