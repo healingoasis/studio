@@ -51,7 +51,7 @@ Those numbers are correct for Rec.709. If they drift, something is wrong upstrea
 | `--con N` | 1.0 | Contrast around mid grey. Keep near 1.05–1.10. |
 | `--sat N` | 1.0 | Saturation. The conversion is already accurate, so go easy. |
 | `--white N` | 9.0 | Highlight roll-off point, as a multiple of 100% reflectance. |
-| `--full` | off | Input is full range 0–1023 rather than legal 64–940. Rarely needed. |
+| `--full` | **required for Daniel's camera** | Input is full range 0–1023 rather than legal 64–940. |
 
 ## Targets to aim for
 
@@ -61,6 +61,18 @@ Those numbers are correct for Rec.709. If they drift, something is wrong upstrea
 | p50 | 115–135 |
 | p95 | 170–190 |
 | p99 | 240–255 (light fixtures may clip; that's fine) |
+
+## Check the range tag before anything else
+
+```bash
+swiftc -O -o tags tags.swift
+./tags source.mp4
+```
+
+If it reports `FullRangeVideo: 1`, the clip is **full range** and `--full` is mandatory.
+Daniel's camera records full range. Grading a full-range clip as legal range lifts the
+shadows and quietly flattens the result — it cost a whole re-export to spot, because the
+output still looked plausible on its own. It only showed up when the tags were checked.
 
 ## Lesson from the first attempt
 
@@ -81,7 +93,9 @@ other.
 
 **C8181.MP4** — 2026-08-16. Source on the easystore drive, 1 GB, 71s, 1080p120, S-Log3.
 Output: `Photos:videos/Graded/C8181_graded.mp4` — 226 MB, 120fps and audio preserved.
-Settings: `--toe 0.22 --con 1.06 --sat 1.08`.
+Settings: `--full --toe 0.30 --con 1.14 --sat 1.14` (the "richer" look).
+Two earlier attempts were discarded: one graded by eye before the profile was known, and
+one that used the correct S-Log3 maths but assumed legal range on a full-range file.
 
 **The easystore drive is NTFS**, which macOS mounts read-only, so nothing can be written
 back to it — output goes to the Mac. Writing to that drive directly needs an NTFS driver
