@@ -1,48 +1,88 @@
-# Colour grading tool
+# Colour grading tool — Sony S-Log3
 
-Two small Swift programs for grading flat / log-profile footage natively on the Mac.
-No third-party software needed — this uses AVFoundation and Core Image.
+Grades Sony S-Log3 footage natively on the Mac using AVFoundation and Core Image.
+No third-party software, no external LUT files.
 
 ```bash
 swiftc -O -o analyze analyze.swift
-swiftc -O -o grade   grade.swift
+swiftc -O -o slog3   slog3.swift
 
-./analyze frame.jpg                 # per-channel percentiles, to see what the footage needs
-./grade still in.jpg  out.jpg       # dial the look in on a still first (fast)
-./grade video in.mp4  out.mp4       # apply it to the whole clip
+./analyze frame.jpg                                   # measure before touching anything
+./slog3 still in.jpg out.jpg --toe 0.22 --con 1.06 --sat 1.08   # dial the look in (instant)
+./slog3 video in.mp4 out.mp4 --toe 0.22 --con 1.06 --sat 1.08   # apply to the whole clip
 ```
 
-Always measure before grading. `analyze` prints p1 / p5 / p50 / p95 / p99 per channel.
-Flat footage shows up immediately: lifted blacks (p1 up around 70–80 instead of near 0)
-and a squashed range (p95 only around 150).
+## Daniel's camera settings
 
-## The grade, in order
+4:2:2 10-bit · S-Log3 · normally 4K 60fps (slow-motion clips come in at 1080p120).
 
-1. **White balance first.** A steep tone curve multiplies any existing colour cast, so
-   neutralise it *before* the curve, not after. Measured midtones here ran R 127 / G 122 /
-   B 117, corrected with a colour matrix.
-2. **Tone curve.** Sets the black point, re-expands contrast, and rolls the highlights off
-   with a shoulder so ceiling lights and doorways don't clip to pure white.
-3. **A whisper of temperature.** Almost nothing — these interiors already lean warm.
-4. **Vibrance, then saturation.** Vibrance first because it protects skin tones; the global
-   saturation lift afterwards is small, since the curve itself adds apparent saturation.
-5. **Light unsharp mask.** Log footage is soft. Modest, not crunchy.
+## How it works
+
+This is **not** an eyeballed curve. It builds a 64³ 3D LUT from Sony's published maths:
+
+1. **S-Log3 EOTF** — code value → scene linear, using Sony's official formula. Mid grey
+   (18%) sits at code 420, 90% white at code 598.
+2. **S-Gamut3.Cine → Rec.709** — Sony's published 3x3 primaries matrix.
+3. **Reinhard shoulder**, white point 900%, so ceiling lights and bright doorways roll off
+   instead of smearing into flat white.
+4. **Rec.709 gamma encode** (1/2.4).
+
+Then a creative pass on top, which is the standard two-stage workflow — technical
+conversion first, look second:
+
+5. **Shadow toe** (`--toe`) — subtracts most at the bottom of the curve and almost nothing
+   by mid grey, so blacks get depth without dragging the midtones down with them.
+6. Light **contrast** around a mid-grey pivot and a small **saturation** lift.
+
+The tool prints where the reference tones land every run, so the maths can be checked
+rather than trusted:
+
+```
+reference: S-Log3 black(95) -> 0,  18% grey(420) -> 117,  90% white(598) -> 189
+```
+
+Those numbers are correct for Rec.709. If they drift, something is wrong upstream.
+
+## Options
+
+| Flag | Default | What it does |
+|------|---------|--------------|
+| `--toe N` | 0 | Shadow depth. 0.22 suits the flat-lit arena. |
+| `--con N` | 1.0 | Contrast around mid grey. Keep near 1.05–1.10. |
+| `--sat N` | 1.0 | Saturation. The conversion is already accurate, so go easy. |
+| `--white N` | 9.0 | Highlight roll-off point, as a multiple of 100% reflectance. |
+| `--full` | off | Input is full range 0–1023 rather than legal 64–940. Rarely needed. |
 
 ## Targets to aim for
 
-| Measure | Aim for | Why |
-|---------|---------|-----|
-| p1 | 10–18 | A real black point, without crushing shadow detail to zero |
-| p50 | 105–125 | Midtones sitting where the eye expects them |
-| p95 | 175–205 | Bright, with room left above |
-| p99 | 235–250 | Specular highlights near the top but not smeared at 255 |
-| R/G/B spread at p50 | within ~15 | Wider than that and the image reads as colour-cast |
+| Measure | Aim for |
+|---------|---------|
+| p1 | 40–60 (real shadows, no crushing) |
+| p50 | 115–135 |
+| p95 | 170–190 |
+| p99 | 240–255 (light fixtures may clip; that's fine) |
 
-## First job: C8181.MP4 (2026-08-16)
+## Lesson from the first attempt
 
-Source on the easystore drive, 1 GB, 71s, 1080p at 120fps, flat profile.
-Graded output: `Photos:videos/Graded/C8181_graded.mp4` — 226 MB, 120fps and audio preserved.
+The first pass on C8181 was graded by eye — black point, contrast, saturation — before
+Daniel said it was S-Log3. It looked punchy but the colour was invented, and steep
+contrast on a log signal amplifies whatever colour cast is already there (that version
+went orange until the white balance was corrected first).
+
+Knowing the profile removes the guesswork entirely. **Always ask what profile a clip was
+shot in before grading it.**
+
+Second lesson: a technically perfect S-Log3 → Rec.709 conversion of a flat-lit white
+arena still looks flat, because the scene genuinely has no blacks in it. That is what the
+creative pass is for. Correct conversion first, then the look — not one instead of the
+other.
+
+## Jobs
+
+**C8181.MP4** — 2026-08-16. Source on the easystore drive, 1 GB, 71s, 1080p120, S-Log3.
+Output: `Photos:videos/Graded/C8181_graded.mp4` — 226 MB, 120fps and audio preserved.
+Settings: `--toe 0.22 --con 1.06 --sat 1.08`.
 
 **The easystore drive is NTFS**, which macOS mounts read-only, so nothing can be written
-back to it. Output goes to the Mac instead. If Daniel wants to write to that drive
-directly, that needs an NTFS driver installed — one for Dan.
+back to it — output goes to the Mac. Writing to that drive directly needs an NTFS driver
+installed, which is one for Dan.

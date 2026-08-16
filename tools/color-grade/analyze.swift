@@ -29,10 +29,12 @@ for path in CommandLine.arguments.dropFirst() {
         for v in 0..<256 { run += hist[ch][v]; if run >= target { return v } }
         return 255
     }
+    func lo(_ ch: Int) -> Int { for v in 0..<256 where hist[ch][v] > 0 { return v }; return 0 }
+    func hi(_ ch: Int) -> Int { for v in stride(from: 255, through: 0, by: -1) where hist[ch][v] > 0 { return v }; return 255 }
     let names = ["R", "G", "B", "Y"]
     print("\n\(URL(fileURLWithPath: path).lastPathComponent)  \(w)x\(h)")
     for c in 0..<4 {
-        print(String(format: "  %@  p1 %3d   p5 %3d   p50 %3d   p95 %3d   p99 %3d",
-                     names[c], pct(c, 0.01), pct(c, 0.05), pct(c, 0.50), pct(c, 0.95), pct(c, 0.99)))
+        print(String(format: "  %@  min %3d  p1 %3d   p50 %3d   p95 %3d   p99 %3d  max %3d",
+                     names[c], lo(c), pct(c, 0.01), pct(c, 0.50), pct(c, 0.95), pct(c, 0.99), hi(c)))
     }
 }
