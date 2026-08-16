@@ -99,7 +99,7 @@ func reportReferences(_ look: Look) {
 
 // ---------------------------------------------------------------------------
 let args = CommandLine.arguments
-guard args.count >= 4 else { print("usage: slog3 still|video <in> <out> [--full] [--exp N] [--con N] [--sat N]"); exit(1) }
+guard args.count >= 4 else { print("usage: slog3 still|video|split <in> <out> [--full] [--exp N] [--con N] [--sat N]"); exit(1) }
 let mode = args[1], inPath = args[2], outPath = args[3]
 
 var look = Look()
@@ -147,9 +147,25 @@ if mode == "still" {
     exit(0)
 }
 
-let asset = AVURLAsset(url: URL(fileURLWithPath: inPath))
+var gradeAsset: AVAsset = AVURLAsset(url: URL(fileURLWithPath: inPath))
+var overlay: CIImage? = nil
+
+if mode == "split", let ov = CIImage(contentsOf: URL(fileURLWithPath: "splitov.png")) {
+    overlay = ov
+}
+
+let asset = gradeAsset
 let vcomp = AVVideoComposition(asset: asset) { request in
-    request.finish(with: applyLUT(request.sourceImage), context: ctx)
+    let src = request.sourceImage
+    if mode == "split" {
+        let e = src.extent
+        let right = CGRect(x: e.midX, y: e.minY, width: e.width / 2, height: e.height)
+        var out = applyLUT(src).cropped(to: right).composited(over: src)
+        if let ov = overlay { out = ov.composited(over: out) }
+        request.finish(with: out.cropped(to: e), context: ctx)
+    } else {
+        request.finish(with: applyLUT(src), context: ctx)
+    }
 }
 try? FileManager.default.removeItem(atPath: outPath)
 guard let ex = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else {
@@ -158,6 +174,10 @@ guard let ex = AVAssetExportSession(asset: asset, presetName: AVAssetExportPrese
 ex.outputURL = URL(fileURLWithPath: outPath)
 ex.outputFileType = .mp4
 ex.videoComposition = vcomp
+if mode == "split" {
+    ex.timeRange = CMTimeRange(start: CMTime(seconds: 20, preferredTimescale: 600),
+                               duration: CMTime(seconds: 15, preferredTimescale: 600))
+}
 
 print(String(format: "grading %.1fs at %.0f fps...", CMTimeGetSeconds(asset.duration),
              asset.tracks(withMediaType: .video).first?.nominalFrameRate ?? 0))

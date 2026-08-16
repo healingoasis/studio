@@ -89,6 +89,25 @@ arena still looks flat, because the scene genuinely has no blacks in it. That is
 creative pass is for. Correct conversion first, then the look — not one instead of the
 other.
 
+## Split-screen proof
+
+`./slog3 split in.mp4 out.mp4 --full ...` renders 15 seconds with the original on the left
+and the graded version on the right, labelled, in one file. Use this whenever someone says
+"it looks the same" — comparing two files from memory is unreliable, one file is not.
+
+`splitov.py` draws the divider and labels.
+
+## Watch out: duplicate source files
+
+Daniel has a full copy of the camera card at
+`Photos:videos/Acupuncture /New folder/` — byte-identical to the originals on the
+easystore drive. Three graded versions were rejected as "looks the same" because the file
+being opened for comparison was `C8181.MP4` from that folder, i.e. the ungraded original,
+which naturally never changed.
+
+**Name graded output so it cannot be confused with the source**, and say plainly which
+file to open.
+
 ## Jobs
 
 **C8181.MP4** — 2026-08-16. Source on the easystore drive, 1 GB, 71s, 1080p120, S-Log3.
