@@ -125,6 +125,18 @@ to read. Statuses are generated from a hash of the customer id, biased by how fa
 they are on payments, so a given person always shows the same thing instead of
 reshuffling on each load.
 
+## Theme preview — development only
+
+Daniel's Mac is set to dark, so he never sees what these pages look like for the many
+people whose devices are not. A small **Preview: System / Light / Dark** control sits in
+the bottom-right corner and forces either theme. It remembers the choice, and a tiny
+script in `layout.tsx` applies it before first paint so navigating does not flash.
+
+**It is not part of the product.** Remove `app/theme-preview.tsx`, its two lines in
+`layout.tsx`, and the `.theme-preview` block in `globals.css` — nothing else depends on
+it. Styled as a tool rather than as interface so it is never mistaken for something a
+student would see.
+
 ## Two versions, kept in step
 
 There are two complete presentations of the same product, and Daniel picks one at the end:

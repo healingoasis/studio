@@ -2480,3 +2480,65 @@ button.file-state {
 .consider-own .consider-kind {
   color: var(--accent);
 }
+
+/* ---------- theme preview (development aid, not product) ----------
+   Deliberately styled as a tool rather than as part of the interface, so it is never
+   mistaken for something a student would see. Remove with theme-preview.tsx. */
+
+.theme-preview {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 5px 4px 10px;
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: 0 8px 22px -14px rgba(0, 0, 0, 0.6);
+  font-family: var(--sans);
+  /* Sits over the page, so it stays faint until it is reached for. */
+  opacity: 0.45;
+  transition: opacity 0.18s ease;
+}
+
+.theme-preview:hover,
+.theme-preview:focus-within {
+  opacity: 1;
+}
+
+.theme-preview-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-right: 4px;
+}
+
+.theme-preview button {
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 550;
+  color: var(--ink-soft);
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 4px 9px;
+  cursor: pointer;
+}
+
+.theme-preview button:hover {
+  color: var(--ink);
+}
+
+.theme-preview button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+@media print {
+  .theme-preview { display: none; }
+}
