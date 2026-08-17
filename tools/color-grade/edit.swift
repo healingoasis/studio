@@ -19,14 +19,14 @@ struct Shot {
 }
 let shots = [
     Shot(start:  4.0, len: 3.2, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "wide — establish the arena"),
-    Shot(start: 33.6, len: 2.4, slow: 1, zoom: 1.15, cx: 0.45, cy: 0.50, note: "the horse walks toward us"),
-    Shot(start: 41.0, len: 0.6, slow: 1, zoom: 1.20, cx: 0.50, cy: 0.50, note: "layered — ramp in, real time"),
-    Shot(start: 41.6, len: 1.0, slow: 3, zoom: 1.20, cx: 0.50, cy: 0.50, note: "  ...ramps down into 3x slow"),
-    Shot(start: 47.8, len: 2.0, slow: 2, zoom: 1.30, cx: 0.45, cy: 0.48, note: "first contact — 2x slow"),
-    Shot(start: 51.2, len: 1.67, slow: 3, zoom: 1.45, cx: 0.40, cy: 0.52, note: "hands along the back — 3x slow"),
+    Shot(start: 33.6, len: 2.4, slow: 1, zoom: 1.12, cx: 0.45, cy: 0.50, note: "the horse walks toward us"),
+    Shot(start: 41.0, len: 0.6, slow: 1, zoom: 1.18, cx: 0.50, cy: 0.50, note: "layered — ramp in, real time"),
+    Shot(start: 41.6, len: 1.0, slow: 3, zoom: 1.18, cx: 0.50, cy: 0.50, note: "  ...ramps down into 3x slow"),
+    Shot(start: 47.8, len: 2.0, slow: 2, zoom: 1.26, cx: 0.45, cy: 0.48, note: "first contact — 2x slow"),
+    Shot(start: 51.2, len: 1.67, slow: 3, zoom: 1.34, cx: 0.40, cy: 0.52, note: "hands along the back — 3x slow"),
     Shot(start: 54.5, len: 2.5, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "wide again, to breathe"),
-    Shot(start: 57.6, len: 1.2, slow: 3, zoom: 1.42, cx: 0.52, cy: 0.50, note: "the horse settles — 3x slow"),
-    Shot(start: 60.2, len: 1.8, slow: 1, zoom: 1.20, cx: 0.42, cy: 0.45, note: "he turns, done"),
+    Shot(start: 57.6, len: 1.2, slow: 3, zoom: 1.34, cx: 0.52, cy: 0.50, note: "the horse settles — 3x slow"),
+    Shot(start: 60.2, len: 1.8, slow: 1, zoom: 1.18, cx: 0.42, cy: 0.45, note: "he turns, done"),
     Shot(start:  8.5, len: 3.5, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "tail under the end card"),
 ]
 

@@ -33,6 +33,34 @@ Daniel asked for more from both the grade and the cut. What changed:
 **71 seconds of rushes became 27.5 seconds of film, using 18.5 seconds of the original.**
 Roughly three quarters of what the camera recorded is not in the cut.
 
+## Third pass — sharpness (2026-08-17)
+
+Daniel asked whether it could be crisper. Three real causes, two of them fixable:
+
+1. **No sharpening was being applied at all.** The grade is a 3D colour LUT, and a LUT
+   cannot sharpen — it only maps colour to colour. So the whole pipeline had zero capture
+   sharpening in it. Added a finishing pass: light noise reduction, then unsharp mask
+   (radius 1.1, amount 0.55).
+2. **The export was only 10 Mbps.** `AVAssetExportPresetHighestQuality` gives roughly that
+   for 1080p30, which is not enough for a frame full of sand grain. `finish.swift` replaces
+   the export session with `AVAssetReader` → `AVAssetWriter` and a real bitrate. Now **39 Mbps**.
+3. **The punch-ins were upscaling.** Cropping into a 1080p frame at 1.45x and blowing it
+   back up to 1080p costs detail. Eased the biggest punches back to 1.34x.
+
+**Order matters: sharpen last**, after the punch-ins. Sharpening before a scale-up smears
+the halos. That is why the graded master is deliberately left unsharpened — it is an
+intermediate, not a delivery.
+
+```bash
+swiftc -O -o finish finish.swift
+./finish video edit.mp4 final.mp4 --nr 0.008 --radius 1.1 --amount 0.55 --mbps 40
+```
+
+**The remaining ceiling is the camera.** The source is 1920x1080. No amount of processing
+invents detail that was never recorded. Shooting the next one in 4K would raise this
+ceiling more than every trick above combined — and would also make punch-ins free, since a
+1.5x crop of 4K is still well over 1080p.
+
 ## The five things that did the work
 
 ### 1. The 120fps was the whole point, and it was going to waste
