@@ -1,7 +1,34 @@
 # C8181 — what a professional edit changed
 
-**Result:** `Photos:videos/Graded/C8181 EDITED - 27 seconds.mp4` — 1920x1080, 30fps, 27.5s.
+**Result:** `Photos:videos/Graded/C8181 EDITED - 30 seconds.mp4` — 1920x1080, 30fps, 29.6s.
 Built with `edit.swift` from the graded master.
+
+## Second pass (2026-08-17)
+
+Daniel asked for more from both the grade and the cut. What changed:
+
+**Grade — from accurate to actually having a look:**
+- **Split toning.** Cool pushed into the shadows, warm into the highlights. This arena is
+  one flat warm colour family — sand, pale walls, pine trusses — so there is no natural
+  colour contrast in the frame at all. Split toning manufactures it. This is the single
+  biggest change and the reason the coat and the teal lead rope now read as separate
+  colours instead of one beige wash.
+- **Filmic S-curve** on top of the tone map, firming the mids without crushing the ends.
+- **Saturation tapered off in the highlights**, so the blown doorway and the ceiling
+  fixtures stay clean white instead of picking up a tint as saturation rises.
+- Deeper toe (0.38) and stronger saturation (1.28).
+- Settings: `--full --toe 0.38 --con 1.12 --sat 1.28 --scurve 0.30 --split 1.05`
+
+**Cut — better shots and a speed ramp:**
+- Found stronger material in the 33–43s range that the first pass missed: the horse walking
+  toward the lens, and a properly layered composition with the handler in the foreground and
+  the assessment happening behind him. Depth in frame is worth more than any effect.
+- **A speed ramp**: shot 3 runs at real time for 0.6s then drops into 3x slow motion,
+  continuous through the same action. Ramping into slow motion reads as deliberate; cutting
+  straight to it reads as a setting.
+- **A vignette across the whole film.** The arena is an enormous, evenly lit white box, so
+  the frame had no shaping at all. Darkening the corners pulls the eye to the horse.
+- Ten shots instead of eight; 29.6s from 19.9s of rushes.
 
 **71 seconds of rushes became 27.5 seconds of film, using 18.5 seconds of the original.**
 Roughly three quarters of what the camera recorded is not in the cut.

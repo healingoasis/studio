@@ -40,6 +40,8 @@ struct Look {
     var contrast: Double = 1.0     // pivot contrast applied after gamma
     var saturation: Double = 1.0
     var toe: Double = 0.0          // shadow toe: deepens blacks, leaves mids/highs alone
+    var scurve: Double = 0.0       // filmic S: firms the mids without touching the ends
+    var split: Double = 0.0        // cool shadows / warm highlights
     var legalRange: Bool = true    // decoded 0..1 came from 64-940 legal range
 }
 
@@ -69,9 +71,32 @@ func buildCube(_ look: Look, size N: Int = 64) -> Data {
                 if look.contrast != 1.0 {
                     out = out.map { min(max(0.435 + ($0 - 0.435) * look.contrast, 0), 1) }
                 }
+                // filmic S-curve
+                if look.scurve > 0 {
+                    out = out.map { v in
+                        let sm = v * v * (3 - 2 * v)
+                        return min(max(v + look.scurve * (sm - v), 0), 1)
+                    }
+                }
+                // split tone: cool into the shadows, warm into the highlights.
+                // The arena is one flat warm colour family, so this is where the
+                // colour contrast has to come from.
+                if look.split > 0 {
+                    let y = 0.2126*out[0] + 0.7152*out[1] + 0.0722*out[2]
+                    let sw = (1 - y) * (1 - y)
+                    let hw = y * y
+                    out[0] = out[0] + look.split * (-0.014 * sw + 0.020 * hw)
+                    out[1] = out[1] + look.split * (-0.004 * sw + 0.006 * hw)
+                    out[2] = out[2] + look.split * ( 0.030 * sw - 0.018 * hw)
+                    out = out.map { min(max($0, 0), 1) }
+                }
+                // saturation, tapered off in the highlights so the blown doorway
+                // and the ceiling lights never pick up a colour cast
                 if look.saturation != 1.0 {
                     let y = 0.2126*out[0] + 0.7152*out[1] + 0.0722*out[2]
-                    out = out.map { min(max(y + ($0 - y) * look.saturation, 0), 1) }
+                    let taper = 1.0 - 0.60 * max(0.0, (y - 0.72) / 0.28)
+                    let sat = 1.0 + (look.saturation - 1.0) * taper
+                    out = out.map { min(max(y + ($0 - y) * sat, 0), 1) }
                 }
                 data[i+0] = Float(out[0]); data[i+1] = Float(out[1])
                 data[i+2] = Float(out[2]); data[i+3] = 1.0
@@ -112,6 +137,8 @@ while idx < args.count {
     case "--sat":  look.saturation = Double(args[idx+1]) ?? 1.0; idx += 2
     case "--white": WHITE = Double(args[idx+1]) ?? 9.0; idx += 2
     case "--toe":  look.toe = Double(args[idx+1]) ?? 0.0; idx += 2
+    case "--scurve": look.scurve = Double(args[idx+1]) ?? 0.0; idx += 2
+    case "--split":  look.split  = Double(args[idx+1]) ?? 0.0; idx += 2
     default: idx += 1
     }
 }

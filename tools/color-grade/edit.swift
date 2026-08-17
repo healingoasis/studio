@@ -8,7 +8,7 @@ import QuartzCore
 // ---------------------------------------------------------------------------
 let W: CGFloat = 1920, H: CGFloat = 1080
 let FPS: Int32 = 30
-let SRC = "/Users/danielrivera/Documents/Claude/Photos:videos/Graded/C8181 GRADED - use this one.mp4"
+let SRC = "/Users/danielrivera/Documents/Claude/Photos:videos/Graded/C8181 GRADED.mp4"
 
 // in-point, source length, speed (1 = real time, 3 = three times slower),
 // punch-in, and where in frame to punch
@@ -18,14 +18,16 @@ struct Shot {
     let note: String
 }
 let shots = [
-    Shot(start:  4.0, len: 3.0, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "wide — the horse comes in"),
-    Shot(start: 44.0, len: 2.2, slow: 1, zoom: 1.15, cx: 0.45, cy: 0.50, note: "he walks up"),
-    Shot(start: 47.6, len: 2.0, slow: 3, zoom: 1.30, cx: 0.45, cy: 0.48, note: "first contact — 3x slow"),
-    Shot(start: 51.0, len: 2.0, slow: 2, zoom: 1.45, cx: 0.40, cy: 0.52, note: "hands along the back — 2x slow"),
-    Shot(start: 54.5, len: 2.5, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "back wide, the whole scene"),
-    Shot(start: 57.5, len: 1.5, slow: 3, zoom: 1.40, cx: 0.50, cy: 0.50, note: "the horse settles — 3x slow"),
+    Shot(start:  4.0, len: 3.2, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "wide — establish the arena"),
+    Shot(start: 33.6, len: 2.4, slow: 1, zoom: 1.15, cx: 0.45, cy: 0.50, note: "the horse walks toward us"),
+    Shot(start: 41.0, len: 0.6, slow: 1, zoom: 1.20, cx: 0.50, cy: 0.50, note: "layered — ramp in, real time"),
+    Shot(start: 41.6, len: 1.0, slow: 3, zoom: 1.20, cx: 0.50, cy: 0.50, note: "  ...ramps down into 3x slow"),
+    Shot(start: 47.8, len: 2.0, slow: 2, zoom: 1.30, cx: 0.45, cy: 0.48, note: "first contact — 2x slow"),
+    Shot(start: 51.2, len: 1.67, slow: 3, zoom: 1.45, cx: 0.40, cy: 0.52, note: "hands along the back — 3x slow"),
+    Shot(start: 54.5, len: 2.5, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "wide again, to breathe"),
+    Shot(start: 57.6, len: 1.2, slow: 3, zoom: 1.42, cx: 0.52, cy: 0.50, note: "the horse settles — 3x slow"),
     Shot(start: 60.2, len: 1.8, slow: 1, zoom: 1.20, cx: 0.42, cy: 0.45, note: "he turns, done"),
-    Shot(start:  8.0, len: 3.5, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "tail under the end card"),
+    Shot(start:  8.5, len: 3.5, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "tail under the end card"),
 ]
 
 let comp = AVMutableComposition()
@@ -122,7 +124,8 @@ if let blk = layer("edit_black.png") {
     a.isRemovedOnCompletion = false; a.fillMode = .both
     blk.add(a, forKey: "op"); parent.addSublayer(blk)
 }
-if let t = layer("edit_title.png") { fade(t, 1.6, 5.4, 0.6) }
+if let v = layer("edit_vig.png") { v.opacity = 1; parent.addSublayer(v) }
+if let t = layer("edit_title.png") { fade(t, 1.6, 5.6, 0.6) }
 let tail = placed[placed.count - 1]
 let tailStart = Double(tail.startK) / Double(TS)
 if let e = layer("edit_end.png") { fade(e, tailStart, total, 0.6) }
