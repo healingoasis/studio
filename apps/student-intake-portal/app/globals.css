@@ -1240,6 +1240,7 @@ th.num {
 .photo-hero-text {
   position: absolute;
   inset: auto 0 0 0;
+  z-index: 3;
   padding: 26px 30px 24px;
   color: #fff;
   background: linear-gradient(
@@ -1781,21 +1782,30 @@ footer {
 .file-hero-veil {
   position: absolute;
   inset: 0;
+  z-index: 3;
+  /* Weighted right down into the bottom strip, where the name sits. The old curve was
+     still at 62% black halfway up a 520px band, which turned the photograph into a grey
+     panel — and the photograph is the whole point of the band. */
   background: linear-gradient(
     to top,
-    rgba(9, 8, 7, 0.94) 4%,
-    rgba(9, 8, 7, 0.62) 46%,
-    rgba(9, 8, 7, 0.15) 88%
+    rgba(9, 8, 7, 0.82),
+    rgba(9, 8, 7, 0.5) 20%,
+    rgba(9, 8, 7, 0.16) 42%,
+    rgba(9, 8, 7, 0.03) 66%,
+    transparent
   );
 }
 
 .file-hero-inner {
   position: absolute;
   inset: auto 0 0 0;
+  z-index: 4;
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 24px 30px;
   color: #fff;
+  /* Carries the type over whatever frame is showing, so the veil can stay light. */
+  text-shadow: 0 1px 20px rgba(9, 8, 7, 0.6);
 }
 
 .file-school {
@@ -2537,6 +2547,9 @@ button.file-state {
 
 /* ---------- header carousel ---------- */
 
+/* Layering inside a photo band, lowest first: frames on 0–2, the veil on 3, the name and
+   the dots on 4. The frames have to be numbered so the outgoing one holds underneath the
+   incoming one, and once they are numbered everything above them has to be too. */
 .hero-carousel {
   position: absolute;
   inset: 0;
@@ -2551,20 +2564,31 @@ button.file-state {
   object-position: center;
   display: block;
   opacity: 0;
+  z-index: 0;
   /* Crossfade rather than slide: the name sits on top, and movement under type is
      hard to read. */
   transition: opacity 1.1s ease;
 }
 
+/* The outgoing frame holds solid underneath while the incoming one fades in over it.
+   Fading both at once leaves the band half-transparent halfway through, which on a dark
+   background reads as the header blinking to black every few seconds. */
+.hero-carousel img.under {
+  opacity: 1;
+  z-index: 1;
+  transition: none;
+}
+
 .hero-carousel img.on {
   opacity: 1;
+  z-index: 2;
 }
 
 .hero-dots {
   position: absolute;
   right: 20px;
   bottom: 18px;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   gap: 7px;
 }

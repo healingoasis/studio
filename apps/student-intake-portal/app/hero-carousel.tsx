@@ -18,9 +18,13 @@ export default function HeroCarousel({
   alt: string;
   interval?: number;
 }) {
-  const [shown, set_shown] = useState(0);
+  // Which frame is showing, and the one it is fading up from. The outgoing frame has to
+  // stay painted underneath, or the crossfade goes see-through at its midpoint.
+  const [frame, set_frame] = useState({ at: 0, from: 0 });
   const [paused, set_paused] = useState(false);
   const still = useRef(false);
+
+  const shown = frame.at;
 
   useEffect(() => {
     still.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -29,7 +33,7 @@ export default function HeroCarousel({
   useEffect(() => {
     if (images.length < 2 || paused || still.current) return;
     const id = window.setInterval(
-      () => set_shown((i) => (i + 1) % images.length),
+      () => set_frame((f) => ({ from: f.at, at: (f.at + 1) % images.length })),
       interval
     );
     return () => window.clearInterval(id);
@@ -50,7 +54,7 @@ export default function HeroCarousel({
           src={src}
           alt={i === 0 ? alt : ""}
           aria-hidden={i === 0 ? undefined : true}
-          className={i === shown ? "on" : ""}
+          className={i === shown ? "on" : i === frame.from ? "under" : ""}
           // All eager: a lazy frame fades in before it has downloaded and the header
           // goes blank mid-crossfade. Four local files is a cheap price for never
           // showing an empty header.
@@ -68,7 +72,7 @@ export default function HeroCarousel({
               type="button"
               aria-label={`Show photograph ${i + 1} of ${images.length}`}
               aria-current={i === shown ? "true" : undefined}
-              onClick={() => set_shown(i)}
+              onClick={() => set_frame((f) => ({ from: f.at, at: i }))}
             />
           ))}
         </div>
