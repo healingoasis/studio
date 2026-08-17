@@ -9,6 +9,7 @@ import {
   type ProductDetail,
 } from "@/lib/shop";
 import { CoverHero, tone_of } from "../../cover";
+import HeroCarousel from "../../hero-carousel";
 
 const money = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -107,9 +108,7 @@ export default function ProductView({ product }: { product: ProductDetail }) {
           thumbnails rather than a banner. */}
       {is_event && main_image ? (
         <div className="photo-hero">
-          {/* Plain img on purpose: next/image wants sharp, which this workspace skips. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={main_image} alt={product.title} />
+          <HeroCarousel images={product.images} alt={product.title} />
           <div className="photo-hero-text">
             <p className="cover-kicker">{kicker}</p>
             <h1 className="cover-title">{product.title}</h1>

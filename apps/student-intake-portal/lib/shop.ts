@@ -6,7 +6,12 @@
  * credentials. Nothing here is personal data.
  */
 
-import { local_hero, local_photo, local_photo_alt } from "./local_photos";
+import {
+  local_gallery,
+  local_hero,
+  local_photo,
+  local_photo_alt,
+} from "./local_photos";
 
 const STORE = "https://healing-oasis-us.myshopify.com";
 
@@ -494,14 +499,15 @@ export async function load_product(handle: string): Promise<ProductDetail | null
   const prices = variants.map((v) => v.price);
 
   const store_images = (body.images ?? []).map((src) => sized(src, 900));
-  // A different frame from the one on the shelf card that led here.
-  const stand_in = local_hero(body.handle);
+  // Different frames from the one on the shelf card that led here. Seminars and the
+  // conference carry a set, which their page cycles through.
+  const stand_in = local_gallery(body.handle);
 
   return {
     handle: body.handle,
     title: body.title,
     description_html: sanitize(body.description ?? ""),
-    images: store_images.length > 0 ? store_images : stand_in ? [stand_in] : [],
+    images: store_images.length > 0 ? store_images : stand_in,
     // Kept whole, including any single-value or placeholder option, because a variant's
     // `options` array is positional — filtering here would misalign the indices used to
     // match a selection back to a variant. The view decides what is worth showing.

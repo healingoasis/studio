@@ -54,9 +54,19 @@ const CAPTIONS: Record<string, string> = {
  * from different angles makes it look like a place where things happen.
  */
 const GALLERIES: Record<string, string[]> = {
+  // Programme keys
   vsmt: [1, 2, 3, 4].map((n) => `/photos/vsmt-hero-${n}.jpg`),
   vmrt: [1, 2, 3, 4].map((n) => `/photos/vmrt-hero-${n}.jpg`),
   acupuncture: [1, 2, 3, 4].map((n) => `/photos/acupuncture-hero-${n}.jpg`),
+
+  // Product handles — the seminars and the conference
+  "cranio-sacral-2026": [1, 2, 3, 4].map((n) => `/photos/cranio-sacral-hero-${n}.jpg`),
+  "applied-kinesiology-2026": [1, 2, 3, 4].map(
+    (n) => `/photos/applied-kinesiology-hero-${n}.jpg`
+  ),
+  "2026-conference-attendee-registration": [1, 2, 3, 4].map(
+    (n) => `/photos/conference-hero-${n}.jpg`
+  ),
 };
 
 export function local_photo(key: string): string | null {

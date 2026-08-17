@@ -25,7 +25,7 @@ import {
   useDocumentActions,
 } from "../use-document-actions";
 import { VersionSwitch } from "../version-switch";
-import HeroCarousel from "./hero-carousel";
+import HeroCarousel from "../hero-carousel";
 import type { ProgramNote } from "./page";
 
 const money = (n: number) =>
