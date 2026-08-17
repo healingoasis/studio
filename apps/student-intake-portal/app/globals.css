@@ -2534,3 +2534,63 @@ button.file-state {
 @media print {
   .theme-preview { display: none; }
 }
+
+/* ---------- header carousel ---------- */
+
+.hero-carousel {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0;
+  /* Crossfade rather than slide: the name sits on top, and movement under type is
+     hard to read. */
+  transition: opacity 1.1s ease;
+}
+
+.hero-carousel img.on {
+  opacity: 1;
+}
+
+.hero-dots {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  z-index: 2;
+  display: flex;
+  gap: 7px;
+}
+
+.hero-dots button {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-dots button:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.hero-dots button[aria-current="true"] {
+  background: #fff;
+  transform: scale(1.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-carousel img {
+    transition: none;
+  }
+}

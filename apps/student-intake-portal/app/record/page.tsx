@@ -2,7 +2,7 @@ import Link from "next/link";
 import { merge_documents, type DocumentState } from "@/lib/documents";
 import { SetupError } from "@/lib/env";
 import { load_students } from "@/lib/students";
-import { local_hero, local_photo_alt } from "@/lib/local_photos";
+import { local_gallery, local_photo_alt } from "@/lib/local_photos";
 import {
   class_term_of,
   load_product,
@@ -57,7 +57,7 @@ export default async function RecordPage() {
   const [records, shelves] = await Promise.all([load_records(), load_shelves()]);
 
   const docs: Record<string, Record<string, DocumentState>> = {};
-  const photos: Record<string, { src: string | null; alt: string }> = {};
+  const photos: Record<string, { images: string[]; alt: string }> = {};
 
   for (const s of students) {
     docs[s.student_id] = merge_documents(
@@ -67,7 +67,7 @@ export default async function RecordPage() {
       records[student_key(s.student_id)]
     );
     photos[s.student_id] = {
-      src: local_hero(s.program.key),
+      images: local_gallery(s.program.key),
       alt: local_photo_alt(s.program.key, s.program.full_name),
     };
   }

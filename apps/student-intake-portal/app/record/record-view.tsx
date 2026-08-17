@@ -25,6 +25,7 @@ import {
   useDocumentActions,
 } from "../use-document-actions";
 import { VersionSwitch } from "../version-switch";
+import HeroCarousel from "./hero-carousel";
 import type { ProgramNote } from "./page";
 
 const money = (n: number) =>
@@ -86,7 +87,7 @@ export default function RecordView({
 }: {
   students: Student[];
   docs: Record<string, Record<string, DocumentState>>;
-  photos: Record<string, { src: string | null; alt: string }>;
+  photos: Record<string, { images: string[]; alt: string }>;
   notes: Record<string, ProgramNote>;
   programs: ProgramGroup[];
   seminars: ShopItem[];
@@ -274,9 +275,8 @@ export default function RecordView({
   return (
     <main className="file">
       <header className="file-hero">
-        {photo?.src ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={photo.src} alt={photo.alt} />
+        {photo?.images?.length ? (
+          <HeroCarousel images={photo.images} alt={photo.alt} />
         ) : null}
         <div className="file-hero-veil" />
         <div className="file-hero-inner">

@@ -48,6 +48,17 @@ const CAPTIONS: Record<string, string> = {
   "applied-kinesiology-2026": "Applied kinesiology assessment during a seminar",
 };
 
+/**
+ * Several frames for the student file's header, which cycles through them. One
+ * photograph makes a school look like it has one photograph; a handful of the same work
+ * from different angles makes it look like a place where things happen.
+ */
+const GALLERIES: Record<string, string[]> = {
+  vsmt: [1, 2, 3, 4].map((n) => `/photos/vsmt-hero-${n}.jpg`),
+  vmrt: [1, 2, 3, 4].map((n) => `/photos/vmrt-hero-${n}.jpg`),
+  acupuncture: [1, 2, 3, 4].map((n) => `/photos/acupuncture-hero-${n}.jpg`),
+};
+
 export function local_photo(key: string): string | null {
   return PHOTOS[key] ?? null;
 }
@@ -55,6 +66,14 @@ export function local_photo(key: string): string | null {
 /** Falls back to the card photograph rather than showing nothing. */
 export function local_hero(key: string): string | null {
   return HEROES[key] ?? PHOTOS[key] ?? null;
+}
+
+/** Every header frame for a programme, or just the one where there is no set. */
+export function local_gallery(key: string): string[] {
+  const many = GALLERIES[key];
+  if (many && many.length > 0) return many;
+  const one = local_hero(key);
+  return one ? [one] : [];
 }
 
 export function local_photo_alt(key: string, fallback: string): string {
