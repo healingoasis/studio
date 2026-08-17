@@ -15,19 +15,19 @@ let SRC = "/Users/danielrivera/Documents/Claude/Photos:videos/Graded/C8181 GRADE
 struct Shot {
     let start: Double, len: Double, slow: Double
     let zoom: CGFloat, cx: CGFloat, cy: CGFloat
+    let vig: Double            // how hard the frame is shaped on this shot
     let note: String
 }
 let shots = [
-    Shot(start:  4.0, len: 3.2, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "wide — establish the arena"),
-    Shot(start: 33.6, len: 2.4, slow: 1, zoom: 1.12, cx: 0.45, cy: 0.50, note: "the horse walks toward us"),
-    Shot(start: 41.0, len: 0.6, slow: 1, zoom: 1.18, cx: 0.50, cy: 0.50, note: "layered — ramp in, real time"),
-    Shot(start: 41.6, len: 1.0, slow: 3, zoom: 1.18, cx: 0.50, cy: 0.50, note: "  ...ramps down into 3x slow"),
-    Shot(start: 47.8, len: 2.0, slow: 2, zoom: 1.26, cx: 0.45, cy: 0.48, note: "first contact — 2x slow"),
-    Shot(start: 51.2, len: 1.67, slow: 3, zoom: 1.34, cx: 0.40, cy: 0.52, note: "hands along the back — 3x slow"),
-    Shot(start: 54.5, len: 2.5, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "wide again, to breathe"),
-    Shot(start: 57.6, len: 1.2, slow: 3, zoom: 1.34, cx: 0.52, cy: 0.50, note: "the horse settles — 3x slow"),
-    Shot(start: 60.2, len: 1.8, slow: 1, zoom: 1.18, cx: 0.42, cy: 0.45, note: "he turns, done"),
-    Shot(start:  8.5, len: 3.5, slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, note: "tail under the end card"),
+    Shot(start: 52.2, len: 1.0,  slow: 3, zoom: 1.34, cx: 0.40, cy: 0.52, vig: 1.00, note: "COLD OPEN — hands, 3x slow"),
+    Shot(start:  4.2, len: 2.6,  slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, vig: 0.50, note: "reveal — the arena"),
+    Shot(start: 33.8, len: 2.2,  slow: 1, zoom: 1.12, cx: 0.45, cy: 0.50, vig: 0.60, note: "the horse walks toward us"),
+    Shot(start: 41.2, len: 1.8,  slow: 1, zoom: 1.18, cx: 0.50, cy: 0.50, vig: 0.75, note: "layered — handler in foreground"),
+    Shot(start: 48.0, len: 1.6,  slow: 1, zoom: 1.26, cx: 0.45, cy: 0.48, vig: 0.90, note: "first contact"),
+    Shot(start: 55.4, len: 1.6,  slow: 3, zoom: 1.34, cx: 0.40, cy: 0.52, vig: 1.00, note: "THE READ — 3x slow, held"),
+    Shot(start: 57.8, len: 1.8,  slow: 1, zoom: 1.30, cx: 0.52, cy: 0.50, vig: 0.95, note: "the horse settles"),
+    Shot(start: 60.2, len: 2.0,  slow: 1, zoom: 1.18, cx: 0.42, cy: 0.45, vig: 0.80, note: "he turns, done"),
+    Shot(start:  8.5, len: 3.0,  slow: 1, zoom: 1.00, cx: 0.50, cy: 0.50, vig: 0.60, note: "tail under the end card"),
 ]
 
 let comp = AVMutableComposition()
@@ -124,8 +124,25 @@ if let blk = layer("edit_black.png") {
     a.isRemovedOnCompletion = false; a.fillMode = .both
     blk.add(a, forKey: "op"); parent.addSublayer(blk)
 }
-if let v = layer("edit_vig.png") { v.opacity = 1; parent.addSublayer(v) }
-if let t = layer("edit_title.png") { fade(t, 1.6, 5.6, 0.6) }
+if let v = layer("edit_vig.png") {
+    var times: [NSNumber] = [0]
+    var vals:  [NSNumber] = [NSNumber(value: shots[0].vig)]
+    for (i, p) in placed.enumerated() {
+        let mid = (Double(p.startK) + Double(p.durK) / 2) / Double(TS)
+        times.append(NSNumber(value: mid / total))
+        vals.append(NSNumber(value: shots[i].vig))
+    }
+    times.append(1); vals.append(NSNumber(value: shots[shots.count-1].vig))
+    let a = CAKeyframeAnimation(keyPath: "opacity")
+    a.values = vals; a.keyTimes = times
+    a.beginTime = AVCoreAnimationBeginTimeAtZero
+    a.duration = total
+    a.isRemovedOnCompletion = false; a.fillMode = .both
+    v.opacity = 0
+    v.add(a, forKey: "vig")
+    parent.addSublayer(v)
+}
+if let t = layer("edit_title.png") { fade(t, 3.4, 7.2, 0.7) }
 let tail = placed[placed.count - 1]
 let tailStart = Double(tail.startK) / Double(TS)
 if let e = layer("edit_end.png") { fade(e, tailStart, total, 0.6) }

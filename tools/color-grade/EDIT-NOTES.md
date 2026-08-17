@@ -33,6 +33,36 @@ Daniel asked for more from both the grade and the cut. What changed:
 **71 seconds of rushes became 27.5 seconds of film, using 18.5 seconds of the original.**
 Roughly three quarters of what the camera recorded is not in the cut.
 
+## Fourth pass — the actual craft (2026-08-17)
+
+Daniel: "edited as if by a professional who has been in the business for years."
+
+Polish was never the problem. Sharpening, grading and effects are the easy part. What
+separates a veteran's cut is **structure and restraint**. What changed:
+
+- **Cold open.** The film now opens tight and slow on the hands on the horse, with no
+  context, then cuts wide to reveal where we are. Opening on the detail and paying off the
+  wide is a decades-old move and it works because it makes the viewer ask a question.
+- **Slow motion twice, not four times.** Before, three or four shots were slowed, which
+  made it a setting rather than a choice. Now it is used exactly twice — the cold open and
+  the one moment that matters, the hands reading the horse's back, which is held for nearly
+  five seconds. Something used everywhere emphasises nothing.
+- **22.8 seconds, down from 29.6.** Cut to what earns its place.
+- **The vignette now follows the cut** instead of sitting at one level all the way through:
+  light on the wides so the arena feels open, strong on the close-ups so the eye is pinned
+  to the hands. A single uniform "look" applied over a whole film is the amateur tell; a
+  grade should breathe with the edit.
+- **Sharpening eased back** from 0.55 to 0.42. Over-sharpening is itself an amateur signal.
+
+### On the natural sound
+
+Measured the source audio: **peak 0.0 dBFS — it clips**, and the first ten seconds run hot
+(-16 dBFS) before settling to about -26. In an open-sided arena on a camera mic, that is
+almost certainly wind and handling noise.
+
+Left silent on that evidence. Cannot verify by ear from here, so if Daniel wants natural
+sound the honest next step is for him to listen to the source and say.
+
 ## Third pass — sharpness (2026-08-17)
 
 Daniel asked whether it could be crisper. Three real causes, two of them fixable:
