@@ -320,9 +320,20 @@ export default function RecordView({
       </div>
 
       <p className="file-note-band">
-        <b>Prototype.</b> People, programs and payments are your actual students, read
-        live from the store. Uploads are real and stay on this Mac. Starting paperwork
-        colours are invented; anything changed from here on is real.
+        {process.env.NEXT_PUBLIC_PORTAL_DEMO === "1" ? (
+          <>
+            <b>Review copy.</b> The people here are invented, and so are their order
+            numbers and email addresses — no real student record leaves the school for
+            this page. The programs, prices and photographs are real. Uploading and
+            changing paperwork is switched off; everything else works.
+          </>
+        ) : (
+          <>
+            <b>Prototype.</b> People, programs and payments are your actual students, read
+            live from the store. Uploads are real and stay on this Mac. Starting paperwork
+            colours are invented; anything changed from here on is real.
+          </>
+        )}
       </p>
 
       <div className="file-body">

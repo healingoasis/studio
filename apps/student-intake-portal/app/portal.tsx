@@ -555,13 +555,22 @@ export default function Portal({
 
       <p className="note-band">
         <b>Prototype.</b>
-        <span>
-          The people, programs, and payments are your actual students, read live from the
-          store. <b>Uploads are real</b> — a file you send is saved on this Mac and stays
-          there. The starting paperwork colours are invented, since nothing tracked
-          documents before this; anything you upload or change from here on is real.
-          Nobody is charged.
-        </span>
+        {process.env.NEXT_PUBLIC_PORTAL_DEMO === "1" ? (
+          <span>
+            <b>Review copy.</b> The ten people here are invented, and so are their order
+            numbers and email addresses — no real student record leaves the school for
+            this page. The programs, prices and photographs are real. Uploading and
+            changing paperwork is switched off; everything else works.
+          </span>
+        ) : (
+          <span>
+            The people, programs, and payments are your actual students, read live from the
+            store. <b>Uploads are real</b> — a file you send is saved on this Mac and stays
+            there. The starting paperwork colours are invented, since nothing tracked
+            documents before this; anything you upload or change from here on is real.
+            Nobody is charged.
+          </span>
+        )}
       </p>
 
       {view === "student" ? (

@@ -272,5 +272,10 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
 }
 
 export async function load_students(): Promise<Student[]> {
+  // The review build runs on invented orders so no real student reaches a hosted page.
+  if (process.env.PORTAL_DEMO === "1") {
+    const { DEMO_ORDERS } = await import("./demo_students");
+    return students_from_orders(DEMO_ORDERS);
+  }
   return students_from_orders(await fetch_recent_orders());
 }

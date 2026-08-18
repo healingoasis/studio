@@ -2618,3 +2618,28 @@ button.file-state {
     transition: none;
   }
 }
+
+/* The review copy's answer for links that have nowhere to go on a hosted page. */
+.review-note {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 12px);
+  max-width: min(30rem, calc(100vw - 2rem));
+  margin: 0;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  background: var(--panel, #2a2522);
+  color: var(--ink, #efe7df);
+  border: 1px solid var(--line, #453d37);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 45%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 40;
+}
+
+.review-note.on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}

@@ -69,3 +69,5 @@ who stops fielding those emails and chasing paperwork by hand before every modul
   is saved on the Mac, turns that requirement yellow, and can be opened, replaced or
   removed. Status changes stick too. Next real blocker is a login — without one there is
   nothing separating one student's documents from another's.
+- 2026-08-18: shareable review link published — both versions in one page, with
+  invented students in place of the real ones. Notes in `docs/claude/notes/`.

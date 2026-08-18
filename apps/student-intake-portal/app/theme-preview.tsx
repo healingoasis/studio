@@ -30,9 +30,16 @@ function apply(choice: Choice) {
 export default function ThemePreview() {
   const [choice, set_choice] = useState<Choice>("system");
 
-  // Read what was chosen last time, once mounted.
+  // Read what was chosen last time, once mounted. Storage is not always reachable —
+  // inside a sandboxed frame, as on the shared review link, touching it throws — and a
+  // preview aid must never be the thing that takes the page down.
   useEffect(() => {
-    const saved = window.localStorage.getItem(KEY) as Choice | null;
+    let saved: string | null = null;
+    try {
+      saved = window.localStorage.getItem(KEY);
+    } catch {
+      return;
+    }
     if (saved === "light" || saved === "dark" || saved === "system") {
       set_choice(saved);
       apply(saved);
@@ -42,7 +49,11 @@ export default function ThemePreview() {
   function choose(next: Choice) {
     set_choice(next);
     apply(next);
-    window.localStorage.setItem(KEY, next);
+    try {
+      window.localStorage.setItem(KEY, next);
+    } catch {
+      // Nothing to remember it with; the choice still applies for this visit.
+    }
   }
 
   return (

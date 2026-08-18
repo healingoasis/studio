@@ -100,6 +100,8 @@ async function write_store(store: StoreShape): Promise<void> {
 }
 
 export async function load_records(): Promise<StoreShape> {
+  // Real uploaded paperwork never belongs in the review build.
+  if (process.env.PORTAL_DEMO === "1") return {};
   return read_store();
 }
 
