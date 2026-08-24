@@ -1,0 +1,8 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",    "title": "Option A - Warm",        "x": 0,    "y": 0, "w": 1080, "h": 1350 },
+    { "file": "Poster.dc.html",  "title": "Option B - Poster",      "x": 1200, "y": 0, "w": 1080, "h": 1350 },
+    { "file": "TwoWays.dc.html", "title": "Option C - Two Ways In", "x": 2400, "y": 0, "w": 1080, "h": 1350 }
+  ],
+  "launch": { "view": "canvas" }
+}
