@@ -8,23 +8,24 @@ const veilSoft = 'linear-gradient(180deg,rgba(18,6,6,0.62) 0%,rgba(18,6,6,0.14) 
 
 // Twelve skins. Consistency inside a carousel, difference between them.
 const TH = {
-  maroon:   { bg: C.maroon,  ink: '#fff',    sub: 'rgba(245,236,223,0.86)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.26)', veil: veilSoft },
-  paper:    { bg: C.paper,   ink: C.ink,     sub: C.muted,                  accent: C.maroon,tone: 'dark',  rule: 'rgba(92,1,1,0.16)',      veil: veilSoft },
-  night:    { bg: C.night,   ink: '#fff',    sub: 'rgba(245,236,223,0.78)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.22)', veil: veilDark },
-  cocoa:    { bg: '#26150c', ink: C.cream,   sub: 'rgba(245,236,223,0.76)', accent: '#d9a441',tone:'light', rule: 'rgba(245,236,223,0.20)', veil: veilDark },
-  sand:     { bg: '#e9dcc6', ink: '#2a1512', sub: '#6b5550',                accent: C.maroon,tone: 'dark',  rule: 'rgba(92,1,1,0.18)',      veil: veilSoft },
-  oxblood:  { bg: '#400202', ink: C.cream,   sub: 'rgba(245,236,223,0.80)', accent: '#d9c9a8',tone:'light', rule: 'rgba(245,236,223,0.22)', veil: veilDark, ctaInk: '#400202' },
-  bone:     { bg: '#f3efe6', ink: '#1f1412', sub: '#6b5550',                accent: C.brass, tone: 'dark',  rule: 'rgba(31,20,18,0.14)',    veil: veilSoft },
-  inkwell:  { bg: '#14100e', ink: '#fff',    sub: 'rgba(255,255,255,0.74)', accent: C.brass, tone: 'light', rule: 'rgba(255,255,255,0.18)', veil: veilDark },
-  clay:     { bg: '#7a3320', ink: '#fff',    sub: 'rgba(255,244,232,0.86)', accent: '#f0dcc0',tone:'light', rule: 'rgba(255,255,255,0.24)', veil: veilSoft, ctaInk: '#7a3320' },
-  linen:    { bg: '#efe6d8', ink: C.maroon,  sub: '#6b5550',                accent: C.ink,   tone: 'dark',  rule: 'rgba(92,1,1,0.16)',      veil: veilSoft },
-  charcoal: { bg: '#221c19', ink: C.cream,   sub: 'rgba(245,236,223,0.74)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.20)', veil: veilDark },
-  deep:     { bg: C.deep,    ink: '#fff',    sub: 'rgba(245,236,223,0.82)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.24)', veil: veilDark },
+  maroon:   { bg: C.maroon,  ink: '#fff',    sub: 'rgba(245,236,223,0.86)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.26)', veil: veilSoft, accentOn: '#ffd9a0' },
+  paper:    { bg: C.paper,   ink: C.ink,     sub: C.muted,                  accent: C.maroon,tone: 'dark',  rule: 'rgba(92,1,1,0.16)',      veil: veilSoft, accentOn: '#ffd9a0' },
+  night:    { bg: C.night,   ink: '#fff',    sub: 'rgba(245,236,223,0.78)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.22)', veil: veilDark, accentOn: '#ffd9a0' },
+  cocoa:    { bg: '#26150c', ink: C.cream,   sub: 'rgba(245,236,223,0.76)', accent: '#d9a441',tone:'light', rule: 'rgba(245,236,223,0.20)', veil: veilDark, accentOn: '#ffd9a0' },
+  sand:     { bg: '#e9dcc6', ink: '#2a1512', sub: '#6b5550',                accent: C.maroon,tone: 'dark',  rule: 'rgba(92,1,1,0.18)',      veil: veilSoft, accentOn: '#ffd9a0' },
+  oxblood:  { bg: '#400202', ink: C.cream,   sub: 'rgba(245,236,223,0.80)', accent: '#d9c9a8',tone:'light', rule: 'rgba(245,236,223,0.22)', veil: veilDark, accentOn: '#ffd9a0', ctaInk: '#400202' },
+  bone:     { bg: '#f3efe6', ink: '#1f1412', sub: '#6b5550',                accent: C.brass, tone: 'dark',  rule: 'rgba(31,20,18,0.14)',    veil: veilSoft, accentOn: '#ffd9a0' },
+  inkwell:  { bg: '#14100e', ink: '#fff',    sub: 'rgba(255,255,255,0.74)', accent: C.brass, tone: 'light', rule: 'rgba(255,255,255,0.18)', veil: veilDark, accentOn: '#ffd9a0' },
+  clay:     { bg: '#7a3320', ink: '#fff',    sub: 'rgba(255,244,232,0.86)', accent: '#f0dcc0',tone:'light', rule: 'rgba(255,255,255,0.24)', veil: veilSoft, accentOn: '#ffd9a0', ctaInk: '#7a3320' },
+  linen:    { bg: '#efe6d8', ink: C.maroon,  sub: '#6b5550',                accent: C.ink,   tone: 'dark',  rule: 'rgba(92,1,1,0.16)',      veil: veilSoft, accentOn: '#ffd9a0' },
+  charcoal: { bg: '#221c19', ink: C.cream,   sub: 'rgba(245,236,223,0.74)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.20)', veil: veilDark, accentOn: '#ffd9a0' },
+  deep:     { bg: C.deep,    ink: '#fff',    sub: 'rgba(245,236,223,0.82)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.24)', veil: veilDark, accentOn: '#ffd9a0' },
 }
 
 export const CAROUSELS = [
   {
     id: 'C01_132-hours', th: TH.maroon, date: 'Wednesday, August 26',
+    photos: ['hero-horse.jpg', 'a-table.jpg', 'a-dog-mat.jpg', 'hands-dog.jpg', 'a-horse-neck.jpg', 'a-treat.jpg'],
     angle: 'The size of the commitment, stated up front',
     caption: `132 hours of supervised training. Five modules. September to February.
 
@@ -45,6 +46,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C02_who-teaches', th: TH.paper, date: 'Friday, August 28',
+    photos: ['a-barn.jpg', 'a-horse-head.jpg'],
     angle: 'The five named faculty, one per slide',
     caption: `Five people teach this program.
 
@@ -68,6 +70,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C03_twenty-seats', th: TH.oxblood, date: 'Sunday, August 30',
+    photos: ['a-treat.jpg', 'a-dog-back.jpg', 'detail-dog.jpg', 'a-table.jpg', 'a-dog-head.jpg', 'a-boxer.jpg'],
     angle: 'Class size and the hands-on ratio',
     caption: `Twenty. That is the whole class.
 
@@ -87,6 +90,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C04_section-one', th: TH.bone, date: 'Tuesday, September 1',
+    photos: ['a-horse-head.jpg', 'a-barn.jpg', 'a-horse-hand.jpg', 'a-dog-soft.jpg', 'a-horse-neck.jpg', 'a-dog-mat.jpg'],
     angle: 'Section One — the foundations you start with',
     caption: `What Section One actually covers.
 
@@ -111,6 +115,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C05_both-species', th: TH.night, date: 'Thursday, September 3',
+    photos: ['hero-horse.jpg', 'dog-tall.jpg', 'horse-band.jpg', 'a-dog-back.jpg', 'a-horse-hand.jpg', 'a-treat.jpg'],
     angle: 'Canine and equine in one program',
     caption: `Canine and equine. Both, in the same program.
 
@@ -130,6 +135,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C06_what-it-stands-on', th: TH.charcoal, date: 'Saturday, September 5',
+    photos: ['a-dog-head.jpg', 'a-horse-neck.jpg', 'a-table.jpg', 'a-dog-mat.jpg', 'a-barn.jpg', 'a-horse-hand.jpg'],
     angle: 'The credentials behind the certificate',
     caption: `What the certificate is standing on.
 
@@ -151,6 +157,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C07_after-graduation', th: TH.sand, date: 'Monday, September 7',
+    photos: ['a-treat.jpg', 'a-dog-soft.jpg', 'a-barn.jpg', 'a-horse-head.jpg', 'a-dog-back.jpg', 'a-table.jpg'],
     angle: 'The graduate benefits nobody scrolls to',
     caption: `The part of the program page nobody scrolls far enough to find.
 
@@ -173,6 +180,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C08_the-money', th: TH.linen, date: 'Wednesday, September 9',
+    photos: ['a-table.jpg', 'a-dog-mat.jpg', 'a-horse-hand.jpg', 'a-dog-head.jpg', 'a-treat.jpg', 'a-horse-neck.jpg'],
     angle: 'The money, stated plainly',
     caption: `Let us be plain about the money.
 
@@ -197,6 +205,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C09_section-two', th: TH.cocoa, date: 'Friday, September 11',
+    photos: ['hands-dog.jpg', 'a-table.jpg', 'a-dog-back.jpg', 'a-dog-head.jpg', 'needle-band.jpg', 'a-treat.jpg'],
     angle: 'Section Two — the hands-on one',
     caption: `Section Two is the one with your hands on a patient.
 
@@ -221,6 +230,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C10_sections-three-four', th: TH.inkwell, date: 'Saturday, September 12',
+    photos: ['a-horse-neck.jpg', 'a-dog-mat.jpg', 'a-barn.jpg', 'a-horse-hand.jpg', 'a-dog-soft.jpg', 'a-horse-head.jpg'],
     angle: 'Sections Three and Four — diagnosis and treatment planning',
     caption: `Sections Three and Four are where it becomes diagnosis.
 
@@ -249,6 +259,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C11_section-five', th: TH.charcoal, date: 'Sunday, September 13',
+    photos: ['a-treat.jpg', 'a-table.jpg', 'a-dog-back.jpg', 'a-dog-head.jpg', 'a-horse-hand.jpg', 'detail-dog.jpg'],
     angle: 'Section Five — where you are evaluated',
     caption: `Section Five is where somebody watches you do it.
 
@@ -277,6 +288,7 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C12_september-16', th: TH.clay, date: 'Monday, September 14',
+    photos: ['a-horse-head.jpg', 'a-dog-soft.jpg', 'a-table.jpg', 'hero-horse.jpg', 'a-horse-neck.jpg', 'a-treat.jpg'],
     angle: 'Closing — every date, and the start',
     caption: `Module I begins September 16, 2026. Here is the whole calendar.
 

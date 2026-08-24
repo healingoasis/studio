@@ -8,14 +8,14 @@ const veilDark = 'linear-gradient(180deg,rgba(18,6,6,0.74) 0%,rgba(18,6,6,0.28) 
 const veilSoft = 'linear-gradient(180deg,rgba(18,6,6,0.62) 0%,rgba(18,6,6,0.14) 40%,rgba(18,6,6,0.80) 100%)'
 
 const TH = {
-  maroon:  { bg: C.maroon,  ink: '#fff',  sub: 'rgba(245,236,223,0.86)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.26)', veil: veilSoft },
-  paper:   { bg: C.paper,   ink: C.ink,   sub: C.muted,                  accent: C.maroon,tone: 'dark',  rule: 'rgba(92,1,1,0.16)',      veil: veilSoft },
-  night:   { bg: C.night,   ink: '#fff',  sub: 'rgba(245,236,223,0.78)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.22)', veil: veilDark },
-  bone:    { bg: '#f3efe6', ink: '#1f1412',sub: '#6b5550',               accent: C.maroon,tone: 'dark',  rule: 'rgba(31,20,18,0.14)',    veil: veilSoft },
-  oxblood: { bg: '#400202', ink: C.cream, sub: 'rgba(245,236,223,0.80)', accent: '#e2b48a',tone:'light', rule: 'rgba(245,236,223,0.22)', veil: veilDark, ctaInk: '#400202' },
-  sand:    { bg: '#e9dcc6', ink: '#2a1512',sub: '#6b5550',               accent: C.maroon,tone: 'dark',  rule: 'rgba(92,1,1,0.18)',      veil: veilSoft },
-  inkwell: { bg: '#14100e', ink: '#fff',  sub: 'rgba(255,255,255,0.74)', accent: C.brass, tone: 'light', rule: 'rgba(255,255,255,0.18)', veil: veilDark },
-  clay:    { bg: '#7a3320', ink: '#fff',  sub: 'rgba(255,244,232,0.86)', accent: '#f0dcc0',tone:'light', rule: 'rgba(255,255,255,0.24)', veil: veilSoft, ctaInk: '#7a3320' },
+  maroon:  { bg: C.maroon,  ink: '#fff',  sub: 'rgba(245,236,223,0.86)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.26)', veil: veilSoft, accentOn: '#ffd9a0' },
+  paper:   { bg: C.paper,   ink: C.ink,   sub: C.muted,                  accent: C.maroon,tone: 'dark',  rule: 'rgba(92,1,1,0.16)',      veil: veilSoft, accentOn: '#ffd9a0' },
+  night:   { bg: C.night,   ink: '#fff',  sub: 'rgba(245,236,223,0.78)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.22)', veil: veilDark, accentOn: '#ffd9a0' },
+  bone:    { bg: '#f3efe6', ink: '#1f1412',sub: '#6b5550',               accent: C.maroon,tone: 'dark',  rule: 'rgba(31,20,18,0.14)',    veil: veilSoft, accentOn: '#ffd9a0' },
+  oxblood: { bg: '#400202', ink: C.cream, sub: 'rgba(245,236,223,0.80)', accent: '#e2b48a',tone:'light', rule: 'rgba(245,236,223,0.22)', veil: veilDark, accentOn: '#ffd9a0', ctaInk: '#400202' },
+  sand:    { bg: '#e9dcc6', ink: '#2a1512',sub: '#6b5550',               accent: C.maroon,tone: 'dark',  rule: 'rgba(92,1,1,0.18)',      veil: veilSoft, accentOn: '#ffd9a0' },
+  inkwell: { bg: '#14100e', ink: '#fff',  sub: 'rgba(255,255,255,0.74)', accent: C.brass, tone: 'light', rule: 'rgba(255,255,255,0.18)', veil: veilDark, accentOn: '#ffd9a0' },
+  clay:    { bg: '#7a3320', ink: '#fff',  sub: 'rgba(255,244,232,0.86)', accent: '#f0dcc0',tone:'light', rule: 'rgba(255,255,255,0.24)', veil: veilSoft, accentOn: '#ffd9a0', ctaInk: '#7a3320' },
 }
 
 const head = (f) => `heads/${f}.jpg`
@@ -23,6 +23,7 @@ const head = (f) => `heads/${f}.jpg`
 export const CAROUSELS = [
   {
     id: 'F01_homecoming', th: TH.night, date: 'Tuesday, August 25',
+    photos: ['inv.jpg', 'c-registration.jpg', 'c-faculty-a.jpg', 'c-gesture.jpg', 'c-award.jpg'],
     angle: 'The invitation — registration is open',
     caption: `Homecoming.
 
@@ -43,6 +44,7 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F02_the-room', th: TH.paper, date: 'Friday, August 28',
+    photos: ['c-faculty-a.jpg', 'c-award.jpg'],
     angle: 'The faculty — sixteen names, four to a slide',
     caption: `This is the room.
 
@@ -83,6 +85,7 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F03_the-lectures', th: TH.bone, date: 'Monday, August 31',
+    photos: ['c-lecture-a.jpg', 'c-lecture-b.jpg', 'c-lecture-c.jpg', 'c-lecture-d.jpg', 'c-lecture-f.jpg', 'c-whiteboard.jpg'],
     angle: 'Real lecture titles as the hook',
     caption: `These are actual lecture titles from this year's program.
 
@@ -96,15 +99,16 @@ Three days of talks like these.
 https://healingoasis.edu/conference-2026/attend`,
     slides: [
       { kind: 'hook', big: 'Five real<br>lecture titles.', sub: 'Not a summary. The actual program.', size: 116 },
-      { kind: 'quote', text: 'When Unimaginable Pathology &amp; Rehabilitation Meet', who: 'Rob van Wessum', cred: 'DVM, MS, DACVSMR (Equine)', img: head('14_Rob_van_Wessum') },
-      { kind: 'quote', text: 'Brachial Plexus Injuries in Human &amp; Veterinary Patients', who: 'Stephanie Thomovsky', cred: 'DVM, MS, DACVIM-Neurology', img: head('12_Stephanie_Thomovsky') },
-      { kind: 'quote', text: 'TMJ and Dental Pathologies Affecting Performance', who: 'Travis Henry', cred: 'DVM, DAVDC', img: head('04_Travis_Henry') },
-      { kind: 'quote', text: 'Hands-On Healing: The Role of Cupping in Veterinary Medicine', who: 'Amber Ihrke', cred: 'DVM, CVSMT, DACVSMR', img: head('05_Amber_Ihrke') },
+      { kind: 'quote', text: 'When Unimaginable Pathology &amp; Rehabilitation Meet', who: 'Rob van Wessum', cred: 'DVM, MS, DACVSMR (Equine)', face: head('14_Rob_van_Wessum') },
+      { kind: 'quote', text: 'Brachial Plexus Injuries in Human &amp; Veterinary Patients', who: 'Stephanie Thomovsky', cred: 'DVM, MS, DACVIM-Neurology', face: head('12_Stephanie_Thomovsky') },
+      { kind: 'quote', text: 'TMJ and Dental Pathologies Affecting Performance', who: 'Travis Henry', cred: 'DVM, DAVDC', face: head('04_Travis_Henry') },
+      { kind: 'quote', text: 'Hands-On Healing: The Role of Cupping in Veterinary Medicine', who: 'Amber Ihrke', cred: 'DVM, CVSMT, DACVSMR', face: head('05_Amber_Ihrke') },
       { kind: 'cta', big: 'Three days<br>of these.', sub: 'Sixteen speakers, October 23–25.' },
     ],
   },
   {
     id: 'F04_two-ways', th: TH.oxblood, date: 'Monday, September 7',
+    photos: ['c-registration.jpg', 'split-a.jpg', 'split-b.jpg', 'c-model.jpg', 'c-lecture-e.jpg', 'room.jpg'],
     angle: 'In the room, or on the stream',
     caption: `Two ways to do this conference, and you pick at checkout.
 
@@ -125,6 +129,7 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F05_saturday', th: TH.inkwell, date: 'Wednesday, September 9',
+    photos: ['c-handling.jpg', 'canine.jpg', 'equine2.jpg', 'c-couple-dobie.jpg', 'c-podium.jpg', 'c-frenchie.jpg'],
     angle: 'Saturday splits — canine or equine',
     caption: `Saturday is the day the conference splits in two.
 
@@ -145,6 +150,7 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F06_what-it-costs', th: TH.sand, date: 'Monday, September 14',
+    photos: ['c-registration.jpg', 'c-exhibit.jpg', 'c-equipment.jpg', 'c-podium.jpg', 'c-suit.jpg', 'c-faculty-a.jpg'],
     angle: 'The rates and the discounts',
     caption: `What a seat costs, plainly.
 
@@ -173,6 +179,7 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F07_three-days', th: TH.clay, date: 'Monday, September 21',
+    photos: ['c-gesture.jpg', 'num.jpg', 'canine.jpg', 'room.jpg', 'c-exhibit.jpg', 'c-frenchie.jpg'],
     angle: 'What three days actually look like',
     caption: `What actually happens over three days.
 
@@ -193,6 +200,7 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F08_the-dates', th: TH.maroon, date: 'Wednesday, September 30',
+    photos: ['c-award.jpg', 'c-registration.jpg', 'c-whiteboard.jpg', 'c-lecture-c.jpg', 'last.jpg', 'c-couple-dobie.jpg'],
     angle: 'Every deadline, and the last call',
     caption: `Four dates. Screenshot this one.
 
