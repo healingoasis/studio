@@ -20,10 +20,43 @@ const TH = {
 
 const head = (f) => `heads/${f}.jpg`
 
+
+// Each of these is used exactly once. Order sets which slides get one.
+export const POOL = [
+  'inv.jpg',
+  'c-faculty-a.jpg',
+  'c-award.jpg',
+  'c-registration.jpg',
+  'c-gesture.jpg',
+  'c-lecture-a.jpg',
+  'c-lecture-b.jpg',
+  'c-lecture-c.jpg',
+  'c-lecture-d.jpg',
+  'c-lecture-e.jpg',
+  'c-lecture-f.jpg',
+  'c-whiteboard.jpg',
+  'c-model.jpg',
+  'c-podium.jpg',
+  'c-suit.jpg',
+  'split-a.jpg',
+  'split-b.jpg',
+  'room.jpg',
+  'num.jpg',
+  'canine.jpg',
+  'equine2.jpg',
+  'c-handling.jpg',
+  'c-couple-dobie.jpg',
+  'c-frenchie.jpg',
+  'c-exhibit.jpg',
+  'c-equipment.jpg',
+  'last.jpg',
+  'ticket.jpg',
+  'hero-welcome.jpg',
+]
+
 export const CAROUSELS = [
   {
     id: 'F01_homecoming', th: TH.night, date: 'Tuesday, August 25',
-    photos: ['inv.jpg', 'c-registration.jpg', 'c-faculty-a.jpg', 'c-gesture.jpg', 'c-award.jpg'],
     angle: 'The invitation — registration is open',
     caption: `Homecoming.
 
@@ -44,7 +77,6 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F02_the-room', th: TH.paper, date: 'Friday, August 28',
-    photos: ['c-faculty-a.jpg', 'c-award.jpg'],
     angle: 'The faculty — sixteen names, four to a slide',
     caption: `This is the room.
 
@@ -85,7 +117,6 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F03_the-lectures', th: TH.bone, date: 'Monday, August 31',
-    photos: ['c-lecture-a.jpg', 'c-lecture-b.jpg', 'c-lecture-c.jpg', 'c-lecture-d.jpg', 'c-lecture-f.jpg', 'c-whiteboard.jpg'],
     angle: 'Real lecture titles as the hook',
     caption: `These are actual lecture titles from this year's program.
 
@@ -108,7 +139,6 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F04_two-ways', th: TH.oxblood, date: 'Monday, September 7',
-    photos: ['c-registration.jpg', 'split-a.jpg', 'split-b.jpg', 'c-model.jpg', 'c-lecture-e.jpg', 'room.jpg'],
     angle: 'In the room, or on the stream',
     caption: `Two ways to do this conference, and you pick at checkout.
 
@@ -129,7 +159,6 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F05_saturday', th: TH.inkwell, date: 'Wednesday, September 9',
-    photos: ['c-handling.jpg', 'canine.jpg', 'equine2.jpg', 'c-couple-dobie.jpg', 'c-podium.jpg', 'c-frenchie.jpg'],
     angle: 'Saturday splits — canine or equine',
     caption: `Saturday is the day the conference splits in two.
 
@@ -150,7 +179,6 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F06_what-it-costs', th: TH.sand, date: 'Monday, September 14',
-    photos: ['c-registration.jpg', 'c-exhibit.jpg', 'c-equipment.jpg', 'c-podium.jpg', 'c-suit.jpg', 'c-faculty-a.jpg'],
     angle: 'The rates and the discounts',
     caption: `What a seat costs, plainly.
 
@@ -179,7 +207,6 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F07_three-days', th: TH.clay, date: 'Monday, September 21',
-    photos: ['c-gesture.jpg', 'num.jpg', 'canine.jpg', 'room.jpg', 'c-exhibit.jpg', 'c-frenchie.jpg'],
     angle: 'What three days actually look like',
     caption: `What actually happens over three days.
 
@@ -192,7 +219,7 @@ https://healingoasis.edu/conference-2026/attend`,
     slides: [
       { kind: 'hook', big: 'Three days,<br>roughly.', sub: 'What actually happens, in order.', size: 126 },
       { kind: 'photo', img: 'num.jpg', pos: '50% 34%', kicker: 'One', big: 'You sit<br>and listen', sub: 'Sixteen speakers across sports medicine, rehabilitation, neurology and dentistry.' },
-      { kind: 'photo', img: 'canine.jpg', pos: '50% 30%', kicker: 'Two', big: 'You put your<br>hands on it', sub: 'Hands-on sessions, with the person who wrote the lecture beside you.' },
+      { kind: 'photo', img: 'c-handling.jpg', pos: '50% 30%', kicker: 'Two', big: 'You put your<br>hands on it', sub: 'Hands-on sessions, with the person who wrote the lecture beside you.' },
       { kind: 'photo', img: 'room.jpg', pos: '50% 46%', kicker: 'Three', big: 'You talk in<br>the corridor', sub: 'And describe the case that has bothered you for months to someone who has seen it.' },
       { kind: 'lead', kicker: 'And that third one', big: 'Is why people<br>come back', sub: 'It is the part nobody puts on the schedule.' },
       { kind: 'cta', big: 'Book the three days.<br>Not the two.', sub: 'October 23–25, Lombard, Illinois.' },
@@ -200,7 +227,6 @@ https://healingoasis.edu/conference-2026/attend`,
   },
   {
     id: 'F08_the-dates', th: TH.maroon, date: 'Wednesday, September 30',
-    photos: ['c-award.jpg', 'c-registration.jpg', 'c-whiteboard.jpg', 'c-lecture-c.jpg', 'last.jpg', 'c-couple-dobie.jpg'],
     angle: 'Every deadline, and the last call',
     caption: `Four dates. Screenshot this one.
 

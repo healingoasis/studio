@@ -22,10 +22,54 @@ const TH = {
   deep:     { bg: C.deep,    ink: '#fff',    sub: 'rgba(245,236,223,0.82)', accent: C.brass, tone: 'light', rule: 'rgba(245,236,223,0.24)', veil: veilDark, accentOn: '#ffd9a0' },
 }
 
+
+// Each of these is used exactly once. Order sets which slides get one.
+export const POOL = [
+  'a-horse-head.jpg',
+  'hero-horse.jpg',
+  'a-table.jpg',
+  'a-treat.jpg',
+  'a-d1.jpg',
+  'a-dog-head.jpg',
+  'a-horse-hand.jpg',
+  'a-dog-mat.jpg',
+  'a-n2.jpg',
+  'a-n3.jpg',
+  'a-barn.jpg',
+  'a-d2.jpg',
+  'a-h1.jpg',
+  'a-dog-back.jpg',
+  'a-n1.jpg',
+  'hands-dog.jpg',
+  'detail-dog.jpg',
+  'a-horse-neck.jpg',
+  'a-b3.jpg',
+  'a-b4.jpg',
+  'a-d5.jpg',
+  'a-n4.jpg',
+  'a-h6.jpg',
+  'a-h8.jpg',
+  'a-dog-soft.jpg',
+  'a-b1.jpg',
+  'a-d3.jpg',
+  'a-d4.jpg',
+  'a-n5.jpg',
+  'a-h5.jpg',
+  'a-b2.jpg',
+  'a-b5.jpg',
+  'a-h3.jpg',
+  'a-n7.jpg',
+  'needle-band.jpg',
+  'dog-tall.jpg',
+  'horse-band.jpg',
+  'dog-col.jpg',
+  'horse-col.jpg',
+  'close-band.jpg',
+]
+
 export const CAROUSELS = [
   {
     id: 'C01_132-hours', th: TH.maroon, date: 'Wednesday, August 26',
-    photos: ['hero-horse.jpg', 'a-table.jpg', 'a-dog-mat.jpg', 'hands-dog.jpg', 'a-horse-neck.jpg', 'a-treat.jpg'],
     angle: 'The size of the commitment, stated up front',
     caption: `132 hours of supervised training. Five modules. September to February.
 
@@ -46,7 +90,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C02_who-teaches', th: TH.paper, date: 'Friday, August 28',
-    photos: ['a-barn.jpg', 'a-horse-head.jpg'],
     angle: 'The five named faculty, one per slide',
     caption: `Five people teach this program.
 
@@ -70,7 +113,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C03_twenty-seats', th: TH.oxblood, date: 'Sunday, August 30',
-    photos: ['a-treat.jpg', 'a-dog-back.jpg', 'detail-dog.jpg', 'a-table.jpg', 'a-dog-head.jpg', 'a-boxer.jpg'],
     angle: 'Class size and the hands-on ratio',
     caption: `Twenty. That is the whole class.
 
@@ -90,7 +132,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C04_section-one', th: TH.bone, date: 'Tuesday, September 1',
-    photos: ['a-horse-head.jpg', 'a-barn.jpg', 'a-horse-hand.jpg', 'a-dog-soft.jpg', 'a-horse-neck.jpg', 'a-dog-mat.jpg'],
     angle: 'Section One — the foundations you start with',
     caption: `What Section One actually covers.
 
@@ -115,7 +156,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C05_both-species', th: TH.night, date: 'Thursday, September 3',
-    photos: ['hero-horse.jpg', 'dog-tall.jpg', 'horse-band.jpg', 'a-dog-back.jpg', 'a-horse-hand.jpg', 'a-treat.jpg'],
     angle: 'Canine and equine in one program',
     caption: `Canine and equine. Both, in the same program.
 
@@ -135,7 +175,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C06_what-it-stands-on', th: TH.charcoal, date: 'Saturday, September 5',
-    photos: ['a-dog-head.jpg', 'a-horse-neck.jpg', 'a-table.jpg', 'a-dog-mat.jpg', 'a-barn.jpg', 'a-horse-hand.jpg'],
     angle: 'The credentials behind the certificate',
     caption: `What the certificate is standing on.
 
@@ -157,7 +196,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C07_after-graduation', th: TH.sand, date: 'Monday, September 7',
-    photos: ['a-treat.jpg', 'a-dog-soft.jpg', 'a-barn.jpg', 'a-horse-head.jpg', 'a-dog-back.jpg', 'a-table.jpg'],
     angle: 'The graduate benefits nobody scrolls to',
     caption: `The part of the program page nobody scrolls far enough to find.
 
@@ -180,7 +218,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C08_the-money', th: TH.linen, date: 'Wednesday, September 9',
-    photos: ['a-table.jpg', 'a-dog-mat.jpg', 'a-horse-hand.jpg', 'a-dog-head.jpg', 'a-treat.jpg', 'a-horse-neck.jpg'],
     angle: 'The money, stated plainly',
     caption: `Let us be plain about the money.
 
@@ -205,7 +242,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C09_section-two', th: TH.cocoa, date: 'Friday, September 11',
-    photos: ['hands-dog.jpg', 'a-table.jpg', 'a-dog-back.jpg', 'a-dog-head.jpg', 'needle-band.jpg', 'a-treat.jpg'],
     angle: 'Section Two — the hands-on one',
     caption: `Section Two is the one with your hands on a patient.
 
@@ -216,7 +252,7 @@ Pulse diagnosis. Tongue diagnosis. Needling technique. Improvement of palpation 
 Face-to-face in Sturtevant, Wisconsin. October 14–18.
 healingoasis.edu/acupuncture`,
     slides: [
-      { kind: 'hook', img: 'hands-dog.jpg', pos: '52% 46%', big: 'Section Two.<br>Hands on.', sub: 'Face-to-face · October 14–18', size: 104 },
+      { kind: 'hook', img: 'a-d1.jpg', pos: '52% 46%', big: 'Section Two.<br>Hands on.', sub: 'Face-to-face · October 14–18', size: 104 },
       { kind: 'lead', kicker: 'You practice on', big: 'Models, specimens,<br>and live patients', sub: 'Canine and equine, both.', size: 80 },
       { kind: 'steps', kicker: 'The four skills', items: [
         { n: '01', t: 'Pulse diagnosis', d: '' },
@@ -230,7 +266,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C10_sections-three-four', th: TH.inkwell, date: 'Saturday, September 12',
-    photos: ['a-horse-neck.jpg', 'a-dog-mat.jpg', 'a-barn.jpg', 'a-horse-hand.jpg', 'a-dog-soft.jpg', 'a-horse-head.jpg'],
     angle: 'Sections Three and Four — diagnosis and treatment planning',
     caption: `Sections Three and Four are where it becomes diagnosis.
 
@@ -259,7 +294,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C11_section-five', th: TH.charcoal, date: 'Sunday, September 13',
-    photos: ['a-treat.jpg', 'a-table.jpg', 'a-dog-back.jpg', 'a-dog-head.jpg', 'a-horse-hand.jpg', 'detail-dog.jpg'],
     angle: 'Section Five — where you are evaluated',
     caption: `Section Five is where somebody watches you do it.
 
@@ -288,7 +322,6 @@ healingoasis.edu/acupuncture`,
   },
   {
     id: 'C12_september-16', th: TH.clay, date: 'Monday, September 14',
-    photos: ['a-horse-head.jpg', 'a-dog-soft.jpg', 'a-table.jpg', 'hero-horse.jpg', 'a-horse-neck.jpg', 'a-treat.jpg'],
     angle: 'Closing — every date, and the start',
     caption: `Module I begins September 16, 2026. Here is the whole calendar.
 
@@ -312,7 +345,7 @@ healingoasis.edu/acupuncture`,
         { n: 'V', t: 'Feb 3–7, 2027', d: 'Face-to-face. Where you are evaluated.' },
       ] },
       { kind: 'stat', num: '20', unit: 'seats', sub: 'That is the maximum size of the class.' },
-      { kind: 'photo', img: 'hero-horse.jpg', pos: '58% 44%', kicker: 'Both species', big: 'Canine<br>and equine', sub: '132 supervised hours across all five sections.' },
+      { kind: 'photo', img: 'a-h1.jpg', pos: '58% 44%', kicker: 'Both species', big: 'Canine<br>and equine', sub: '132 supervised hours across all five sections.' },
       { kind: 'cta', big: 'The circling<br>is nearly over.', sub: '$200 holds a seat.', foot: 'Sturtevant, Wisconsin · and Online LIVE from anywhere' },
     ],
   },
