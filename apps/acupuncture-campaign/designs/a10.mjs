@@ -1,5 +1,5 @@
 // 10 — AFTER THE CERTIFICATE. The graduate benefits, which are the part nobody
-// reads on a programme page and the part that closes hesitant people.
+// reads on a program page and the part that closes hesitant people.
 import { C, P, mark } from '../shell.mjs'
 
 export const meta = {
@@ -7,15 +7,15 @@ export const meta = {
   date: 'Saturday, September 12',
   angle: 'What graduation actually gets you',
   bg: C.cream,
-  caption: `The part of the programme page nobody scrolls to.
+  caption: `The part of the program page nobody scrolls to.
 
 Every successful graduate of the Healing Oasis Wellness Center receives:
 
-— Unlimited access to consultations with the programme director
+— Unlimited access to consultations with the program director
 — A listing in our Find a Graduate / Alumni section
-— Access to the VSMT alumni section, which holds all the technique and explanation films used during the programme
+— Access to the VSMT alumni section, which holds all the technique and explanation films used during the program
 — A percentage discount on our continuing education seminars and yearly conference
-— 10% off if you register, or send an associate or credentialed technician, to the VMRT postgraduate programme
+— 10% off if you register, or send an associate or credentialed technician, to the VMRT postgraduate program
 
 The certificate is where it starts, not where it stops.
 
@@ -23,11 +23,11 @@ healingoasis.edu/acupuncture`,
 }
 
 const BENEFITS = [
-  ['01', 'Unlimited consultations', 'With the programme director. Not a support window &mdash; unlimited, for as long as you want them.'],
+  ['01', 'Unlimited consultations', 'With the program director. Not a support window &mdash; unlimited, for as long as you want them.'],
   ['02', 'Listed as a graduate', 'Your name in the Find a Graduate / Alumni section, where people go looking.'],
-  ['03', 'The film library', 'Access to the VSMT alumni section, holding every technique and explanation film used during the programme.'],
+  ['03', 'The film library', 'Access to the VSMT alumni section, holding every technique and explanation film used during the program.'],
   ['04', 'Discounted CE', 'A percentage discount on our continuing education seminars and the yearly conference.'],
-  ['05', '10% off the VMRT programme', 'For you, or for an associate or credentialed veterinary technician you send.'],
+  ['05', '10% off the VMRT program', 'For you, or for an associate or credentialed veterinary technician you send.'],
 ]
 
 export default `

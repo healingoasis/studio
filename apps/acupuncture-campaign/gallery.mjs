@@ -50,7 +50,7 @@ writeFileSync(new URL('./review.html', import.meta.url), `<title>Acupuncture Cam
 </style>
 <div class="wrap">
   <header>
-    <h1>Veterinary Acupuncture<br>Enrolment campaign</h1>
+    <h1>Veterinary Acupuncture<br>Enrollment campaign</h1>
     <p class="sub">Twelve posts, 26 August to 14 September, closing two days before Module I opens. Every post is its own design &mdash; no layout repeats.
     Images are 1080&times;1350; the caption for each sits in the schedule file beside them in the feed folder.
     Every fact was checked against healingoasis.edu/acupuncture on 24 August 2026.</p>

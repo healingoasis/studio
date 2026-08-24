@@ -7,7 +7,7 @@ export const meta = {
   date: 'Monday, August 31',
   angle: 'A real lecture title as the hook',
   bg: C.paper,
-  caption: `That is an actual lecture title from this year's programme.
+  caption: `That is an actual lecture title from this year's program.
 
 Rob van Wessum — DVM, MS, DACVSMR, Equine All-Sports Medicine Center — on the cases that arrive looking unsalvageable, and what rehabilitation does with them anyway.
 
@@ -51,7 +51,7 @@ export default `
     </div>
 
     <div style="position:absolute; left:70px; right:70px; top:770px;">
-      <div style="font-size:16px; font-weight:800; letter-spacing:0.24em; text-transform:uppercase; color:${C.maroon};">Also on the programme</div>
+      <div style="font-size:16px; font-weight:800; letter-spacing:0.24em; text-transform:uppercase; color:${C.maroon};">Also on the program</div>
       <div style="margin-top:18px; display:flex; flex-direction:column;">
         ${[
           ['Brachial Plexus Injuries in Human &amp; Veterinary Patients', 'Stephanie Thomovsky, DVM, MS, DACVIM-Neurology'],

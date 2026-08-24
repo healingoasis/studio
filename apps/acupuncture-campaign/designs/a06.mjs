@@ -1,5 +1,5 @@
 // 06 — THE SPEC SHEET. Awareness post, written as a specification rather than
-// a pitch. Everything on it is quoted from the programme page; no claims are
+// a pitch. Everything on it is quoted from the program page; no claims are
 // made about what acupuncture does, only about how it is taught here.
 import { C, P, mark } from '../shell.mjs'
 
@@ -12,7 +12,7 @@ export const meta = {
 
 Built on the fundamentals consistent with the practice of acupuncture in the United States and with the National Certification Commission for Acupuncture and Oriental Medicine.
 
-132 hours of supervised training. Extensive hands-on clinical practicums. Two cases presented in SOAP format to the programme director for evaluation. Continuing Education contact hours through the AHVMA, an AVMA-HOD-recognised organisation.
+132 hours of supervised training. Extensive hands-on clinical practicums. Two cases presented in SOAP format to the program director for evaluation. Continuing Education contact hours through the AHVMA, an AVMA-HOD-recognized organization.
 
 Canine and equine. Twenty students maximum.
 
@@ -34,15 +34,15 @@ export default `
 
   <div style="position:absolute; top:318px; left:56px; right:56px;">
     <div style="font-size:17px; font-weight:800; letter-spacing:0.28em; text-transform:uppercase; color:${C.brass};">The standard</div>
-    <h1 style="margin-top:14px; font-family:'Bitter',Georgia,serif; font-weight:700; font-size:78px; line-height:0.94; letter-spacing:-0.032em; color:${C.ink};">Taught the way<br>it is practised</h1>
+    <h1 style="margin-top:14px; font-family:'Bitter',Georgia,serif; font-weight:700; font-size:78px; line-height:0.94; letter-spacing:-0.032em; color:${C.ink};">Taught the way<br>it is practiced</h1>
   </div>
 
   <div style="position:absolute; top:560px; left:56px; right:56px;">
     ${[
       ['Grounding', 'Built on the fundamentals consistent with the practice of acupuncture in the United States, and with the National Certification Commission for Acupuncture and Oriental Medicine.'],
       ['Training', '132 hours of supervised training across five modules, with extensive hands-on clinical practicums.'],
-      ['Assessment', 'Two cases presented in SOAP format to the programme director for evaluation during Module IV or V.'],
-      ['CE credit', 'Continuing Education contact hours provided by the AHVMA, an AVMA-HOD-recognised organisation.'],
+      ['Assessment', 'Two cases presented in SOAP format to the program director for evaluation during Module IV or V.'],
+      ['CE credit', 'Continuing Education contact hours provided by the AHVMA, an AVMA-HOD-recognized organization.'],
       ['Species', 'Canine and equine.'],
     ].map(spec).join('')}
   </div>

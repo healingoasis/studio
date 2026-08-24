@@ -24,7 +24,7 @@ export default `
   <div style="position:absolute; top:0; left:0; right:0; height:150px; background:${C.maroon}; padding:0 56px;
               display:flex; align-items:center; justify-content:space-between;">
     ${mark('light')}
-    <div style="text-align:right; font-size:14px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; line-height:1.55; color:rgba(245,236,223,0.82);">Veterinary Acupuncture<br>Certificate Programme</div>
+    <div style="text-align:right; font-size:14px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; line-height:1.55; color:rgba(245,236,223,0.82);">Veterinary Acupuncture<br>Certificate Program</div>
   </div>
 
   <div style="position:absolute; top:150px; left:0; right:0; padding:44px 56px 0;">

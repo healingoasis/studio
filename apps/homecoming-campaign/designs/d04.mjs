@@ -9,7 +9,7 @@ export const meta = {
   bg: C.maroon,
   caption: `Twenty.
 
-That is the maximum CE contact hours across the three days — approved through AAVSB-RACE (ID #20-139-5976), the American Holistic Veterinary Medical Association and the College of Animal Chiropractors, with reciprocity through the IVCA. Minnesota chiropractic licences carry separate approvals for the in-person and virtual-live formats.
+That is the maximum CE contact hours across the three days — approved through AAVSB-RACE (ID #20-139-5976), the American Holistic Veterinary Medical Association and the College of Animal Chiropractors, with reciprocity through the IVCA. Minnesota chiropractic licenses carry separate approvals for the in-person and virtual-live formats.
 
 The live stream earns the same credit as the seat in the room.
 

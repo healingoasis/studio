@@ -9,11 +9,11 @@ export const meta = {
   bg: C.deep,
   caption: `What the certificate is standing on.
 
-The programme is built on the fundamentals consistent with the practice of acupuncture in the United States and with the National Certification Commission for Acupuncture and Oriental Medicine.
+The program is built on the fundamentals consistent with the practice of acupuncture in the United States and with the National Certification Commission for Acupuncture and Oriental Medicine.
 
-Continuing Education contact hours are provided by the American Holistic Veterinary Medical Association, an AVMA-HOD-recognised organisation.
+Continuing Education contact hours are provided by the American Holistic Veterinary Medical Association, an AVMA-HOD-recognized organization.
 
-132 supervised hours. Two SOAP cases evaluated by the programme director. Twenty students maximum.
+132 supervised hours. Two SOAP cases evaluated by the program director. Twenty students maximum.
 
 healingoasis.edu/acupuncture`,
 }
@@ -43,7 +43,7 @@ export default `
   <div style="position:absolute; left:56px; right:56px; bottom:200px; display:grid; grid-template-columns:1fr 1fr; gap:18px;">
     ${[
       ['NCCAOM', 'Built on the fundamentals consistent with the practice of acupuncture in the United States and with the National Certification Commission for Acupuncture and Oriental Medicine.'],
-      ['AHVMA', 'Continuing Education contact hours provided by the American Holistic Veterinary Medical Association, an AVMA-HOD-recognised organisation.'],
+      ['AHVMA', 'Continuing Education contact hours provided by the American Holistic Veterinary Medical Association, an AVMA-HOD-recognized organization.'],
     ].map(([a, b]) => `
       <div style="border:2px solid rgba(168,123,46,0.55); border-radius:4px; padding:24px 24px 26px;">
         <div style="font-family:'Bitter',Georgia,serif; font-size:38px; font-weight:700; color:${C.brass}; line-height:1;">${a}</div>
@@ -52,7 +52,7 @@ export default `
   </div>
 
   <div style="position:absolute; left:56px; right:56px; bottom:126px; text-align:center; font-size:19px; font-weight:600; color:rgba(245,236,223,0.62);">
-    Two cases presented in SOAP format to the programme director for evaluation.
+    Two cases presented in SOAP format to the program director for evaluation.
   </div>
 
   <div style="position:absolute; left:0; right:0; bottom:0; height:96px; background:${C.cream}; padding:0 56px;

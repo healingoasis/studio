@@ -1,4 +1,4 @@
-// 04 — CANINE AND EQUINE. A hard diagonal, because the programme is genuinely
+// 04 — CANINE AND EQUINE. A hard diagonal, because the program is genuinely
 // two practices taught as one and a straight split would say the wrong thing.
 import { C, P, mark } from '../shell.mjs'
 
@@ -7,7 +7,7 @@ export const meta = {
   date: 'Tuesday, September 1',
   angle: 'Canine and equine, not one or the other',
   bg: C.night,
-  caption: `Canine and equine. Both, in the same programme.
+  caption: `Canine and equine. Both, in the same program.
 
 Not a small-animal course with a horse chapter bolted on. The point sits differently on a Doberman than on a Warmblood, and you learn both from people who work on both.
 

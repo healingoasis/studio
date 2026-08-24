@@ -29,7 +29,7 @@ export default `
       </div>
       <div style="font-size:15px; font-weight:800; letter-spacing:0.28em; text-transform:uppercase; color:rgba(245,236,223,0.92);">Healing Oasis Wellness Center</div>
     </div>
-    <div style="margin-top:14px; font-size:15px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:rgba(245,236,223,0.60);">Veterinary Acupuncture Certificate Programme</div>
+    <div style="margin-top:14px; font-size:15px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:rgba(245,236,223,0.60);">Veterinary Acupuncture Certificate Program</div>
   </div>
 
   <div style="position:absolute; left:0; right:0; top:430px; text-align:center; padding:0 64px;">

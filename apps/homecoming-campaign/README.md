@@ -49,3 +49,15 @@ track split.
 
 Google Drive: Marketing / Conference / 2026 / Conference Campaign 30 Day, via the
 Google Drive for Desktop synced folder. Same set in ConferenceMedia on the Mac.
+
+## Rebuilt as carousels (2026-08-24)
+
+Same research, same conclusion as the acupuncture campaign: carousels over single
+posters, six slides each, nothing below 34px so it reads on a phone.
+
+`carousel/` holds the current work: 8 carousels, 48 slides.
+`designs/` holds the superseded single posters, kept for reference.
+
+Carousel 02 is the lever — sixteen speakers, each named and pictured. Sent to the
+speakers to reshare, it is the only realistic route past the school's own reach.
+21 facts checked against the live site, all passing.

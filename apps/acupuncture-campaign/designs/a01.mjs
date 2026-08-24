@@ -5,7 +5,7 @@ import { C, P, mark } from '../shell.mjs'
 export const meta = {
   id: '01-opening',
   date: 'Wednesday, August 26',
-  angle: 'The programme exists — announcement',
+  angle: 'The program exists — announcement',
   bg: C.paper,
   caption: `We teach veterinary acupuncture.
 
@@ -31,7 +31,7 @@ export default `
 
     <h1 style="margin-top:20px; font-family:'Bitter',Georgia,serif; font-weight:900; font-size:112px; line-height:0.86; letter-spacing:-0.045em; color:${C.maroon};">Veterinary<br>Acupuncture</h1>
 
-    <p style="margin-top:28px; font-size:23px; line-height:1.45; font-weight:500; color:${C.ink}; max-width:500px;">A certificate programme in the fundamentals as they are practised in the United States &mdash; canine and equine, taught hands-on.</p>
+    <p style="margin-top:28px; font-size:23px; line-height:1.45; font-weight:500; color:${C.ink}; max-width:500px;">A certificate program in the fundamentals as they are practiced in the United States &mdash; canine and equine, taught hands-on.</p>
 
     <div style="margin-top:44px; display:flex; flex-direction:column; gap:0; max-width:500px;">
       ${[[P.hours, 'hours of supervised training'],

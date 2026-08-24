@@ -1,4 +1,4 @@
-// 11 — THE DISCOUNTS. Three percentages as three slabs of colour, stacked and
+// 11 — THE DISCOUNTS. Three percentages as three slabs of color, stacked and
 // bleeding off the edge. No photograph; the numbers are the picture.
 import { C } from '../shell.mjs'
 
@@ -50,7 +50,7 @@ export default `
              note: 'Active duty and veterans, fire, EMS and law enforcement',
              bg: C.maroon, ink: '#fff', sub: 'rgba(245,236,223,0.78)' })}
     ${slab({ pct: '15%', who: 'Healing Oasis alumni',
-             note: 'Graduates of any Healing Oasis certification programme',
+             note: 'Graduates of any Healing Oasis certification program',
              bg: C.ember, ink: '#fff', sub: 'rgba(255,255,255,0.86)' })}
     ${slab({ pct: '10%', who: 'Association members',
              note: 'Members in good standing &middot; official letter required',

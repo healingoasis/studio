@@ -1,5 +1,5 @@
 // 11 — WHAT IT COSTS. Money post. Two figures, stated plainly, on a field of
-// cream. Vagueness about price loses more enrolments than the price does.
+// cream. Vagueness about price loses more enrollments than the price does.
 import { C, P, mark } from '../shell.mjs'
 
 export const meta = {
@@ -13,7 +13,7 @@ $200 holds your seat. The balance is $7,900.24 by check — card payments carry 
 
 That covers 132 hours of supervised training across five modules, extensive hands-on clinical practicums, and no required additional externships, which means no extra travel and no extra weeks away from your practice on top of the five.
 
-Both enrolment options are on the programme page.
+Both enrollment options are on the program page.
 
 healingoasis.edu/acupuncture`,
 }
@@ -47,7 +47,7 @@ export default `
         ['132 hours', 'of supervised training, across five modules'],
         ['Hands-on practicums', 'three or four students to one faculty member'],
         ['No externships', 'no extra weeks away on top of the five'],
-        ['Canine and equine', 'both, in the same programme'],
+        ['Canine and equine', 'both, in the same program'],
       ].map(([a, b], i) => `
         <div style="display:flex; align-items:baseline; gap:20px; padding:15px 0; ${i ? 'border-top:1px solid rgba(92,1,1,0.14);' : ''}">
           <div style="width:280px; flex-shrink:0; font-size:23px; font-weight:800; color:${C.ink};">${a}</div>

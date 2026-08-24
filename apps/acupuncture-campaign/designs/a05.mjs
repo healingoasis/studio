@@ -11,7 +11,7 @@ export const meta = {
 
 Modules I, III and IV are Virtual-Live — Wednesday to Sunday, 8am to noon each day, from wherever you are. Modules II and V are face-to-face in Sturtevant, Wisconsin, and those are the long days with your hands on a patient.
 
-That is the whole programme: five modules, 132 supervised hours, no required externships.
+That is the whole program: five modules, 132 supervised hours, no required externships.
 
 healingoasis.edu/acupuncture`,
 }

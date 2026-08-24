@@ -9,7 +9,7 @@ export const meta = {
   bg: C.night,
   caption: `You cannot learn this from a book, and we do not ask you to.
 
-Extensive hands-on clinical practicums, with the ratio held to three or four students per faculty member. Twenty students maximum in the class. No required additional externships — the practicum is inside the programme, not bolted on after it.
+Extensive hands-on clinical practicums, with the ratio held to three or four students per faculty member. Twenty students maximum in the class. No required additional externships — the practicum is inside the program, not bolted on after it.
 
 Two face-to-face modules in Sturtevant, Wisconsin. Those are the long days.
 
