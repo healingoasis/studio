@@ -1,6 +1,6 @@
 ---
 name: portal prototypes
-status: shaping
+status: with-dan
 created: 2026-08-12
 ---
 
@@ -31,3 +31,9 @@ live.
 
 - 2026-08-12: idea captured; portal code extracted to github.com/healingoasis/portal
   (private, Daniel has push access, prototyping rules in that repo's AGENTS.md)
+- 2026-08-25: the enrollments portal now runs live on the Shopify store — Accounting
+  page, class and product folders, and every invented record removed. Three things
+  handed to Dan: durable storage for check tracking and academic records, the
+  `read_draft_orders` scope, and Firebase access for student documents. See
+  `docs/handoffs/2026-08-25-portal-storage-and-scopes.md`. Work is on the
+  `prototype/accounting` branch of the portal repo.
