@@ -61,3 +61,27 @@ posters, six slides each, nothing below 34px so it reads on a phone.
 Carousel 02 is the lever — sixteen speakers, each named and pictured. Sent to the
 speakers to reshare, it is the only realistic route past the school's own reach.
 21 facts checked against the live site, all passing.
+
+## Forty teaching cards (teach/)
+
+Single-image posts, added alongside the eight carousels. Each teaches one real
+idea from the conference program and credits the speaker who will teach it.
+
+Source: the official speaker synopses PDF on healingoasis.edu. That PDF uses
+embedded subset fonts, so ordinary text extraction returns glyph codes — the
+build note is that it needs a ToUnicode CMap decoder, which is why two earlier
+attempts at this document failed. The decoded text is kept as
+`teach/source-speaker-synopses.txt` and every claim is checked against it:
+39 automated checks, all passing.
+
+Six card shapes rotate — claim, question, correction, list of three, case
+narrative — across seven palettes, so no two consecutive cards look alike.
+Speaker headshots come from the school's own 2026 speaker cards. Nothing under
+34px.
+
+    node build.mjs      cards -> out/*.html
+    node gallery.mjs    -> review.html
+
+These are the highest-value posts in the conference set: they give something
+away for free, which is what earns a save, and each one points at a lecture
+somebody has to register to hear.
