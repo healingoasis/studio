@@ -119,7 +119,7 @@ export const render = (sl, th, i, total) => {
             <div style="width:100%;height:326px;overflow:hidden;border-radius:5px;background:${C.deep}">
               ${false
                 ? `<div style="width:100%;height:100%;background:${C.maroon};display:flex;align-items:center;justify-content:center"><span style="font-family:'Bitter',Georgia,serif;font-size:120px;font-weight:700;color:rgba(245,236,223,0.92)">AP</span></div>`
-                : `<img src="../../img/faculty/${f}.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 26%;display:block">`}
+                : `<img src="../../img/fac/${f}.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 26%;display:block">`}
             </div>
             <div style="margin-top:14px;font-size:${T.body - 2}px;font-weight:800;line-height:1.1;color:${th.ink};letter-spacing:-0.012em">${name}</div>
             <div style="margin-top:6px;font-size:${T.label}px;font-weight:600;line-height:1.2;color:${th.sub}">${note}</div>

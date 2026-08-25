@@ -39,23 +39,29 @@ const URL = 'healingoasis.edu — VMRT Program'
 
 export const CAROUSELS = [
   {
-    id: 'V01_second-chance', th: TH.deep, date: 'Wednesday, August 26',
-    angle: 'The animals — rescued, and teaching',
-    caption: `Every animal you will work on was given a second chance first.
+    id: 'V01_four-legged', th: TH.deep, date: 'Wednesday, August 26',
+    angle: 'The Four-Legged Faculty — they are named on the site',
+    caption: `Twelve of our faculty have four legs, and every one of them has a name.
 
-"All animals used during the hands-on lab have been given a second chance at life and come to us from abuse and neglect in return for their new lease on life. They help the student learn and understand the science, as well as the compassion, that we, as professionals, strive for."
+Tony. Jake. Kevin. Vito. Dunkin. Who. Dash. Breezy. Stitch. Bullseye. Maximus. Stella Jane and Hannah Sue.
 
-That is not a marketing line. It is on our program page, and it is the reason the hands-on here feels different from anywhere else.
+Dogs, horses and donkeys — a mixture of breed animals and rescues. They are on our faculty page alongside everyone else, because that is what they are. You will spend 142 supervised hours with them.
 
-Veterinary Massage & Rehabilitation Therapy. 142 hours. Fall 2026 and Spring 2027 both open.
+Fall 2026 and Spring 2027 are both open.
 healingoasis.edu`,
     slides: [
-      { kind: 'hook', big: 'They were<br>rescued first.', sub: 'Every animal in the hands-on lab.', size: 118 },
-      { kind: 'lead', kicker: 'From the VMRT program page', big: '&ldquo;Given a second chance at life, and they come to us from abuse and neglect in return for their new lease on life.&rdquo;', size: 62 },
-      { kind: 'lead', kicker: 'Which means', big: 'They are not<br>teaching aids', sub: 'They help the student learn the science, and the compassion.' },
-      { kind: 'stat', num: '142', unit: 'hours', sub: 'Of supervised instruction, and every hour of it alongside an animal that needed someone.' },
-      { kind: 'lead', kicker: 'You will not find this', big: 'In a textbook<br>or a webinar', sub: 'It is the difference between learning a technique and learning why it matters.' },
-      { kind: 'cta', big: 'Learn on the ones<br>who needed it most.', sub: 'Fall 2026 and Spring 2027 are both open.' },
+      { kind: 'hook', num: '12', big: 'of our faculty<br>have four legs', sub: 'And every one of them has a name.' },
+      { kind: 'quad', kicker: 'The Four-Legged Faculty', people: [
+        ['ff-tony','Tony',''], ['ff-jake','Jake',''], ['ff-kevin','Kevin',''], ['ff-vito','Vito',''],
+      ] },
+      { kind: 'quad', kicker: 'Also teaching', people: [
+        ['ff-dunkin','Dunkin',''], ['ff-who','Who',''], ['ff-dash','Dash',''], ['ff-breezy','Breezy',''],
+      ] },
+      { kind: 'quad', kicker: 'And the rest of the department', people: [
+        ['ff-stitch','Stitch',''], ['ff-bullseye','Bullseye',''], ['ff-maximus','Maximus',''], ['ff-stella-hannah','Stella Jane &amp; Hannah Sue',''],
+      ] },
+      { kind: 'lead', kicker: 'What you actually work on', big: 'A mixture of breed<br>animals and rescues', sub: 'Dogs, horses and donkeys — live patients, supervised throughout.', size: 76 },
+      { kind: 'cta', big: '142 hours<br>in their company.', sub: 'Fall 2026 and Spring 2027 are both open.' },
     ],
   },
   {
@@ -127,36 +133,51 @@ healingoasis.edu`,
   },
   {
     id: 'V05_the-faculty', th: TH.bone, date: 'Thursday, September 3',
-    angle: 'Who teaches it',
-    caption: `Eight people teach this program.
+    angle: 'Who teaches VMRT, taken from the faculty page',
+    caption: `Eleven people teach the VMRT program.
 
-Michelle J. Rivera — MT, VDT, CVMRT (Program Director)
-Pedro Luis Rivera — DVM, FACFN, DACVSMR, FCoAC (Program Director)
-Amber Ihrke — DVM, DACVSMR, CVA, CVPP, CCRT, CVSMT (Senior Faculty)
-Rosemary LoGiudice — DVM, DACVSMR, CVA, CCRT, CVSMT, FCoAC (Senior Faculty)
-Deanne Zenoni — DVM, CVA, CSMT, CVMRT (Senior Faculty)
-Julia Tomlinson — DVM, DACVS, DACVSMR, CVSMT
-Teresa Calvert — DVM, CVSMT, CMRT
-Andris Kaneps — DVM, PhD, DACVS, DACVSMR (guest faculty speaker)
+PROGRAM DIRECTORS
+Michelle J. Rivera — MT, VDT
+Pedro Luis Rivera — DVM, FACFN, DACVSMR, FCoAC
 
-Supervised hands-on under board-certified experts, residents and faculty.
+SENIOR FACULTY FOR VMRT
+Amber Ihrke — DVM, DACVSMR, CVSMT
+Rosemary LoGiudice — DVM, DACVSMR, CVSMT
+Deanne Zenoni — DVM, CVSMT, CVMRT
+
+FACULTY
+Julia Tomlinson — BVSc, MS, PhD, DACVS, DACVSMR, CVSMT
+Teresa Calvert — DVM, CVSMT, CVMRT
+
+ADJUNCT FACULTY
+Andris Kaneps — DVM, MS, PhD, DACVS, DACVSMR
+Douglas Gould — PhD
+Gregory Cramer — DC, PhD
+Stephanie Thomovsky — DVM, MS, DACVIM-Neurology
+
+All hands-on is supervised by board-certified experts, residents and faculty.
 healingoasis.edu`,
     slides: [
-      { kind: 'hook', num: '8', big: 'people<br>teach this', sub: 'Board-certified experts, residents and senior faculty.' },
+      { kind: 'hook', num: '11', big: 'people teach<br>this program', sub: 'Directors, senior faculty, faculty and adjuncts.' },
       { kind: 'quad', kicker: 'Program directors and senior faculty', people: [
-        ['michelle', 'Michelle J. Rivera', 'Program Director'],
-        ['16_Pedro_Luis_Rivera', 'Pedro Luis Rivera', 'Program Director'],
-        ['05_Amber_Ihrke', 'Amber Ihrke', 'Senior Faculty'],
-        ['07_Rosemary_LoGiudice', 'Rosemary LoGiudice', 'Senior Faculty'],
+        ['michelle','Michelle J. Rivera','Program Director'],
+        ['pedro','Pedro Luis Rivera','Program Director'],
+        ['ihrke','Amber Ihrke','Senior Faculty'],
+        ['zenoni','Deanne Zenoni','Senior Faculty'],
       ] },
-      { kind: 'steps', kicker: 'And also teaching', items: [
-        { n: '→', t: 'Deanne Zenoni', d: 'DVM, CVA, CSMT, CVMRT · Senior Faculty' },
-        { n: '→', t: 'Julia Tomlinson', d: 'DVM, DACVS, DACVSMR, CVSMT' },
-        { n: '→', t: 'Teresa Calvert', d: 'DVM, CVSMT, CMRT' },
+      { kind: 'quad', kicker: 'Senior faculty and faculty', people: [
+        ['logiudice','Rosemary LoGiudice','Senior Faculty'],
+        ['tomlinson','Julia Tomlinson','Faculty · BVSc, PhD'],
+        ['calvert','Teresa Calvert','Faculty · DVM'],
+        ['kaneps','Andris Kaneps','Adjunct faculty'],
       ] },
-      { kind: 'lead', kicker: 'Guest faculty', big: 'Andris Kaneps', sub: 'DVM, PhD, DACVS, DACVSMR.', size: 96 },
+      { kind: 'quad', kicker: 'Adjunct faculty', people: [
+        ['gould','Douglas Gould','Adjunct · PhD'],
+        ['cramer','Gregory Cramer','Adjunct · DC, PhD'],
+        ['thomovsky','Stephanie Thomovsky','Adjunct · Neurology'],
+      ] },
       { kind: 'lead', kicker: 'All hands-on is', big: 'Supervised by<br>board-certified<br>experts', sub: 'Plus residents and outstanding faculty. Extensively, and throughout.', size: 76 },
-      { kind: 'cta', big: 'Eight of them.<br>A small class.', sub: 'Fall 2026 and Spring 2027 are both open.' },
+      { kind: 'cta', big: 'Eleven of them.<br>A small class.', sub: 'Fall 2026 and Spring 2027 are both open.' },
     ],
   },
   {
@@ -304,7 +325,7 @@ healingoasis.edu`,
     angle: 'Closing — both doors, and how to walk through',
     caption: `Veterinary Massage & Rehabilitation Therapy.
 
-142 hours of supervised instruction. Four modules, Thursday to Sunday. Dogs, horses, or both — decided by the students in the room. Taught on animals that were rescued first.
+142 hours of supervised instruction. Four modules, Thursday to Sunday. Dogs, horses, or both — decided by the students in the room. All of it hands-on, on live animals, supervised throughout.
 
 Open to licensed veterinarians, veterinary technicians, physical therapists, nurses, massage therapists and any other licensed healthcare professional.
 
@@ -315,7 +336,7 @@ info@healingoasis.edu · 262-898-1680 · healingoasis.edu`,
       { kind: 'hook', big: 'Veterinary<br>Massage &amp;<br>Rehabilitation<br>Therapy', sub: 'Postgraduate. State-approved. 142 hours.', size: 86 },
       { kind: 'stat', num: '142', unit: 'hours', sub: 'Four modules, Thursday 8:00 AM to Sunday 1:00 PM.' },
       { kind: 'lead', kicker: 'Open to', big: 'More people<br>than you think', sub: 'Vets, technicians, physical therapists, nurses, massage therapists — any licensed healthcare professional.', size: 88 },
-      { kind: 'lead', kicker: 'Taught on', big: 'Animals who<br>were rescued<br>first', sub: 'A second chance at life, in return for a new lease on it.', size: 84 },
+      { kind: 'lead', kicker: 'Taught on', big: 'Live animals,<br>supervised', sub: 'A mixture of breed dogs and rescued animals, never worked on unsupervised.', size: 88 },
       { kind: 'stat', num: '$200', unit: 'holds a place', sub: 'Tuition is $6,189 for the whole program.' },
       { kind: 'cta', big: 'Two classes.<br>Both open.', sub: 'info@healingoasis.edu · 262-898-1680', foot: 'Fall 2026 · Spring 2027 · Sturtevant, Wisconsin' },
     ],
