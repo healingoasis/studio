@@ -1,0 +1,76 @@
+[
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VMRT/IMG_5304.MOV",
+  "in": 2.0,
+  "dur": 2.6,
+  "overlay": "cards/hook.png"
+ },
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VMRT/IMG_5310.MOV",
+  "in": 3.4,
+  "dur": 1.2
+ },
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VSMT /IMG_5366.MOV",
+  "in": 2.2,
+  "dur": 1.2
+ },
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VSMT /IMG_8723.MOV",
+  "in": 3.2,
+  "dur": 1.2
+ },
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VSMT /IMG_7110.MOV",
+  "in": 2.2,
+  "dur": 1.6,
+  "overlay": "cards/still.png"
+ },
+ {
+  "dur": 2.5,
+  "hold": true,
+  "overlay": "cards/reveal.png"
+ },
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VSMT /IMG_4782.MOV",
+  "in": 4.0,
+  "dur": 2.0,
+  "overlay": "cards/hands.png"
+ },
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VSMT /IMG_8800.MOV",
+  "in": 4.2,
+  "dur": 2.2,
+  "overlay": "cards/stand.png"
+ },
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VSMT /IMG_7528.MOV",
+  "in": 6.0,
+  "dur": 1.7
+ },
+ {
+  "dur": 3.0,
+  "hold": true,
+  "overlay": "cards/uses.png"
+ },
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VSMT /IMG_5795.MOV",
+  "in": 3.0,
+  "dur": 1.5
+ },
+ {
+  "file": "/Users/danielrivera/Documents/Claude/Photos:videos/VSMT /IMG_7095.MOV",
+  "in": 1.4,
+  "dur": 1.4
+ },
+ {
+  "dur": 3.0,
+  "hold": true,
+  "overlay": "cards/specs.png"
+ },
+ {
+  "dur": 2.4,
+  "hold": true,
+  "overlay": "cards/cta.png"
+ }
+]

@@ -1,0 +1,1684 @@
+<title>Namaste Equine Rescue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+/* ============================================================
+   Namaste Equine Rescue — site concept
+   Cold lavender ground so the horses supply all the warmth.
+   Their own orchid violet is the only accent.
+   ============================================================ */
+:root{
+  --ground:#EFEDF2; --ground-deep:#E4E1EA; --surface:#FFFFFF; --surface-2:#F7F5FA;
+  --ink:#16131B; --ink-soft:#3A3444; --muted:#6A6474; --faint:#8D8799;
+  --rule:#D2CCDC; --rule-soft:#E3DFEA;
+  --accent:#6E2A93; --accent-bright:#B14FD8; --accent-wash:#F3EAF8; --on-accent:#FFFFFF;
+  --invert-bg:#16131B; --invert-fg:#F3F1F6; --invert-soft:rgba(243,241,246,.72);
+  --invert-rule:rgba(243,241,246,.16); --invert-accent:#C77BE6;
+  --shadow:0 1px 2px rgba(22,19,27,.05),0 14px 40px rgba(22,19,27,.07);
+  --shadow-lift:0 2px 4px rgba(22,19,27,.06),0 24px 60px rgba(22,19,27,.12);
+  --display:"Newsreader",Georgia,"Iowan Old Style","Times New Roman",Times,serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",SFMono-Regular,"Cascadia Mono",Menlo,Consolas,monospace;
+  --pad:clamp(20px,5vw,72px); --gap:clamp(28px,4vw,56px);
+  --sec:clamp(64px,9vw,132px);
+  --head-h:132px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#121017; --ground-deep:#0C0A11; --surface:#1A1721; --surface-2:#211D2A;
+    --ink:#ECE8F2; --ink-soft:#CFC8DC; --muted:#9A93A8; --faint:#7E7789;
+    --rule:#2E2939; --rule-soft:#241F2E;
+    --accent:#C77BE6; --accent-bright:#D79BF0; --accent-wash:#221A2C; --on-accent:#17111D;
+    --invert-bg:#ECE8F2; --invert-fg:#16131B; --invert-soft:#4A4256;
+    --invert-rule:rgba(22,19,27,.14); --invert-accent:#6E2A93;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 40px rgba(0,0,0,.45);
+    --shadow-lift:0 2px 6px rgba(0,0,0,.55),0 26px 64px rgba(0,0,0,.55);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#121017; --ground-deep:#0C0A11; --surface:#1A1721; --surface-2:#211D2A;
+  --ink:#ECE8F2; --ink-soft:#CFC8DC; --muted:#9A93A8; --faint:#7E7789;
+  --rule:#2E2939; --rule-soft:#241F2E;
+  --accent:#C77BE6; --accent-bright:#D79BF0; --accent-wash:#221A2C; --on-accent:#17111D;
+  --invert-bg:#ECE8F2; --invert-fg:#16131B; --invert-soft:#4A4256;
+  --invert-rule:rgba(22,19,27,.14); --invert-accent:#6E2A93;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 40px rgba(0,0,0,.45);
+  --shadow-lift:0 2px 6px rgba(0,0,0,.55),0 26px 64px rgba(0,0,0,.55);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--accent);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent-bright);outline-offset:3px;border-radius:3px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--pad)}
+.narrow{max-width:760px}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin:0}
+.lede{font-size:clamp(19px,2.1vw,23px);line-height:1.55;color:var(--ink-soft)}
+.dim{color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- concept notice ---------- */
+.notice{background:var(--invert-bg);color:var(--invert-soft);font-family:var(--mono);
+  font-size:11px;letter-spacing:.13em;text-transform:uppercase;text-align:center;
+  padding:9px 16px;position:relative;z-index:60}
+.notice a{color:var(--invert-accent);text-decoration:underline}
+
+/* ---------- header ---------- */
+.site-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--ground) 84%,transparent);
+  backdrop-filter:saturate(1.6) blur(14px);-webkit-backdrop-filter:saturate(1.6) blur(14px);
+  border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.site-header.stuck{border-bottom-color:var(--rule);box-shadow:0 1px 20px rgba(22,19,27,.05)}
+.header-in{display:flex;align-items:center;gap:24px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:inherit;flex:0 0 auto}
+.brand img{width:46px;height:46px;border-radius:50%;background:var(--surface);padding:3px;
+  box-shadow:0 0 0 1px var(--rule-soft)}
+.brand-name{display:block;font-family:var(--display);font-size:20px;line-height:1.1;letter-spacing:-.015em}
+.brand-sub{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--muted);margin-top:3px}
+.nav{margin-left:auto;display:flex;align-items:center;gap:2px}
+.nav a{position:relative;text-decoration:none;color:var(--ink-soft);font-size:14px;
+  padding:9px 10px;border-radius:7px;transition:color .18s,background .18s;white-space:nowrap}
+.nav a:hover{color:var(--ink);background:var(--surface-2)}
+.nav a.on{color:var(--accent)}
+.nav-donate{display:none}
+.nav a.on::after{content:"";position:absolute;left:10px;right:10px;bottom:3px;height:2px;
+  background:var(--accent);border-radius:2px}
+.header-tools{display:flex;align-items:center;gap:8px;margin-left:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid transparent;
+  border-radius:9px;padding:11px 20px;font-size:14.5px;font-weight:500;text-decoration:none;
+  cursor:pointer;transition:transform .16s,background .18s,border-color .18s,box-shadow .18s;
+  background:none}
+.btn:active{transform:translateY(1px)}
+.btn-solid{background:var(--accent);color:var(--on-accent);box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 28%,transparent)}
+.btn-solid:hover{background:var(--accent-bright);box-shadow:0 8px 24px color-mix(in srgb,var(--accent) 36%,transparent)}
+.btn-line{border-color:var(--rule);color:var(--ink);background:var(--surface)}
+.btn-line:hover{border-color:var(--accent);color:var(--accent)}
+.btn-ghost{color:var(--ink-soft);padding:11px 14px}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-lg{padding:15px 28px;font-size:16px}
+.btn-wide{width:100%}
+.cart-btn{position:relative;border:1px solid var(--rule);background:var(--surface);border-radius:9px;
+  width:42px;height:42px;display:grid;place-items:center;cursor:pointer;transition:border-color .18s}
+.cart-btn:hover{border-color:var(--accent)}
+.cart-count{position:absolute;top:-7px;right:-7px;min-width:19px;height:19px;padding:0 5px;
+  border-radius:10px;background:var(--accent);color:var(--on-accent);font-family:var(--mono);
+  font-size:10.5px;font-weight:600;display:none;place-items:center;line-height:19px}
+.cart-count.show{display:grid}
+.burger{display:none;border:1px solid var(--rule);background:var(--surface);border-radius:9px;
+  width:42px;height:42px;place-items:center;cursor:pointer}
+@media(max-width:1080px){
+  .nav{position:fixed;inset:0 0 auto;top:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--ground);padding:96px var(--pad) 36px;transform:translateY(-102%);
+    transition:transform .38s cubic-bezier(.4,0,.2,1);z-index:45;border-bottom:1px solid var(--rule);
+    box-shadow:var(--shadow-lift);max-height:100vh;overflow-y:auto}
+  .nav.open{transform:translateY(0)}
+  .nav a{padding:15px 4px;font-size:19px;font-family:var(--display);border-bottom:1px solid var(--rule-soft);
+    border-radius:0}
+  .nav a.on::after{display:none}
+  .burger{display:grid}
+  .header-tools{margin-left:auto}
+}
+@media(max-width:1080px){ .nav-donate{display:block;color:var(--accent)} }
+@media(max-width:620px){
+  .header-tools > .btn-solid{display:none}   /* lives in the menu instead */
+  .header-tools{gap:6px}
+}
+@media(max-width:520px){ .brand-name{font-size:17px} .brand img{width:40px;height:40px}
+  .brand{gap:10px} .header-in{gap:12px} }
+
+/* ---------- router pages ---------- */
+.page{display:none}
+.page.live{display:block;animation:rise .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv,.rv.in{opacity:1;transform:none;transition:none}
+  .page.live{animation:none}
+  *{scroll-behavior:auto!important}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(84vh,760px);display:flex;align-items:flex-end;
+  overflow:hidden;background:var(--invert-bg)}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 42%}
+.hero-veil{position:absolute;inset:0;background:
+  linear-gradient(100deg,rgba(12,10,17,.90) 0%,rgba(12,10,17,.72) 42%,rgba(12,10,17,.28) 76%,rgba(12,10,17,.42) 100%)}
+.hero-in{position:relative;padding-block:clamp(56px,10vw,110px);max-width:900px}
+.hero h1{color:#fff;font-size:clamp(40px,7.4vw,86px);line-height:1.02;margin:20px 0 0;letter-spacing:-.025em}
+.hero h1 em{font-style:italic;color:var(--accent-bright)}
+.hero .eyebrow{color:rgba(255,255,255,.66)}
+.hero p{color:rgba(255,255,255,.9);font-size:clamp(17px,1.85vw,21px);max-width:60ch;margin-top:26px;line-height:1.55}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero .btn-line{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.32);color:#fff}
+.hero .btn-line:hover{background:rgba(255,255,255,.14);border-color:#fff;color:#fff}
+.hero-solid{background:#fff;color:#16131B;box-shadow:none}
+.hero-solid:hover{background:var(--accent-bright);color:#fff}
+.btn-invert{background:var(--invert-fg);color:var(--invert-bg);box-shadow:none}
+.btn-invert:hover{background:var(--invert-accent);color:var(--invert-fg)}
+.credit{position:absolute;right:12px;bottom:10px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.1em;color:rgba(255,255,255,.42);text-transform:uppercase}
+
+/* ---------- page head (inner pages) ---------- */
+.phead{padding-block:clamp(48px,7vw,92px) clamp(30px,4vw,44px);border-bottom:1px solid var(--rule);
+  background:var(--ground-deep)}
+.phead h1{font-size:clamp(34px,5.4vw,62px);line-height:1.05;margin-top:16px;max-width:20ch}
+.phead p{margin-top:20px;max-width:62ch}
+
+/* ---------- sections ---------- */
+.sec{padding-block:var(--sec)}
+.sec-tight{padding-block:clamp(44px,6vw,80px)}
+.sec-head{max-width:70ch;margin-bottom:clamp(34px,4.5vw,58px)}
+.sec-head h2{font-size:clamp(28px,4.2vw,48px);line-height:1.1;margin-top:14px}
+.sec-head p{margin-top:18px}
+.rule{height:1px;background:var(--rule);border:0;margin:0}
+
+/* ---------- inverted band ---------- */
+.band{background:var(--invert-bg);color:var(--invert-fg)}
+.band .eyebrow{color:var(--invert-accent)}
+.band h2{color:var(--invert-fg)}
+.band p{color:var(--invert-soft)}
+.zero{text-align:center;padding-block:clamp(64px,9vw,120px)}
+.zero-num{font-family:var(--display);font-size:clamp(88px,22vw,240px);line-height:.95;
+  color:var(--invert-fg);letter-spacing:-.05em;margin-top:20px}
+.zero h2{font-size:clamp(24px,3.6vw,40px);margin-top:26px}
+.zero p{max-width:56ch;margin:20px auto 0}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.stat{background:var(--surface);padding:28px 26px}
+.stat-n{font-family:var(--display);font-size:clamp(34px,4.6vw,52px);line-height:1;letter-spacing:-.03em}
+.stat-n small{font-size:.44em;letter-spacing:0;color:var(--muted);margin-left:4px;font-family:var(--mono)}
+.stat-l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:12px}
+
+/* ---------- case file cards ---------- */
+.files{display:grid;gap:clamp(20px,2.6vw,30px)}
+.file{background:var(--surface);border:1px solid var(--rule);border-radius:16px;overflow:hidden;
+  display:grid;grid-template-columns:minmax(0,7fr) minmax(0,9fr);transition:box-shadow .3s,transform .3s}
+.file:hover{box-shadow:var(--shadow-lift)}
+.file.flip{grid-template-columns:minmax(0,9fr) minmax(0,7fr)}
+.file.flip .file-media{order:2}
+.file-media{position:relative;min-height:300px;background:var(--ground-deep)}
+.file-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.nophoto{position:absolute;inset:0;display:grid;place-content:center;gap:10px;text-align:center;
+  padding:24px;background:
+   repeating-linear-gradient(45deg,var(--ground-deep) 0 10px,var(--surface-2) 10px 20px)}
+.nophoto span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.file-body{padding:clamp(26px,3.2vw,42px)}
+.file-body h3{font-size:clamp(26px,3.2vw,36px);margin-top:12px;line-height:1.08}
+.file-body .quote{margin-top:20px;font-family:var(--display);font-style:italic;font-size:19px;
+  line-height:1.5;color:var(--ink-soft);border-left:2px solid var(--accent);padding-left:18px}
+.fields{margin-top:26px;border-top:1px solid var(--rule-soft)}
+.field{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:11px 0;
+  border-bottom:1px solid var(--rule-soft);font-size:15px;align-items:baseline}
+.field dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--faint);margin:0}
+.field dd{margin:0;color:var(--ink-soft)}
+.field dd b{font-weight:600;color:var(--ink)}
+@media(max-width:860px){
+  .file,.file.flip{grid-template-columns:1fr}
+  .file.flip .file-media{order:0}
+  .file-media{min-height:250px}
+  .field{grid-template-columns:1fr;gap:2px}
+}
+
+/* ---------- steps / requirements ---------- */
+.steps{counter-reset:s;display:grid;gap:2px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:14px;overflow:hidden}
+.step{background:var(--surface);padding:26px clamp(22px,2.6vw,34px);display:grid;
+  grid-template-columns:52px 1fr;gap:20px;align-items:start}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--mono);
+  font-size:12px;letter-spacing:.1em;color:var(--accent);padding-top:5px}
+.step h4{font-size:19px;font-family:var(--sans);font-weight:600;letter-spacing:0}
+.step p{margin-top:8px;color:var(--ink-soft);font-size:15.5px}
+@media(max-width:600px){.step{grid-template-columns:1fr;gap:6px}}
+
+.checks{display:grid;gap:14px;margin:0;padding:0;list-style:none}
+.checks li{display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:start;
+  font-size:16px;color:var(--ink-soft)}
+.checks svg{width:22px;height:22px;margin-top:3px;flex:0 0 auto;color:var(--accent)}
+.cols2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(24px,3.4vw,52px)}
+.cols3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(22px,2.8vw,34px)}
+
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:16px;
+  padding:clamp(26px,3.2vw,40px)}
+.panel h3{font-size:23px;margin-bottom:14px}
+.panel-accent{background:var(--accent-wash);border-color:color-mix(in srgb,var(--accent) 26%,transparent)}
+.panel-dark{background:var(--invert-bg);color:var(--invert-fg);border-color:transparent}
+.panel-dark h3{color:var(--invert-fg)} .panel-dark p{color:var(--invert-soft)}
+
+.note{font-family:var(--mono);font-size:12.5px;line-height:1.65;letter-spacing:.02em;
+  color:var(--muted);border-left:2px solid var(--rule);padding-left:16px}
+
+/* ---------- footer ---------- */
+.site-footer{background:var(--invert-bg);color:var(--invert-soft);padding-block:clamp(52px,7vw,88px) 34px;margin-top:0}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));
+  gap:clamp(28px,4vw,52px);align-items:start}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
+.site-footer h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--invert-fg);margin-bottom:16px;font-weight:400}
+.site-footer a{color:var(--invert-soft);text-decoration:none;display:block;padding:5px 0;font-size:15px}
+.site-footer a:hover{color:var(--invert-accent)}
+.foot-brand{font-family:var(--display);font-size:22px;color:var(--invert-fg);line-height:1.2}
+.foot-addr{font-style:normal;font-size:15px;line-height:1.9;margin-top:14px}
+.foot-addr a{display:inline}
+.foot-bottom{margin-top:clamp(40px,5vw,64px);padding-top:26px;border-top:1px solid var(--invert-rule);
+  display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+.foot-bottom p{color:rgba(243,241,246,.5)}
+</style>
+<style>
+/* ============================================================
+   Shop
+   ============================================================ */
+.promise{background:var(--accent-wash);border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);
+  border-radius:16px;padding:clamp(24px,3vw,36px);display:grid;grid-template-columns:auto 1fr;
+  gap:22px;align-items:center}
+.promise svg{width:44px;height:44px;color:var(--accent);flex:0 0 auto}
+.promise h3{font-size:clamp(21px,2.6vw,28px);line-height:1.2}
+.promise p{margin-top:8px;color:var(--ink-soft);font-size:15.5px}
+@media(max-width:560px){.promise{grid-template-columns:1fr}}
+
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  gap:clamp(20px,2.6vw,32px)}
+.product{background:var(--surface);border:1px solid var(--rule);border-radius:18px;overflow:hidden;
+  display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s,border-color .3s}
+.product:hover{box-shadow:var(--shadow-lift);transform:translateY(-3px);border-color:var(--rule)}
+.product.wide{grid-column:span 2}
+@media(max-width:760px){.product.wide{grid-column:span 1}}
+.garment{position:relative;aspect-ratio:4/3.4;display:grid;place-items:center;padding:22px;
+  overflow:hidden;background:radial-gradient(120% 100% at 50% 8%,var(--surface-2) 0%,var(--ground-deep) 100%)}
+.g-svg{filter:drop-shadow(0 12px 22px rgba(0,0,0,.34))}
+.garment svg{width:100%;height:100%;overflow:visible}
+.product.wide .garment{aspect-ratio:16/9}
+.tag{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;background:var(--invert-bg);color:var(--invert-fg);
+  padding:6px 10px;border-radius:20px;z-index:2}
+.tag-alt{background:var(--accent);color:var(--on-accent)}
+.p-body{padding:24px clamp(20px,2.4vw,28px) 26px;display:flex;flex-direction:column;flex:1}
+.p-head{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.p-body h3{font-size:22px;line-height:1.15}
+.price{font-family:var(--mono);font-size:16px;font-weight:600;white-space:nowrap}
+.p-desc{margin-top:12px;font-size:15px;color:var(--ink-soft);line-height:1.6}
+.p-meta{margin-top:16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);line-height:1.9}
+.opts{margin-top:20px;display:grid;gap:14px}
+.opt-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.opt-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);width:100%;margin-bottom:-4px}
+.pill{border:1px solid var(--rule);background:var(--surface);border-radius:8px;padding:7px 13px;
+  font-family:var(--mono);font-size:12px;cursor:pointer;transition:all .16s;color:var(--ink-soft)}
+.pill:hover{border-color:var(--accent)}
+.pill[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.sw{width:28px;height:28px;border-radius:50%;border:1px solid var(--rule);cursor:pointer;
+  padding:0;position:relative;transition:transform .16s}
+.sw:hover{transform:scale(1.1)}
+.sw[aria-pressed="true"]::after{content:"";position:absolute;inset:-5px;border-radius:50%;
+  border:1.5px solid var(--accent)}
+.p-foot{margin-top:auto;padding-top:22px}
+.added{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);text-align:center;margin-top:10px;height:14px;opacity:0;transition:opacity .3s}
+.added.on{opacity:1}
+
+/* ---------- cart drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(12,10,17,.5);opacity:0;pointer-events:none;
+  transition:opacity .34s;z-index:70;backdrop-filter:blur(2px)}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100vw);background:var(--ground);
+  z-index:71;transform:translateX(101%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;box-shadow:var(--shadow-lift)}
+.drawer.on{transform:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:22px var(--pad) 18px;
+  border-bottom:1px solid var(--rule)}
+.drawer-head h3{font-size:21px}
+.icon-btn{border:none;background:none;cursor:pointer;width:36px;height:36px;display:grid;
+  place-items:center;border-radius:8px;color:var(--muted)}
+.icon-btn:hover{background:var(--surface-2);color:var(--ink)}
+.drawer-body{flex:1;overflow-y:auto;padding:8px var(--pad)}
+.empty{text-align:center;padding:64px 0;color:var(--muted)}
+.empty svg{width:44px;height:44px;margin:0 auto 18px;color:var(--rule)}
+.line{display:grid;grid-template-columns:64px 1fr auto;gap:16px;padding:20px 0;
+  border-bottom:1px solid var(--rule-soft);align-items:start}
+.line-thumb{width:64px;height:64px;border-radius:10px;background:var(--ground-deep);display:grid;
+  place-items:center;overflow:hidden;padding:6px}
+.line-thumb svg{width:100%;height:100%}
+.line h4{font-family:var(--sans);font-size:15px;font-weight:600;line-height:1.3}
+.line-opt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);margin-top:5px}
+.qty{display:inline-flex;align-items:center;gap:2px;margin-top:10px;border:1px solid var(--rule);
+  border-radius:7px;overflow:hidden}
+.qty button{width:26px;height:26px;border:none;background:var(--surface);cursor:pointer;
+  color:var(--muted);font-size:15px;line-height:1}
+.qty button:hover{background:var(--surface-2);color:var(--ink)}
+.qty span{font-family:var(--mono);font-size:12px;min-width:26px;text-align:center}
+.line-price{font-family:var(--mono);font-size:14px}
+.drawer-foot{border-top:1px solid var(--rule);padding:22px var(--pad) 26px;background:var(--surface)}
+.total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;font-size:15px}
+.total-row.big{font-family:var(--display);font-size:22px;margin-top:14px;padding-top:14px;
+  border-top:1px solid var(--rule-soft)}
+.total-row .dim{font-size:14px}
+.drawer-note{font-family:var(--mono);font-size:10.5px;line-height:1.7;letter-spacing:.04em;
+  color:var(--muted);margin-top:14px;text-align:center}
+
+/* ---------- concept modal ---------- */
+.modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:24px;
+  opacity:0;pointer-events:none;transition:opacity .3s}
+.modal.on{opacity:1;pointer-events:auto}
+.modal-card{background:var(--surface);border-radius:20px;max-width:460px;width:100%;
+  padding:clamp(30px,4vw,44px);text-align:center;box-shadow:var(--shadow-lift);
+  transform:scale(.94);transition:transform .34s cubic-bezier(.16,1,.3,1)}
+.modal.on .modal-card{transform:none}
+.modal-card svg{width:48px;height:48px;color:var(--accent);margin:0 auto 20px}
+.modal-card h3{font-size:26px;line-height:1.2}
+.modal-card p{margin-top:14px;color:var(--ink-soft);font-size:15.5px}
+.modal-card .btn{margin-top:26px}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,4vw,60px)}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+.cinfo{display:grid;gap:26px}
+.cinfo-item{display:grid;grid-template-columns:26px 1fr;gap:16px;align-items:start}
+.cinfo-item svg{width:22px;height:22px;color:var(--accent);margin-top:4px}
+.cinfo-item h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--faint);font-weight:400}
+.cinfo-item p,.cinfo-item a{font-size:17px;color:var(--ink);margin-top:5px;text-decoration:none;display:block}
+.cinfo-item a:hover{color:var(--accent)}
+.field-in{width:100%;border:1px solid var(--rule);background:var(--surface);border-radius:10px;
+  padding:13px 15px;font:inherit;font-size:15.5px;color:var(--ink);margin-top:7px}
+.field-in:focus{border-color:var(--accent);outline:none}
+.form-row{margin-bottom:18px}
+.form-row label{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint)}
+textarea.field-in{min-height:130px;resize:vertical}
+
+/* ---------- misc ---------- */
+.pull{font-family:var(--display);font-size:clamp(24px,3.4vw,38px);line-height:1.28;
+  color:var(--ink);max-width:22ch}
+.mark{background:linear-gradient(transparent 62%,var(--accent-wash) 62%)}
+.photo-wide{border-radius:18px;overflow:hidden;border:1px solid var(--rule);aspect-ratio:16/7}
+.photo-wide img{width:100%;height:100%;object-fit:cover}
+.hr-sec{height:1px;background:var(--rule);border:0}
+.faq{border-top:1px solid var(--rule)}
+.faq details{border-bottom:1px solid var(--rule)}
+.faq summary{padding:22px 0;cursor:pointer;font-family:var(--display);font-size:20px;
+  list-style:none;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);font-size:20px;color:var(--accent);flex:0 0 auto}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding-bottom:24px;color:var(--ink-soft);max-width:70ch}
+</style>
+<svg class="sr" aria-hidden="true"><defs>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2.5l2.2 12.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L21 7H6"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.1 5.1 0 0 0-7.2 0L12 7.2l-1.6-1.6a5.1 5.1 0 0 0-7.2 7.2l1.6 1.6L12 21.6l7.2-7.2 1.6-1.6a5.1 5.1 0 0 0 0-7.2z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.6 2.8a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.8 2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.5 2"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4 5.8v6c0 5 3.4 9.6 8 10.7 4.6-1.1 8-5.7 8-10.7v-6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></symbol>
+<symbol id="i-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m8.2 14.2-1.4 7L12 18.6l5.2 2.6-1.4-7"/></symbol>
+</defs></svg>
+
+<div class="notice">
+  Design concept for review — not the official site. The real one lives at
+  <a href="https://namasteequinerescue.org/" target="_blank" rel="noopener">namasteequinerescue.org</a>
+</div>
+
+<header class="site-header" id="hdr">
+  <div class="wrap header-in">
+    <a class="brand" href="#/" data-nav>
+      <img src="data:image/png;base64,{{LOGO}}" alt="Namaste Equine Rescue logo: a horse's head over a violet flame">
+      <span>
+        <span class="brand-name">Namaste Equine Rescue</span>
+        <span class="brand-sub">Union Grove, Wisconsin</span>
+      </span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#/about" data-nav>About</a>
+      <a href="#/horses" data-nav>Our Horses</a>
+      <a href="#/alumni" data-nav>Alumni</a>
+      <a href="#/adopt" data-nav>Adopt</a>
+      <a href="#/foster" data-nav>Foster</a>
+      <a href="#/volunteer" data-nav>Volunteer</a>
+      <a href="#/shop" data-nav>Shop</a>
+      <a href="#/contact" data-nav>Contact</a>
+      <a href="#/donate" data-nav class="nav-donate">Donate</a>
+    </nav>
+    <div class="header-tools">
+      <button class="cart-btn" id="cartOpen" aria-label="Open bag">
+        <svg width="19" height="19"><use href="#i-cart"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a class="btn btn-solid" href="#/donate" data-nav>Donate</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <svg width="20" height="20"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════════════════ HOME ══════════════════════════ -->
+<section class="page" id="p-home">
+  <div class="hero">
+    <img class="hero-img" src="data:image/jpeg;base64,{{HERO}}" alt="Captain, a black quarter horse, walking in a paddock on a gray Wisconsin day">
+    <div class="hero-veil"></div>
+    <div class="wrap hero-in">
+      <p class="eyebrow">Equine rescue · Wisconsin · Since 2014</p>
+      <h1>When the law takes a horse away, <em>we take him next.</em></h1>
+      <p>Namaste Equine Rescue receives equines seized by law enforcement across Wisconsin.
+         We put the weight back on, sort out the feet, rebuild the trust — and only then
+         do we look for the home that keeps them.</p>
+      <div class="hero-cta">
+        <a class="btn btn-lg hero-solid" href="#/donate" data-nav>Fund a recovery</a>
+        <a class="btn btn-lg btn-line" href="#/about" data-nav>See how it works</a>
+      </div>
+    </div>
+    <span class="credit">Captain — after</span>
+  </div>
+
+  <div class="sec wrap">
+    <div class="cols2">
+      <div class="rv">
+        <p class="eyebrow">The mission</p>
+        <p class="pull" style="margin-top:18px">To procure equines seized by law enforcement, rehabilitate them mentally and physically, and re-home them in a <span class="mark">safe, forever environment.</span></p>
+      </div>
+      <div class="rv">
+        <p class="lede">Thousands of equines every year are mentally and physically neglected. When a Wisconsin department steps in, the horse still needs somewhere to go that same day — a barn, a vet, a farrier, and someone with the time to sit with an animal that has learned not to trust people.</p>
+        <p class="lede" style="margin-top:20px">That is what this farm is for.</p>
+        <a class="btn btn-line" style="margin-top:28px" href="#/about" data-nav>Read our story</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">How it works</p>
+      <h2>Three stages, and none of them are quick.</h2>
+      <p class="lede">A seizure is the beginning of the paperwork and the beginning of the horse's real problems. Recovery is measured in seasons, not weeks.</p>
+    </div>
+    <div class="steps rv">
+      <div class="step">
+        <div>
+          <h4>Law enforcement calls</h4>
+          <p>A Wisconsin department seizes an equine and needs somewhere for it to go. We take the intake, open a file, and start a record that follows the horse for the rest of its life.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>Weight, feet, and trust</h4>
+          <p>Shelter, food, vet and farrier care, and unconditional love and attention. Refeeding is done slowly and on purpose. Hooves that have gone years without a trim come back over many cycles. The mental side usually takes longest.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>The home that keeps them</h4>
+          <p>Adopters are visited before approval, and we stay in touch for the lifetime of the horse. Adopted equines cannot be sold on, leased, or loaned without our approval. That is the whole point of the file.</p>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-accent rv" style="margin-top:32px">
+      <h3>The part nobody expects</h3>
+      <p style="color:var(--ink-soft)">The rescue was created in 2014 to help law enforcement with seized equines. What we learned was that <b>99% of our purpose was to educate horse owners</b> — turning a seizure into a more positive experience of education and knowledge, so that the next horse never has to be seized at all.</p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap zero">
+      <div class="rv">
+        <p class="eyebrow">Currently up for adoption</p>
+        <div class="zero-num">0</div>
+        <h2>Isn't it wonderful.</h2>
+        <p>Not one horse on this farm is waiting for a home right now. Every animal that came through is placed. We are using the quiet to update the facility — so that the next time a department calls, the answer is still yes.</p>
+        <a class="btn btn-lg btn-invert" style="margin-top:34px" href="#/horses" data-nav>What that means</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Case records</p>
+      <h2>What recovery actually looks like.</h2>
+      <p class="lede">Three horses, three intakes, real numbers. These are our alumni — every one of them placed.</p>
+    </div>
+    <div class="files">
+      <article class="file rv">
+        <div class="file-media">
+          <img src="data:image/jpeg;base64,{{RED}}" alt="Red, a chestnut quarter horse with a white blaze, standing in snow after his recovery">
+        </div>
+        <div class="file-body">
+          <p class="eyebrow">Intake 2015 · Pleasant Prairie intervention</p>
+          <h3>Red</h3>
+          <p class="quote">Extremely dehydrated and 250 lb underweight.</p>
+          <dl class="fields">
+            <div class="field"><dt>Age at intake</dt><dd>7-year-old quarter horse</dd></div>
+            <div class="field"><dt>Deficit</dt><dd><b>250 lb underweight</b></dd></div>
+            <div class="field"><dt>Also presented</dt><dd>Serious hoof and emotional challenges</dd></div>
+            <div class="field"><dt>Outcome</dt><dd><b>Rehabilitated and placed</b></dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="file flip rv">
+        <div class="file-media">
+          <img src="data:image/jpeg;base64,{{CAPTAIN}}" alt="Captain, a black horse, walking sound and in good weight in the paddock">
+        </div>
+        <div class="file-body">
+          <p class="eyebrow">Intake November 2015 · Found loose</p>
+          <h3>Captain “Black” Sparrow</h3>
+          <p class="quote">Around 500 lbs underweight and covered in sores and rain rot.</p>
+          <dl class="fields">
+            <div class="field"><dt>Deficit</dt><dd><b>≈500 lb underweight</b></dd></div>
+            <div class="field"><dt>Condition</dt><dd>Sores, rain rot</dd></div>
+            <div class="field"><dt>Time to health</dt><dd><b>Well over a year</b></dd></div>
+            <div class="field"><dt>Outcome</dt><dd>Sound, in good weight, placed</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="rv">
+      <a class="btn btn-lg btn-line" href="#/alumni" data-nav>All three case records</a>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap sec">
+      <div class="sec-head rv">
+        <p class="eyebrow">Ways to help</p>
+        <h2>Four ways in. All of them needed.</h2>
+      </div>
+      <div class="cols2 rv" style="gap:2px;background:var(--invert-rule);border-radius:16px;overflow:hidden">
+        <a href="#/adopt" data-nav style="text-decoration:none;background:var(--invert-bg);padding:clamp(26px,3vw,38px);display:block">
+          <h3 style="color:var(--invert-fg);font-size:26px">Adopt</h3>
+          <p style="color:var(--invert-soft);margin-top:12px;font-size:15.5px">A barn or lean-to, safe fencing, and the experience to read a horse that has been let down before.</p>
+        </a>
+        <a href="#/foster" data-nav style="text-decoration:none;background:var(--invert-bg);padding:clamp(26px,3vw,38px);display:block">
+          <h3 style="color:var(--invert-fg);font-size:26px">Foster</h3>
+          <p style="color:var(--invert-soft);margin-top:12px;font-size:15.5px">Within two hours of Union Grove, with room and time. We cover the veterinary side beyond routine care.</p>
+        </a>
+        <a href="#/volunteer" data-nav style="text-decoration:none;background:var(--invert-bg);padding:clamp(26px,3vw,38px);display:block">
+          <h3 style="color:var(--invert-fg);font-size:26px">Volunteer</h3>
+          <p style="color:var(--invert-soft);margin-top:12px;font-size:15.5px">An extra set of hands is always needed. Families welcome, with the supervision rules below.</p>
+        </a>
+        <a href="#/donate" data-nav style="text-decoration:none;background:var(--invert-bg);padding:clamp(26px,3vw,38px);display:block">
+          <h3 style="color:var(--invert-fg);font-size:26px">Donate</h3>
+          <p style="color:var(--invert-soft);margin-top:12px;font-size:15.5px">Money, or the blankets, halters, buckets and grooming kit that go straight into daily use.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec wrap">
+    <div class="cols2" style="align-items:center">
+      <div class="rv">
+        <p class="eyebrow">The shop</p>
+        <h2 style="font-size:clamp(28px,4.2vw,46px);line-height:1.1;margin-top:14px">If you can't be here in person, wear it.</h2>
+        <p class="lede" style="margin-top:20px">Five things, made for actual barn use, carrying the records of horses this rescue brought back. Every order sends 100% of its proceeds to the horses.</p>
+        <a class="btn btn-lg btn-solid" style="margin-top:28px" href="#/shop" data-nav>Visit the shop</a>
+      </div>
+      <div class="rv" id="shopTeaser"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ ABOUT ══════════════════════════ -->
+<section class="page" id="p-about">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">About</p>
+    <h1>Created for law enforcement. Kept going by education.</h1>
+    <p class="lede">Namaste Equine Rescue was created in 2014 to originally help law enforcement that had seized equines. What we found in the years since changed what this place is for.</p>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="cols2">
+      <div class="rv">
+        <p class="eyebrow">The mission, in full</p>
+        <p class="pull" style="margin-top:18px">To procure equines seized by law enforcement, primarily serving the state of Wisconsin, to rehabilitate them mentally and physically and re-home them in a safe, forever environment.</p>
+      </div>
+      <div class="rv">
+        <p class="lede">We provide shelter, food, vet or farrier care, and unconditional love and attention. Those four things sound simple written down. In practice they are the entire budget, the entire calendar, and most of the reason volunteers are needed.</p>
+        <p class="lede" style="margin-top:20px">We also commit to educating law enforcement and owners on proper management, to further protect equines in this state.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="band"><div class="wrap sec">
+    <div class="cols2" style="align-items:center">
+      <div class="rv">
+        <p class="eyebrow">What we learned</p>
+        <h2 style="font-size:clamp(28px,4.4vw,52px);line-height:1.08;margin-top:16px">99% of our purpose was to educate horse owners.</h2>
+      </div>
+      <div class="rv">
+        <p style="color:var(--invert-soft);font-size:19px;line-height:1.6">We started out expecting to be a destination — the barn at the end of a bad situation. What became obvious was that most of these cases were not malice. They were owners in over their heads, and nobody had ever shown them what a healthy horse looks like.</p>
+        <p style="color:var(--invert-soft);font-size:19px;line-height:1.6;margin-top:20px">So the work turned into turning a seizure into a more positive experience of education and knowledge. The horse still gets rehabilitated. But the owner learns something, the department learns something, and sometimes the next horse never gets seized at all.</p>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Our board</p>
+      <h2>Who runs this.</h2>
+      <p class="lede">A small board, all of it hands-on. There is no head office; the office is the barn.</p>
+    </div>
+    <div class="cols3">
+      <div class="panel rv">
+        <p class="eyebrow">President</p>
+        <h3 style="margin-top:12px">Jody Halladay</h3>
+      </div>
+      <div class="panel rv">
+        <p class="eyebrow">Treasurer</p>
+        <h3 style="margin-top:12px">Sherry Chapman</h3>
+      </div>
+      <div class="panel rv">
+        <p class="eyebrow">Secretary</p>
+        <h3 style="margin-top:12px">Ellen Petrie</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <div class="sec wrap">
+    <div class="cols2">
+      <div class="rv">
+        <p class="eyebrow">Working with departments</p>
+        <h2 style="font-size:clamp(26px,3.4vw,38px);margin-top:14px">If you have a case, call us.</h2>
+        <p class="lede" style="margin-top:18px">We take intakes from Wisconsin law enforcement, and we keep a written file on every animal from the day it arrives. Adopters receive that file: how the animal came to be on the farm, what veterinary care it received while it was here, and what the staff has personally noticed.</p>
+        <a class="btn btn-solid btn-lg" style="margin-top:26px" href="#/contact" data-nav>Reach the farm</a>
+      </div>
+      <div class="rv">
+        <div class="panel">
+          <h3>If you are a member of the public</h3>
+          <p style="color:var(--ink-soft);margin-top:10px">If you know of an animal being mistreated or neglected, contact your local law enforcement. They have the authority to act; we cannot seize a horse ourselves. Once a department has taken the animal, that is the point where we can step in.</p>
+        </div>
+        <div class="panel panel-accent" style="margin-top:20px">
+          <h3>A note on the 2014 date</h3>
+          <p style="color:var(--ink-soft);margin-top:10px">Everything on this page comes from the rescue's own published words. Where a detail isn't recorded publicly — who exactly founded it, how many intakes there have been — this concept leaves it blank rather than inventing a number.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ OUR HORSES ══════════════════════════ -->
+<section class="page" id="p-horses">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Our horses</p>
+    <h1>Right now, the barn is quiet.</h1>
+    <p class="lede">This page normally lists the equines currently in our care and looking for a home. Today there is nothing to list, and that is the best news we publish all year.</p>
+  </div></div>
+
+  <div class="band">
+    <div class="wrap zero">
+      <div class="rv">
+        <p class="eyebrow">Currently up for adoption</p>
+        <div class="zero-num">0</div>
+        <h2>“Isn't it wonderful!! We don't have any horses currently up for adoption!”</h2>
+        <p>Every horse that came through this rescue has been placed. While it is quiet, we are working on updating our facility, so that the next call from a department gets a yes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec wrap">
+    <div class="cols2">
+      <div class="rv">
+        <p class="eyebrow">What happens next</p>
+        <h2 style="font-size:clamp(26px,3.4vw,40px);margin-top:14px">Quiet is temporary. It always is.</h2>
+        <p class="lede" style="margin-top:18px">Neglect cases do not stop; they come in waves, and they come fastest in a hard winter. When the next intake arrives, this page fills up again — and the horses on it will need foster homes, farrier money, and hay before they need anything else.</p>
+        <p class="lede" style="margin-top:18px">The useful thing to do during a quiet spell is get approved <em>before</em> the phone rings.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+          <a class="btn btn-solid btn-lg" href="#/foster" data-nav>Become a foster home</a>
+          <a class="btn btn-line btn-lg" href="#/adopt" data-nav>Start an adoption file</a>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="panel panel-dark">
+          <p class="eyebrow">If you see neglect</p>
+          <h3 style="margin-top:12px;font-size:24px">Contact your local law enforcement.</h3>
+          <p style="margin-top:12px">They are the ones with the power to seize an animal. Call them first. If they need somewhere for the horse to go afterwards, they know where we are.</p>
+        </div>
+        <div class="panel" style="margin-top:20px">
+          <h3>Facility update in progress</h3>
+          <p style="color:var(--ink-soft);margin-top:10px">Property improvements are underway. This is exactly the work volunteers can help with, and exactly what in-kind donations pay for — fencing, shelter, stall equipment.</p>
+          <a class="btn btn-line" style="margin-top:20px" href="#/volunteer" data-nav>Lend a hand</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <div class="sec-tight wrap" style="text-align:center">
+    <p class="eyebrow rv">Meanwhile</p>
+    <h2 class="rv" style="font-size:clamp(26px,3.6vw,40px);margin-top:14px">Read what the last three looked like when they arrived.</h2>
+    <a class="btn btn-lg btn-solid rv" style="margin-top:26px" href="#/alumni" data-nav>Open the alumni records</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════ ALUMNI ══════════════════════════ -->
+<section class="page" id="p-alumni">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Alumni</p>
+    <h1>The ones who made it out.</h1>
+    <p class="lede">Every horse arrives with a file. These are the records we are proudest of — kept in the rescue's own words, with the real numbers left in.</p>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="files">
+      <article class="file rv">
+        <div class="file-media">
+          <img src="data:image/jpeg;base64,{{RED}}" alt="Red, a chestnut quarter horse with a white blaze, standing in snow after his recovery">
+        </div>
+        <div class="file-body">
+          <p class="eyebrow">File 01 · Intake 2015</p>
+          <h3>Red</h3>
+          <p class="quote">Red came in as a Pleasant Prairie intervention rescue in 2015. This 7-year-old quarter horse was extremely dehydrated and 250 lb underweight!</p>
+          <dl class="fields">
+            <div class="field"><dt>Source</dt><dd>Pleasant Prairie intervention</dd></div>
+            <div class="field"><dt>Age at intake</dt><dd>7 years, quarter horse</dd></div>
+            <div class="field"><dt>Deficit</dt><dd><b>250 lb underweight</b></dd></div>
+            <div class="field"><dt>Hydration</dt><dd>Extremely dehydrated</dd></div>
+            <div class="field"><dt>Complications</dt><dd>Serious hoof issues; emotional challenges</dd></div>
+            <div class="field"><dt>Status</dt><dd><b>Recovered · placed</b></dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="file flip rv">
+        <div class="file-media">
+          <img src="data:image/jpeg;base64,{{CAPTAIN}}" alt="Captain, a black horse, walking sound and in good weight in the paddock">
+        </div>
+        <div class="file-body">
+          <p class="eyebrow">File 02 · Intake November 2015</p>
+          <h3>Captain “Black” Sparrow</h3>
+          <p class="quote">Captain “Black” Sparrow was found loose in November 2015. He was around 500 lbs underweight and covered in sores and rain rot.</p>
+          <dl class="fields">
+            <div class="field"><dt>Source</dt><dd>Found loose</dd></div>
+            <div class="field"><dt>Deficit</dt><dd><b>≈500 lb underweight</b></dd></div>
+            <div class="field"><dt>Skin</dt><dd>Sores and rain rot throughout</dd></div>
+            <div class="field"><dt>Rehabilitation</dt><dd><b>Well over a year</b></dd></div>
+            <div class="field"><dt>Status</dt><dd><b>Recovered · placed</b></dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="file rv">
+        <div class="file-media">
+          <div class="nophoto">
+            <svg width="30" height="30" style="margin:0 auto;color:var(--faint)" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="m4 19 5-5"/></svg>
+            <span>No photograph on file</span>
+          </div>
+        </div>
+        <div class="file-body">
+          <p class="eyebrow">File 03 · Pleasant Prairie PD</p>
+          <h3>Kat</h3>
+          <p class="quote">She came to us for the proper care and rehabilitation she so desperately deserved!</p>
+          <dl class="fields">
+            <div class="field"><dt>Source</dt><dd>Long-standing Pleasant Prairie Police Department case</dd></div>
+            <div class="field"><dt>Photograph</dt><dd>None on record</dd></div>
+            <div class="field"><dt>Status</dt><dd><b>Rehabilitated</b></dd></div>
+          </dl>
+          <p class="note" style="margin-top:24px">The rescue's own page carries no photograph of Kat and no further detail. Rather than fill the gap with a stand-in horse, the record stays as it is. A proper photo session at the farm would fix this for every future intake.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="band"><div class="wrap sec" style="text-align:center">
+    <div class="rv">
+      <p class="eyebrow">Every one of them</p>
+      <h2 style="font-size:clamp(28px,4.4vw,48px);margin-top:16px;max-width:22ch;margin-inline:auto">Went home, and stayed there.</h2>
+      <p style="color:var(--invert-soft);max-width:56ch;margin:20px auto 0">Adopted horses cannot be sold on, leased, or loaned without our approval, and a representative may check on them for the lifetime of the horse. The file never really closes.</p>
+      <a class="btn btn-lg btn-invert" style="margin-top:32px" href="#/donate" data-nav>Fund the next one</a>
+    </div>
+  </div></div>
+</section>
+
+<!-- ══════════════════════════ ADOPT ══════════════════════════ -->
+<section class="page" id="p-adopt">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Adopt</p>
+    <h1>Do you have the perfect home for these animals?</h1>
+    <p class="lede">Applying does not obligate you to adopt an equine, and you do not need to have a particular horse in mind. Start the file, and we will talk.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:30px">
+      <a class="btn btn-solid btn-lg" href="#/contact" data-nav>Request the adoption form</a>
+      <a class="btn btn-line btn-lg" href="#/horses" data-nav>See who is available</a>
+    </div>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Before you apply</p>
+      <h2>What we need to see.</h2>
+      <p class="lede">None of this is about wealth. It is about whether the horse in front of you will be safe, fed, and looked at every single day.</p>
+    </div>
+    <div class="cols2">
+      <ul class="checks rv">
+        <li><svg><use href="#i-check"/></svg><span>Prior experience owning equines.</span></li>
+        <li><svg><use href="#i-check"/></svg><span>At least 18 years old.</span></li>
+        <li><svg><use href="#i-check"/></svg><span>Living in Wisconsin or nearby. Out-of-state cases are evaluated individually.</span></li>
+        <li><svg><use href="#i-check"/></svg><span>Boarding at an approved facility, or keeping the animal on your own property.</span></li>
+      </ul>
+      <ul class="checks rv">
+        <li><svg><use href="#i-check"/></svg><span>A barn or a lean-to, safe and proper fencing — board or wire mesh is appropriate, <b>no barbed wire</b>.</span></li>
+        <li><svg><use href="#i-check"/></svg><span>Adequate water and feed supply.</span></li>
+        <li><svg><use href="#i-check"/></svg><span>Contact details for your veterinarian, farrier, and caregiver.</span></li>
+        <li><svg><use href="#i-check"/></svg><span>Willingness to let a Namaste representative visit before approval.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">The process</p>
+      <h2>Four steps, at the horse's pace.</h2>
+    </div>
+    <div class="steps rv">
+      <div class="step"><div>
+        <h4>Print and submit the form</h4>
+        <p>Print out the adoption form and submit it by mail, or email it to namasteequinerescue@gmail.com. You do not have to name a horse.</p>
+      </div></div>
+      <div class="step"><div>
+        <h4>We talk, and we visit</h4>
+        <p>A Namaste representative visits the premises before any approval. We look at fencing, shelter, water, and where the horse would actually stand on a bad February night.</p>
+      </div></div>
+      <div class="step"><div>
+        <h4>You receive the file</h4>
+        <p>Approved adopters get a file on the animal: how it came to be on the farm, what veterinary care it received while it was here, and what the staff has personally noticed about it.</p>
+      </div></div>
+      <div class="step"><div>
+        <h4>We stay in touch, for good</h4>
+        <p>Periodic checks may be made by a Namaste representative for the lifetime of the horse. Adopted animals cannot be moved on, leased, or loaned without our approval.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="sec-tight wrap narrow">
+    <p class="eyebrow rv">Questions we get</p>
+    <div class="faq rv" style="margin-top:22px">
+      <details><summary>Is there an adoption fee?</summary><p>Fees are handled case by case — ask us when you submit your application and we will be straight with you about what this particular horse has cost to bring back.</p></details>
+      <details><summary>I have never adopted a rescue horse. Am I out?</summary><p>No. We ask for prior equine ownership experience, not prior rescue experience. What matters is that you can read a horse and keep a routine.</p></details>
+      <details><summary>Why the lifetime check-ins?</summary><p>Because most of these animals were failed once already. The follow-up is not distrust of you; it is the promise we made to the horse.</p></details>
+      <details><summary>Can I adopt from out of state?</summary><p>Possibly. We serve Wisconsin primarily, and out-of-state applications are evaluated individually.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FOSTER ══════════════════════════ -->
+<section class="page" id="p-foster">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Foster</p>
+    <h1>Give a horse a room while it gets its life back.</h1>
+    <p class="lede">Fostering is the difference between saying yes to a department and saying we have no space. You do not need to pick a horse first — apply, and we match the equine to your property, your abilities, and the care it needs.</p>
+    <a class="btn btn-solid btn-lg" style="margin-top:30px" href="#/contact" data-nav>Request the foster application</a>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="cols2">
+      <div class="panel rv">
+        <p class="eyebrow">You provide</p>
+        <h3 style="margin-top:12px">The home and the daily work</h3>
+        <ul class="checks" style="margin-top:20px">
+          <li><svg><use href="#i-check"/></svg><span>Housing, hay, grain and shavings</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Farrier work and routine vet checkups</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Worming and any boarding fees</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Feeding two to three times daily, with health monitoring</span></li>
+        </ul>
+      </div>
+      <div class="panel panel-accent rv">
+        <p class="eyebrow">We cover</p>
+        <h3 style="margin-top:12px">The veterinary side</h3>
+        <p style="color:var(--ink-soft);margin-top:16px">All veterinary costs except for routine checkups are covered, if foster homes use a Namaste Equine Rescue approved vet. Non-emergency procedures need pre-approval from board members.</p>
+        <div class="panel panel-dark" style="margin-top:22px;padding:22px">
+          <p class="eyebrow">Emergency protocol</p>
+          <p style="margin-top:10px;font-size:15.5px">In a life-threatening situation, a foster home may authorize care up to <b style="color:var(--invert-fg)">$350</b> without prior approval — then notify us immediately.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">The standard of care</p>
+      <h2>What we ask of every foster barn.</h2>
+      <p class="lede">These are not suggestions. They are the conditions the horse was taken away from somewhere else for lacking.</p>
+    </div>
+    <div class="cols3">
+      <div class="panel rv"><p class="eyebrow">Body condition</p><h3 style="margin-top:10px;font-size:20px">Minimum 4 on the Henneke scale</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Maintained and recorded, with daily monitoring and written health records.</p></div>
+      <div class="panel rv"><p class="eyebrow">Forage</p><h3 style="margin-top:10px;font-size:20px">Hay available 24/7</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Plus clean water at all times, and shelter from extreme weather.</p></div>
+      <div class="panel rv"><p class="eyebrow">Fencing</p><h3 style="margin-top:10px;font-size:20px">Capped t-posts, no barbed wire</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Safe fencing throughout. This one is non-negotiable.</p></div>
+      <div class="panel rv"><p class="eyebrow">Feet</p><h3 style="margin-top:10px;font-size:20px">Checked daily, trimmed every 6–8 weeks</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Professional trimming on schedule. Most of our intakes arrive years overdue.</p></div>
+      <div class="panel rv"><p class="eyebrow">Worming</p><h3 style="margin-top:10px;font-size:20px">Every three months</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">On the rotation we agree with you at placement.</p></div>
+      <div class="panel rv"><p class="eyebrow">Viewings</p><h3 style="margin-top:10px;font-size:20px">Available for adoption visits</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">With Namaste staff present. The goal is always the permanent home.</p></div>
+    </div>
+  </div>
+
+  <div class="band"><div class="wrap sec">
+    <div class="cols2" style="align-items:center">
+      <div class="rv">
+        <p class="eyebrow">Eligibility</p>
+        <h2 style="font-size:clamp(26px,3.6vw,42px);margin-top:14px;line-height:1.12">Within two hours of Union Grove.</h2>
+      </div>
+      <div class="rv">
+        <p style="color:var(--invert-soft);font-size:17.5px">You will need experience owning equines, and the time, means and adequate facilities to care for one properly. Distance matters because we need to be able to reach you, and you need to be able to reach our vet.</p>
+        <a class="btn btn-lg btn-invert" style="margin-top:26px" href="#/contact" data-nav>Start a foster application</a>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ══════════════════════════ VOLUNTEER ══════════════════════════ -->
+<section class="page" id="p-volunteer">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Volunteer</p>
+    <h1>Do you have the time to donate?</h1>
+    <p class="lede">We are looking for outgoing volunteers who are willing to commit their time here. An extra set of hands is always needed — and right now, with the facility being updated, that is more true than usual.</p>
+    <a class="btn btn-solid btn-lg" style="margin-top:30px" href="#/contact" data-nav>Let's talk</a>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="cols2">
+      <div class="rv">
+        <p class="eyebrow">What the days look like</p>
+        <h2 style="font-size:clamp(26px,3.4vw,38px);margin-top:14px">Barn work, property work, and fundraising.</h2>
+        <p class="lede" style="margin-top:18px">Feeding and turnout. Stalls and water. Fencing, shelter repairs and the general business of keeping a farm standing through a Wisconsin winter. Alongside that, help with fundraising events is genuinely as valuable as an afternoon of mucking out.</p>
+        <p class="note" style="margin-top:26px">The current site does not publish a task list or a minimum commitment. Rather than invent one, this concept describes the work in general terms — the real rota is worth writing down and adding here.</p>
+      </div>
+      <div class="rv">
+        <div class="panel">
+          <p class="eyebrow">Bringing family</p>
+          <h3 style="margin-top:12px">Ages and supervision</h3>
+          <dl class="fields" style="margin-top:18px">
+            <div class="field"><dt>Under 14</dt><dd>Direct parent or guardian supervision, working alongside them at all times.</dd></div>
+            <div class="field"><dt>14 – 17</dt><dd>Must be supervised by an adult.</dd></div>
+            <div class="field"><dt>Parents</dt><dd>Responsible for confirming that adult supervision is available before the visit.</dd></div>
+          </dl>
+        </div>
+        <div class="panel panel-accent" style="margin-top:20px">
+          <h3>How to start</h3>
+          <p style="color:var(--ink-soft);margin-top:10px">Submit a volunteer application form, or simply get in touch and talk to us first. Most people do the second one.</p>
+          <a class="btn btn-solid" style="margin-top:20px" href="#/contact" data-nav>Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ DONATE ══════════════════════════ -->
+<section class="page" id="p-donate">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Donate</p>
+    <h1>Help us to help them.</h1>
+    <p class="lede">Your generous donations help to keep us operating, so we are able to save more lives. Money is the flexible kind of help — but the buckets and blankets matter just as much, and they go straight into use.</p>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="cols2">
+      <div class="panel rv">
+        <p class="eyebrow">By post</p>
+        <h3 style="margin-top:12px">By check or money order</h3>
+        <p style="color:var(--ink-soft);margin-top:14px">Made out to Namaste Equine Rescue and mailed to the farm:</p>
+        <address class="foot-addr" style="color:var(--ink);font-family:var(--mono);font-size:14px;line-height:1.8;margin-top:14px">
+          Namaste Equine Rescue<br>1904 51st Drive<br>Union Grove, WI 53182
+        </address>
+      </div>
+      <div class="panel rv">
+        <p class="eyebrow">Online</p>
+        <h3 style="margin-top:12px">By PayPal</h3>
+        <p style="color:var(--ink-soft);margin-top:14px">Transfers are accepted through PayPal. On the live site this button would carry the rescue's real PayPal link.</p>
+        <button class="btn btn-solid btn-wide" style="margin-top:20px" data-demo>Give through PayPal</button>
+        <p class="note" style="margin-top:16px;font-size:11.5px">Not connected in this concept — nothing here can take a payment.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="band"><div class="wrap sec">
+    <div class="sec-head rv">
+      <p class="eyebrow">In-kind donations</p>
+      <h2>Gently used gear, always wanted.</h2>
+      <p style="color:var(--invert-soft)">Every one of these gets used the week it arrives.</p>
+    </div>
+    <div class="cols3 rv">
+      <div><h3 style="color:var(--invert-fg);font-size:20px">Blankets &amp; bridles</h3><p style="color:var(--invert-soft);margin-top:8px;font-size:15px">Turnout blankets in any size, bridles, saddles, halters.</p></div>
+      <div><h3 style="color:var(--invert-fg);font-size:20px">Grooming supplies</h3><p style="color:var(--invert-soft);margin-top:8px;font-size:15px">Brushes, combs, hoof picks, clippers, fly spray.</p></div>
+      <div><h3 style="color:var(--invert-fg);font-size:20px">Buckets &amp; stall gear</h3><p style="color:var(--invert-soft);margin-top:8px;font-size:15px">Water buckets, feed pans, forks, wheelbarrows, muck buckets.</p></div>
+    </div>
+    <p class="note rv" style="margin-top:36px;border-left-color:var(--invert-rule);color:var(--invert-soft)">Food donations need prior board approval — refeeding a starved horse is done on a specific plan, and the wrong feed at the wrong time does real harm.</p>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="cols2" style="align-items:center">
+      <div class="rv">
+        <p class="eyebrow">Other ways</p>
+        <h2 style="font-size:clamp(26px,3.4vw,38px);margin-top:14px">Time, tools, and a truck.</h2>
+        <p class="lede" style="margin-top:18px">Help with property improvements and fundraising is as welcome as a check. If you have a trailer, a skill, or a Saturday, that counts.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:26px">
+          <a class="btn btn-solid btn-lg" href="#/volunteer" data-nav>Volunteer</a>
+          <a class="btn btn-line btn-lg" href="#/shop" data-nav>Buy from the shop</a>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="panel">
+          <p class="eyebrow">With thanks</p>
+          <h3 style="margin-top:12px">The Martha Morse Beck Von Peccoz Animal PLC Foundation</h3>
+          <p style="color:var(--ink-soft);margin-top:12px">Together with a number of individual supporters who have carried this rescue through its quieter years.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SHOP ══════════════════════════ -->
+<section class="page" id="p-shop">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">The shop</p>
+    <h1>If you can't be here, wear it.</h1>
+    <p class="lede">Five things, made for real barn use, carrying the records of horses this rescue brought back. Nothing decorative, nothing that wouldn't survive a Wisconsin February.</p>
+  </div></div>
+
+  <div class="sec-tight wrap">
+    <div class="promise rv">
+      <svg><use href="#i-shield"/></svg>
+      <div>
+        <h3>100% of every order goes back to the horses.</h3>
+        <p>Not "a portion of proceeds". After the cost of making the item, everything left goes to hay, farrier work, and veterinary bills for the next intake.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" style="padding-top:0"><div class="wrap">
+    <div class="shop-grid" id="shopGrid">
+
+      <!-- ── 01 Hoodie ── -->
+      <article class="product rv" data-id="hoodie" data-name="Intake Record Hoodie" data-price="58">
+        <div class="garment">
+          <span class="tag">Back print shown</span>
+          <svg viewBox="0 0 400 340" class="g-svg" style="--fabric:#2E2B33;--print:#EDE9F2;--trim:#3B3742">
+            <path d="M155 74 C155 30 170 14 200 14 C230 14 245 30 245 74 Z" fill="var(--trim)"/>
+            <path d="M150 70 L250 70 L262 92 L262 288 Q262 296 254 296 L146 296 Q138 296 138 288 L138 92 Z" fill="var(--fabric)"/>
+            <path d="M138 94 L92 110 L64 212 L104 226 L138 152 Z" fill="var(--fabric)"/>
+            <path d="M262 94 L308 110 L336 212 L296 226 L262 152 Z" fill="var(--fabric)"/>
+            <path d="M62 208 L104 223 L97 244 L55 229 Z" fill="var(--trim)"/>
+            <path d="M338 208 L296 223 L303 244 L345 229 Z" fill="var(--trim)"/>
+            <rect x="138" y="276" width="124" height="20" rx="4" fill="var(--trim)"/>
+            <path d="M155 74 Q200 92 245 74" fill="none" stroke="var(--trim)" stroke-width="2.5"/>
+            <g fill="var(--print)" text-anchor="middle" font-family="ui-monospace,Menlo,monospace">
+              <text x="200" y="142" font-size="5.4" letter-spacing="1.2">NAMASTE EQUINE RESCUE</text>
+              <rect x="152" y="150" width="96" height="1" opacity=".5"/>
+              <text x="200" y="176" font-size="14" letter-spacing="0.4" font-family="Georgia,serif">INTAKE RECORD</text>
+              <rect x="152" y="185" width="96" height="1" opacity=".5"/>
+              <text x="200" y="200" font-size="4.6" letter-spacing="1" opacity=".8">UNION GROVE, WISCONSIN</text>
+              <text x="200" y="212" font-size="4.6" letter-spacing="1" opacity=".8">EST. 2014</text>
+            </g>
+          </svg>
+        </div>
+        <div class="p-body">
+          <div class="p-head"><h3>Intake Record Hoodie</h3><span class="price">$58</span></div>
+          <p class="p-desc">Heavyweight fleece, cut long enough to stay tucked in when you're bent over a hoof. The back carries the header from a real intake file.</p>
+          <p class="p-meta">Heavyweight fleece · Unisex · Kangaroo pocket</p>
+          <div class="opts">
+            <div class="opt-row"><span class="opt-label">Color</span>
+              <button class="sw" data-color="Charcoal" data-fabric="#2E2B33" data-print="#EDE9F2" data-trim="#3B3742" style="background:#2E2B33" aria-pressed="true" aria-label="Charcoal"></button>
+              <button class="sw" data-color="Ash Violet" data-fabric="#6B6076" data-print="#F4EFF8" data-trim="#7A6E85" style="background:#6B6076" aria-pressed="false" aria-label="Ash Violet"></button>
+              <button class="sw" data-color="Bone" data-fabric="#E7E2DA" data-print="#2E2B33" data-trim="#DAD3C8" style="background:#E7E2DA" aria-pressed="false" aria-label="Bone"></button>
+            </div>
+            <div class="opt-row"><span class="opt-label">Size</span>
+              <button class="pill" data-size="S">S</button><button class="pill" data-size="M" aria-pressed="true">M</button>
+              <button class="pill" data-size="L">L</button><button class="pill" data-size="XL">XL</button>
+              <button class="pill" data-size="2XL">2XL</button>
+            </div>
+          </div>
+          <div class="p-foot">
+            <button class="btn btn-solid btn-wide add">Add to bag</button>
+            <p class="added">Added</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 02 Tee ── -->
+      <article class="product rv" data-id="tee" data-name="&ldquo;+250&rdquo; Recovery Tee" data-price="32">
+        <div class="garment">
+          <span class="tag tag-alt">Red's real weight</span>
+          <svg viewBox="0 0 400 340" class="g-svg" style="--fabric:#1B1820;--print:#F2ECF7;--trim:#252129">
+            <path d="M150 56 L250 56 L268 84 L268 292 Q268 300 260 300 L140 300 Q132 300 132 292 L132 84 Z" fill="var(--fabric)"/>
+            <path d="M132 86 L86 102 L62 176 L108 194 L132 136 Z" fill="var(--fabric)"/>
+            <path d="M268 86 L314 102 L338 176 L292 194 L268 136 Z" fill="var(--fabric)"/>
+            <path d="M158 56 Q200 84 242 56 L250 56 L250 62 Q200 92 150 62 L150 56 Z" fill="var(--trim)"/>
+            <g fill="var(--print)" text-anchor="middle">
+              <text x="200" y="180" font-size="54" font-family="Georgia,serif" letter-spacing="-1.5">+250</text>
+              <text x="200" y="197" font-size="7" letter-spacing="3" font-family="ui-monospace,Menlo,monospace" opacity=".75">POUNDS</text>
+              <rect x="168" y="207" width="64" height="1" opacity=".45"/>
+              <text x="200" y="222" font-size="4.4" letter-spacing="0.6" font-family="ui-monospace,Menlo,monospace" opacity=".85">RED · PLEASANT PRAIRIE · 2015</text>
+              <text x="200" y="234" font-size="4.4" letter-spacing="0.6" font-family="ui-monospace,Menlo,monospace" opacity=".6">WHAT RECOVERY WEIGHS</text>
+            </g>
+          </svg>
+        </div>
+        <div class="p-body">
+          <div class="p-head"><h3>“+250” Recovery Tee</h3><span class="price">$32</span></div>
+          <p class="p-desc">The number Red had to put back on after the 2015 Pleasant Prairie intervention. Two hundred and fifty pounds, one slow feeding plan at a time.</p>
+          <p class="p-meta">Ringspun cotton · Unisex · Pre-shrunk</p>
+          <div class="opts">
+            <div class="opt-row"><span class="opt-label">Color</span>
+              <button class="sw" data-color="Black" data-fabric="#1B1820" data-print="#F2ECF7" data-trim="#252129" style="background:#1B1820" aria-pressed="true" aria-label="Black"></button>
+              <button class="sw" data-color="Snow" data-fabric="#F4F2F6" data-print="#1B1820" data-trim="#E6E2EC" style="background:#F4F2F6" aria-pressed="false" aria-label="Snow"></button>
+              <button class="sw" data-color="Orchid" data-fabric="#6E2A93" data-print="#F9F1FD" data-trim="#7C3AA1" style="background:#6E2A93" aria-pressed="false" aria-label="Orchid"></button>
+            </div>
+            <div class="opt-row"><span class="opt-label">Size</span>
+              <button class="pill" data-size="S">S</button><button class="pill" data-size="M" aria-pressed="true">M</button>
+              <button class="pill" data-size="L">L</button><button class="pill" data-size="XL">XL</button>
+              <button class="pill" data-size="2XL">2XL</button>
+            </div>
+          </div>
+          <div class="p-foot">
+            <button class="btn btn-solid btn-wide add">Add to bag</button>
+            <p class="added">Added</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 03 Beanie ── -->
+      <article class="product rv" data-id="beanie" data-name="Barn Beanie" data-price="28">
+        <div class="garment">
+          <span class="tag">Embroidered</span>
+          <svg viewBox="0 0 400 340" class="g-svg" style="--fabric:#2E2B33;--print:#C77BE6;--trim:#3B3742">
+            <path d="M112 200 Q112 74 200 74 Q288 74 288 200 Z" fill="var(--fabric)"/>
+            <path d="M140 78 Q140 200 140 200 M170 74 Q168 200 168 200 M200 73 Q200 200 200 200 M230 74 Q232 200 232 200 M260 78 Q260 200 260 200"
+                  stroke="var(--trim)" stroke-width="2" fill="none" opacity=".85"/>
+            <rect x="104" y="196" width="192" height="66" rx="12" fill="var(--trim)"/>
+            <rect x="104" y="196" width="192" height="6" fill="rgba(0,0,0,.14)"/>
+            <g transform="translate(200,229)">
+              <circle r="20" fill="none" stroke="var(--print)" stroke-width="1.8"/>
+              <path d="M-7 7 C-9 -1 -5 -8 0 -9 C3 -12 7 -11 8 -8 C11 -6 10 -1 7 2 L6 8 Z"
+                    fill="var(--print)"/>
+            </g>
+            <text x="200" y="290" text-anchor="middle" font-size="7" letter-spacing="2.4"
+                  font-family="ui-monospace,Menlo,monospace" fill="#8D8799">NAMASTE EQUINE RESCUE</text>
+          </svg>
+        </div>
+        <div class="p-body">
+          <div class="p-head"><h3>Barn Beanie</h3><span class="price">$28</span></div>
+          <p class="p-desc">Ribbed cuffed knit with the orchid mark from the rescue's own logo stitched on the fold. Made for five-thirty in the morning in January.</p>
+          <p class="p-meta">Ribbed knit · One size · Embroidered mark</p>
+          <div class="opts">
+            <div class="opt-row"><span class="opt-label">Color</span>
+              <button class="sw" data-color="Charcoal" data-fabric="#2E2B33" data-print="#C77BE6" data-trim="#3B3742" style="background:#2E2B33" aria-pressed="true" aria-label="Charcoal"></button>
+              <button class="sw" data-color="Orchid" data-fabric="#6E2A93" data-print="#F4E4FC" data-trim="#7C3AA1" style="background:#6E2A93" aria-pressed="false" aria-label="Orchid"></button>
+              <button class="sw" data-color="Bone" data-fabric="#E7E2DA" data-print="#6E2A93" data-trim="#DAD3C8" style="background:#E7E2DA" aria-pressed="false" aria-label="Bone"></button>
+            </div>
+            <div class="opt-row"><span class="opt-label">Size</span>
+              <button class="pill" data-size="One size" aria-pressed="true">One size</button>
+            </div>
+          </div>
+          <div class="p-foot">
+            <button class="btn btn-solid btn-wide add">Add to bag</button>
+            <p class="added">Added</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 04 Tote ── -->
+      <article class="product rv" data-id="tote" data-name="Canvas Feed Tote" data-price="24">
+        <div class="garment">
+          <span class="tag">Heavy canvas</span>
+          <svg viewBox="0 0 400 340" class="g-svg" style="--fabric:#DDD5C6;--print:#2E2B33;--trim:#CEC5B4">
+            <path d="M150 116 C150 46 250 46 250 116" fill="none" stroke="var(--trim)" stroke-width="11" stroke-linecap="round"/>
+            <path d="M150 116 C150 46 250 46 250 116" fill="none" stroke="var(--fabric)" stroke-width="7" stroke-linecap="round"/>
+            <rect x="106" y="108" width="188" height="192" rx="7" fill="var(--fabric)"/>
+            <rect x="106" y="108" width="188" height="13" rx="4" fill="var(--trim)"/>
+            <g fill="var(--print)" text-anchor="middle" font-family="Georgia,serif">
+              <text x="200" y="186" font-size="30" letter-spacing="1">HAY.</text>
+              <text x="200" y="220" font-size="30" letter-spacing="1">WATER.</text>
+              <text x="200" y="254" font-size="30" letter-spacing="1">TIME.</text>
+            </g>
+            <text x="200" y="280" text-anchor="middle" font-size="5.4" letter-spacing="1.4"
+                  font-family="ui-monospace,Menlo,monospace" fill="var(--print)" opacity=".62">NAMASTE EQUINE RESCUE · WI</text>
+          </svg>
+        </div>
+        <div class="p-body">
+          <div class="p-head"><h3>Canvas Feed Tote</h3><span class="price">$24</span></div>
+          <p class="p-desc">The three things a starved horse actually needs, in order. Heavy enough for grain, brushes, or a week's worth of farmers' market.</p>
+          <p class="p-meta">12 oz cotton canvas · Reinforced handles · 15&Prime; × 16&Prime;</p>
+          <div class="opts">
+            <div class="opt-row"><span class="opt-label">Color</span>
+              <button class="sw" data-color="Natural" data-fabric="#DDD5C6" data-print="#2E2B33" data-trim="#CEC5B4" style="background:#DDD5C6" aria-pressed="true" aria-label="Natural"></button>
+              <button class="sw" data-color="Black" data-fabric="#1B1820" data-print="#EDE9F2" data-trim="#252129" style="background:#1B1820" aria-pressed="false" aria-label="Black"></button>
+            </div>
+            <div class="opt-row"><span class="opt-label">Size</span>
+              <button class="pill" data-size="One size" aria-pressed="true">One size</button>
+            </div>
+          </div>
+          <div class="p-foot">
+            <button class="btn btn-solid btn-wide add">Add to bag</button>
+            <p class="added">Added</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 05 Stickers ── -->
+      <article class="product rv wide" data-id="stickers" data-name="Case File Sticker Sheet" data-price="12">
+        <div class="garment">
+          <span class="tag">Five die-cuts</span>
+          <svg viewBox="0 0 640 340" class="g-svg" style="--fabric:#F4F2F6;--print:#16131B;--trim:#E3DFEA">
+            <rect x="60" y="34" width="520" height="272" rx="10" fill="var(--fabric)" stroke="var(--trim)" stroke-width="2"/>
+            <g stroke="var(--trim)" stroke-width="1.4" stroke-dasharray="4 4" fill="none">
+              <circle cx="150" cy="120" r="52"/><rect x="238" y="68" width="150" height="104" rx="10"/>
+              <rect x="416" y="68" width="132" height="104" rx="10"/>
+              <rect x="98" y="206" width="230" height="72" rx="10"/><rect x="356" y="206" width="192" height="72" rx="10"/>
+            </g>
+            <g transform="translate(150,120)">
+              <circle r="44" fill="#6E2A93"/>
+              <path d="M-14 15 C-19 -2 -11 -17 0 -19 C7 -25 15 -23 17 -17 C23 -13 21 -2 15 4 L13 17 Z" fill="#F4E4FC"/>
+            </g>
+            <g transform="translate(313,120)" text-anchor="middle">
+              <rect x="-67" y="-46" width="134" height="92" rx="8" fill="#16131B"/>
+              <text y="8" font-size="40" font-family="Georgia,serif" fill="#F2ECF7">+250</text>
+              <text y="28" font-size="7.5" letter-spacing="2.6" font-family="ui-monospace,Menlo,monospace" fill="#C77BE6">POUNDS BACK</text>
+            </g>
+            <g transform="translate(482,120)" text-anchor="middle">
+              <rect x="-58" y="-46" width="116" height="92" rx="8" fill="#6E2A93"/>
+              <text y="6" font-size="46" font-family="Georgia,serif" fill="#fff">0</text>
+              <text y="24" font-size="7" letter-spacing="1.8" font-family="ui-monospace,Menlo,monospace" fill="#F4E4FC">WAITING FOR</text>
+              <text y="36" font-size="7" letter-spacing="1.8" font-family="ui-monospace,Menlo,monospace" fill="#F4E4FC">A HOME</text>
+            </g>
+            <g transform="translate(213,242)" text-anchor="middle">
+              <rect x="-107" y="-30" width="214" height="60" rx="8" fill="#16131B"/>
+              <text y="-2" font-size="13" font-family="Georgia,serif" fill="#F2ECF7">When the law takes a horse away,</text>
+              <text y="16" font-size="13" font-family="Georgia,serif" font-style="italic" fill="#C77BE6">we take him next.</text>
+            </g>
+            <g transform="translate(452,242)" text-anchor="middle">
+              <rect x="-88" y="-30" width="176" height="60" rx="8" fill="#E7E2DA"/>
+              <text y="-4" font-size="10.5" letter-spacing="2.4" font-family="ui-monospace,Menlo,monospace" fill="#16131B">NAMASTE EQUINE</text>
+              <text y="12" font-size="10.5" letter-spacing="2.4" font-family="ui-monospace,Menlo,monospace" fill="#16131B">RESCUE · EST. 2014</text>
+            </g>
+          </svg>
+        </div>
+        <div class="p-body">
+          <div class="p-head"><h3>Case File Sticker Sheet</h3><span class="price">$12</span></div>
+          <p class="p-desc">Five weatherproof die-cuts on one sheet — the logo mark, Red's number, the zero we are proud of, the line this rescue runs on, and the plain stamp. For trailers, tack boxes, water bottles and truck windows.</p>
+          <p class="p-meta">Weatherproof vinyl · 5 stickers · 6&Prime; × 8&Prime; sheet</p>
+          <div class="opts">
+            <div class="opt-row"><span class="opt-label">Size</span>
+              <button class="pill" data-size="One sheet" aria-pressed="true">One sheet</button>
+            </div>
+          </div>
+          <div class="p-foot">
+            <button class="btn btn-solid btn-wide add">Add to bag</button>
+            <p class="added">Added</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="cols3" style="margin-top:clamp(44px,6vw,72px)">
+      <div class="panel rv"><p class="eyebrow">Why merchandise</p><h3 style="margin-top:10px;font-size:20px">Steady money, not just appeal money</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Donations spike after a bad case and then go quiet. Hay does not. A shop gives supporters a reason to give in the months when nothing dramatic is happening.</p></div>
+      <div class="panel rv"><p class="eyebrow">Why these five</p><h3 style="margin-top:10px;font-size:20px">A $12 way in and a $58 way in</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Someone who will never drive to Union Grove can still put a sticker on a tack box. The range matters more than any single item.</p></div>
+      <div class="panel rv"><p class="eyebrow">Why the numbers</p><h3 style="margin-top:10px;font-size:20px">Real records, not slogans</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Every graphic here is a fact from this rescue's own files. People ask what "+250" means, and then they get told about Red.</p></div>
+    </div>
+
+    <p class="note rv" style="margin-top:38px;max-width:70ch">This shop is a proposal. Nothing on this page is connected to a payment system, no order can be placed, and the "100% to the horses" promise is a commitment for the board to approve — not an existing policy.</p>
+  </div></div>
+</section>
+
+<!-- ══════════════════════════ CONTACT ══════════════════════════ -->
+<section class="page" id="p-contact">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Contact</p>
+    <h1>Let's talk.</h1>
+    <p class="lede">Whether you are a department with a case, a family with a spare stall, or someone who just wants to help on a Saturday — this is the way in.</p>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="contact-grid">
+      <div class="cinfo rv">
+        <div class="cinfo-item"><svg><use href="#i-pin"/></svg><div>
+          <h4>The farm</h4>
+          <p>1904 51st Drive<br>Union Grove, WI 53182</p>
+        </div></div>
+        <div class="cinfo-item"><svg><use href="#i-phone"/></svg><div>
+          <h4>Telephone</h4>
+          <a href="tel:+12624920767">(262) 492-0767</a>
+        </div></div>
+        <div class="cinfo-item"><svg><use href="#i-mail"/></svg><div>
+          <h4>Email</h4>
+          <a href="mailto:namasteequinerescue@gmail.com">namasteequinerescue@gmail.com</a>
+        </div></div>
+        <div class="cinfo-item"><svg><use href="#i-badge"/></svg><div>
+          <h4>Law enforcement</h4>
+          <p>Departments with a seizure should call the farm directly. We will tell you straight away whether we have space.</p>
+        </div></div>
+        <div class="cinfo-item"><svg><use href="#i-heart"/></svg><div>
+          <h4>Visiting</h4>
+          <p>By arrangement only — this is a working farm and a rehabilitation facility, not a petting zoo.</p>
+        </div></div>
+      </div>
+
+      <div class="rv">
+        <div class="panel">
+          <h3>Send a message</h3>
+          <p style="color:var(--ink-soft);margin:10px 0 24px;font-size:15px">Tell us which of these you are, and we will send the right form back.</p>
+          <form id="cform" novalidate>
+            <div class="form-row"><label for="cf-name">Your name</label>
+              <input class="field-in" id="cf-name" name="name" autocomplete="off" placeholder="Jane Halloway"></div>
+            <div class="form-row"><label for="cf-email">Email</label>
+              <input class="field-in" id="cf-email" name="email" autocomplete="off" placeholder="you@example.com"></div>
+            <div class="form-row"><label for="cf-topic">I am writing about</label>
+              <select class="field-in" id="cf-topic" name="topic">
+                <option>Adopting a horse</option><option>Fostering a horse</option>
+                <option>Volunteering</option><option>A donation</option>
+                <option>A law enforcement case</option><option>Something else</option>
+              </select></div>
+            <div class="form-row"><label for="cf-msg">Message</label>
+              <textarea class="field-in" id="cf-msg" name="message" placeholder="Tell us a little about your situation."></textarea></div>
+            <button type="submit" class="btn btn-solid btn-wide btn-lg">Send message</button>
+            <p class="note" style="margin-top:16px;font-size:11.5px">Not connected in this concept — this form does not send anywhere and stores nothing.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-brand">Namaste<br>Equine Rescue</p>
+        <address class="foot-addr">
+          1904 51st Drive<br>Union Grove, WI 53182<br>
+          <a href="tel:+12624920767">(262) 492-0767</a><br>
+          <a href="mailto:namasteequinerescue@gmail.com">namasteequinerescue@gmail.com</a>
+        </address>
+      </div>
+      <div>
+        <h4>The rescue</h4>
+        <a href="#/about" data-nav>About</a>
+        <a href="#/horses" data-nav>Our Horses</a>
+        <a href="#/alumni" data-nav>Alumni</a>
+        <a href="#/contact" data-nav>Contact</a>
+      </div>
+      <div>
+        <h4>Get involved</h4>
+        <a href="#/adopt" data-nav>Adopt</a>
+        <a href="#/foster" data-nav>Foster</a>
+        <a href="#/volunteer" data-nav>Volunteer</a>
+        <a href="#/donate" data-nav>Donate</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#/shop" data-nav>Shop</a>
+        <a href="https://www.facebook.com/namasteequinerescue" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://namasteequinerescue.org/" target="_blank" rel="noopener">Official site</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>Design concept · not the official site</p>
+      <p>Photographs and logo © Namaste Equine Rescue</p>
+    </div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="drawer" aria-label="Your bag" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>Your bag</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Close bag"><svg width="19" height="19"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot">
+    <div class="total-row"><span class="dim">Subtotal</span><span class="price" id="sub">$0</span></div>
+    <div class="total-row"><span class="dim">Shipping</span><span class="dim">Calculated at checkout</span></div>
+    <div class="total-row big"><span>Total</span><span id="tot">$0</span></div>
+    <button class="btn btn-solid btn-wide btn-lg" style="margin-top:18px" id="checkout">Checkout</button>
+    <p class="drawer-note">100% of proceeds support the horses</p>
+  </div>
+</aside>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-card">
+    <svg><use href="#i-shield"/></svg>
+    <h3 id="mTitle">This is a design concept</h3>
+    <p id="mBody">There is no checkout connected here, and nothing you entered has been sent or stored anywhere. On a live site this is where the order would be taken.</p>
+    <button class="btn btn-solid btn-lg" id="mClose">Understood</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  /* webfonts are an upgrade, never a dependency: injected so a slow or blocked
+     font host can never hold up first paint. Georgia + system stack is the floor. */
+  try{
+    var fl=document.createElement("link"); fl.rel="stylesheet";
+    fl.href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500"+
+      "&family=IBM+Plex+Sans:wght@400;500;600"+
+      "&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap";
+    (document.head||document.documentElement).appendChild(fl);
+  }catch(e){}
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* ─────────── router ─────────── */
+  var ROUTES={"/":"p-home","/about":"p-about","/horses":"p-horses","/alumni":"p-alumni",
+    "/adopt":"p-adopt","/foster":"p-foster","/volunteer":"p-volunteer","/donate":"p-donate",
+    "/shop":"p-shop","/contact":"p-contact"};
+  var nav=$("#nav"), burger=$("#burger");
+
+  function route(){
+    var h=(location.hash||"#/").replace(/^#/,"");
+    if(!ROUTES[h]){h="/"}
+    var id=ROUTES[h];
+    $$(".page").forEach(function(p){p.classList.toggle("live",p.id===id)});
+    $$("#nav a,[data-nav]").forEach(function(a){
+      var t=a.getAttribute("href")||"";
+      a.classList.toggle("on", a.parentNode===nav && t==="#"+h);
+    });
+    closeNav();
+    window.scrollTo({top:0,behavior:"instant"});
+    reveal();
+    var pg=document.getElementById(id), hd=pg&&pg.querySelector("h1");
+    if(hd){document.title=(h==="/"?"":hd.textContent.trim().slice(0,44)+" — ")+"Namaste Equine Rescue"}
+  }
+  window.addEventListener("hashchange",route);
+
+  function closeNav(){nav.classList.remove("open");burger.setAttribute("aria-expanded","false")}
+  burger.addEventListener("click",function(){
+    var open=nav.classList.toggle("open");
+    burger.setAttribute("aria-expanded",String(open));
+  });
+
+  /* ─────────── header shadow ─────────── */
+  var hdr=$("#hdr");
+  var onScroll=function(){hdr.classList.toggle("stuck",window.scrollY>8)};
+  window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+  /* ─────────── reveal ─────────── */
+  var io=null;
+  if("IntersectionObserver" in window){
+    io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)} });
+    },{rootMargin:"0px 0px -8% 0px",threshold:.05});
+    $$(".rv").forEach(function(el){io.observe(el)});
+  } else { $$(".rv").forEach(function(el){el.classList.add("in")}) }
+  function reveal(){
+    var live=$(".page.live"); if(!live)return;
+    $$(".rv",live).forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top < window.innerHeight*0.95){ el.classList.add("in"); if(io)io.unobserve(el) }
+    });
+  }
+
+  /* ─────────── product options ─────────── */
+  function paint(card){
+    var svg=$(".g-svg",card); if(!svg)return;
+    var sw=$('.sw[aria-pressed="true"]',card); if(!sw)return;
+    svg.style.setProperty("--fabric",sw.dataset.fabric);
+    svg.style.setProperty("--print",sw.dataset.print);
+    if(sw.dataset.trim)svg.style.setProperty("--trim",sw.dataset.trim);
+  }
+  $$(".product").forEach(function(card){
+    $$(".sw",card).forEach(function(b){
+      b.addEventListener("click",function(){
+        $$(".sw",card).forEach(function(o){o.setAttribute("aria-pressed","false")});
+        b.setAttribute("aria-pressed","true"); paint(card);
+      });
+    });
+    $$(".pill",card).forEach(function(b){
+      b.addEventListener("click",function(){
+        $$(".pill",card).forEach(function(o){o.setAttribute("aria-pressed","false")});
+        b.setAttribute("aria-pressed","true");
+      });
+    });
+    paint(card);
+  });
+
+  /* ─────────── cart ─────────── */
+  var cart=[];
+  try{ var s=localStorage.getItem("ner_bag"); if(s)cart=JSON.parse(s)||[] }catch(e){cart=[]}
+  if(!Array.isArray(cart))cart=[];
+  function save(){ try{localStorage.setItem("ner_bag",JSON.stringify(cart))}catch(e){} }
+  function money(n){ return "$"+n.toFixed(n%1?2:0) }
+
+  function thumb(id){
+    var src=$('.product[data-id="'+id+'"] .g-svg');
+    if(!src)return "";
+    var c=src.cloneNode(true); c.removeAttribute("class");
+    c.setAttribute("preserveAspectRatio","xMidYMid meet");
+    return c.outerHTML;
+  }
+  function render(){
+    var body=$("#cartBody"), n=0, sum=0;
+    cart.forEach(function(l){n+=l.qty;sum+=l.qty*l.price});
+    var cc=$("#cartCount"); cc.textContent=String(n); cc.classList.toggle("show",n>0);
+    $("#sub").textContent=money(sum); $("#tot").textContent=money(sum);
+    $("#checkout").disabled=!cart.length;
+    $("#checkout").style.opacity=cart.length?"1":".45";
+    if(!cart.length){
+      body.innerHTML='<div class="empty"><svg><use href="#i-cart"/></svg>'+
+        '<p>Your bag is empty.</p><p style="margin-top:8px;font-size:14px">'+
+        'Five things, and every one of them pays for hay.</p></div>';
+      return;
+    }
+    body.innerHTML=cart.map(function(l,i){
+      var opt=[l.color,l.size].filter(Boolean).join(" · ");
+      return '<div class="line"><div class="line-thumb">'+thumb(l.id)+'</div>'+
+        '<div><h4>'+l.name+'</h4>'+(opt?'<p class="line-opt">'+opt+'</p>':'')+
+        '<div class="qty"><button data-d="-1" data-i="'+i+'" aria-label="One fewer">−</button>'+
+        '<span>'+l.qty+'</span>'+
+        '<button data-d="1" data-i="'+i+'" aria-label="One more">+</button></div></div>'+
+        '<span class="line-price">'+money(l.qty*l.price)+'</span></div>';
+    }).join("");
+    $$("#cartBody .qty button").forEach(function(b){
+      b.addEventListener("click",function(){
+        var i=+b.dataset.i, d=+b.dataset.d;
+        cart[i].qty+=d;
+        if(cart[i].qty<1)cart.splice(i,1);
+        save();render();
+      });
+    });
+  }
+
+  $$(".product .add").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var card=btn.closest(".product");
+      var sw=$('.sw[aria-pressed="true"]',card), pl=$('.pill[aria-pressed="true"]',card);
+      var item={ id:card.dataset.id, name:card.dataset.name, price:+card.dataset.price,
+        color:sw?sw.dataset.color:"", size:pl?pl.dataset.size:"", qty:1 };
+      var hit=null;
+      cart.forEach(function(l){ if(l.id===item.id&&l.color===item.color&&l.size===item.size)hit=l });
+      if(hit)hit.qty++; else cart.push(item);
+      save();render();
+      var msg=$(".added",card);
+      if(msg){msg.classList.add("on");setTimeout(function(){msg.classList.remove("on")},1400)}
+      openCart();
+    });
+  });
+
+  /* ─────────── drawer + modal ─────────── */
+  var drawer=$("#drawer"), scrim=$("#scrim"), modal=$("#modal");
+  function openCart(){drawer.classList.add("on");scrim.classList.add("on");
+    drawer.setAttribute("aria-hidden","false");document.body.style.overflow="hidden"}
+  function shutCart(){drawer.classList.remove("on");scrim.classList.remove("on");
+    drawer.setAttribute("aria-hidden","true");if(!modal.classList.contains("on"))document.body.style.overflow=""}
+  $("#cartOpen").addEventListener("click",openCart);
+  $("#cartClose").addEventListener("click",shutCart);
+  scrim.addEventListener("click",shutCart);
+
+  function say(title,body){
+    $("#mTitle").textContent=title; $("#mBody").textContent=body;
+    modal.classList.add("on"); modal.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden"; $("#mClose").focus();
+  }
+  function hush(){modal.classList.remove("on");modal.setAttribute("aria-hidden","true");
+    if(!drawer.classList.contains("on"))document.body.style.overflow=""}
+  $("#mClose").addEventListener("click",hush);
+  modal.addEventListener("click",function(e){if(e.target===modal)hush()});
+
+  $("#checkout").addEventListener("click",function(){
+    if(!cart.length)return;
+    say("This is a design concept",
+      "There is no checkout connected here — no payment can be taken and nothing has been sent anywhere. On a live shop this is where the order would go through, and 100% of the proceeds would go to the horses.");
+  });
+  $$("[data-demo]").forEach(function(b){
+    b.addEventListener("click",function(){
+      say("Not connected yet",
+        "This concept is not wired to PayPal or any payment system. On the live site this button would open the rescue's real donation page.");
+    });
+  });
+  var cf=$("#cform");
+  if(cf)cf.addEventListener("submit",function(e){
+    e.preventDefault();
+    say("Nothing was sent",
+      "This form is part of a design concept. It does not send email and stores nothing you typed. On a live site it would reach the farm inbox.");
+    cf.reset();
+  });
+
+  document.addEventListener("keydown",function(e){
+    if(e.key!=="Escape")return;
+    if(modal.classList.contains("on"))hush();
+    else if(drawer.classList.contains("on"))shutCart();
+    else closeNav();
+  });
+
+  /* ─────────── home shop teaser ─────────── */
+  var teaser=$("#shopTeaser");
+  if(teaser){
+    teaser.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'+
+      '<div style="background:var(--ground-deep);border:1px solid var(--rule);border-radius:14px;padding:18px;aspect-ratio:1;overflow:hidden">'+thumb("tee")+'</div>'+
+      '<div style="background:var(--ground-deep);border:1px solid var(--rule);border-radius:14px;padding:18px;aspect-ratio:1;overflow:hidden">'+thumb("hoodie")+'</div>'+
+      '<div style="background:var(--ground-deep);border:1px solid var(--rule);border-radius:14px;padding:18px;aspect-ratio:1;overflow:hidden">'+thumb("tote")+'</div>'+
+      '<div style="background:var(--ground-deep);border:1px solid var(--rule);border-radius:14px;padding:18px;aspect-ratio:1;overflow:hidden">'+thumb("beanie")+'</div>'+
+      '</div>';
+    $$("#shopTeaser svg").forEach(function(s){s.style.width="100%";s.style.height="100%"});
+  }
+
+  window.addEventListener("scroll",reveal,{passive:true});
+  window.addEventListener("resize",reveal);
+  render(); route();
+})();
+</script>
