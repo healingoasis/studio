@@ -4,15 +4,19 @@ import base64, pathlib, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC  = ROOT / "content/concepts/namaste-site-source.html"
-ASSETS = ROOT / "content/concepts/assets/web"   # web-optimised copies; originals sit one level up
+ASSETS = ROOT / "content/concepts/assets"
 OUT = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "tmp/namaste-site.html"
 
 IMAGES = {
-    "LOGO":    "00-namaste-equine-rescue-logo-a-horse-s-hea.png",
-    "HERO":    "01-captain-a-black-quarter-horse-walking-in.jpg",
-    "RED":     "02-red-a-chestnut-quarter-horse-with-a-whit.jpg",
-    "CAPTAIN": "03-captain-a-black-horse-walking-sound-and.jpg",
+    "LOGO":    "web/00-namaste-equine-rescue-logo-a-horse-s-hea.png",
+    "HERO":    "web/01-captain-a-black-quarter-horse-walking-in.jpg",
+    "RED":     "web/02-red-a-chestnut-quarter-horse-with-a-whit.jpg",
+    "CAPTAIN": "web/03-captain-a-black-horse-walking-sound-and.jpg",
 }
+# product mockups: real garment photography with the rescue's artwork printed on
+for _k in ("crew", "tee", "beanie", "tote", "stickers"):
+    IMAGES[f"SHOT_{_k.upper()}"] = f"products/shot-{_k}.jpg"
+    IMAGES[f"ART_{_k.upper()}"]  = f"products/art-{_k}.jpg"
 
 html = SRC.read_text()
 for key, name in IMAGES.items():

@@ -28,17 +28,27 @@ story behind it. Five products, spanning a $12 entry point to a $58 anchor:
 | Canvas Feed Tote | $24 | "Hay. Water. Time." — what a starved horse needs, in order |
 | Case File Sticker Sheet | $12 | Cheapest way for a distant supporter to say yes |
 
-Garments are drawn, not photographed — the rescue has only four usable photographs, and a
-faked product shoot would be a lie on a page whose whole argument is that the numbers are
-real. They are rendered rather than sketched: one shared light source across every panel,
-gradient shading, seam stitching, ribbed cuffs, a cloth-noise displacement filter on the
-fabric and a lighter one on the ink so prints read as screen-printed rather than pasted on.
-Product stages keep a fixed studio backdrop in both themes, because a product shot is a
-photograph and photographs do not invert.
+### The mockups are photographs
 
-The print artwork is designed to be looked at on its own, not just shrunk onto a chest:
-the hoodie carries a full bordered intake form, the tee an enormous +250, the tote the
-three words stacked. Each product page shows that artwork large, on its own fabric colour.
+The garments are **real photographs of real blank garments**, licensed from Unsplash
+(free for commercial use, no attribution required), with the rescue's artwork printed onto
+them in `scripts/build-namaste-mockups.py`. This is how a merchandise run is proofed before
+any of it is made.
+
+The compositing is not an overlay. For each print the script reads the luminance of the
+cloth underneath and modulates the ink by it, so the design sinks into the folds and
+shadows of the actual fabric. Sources and treatment:
+
+- **Crewneck and tee** — one studio hanger shot, so both share lighting and sweep. The
+  three garments in that frame overlap, so each is cut out by walking the rows and keeping
+  only the dark run the centre falls inside.
+- **Beanie** — a charcoal cuffed knit that arrived with another brand's woven patch; ours
+  is pasted over it with a contact shadow, carrying the rescue's own logo unaltered.
+- **Tote** — natural canvas, with the previous brand's mark cloned out before printing.
+- **Stickers** — drawn flat, because a sticker sheet *is* flat, then given a paper shadow.
+
+One colourway per product: only the photographed colour is offered, rather than faking
+variants that were never shot.
 
 ## Open questions for the board (do not answer these on the page)
 

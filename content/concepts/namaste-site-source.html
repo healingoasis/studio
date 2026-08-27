@@ -302,12 +302,13 @@ p{margin:0}
   border:1px solid var(--rule);border-radius:18px;overflow:hidden;
   transition:box-shadow .35s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1),border-color .3s}
 .card:hover{box-shadow:var(--shadow-lift);transform:translateY(-4px);border-color:var(--rule)}
-.card:hover .stage svg{transform:scale(1.045)}
+.card:hover .stage img{transform:scale(1.04)}
 .card.span2{grid-column:span 2}
 @media(max-width:760px){.card.span2{grid-column:span 1}}
-.stage{position:relative;aspect-ratio:4/3.5;overflow:hidden;background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%)}
-.card.span2 .stage{aspect-ratio:16/8.4}
-.stage svg{width:100%;height:100%;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.stage{position:relative;aspect-ratio:1;overflow:hidden;background:#EDEAF2}
+.card.span2 .stage{aspect-ratio:16/9}
+.stage img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.16,1,.3,1)}
 .tag{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.14em;text-transform:uppercase;background:var(--invert-bg);color:var(--invert-fg);
   padding:6px 11px;border-radius:20px}
@@ -319,6 +320,8 @@ p{margin:0}
   font-variant-numeric:tabular-nums}
 .card-body p{margin-top:10px;font-size:14.5px;color:var(--ink-soft);line-height:1.55}
 .card-foot{margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.p-col{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted)}
 .dots{display:flex;gap:6px}
 .dot{width:15px;height:15px;border-radius:50%;box-shadow:0 0 0 1px var(--rule) inset}
 .view{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
@@ -331,8 +334,8 @@ p{margin:0}
   gap:clamp(28px,4vw,64px);align-items:start}
 @media(max-width:900px){.pdp{grid-template-columns:1fr}}
 .pdp-stage{position:relative;border:1px solid var(--rule);border-radius:20px;overflow:hidden;
-  background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%);aspect-ratio:1/.9}
-.pdp-stage svg{width:100%;height:100%;display:block}
+  background:#EDEAF2;aspect-ratio:1}
+.pdp-stage img{width:100%;height:100%;object-fit:cover;display:block}
 .pdp-sub{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
 .swatch-tile{border:1px solid var(--rule);border-radius:13px;overflow:hidden;cursor:pointer;
   background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%);padding:0;aspect-ratio:1/.9;transition:border-color .2s,transform .2s}
@@ -379,8 +382,8 @@ p{margin:0}
   align-items:center}
 @media(max-width:860px){.art-grid{grid-template-columns:1fr}}
 .art-card{background:var(--surface);border:1px solid var(--rule);border-radius:18px;
-  padding:clamp(24px,3.4vw,44px);box-shadow:var(--shadow)}
-.art-card svg{width:100%;height:auto;display:block}
+  padding:clamp(14px,1.8vw,22px);box-shadow:var(--shadow);overflow:hidden}
+.art-card img{width:100%;height:auto;display:block;border-radius:10px}
 .art-meta .eyebrow{color:var(--accent)}
 .art-meta h2{font-size:clamp(26px,3.4vw,40px);line-height:1.1;margin-top:14px}
 .art-meta p{margin-top:16px;color:var(--ink-soft);font-size:16.5px;line-height:1.65}
@@ -412,9 +415,9 @@ p{margin:0}
 .empty svg{width:44px;height:44px;margin:0 auto 18px;color:var(--rule)}
 .line{display:grid;grid-template-columns:64px 1fr auto;gap:16px;padding:20px 0;
   border-bottom:1px solid var(--rule-soft);align-items:start}
-.line-thumb{width:64px;height:64px;border-radius:10px;background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%);display:grid;
+.line-thumb{width:64px;height:64px;border-radius:10px;background:#EDEAF2;display:grid;
   place-items:center;overflow:hidden;padding:6px}
-.line-thumb svg{width:100%;height:100%}
+.line-thumb img{width:100%;height:100%;object-fit:cover}
 .line h4{font-family:var(--sans);font-size:15px;font-weight:600;line-height:1.3}
 .line-opt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--faint);margin-top:5px}
@@ -1400,254 +1403,111 @@ textarea.field-in{min-height:130px;resize:vertical}
   }
 
   /* ══════════════════════════════════════════════════════════
-     Products. Every graphic is a real fact out of the rescue's
-     own files — that is the whole point of the range.
+     Products. Real photographs of real blank garments, with the
+     rescue's artwork printed on in the shot — the same way a run
+     of merchandise is proofed before any of it is made.
      ══════════════════════════════════════════════════════════ */
-  var uid=0;
+  var SHOT={crew:"{{SHOT_CREW}}",tee:"{{SHOT_TEE}}",beanie:"{{SHOT_BEANIE}}",
+            tote:"{{SHOT_TOTE}}",stickers:"{{SHOT_STICKERS}}"};
+  var ARTW={crew:"{{ART_CREW}}",tee:"{{ART_TEE}}",beanie:"{{ART_BEANIE}}",
+            tote:"{{ART_TOTE}}",stickers:"{{ART_STICKERS}}"};
+
   var PRODUCTS=[
-    { id:"hoodie", kind:"hoodie", name:"Intake Record Hoodie", price:58,
-      tag:"Back print", span:false,
+    { id:"crew", name:"Intake Record Crewneck", price:58, span:false,
+      tag:"Chest print",
       blurb:"The header off a real intake file, printed the size it deserves.",
-      lede:"Heavyweight fleece, cut long enough to stay tucked in when you are bent over a hoof. "+
-           "The back carries the form every horse here arrives on.",
+      lede:"Heavyweight brushed fleece, cut long enough to stay tucked in when you are bent "+
+           "over a hoof. The front carries the form every horse here arrives on.",
       artTitle:"The form every horse arrives on",
-      artText:"Before a seized horse gets hay, it gets a file. Date, department, condition, outcome — "+
-              "the same four lines whether the case takes three weeks or three years. The print is that "+
-              "form, set the way it deserves to be set. The last line always reads RE-HOMED, because so far it always has.",
-      specs:[["Fabric","80/20 cotton-poly fleece, 380 gsm"],["Fit","Unisex, relaxed"],
-             ["Details","Kangaroo pocket, ribbed cuffs and hem"],["Print","Water-based ink, back panel"],
+      artText:"Before a seized horse gets hay, it gets a file. Date, department, condition, "+
+              "outcome — the same four lines whether the case takes three weeks or three years. "+
+              "The print is that form, set the way it deserves to be set. The last line always "+
+              "reads RE-HOMED, because so far it always has.",
+      specs:[["Fabric","80/20 cotton-poly brushed fleece, 380 gsm"],["Fit","Unisex, relaxed"],
+             ["Colour","Washed black"],["Print","Water-based ink, front panel"],
              ["Care","Cold wash, hang dry, inside out"]],
       sizes:["S","M","L","XL","2XL"], chart:true,
-      colors:[{name:"Charcoal",fab:"#34313A",hi:"#45414D",lo:"#211E27",trim:"#2A272F",print:"#EFEBF4"},
-              {name:"Ash Violet",fab:"#6A5F76",hi:"#7D7189",lo:"#544A60",trim:"#5D5368",print:"#F5F0F9"},
-              {name:"Bone",fab:"#E6E1D8",hi:"#F3EFE9",lo:"#CFC8BC",trim:"#DAD4C9",print:"#26232B"}] },
+      colors:[{name:"Washed Black"}] },
 
-    { id:"tee", kind:"tee", name:"“+250” Recovery Tee", price:32,
-      tag:"Red's real weight", tagAlt:true, span:false,
+    { id:"tee", name:"“+250” Recovery Tee", price:32, span:false,
+      tag:"Red's real weight", tagAlt:true,
       blurb:"The number one horse had to put back on. Two hundred and fifty pounds.",
       lede:"Ringspun cotton, pre-shrunk. The front carries the single most useful number this "+
            "rescue has ever published.",
       artTitle:"Two hundred and fifty pounds",
       artText:"Red came in from a 2015 Pleasant Prairie intervention: seven years old, extremely "+
-              "dehydrated, and 250 pounds under where he should have been. That is not a slogan, it is "+
-              "a scale reading. Anyone who asks what the number means gets told about Red, which is "+
-              "exactly what a shirt is for.",
+              "dehydrated, and 250 pounds under where he should have been. That is not a slogan, "+
+              "it is a scale reading. Anyone who asks what the number means gets told about Red, "+
+              "which is exactly what a shirt is for.",
       specs:[["Fabric","100% ringspun cotton, 180 gsm"],["Fit","Unisex, true to size"],
-             ["Details","Pre-shrunk, taped neck and shoulders"],["Print","Water-based ink, front"],
+             ["Colour","Black"],["Print","Water-based ink, front"],
              ["Care","Cold wash, tumble low"]],
       sizes:["S","M","L","XL","2XL"], chart:true,
-      colors:[{name:"Black",fab:"#1D1A22",hi:"#2C2833",lo:"#121016",trim:"#17151C",print:"#F3EEF8"},
-              {name:"Snow",fab:"#F2F0F5",hi:"#FCFBFD",lo:"#DAD6E1",trim:"#E7E4EC",print:"#1B1820"},
-              {name:"Orchid",fab:"#6E2A93",hi:"#8135A7",lo:"#551E72",trim:"#642686",print:"#FBF3FE"}] },
+      colors:[{name:"Black"}] },
 
-    { id:"beanie", kind:"beanie", name:"Barn Beanie", price:28,
-      tag:"Embroidered", span:false,
-      blurb:"Ribbed knit with the orchid mark stitched on the fold.",
-      lede:"For five-thirty in the morning in January, which is when most of the actual work "+
-           "of this rescue happens.",
-      artTitle:"Their own orchid, stitched small",
-      artText:"The rescue's logo is a horse's head over a violet flame. On a beanie it has no business "+
-              "being big — it sits on the fold at the size a maker's mark should be, satin-stitched, "+
-              "the one flash of color on an otherwise plain hat.",
+    { id:"beanie", name:"Barn Beanie", price:28, span:false,
+      tag:"Woven patch",
+      blurb:"Ribbed knit with the rescue's own logo on a woven patch at the fold.",
+      lede:"For five-thirty in the morning in January, which is when most of the actual work of "+
+           "this rescue happens.",
+      artTitle:"Their own logo, at maker's-mark size",
+      artText:"The rescue already has a logo — a horse's head over a violet flame — and it does "+
+              "not need redrawing. On a beanie it has no business being big: it sits on the fold "+
+              "on a bone woven patch, the one flash of colour on an otherwise plain hat.",
       specs:[["Fabric","Acrylic rib knit, double layer"],["Fit","Cuffed, one size"],
-             ["Details","Embroidered mark on the fold"],["Care","Cold wash, lay flat"]],
+             ["Colour","Charcoal"],["Detail","Woven patch, stitched at the fold"],
+             ["Care","Cold wash, lay flat"]],
       sizes:["One size"], chart:false,
-      colors:[{name:"Charcoal",fab:"#34313A",hi:"#45414D",lo:"#211E27",trim:"#2A272F",print:"#C77BE6"},
-              {name:"Orchid",fab:"#6E2A93",hi:"#8135A7",lo:"#551E72",trim:"#642686",print:"#F6E7FD"},
-              {name:"Bone",fab:"#E6E1D8",hi:"#F3EFE9",lo:"#CFC8BC",trim:"#DAD4C9",print:"#6E2A93"}] },
+      colors:[{name:"Charcoal"}] },
 
-    { id:"tote", kind:"tote", name:"Canvas Feed Tote", price:24,
-      tag:"Heavy canvas", span:false,
+    { id:"tote", name:"Canvas Feed Tote", price:24, span:false,
+      tag:"Heavy canvas",
       blurb:"Hay. Water. Time. The three things that actually bring a horse back.",
       lede:"Twelve-ounce canvas with reinforced handles. Heavy enough for grain, brushes, or a "+
            "week's worth of farmers' market.",
       artTitle:"Hay. Water. Time.",
-      artText:"People assume rescue is dramatic. Mostly it is three things repeated for a year: forage "+
-              "in front of the horse, clean water, and enough time for a body to rebuild itself. Printed "+
-              "in that order, because the order is the part everyone gets wrong.",
+      artText:"People assume rescue is dramatic. Mostly it is three things repeated for a year: "+
+              "forage in front of the horse, clean water, and enough time for a body to rebuild "+
+              "itself. Printed in that order, because the order is the part everyone gets wrong.",
       specs:[["Fabric","12 oz cotton canvas"],["Size","15″ wide × 16″ tall"],
-             ["Details","Reinforced handles, boxed base"],["Print","Water-based ink, one side"],
+             ["Colour","Natural"],["Detail","Reinforced handles, boxed base"],
              ["Care","Cold wash, hang dry"]],
       sizes:["One size"], chart:false,
-      colors:[{name:"Natural",fab:"#DCD3C2",hi:"#EAE3D6",lo:"#C6BCA8",trim:"#CDC3B0",print:"#26232B"},
-              {name:"Black",fab:"#1D1A22",hi:"#2C2833",lo:"#121016",trim:"#17151C",print:"#EFEBF4"}] },
+      colors:[{name:"Natural"}] },
 
-    { id:"stickers", kind:"stickers", name:"Case File Sticker Sheet", price:12, span:true,
+    { id:"stickers", name:"Case File Sticker Sheet", price:12, span:true,
       tag:"Five die-cuts",
       blurb:"Five weatherproof die-cuts: the mark, the number, the zero, the line, the stamp.",
       lede:"The cheapest way to say yes. For trailers, tack boxes, water bottles and truck windows.",
       artTitle:"The whole rescue on one sheet",
-      artText:"Five stickers that between them tell the entire story: the logo mark, Red's number, the "+
-              "zero we are proud of, the line this place runs on, and the plain stamp for anyone who "+
-              "wants none of the drama.",
+      artText:"Five stickers that between them tell the entire story: the logo mark, Red's number, "+
+              "the zero we are proud of, the line this place runs on, and the plain stamp for "+
+              "anyone who wants none of the drama.",
       specs:[["Material","Weatherproof vinyl, matte laminate"],["Sheet","6″ × 8″, five stickers"],
-             ["Details","Kiss-cut, UV and dishwasher safe"],["Care","Apply to clean dry surface"]],
+             ["Detail","Kiss-cut, UV and dishwasher safe"],["Care","Apply to clean dry surface"]],
       sizes:["One sheet"], chart:false,
-      colors:[{name:"One sheet",fab:"#F4F2F6",hi:"#FFFFFF",lo:"#E2DEE9",trim:"#E3DFEA",print:"#16131B"}] },
+      colors:[{name:"One sheet"}] },
   ];
   function byId(id){ for(var i=0;i<PRODUCTS.length;i++){ if(PRODUCTS[i].id===id)return PRODUCTS[i] } return null }
   function idx(id){ for(var i=0;i<PRODUCTS.length;i++){ if(PRODUCTS[i].id===id)return i } return -1 }
 
-  /* ─────────── the artwork, drawn once and reused at every size ─────────── */
-  var ART={
-    hoodie:function(k){ return ''+
-      '<rect x="8" y="8" width="284" height="244" fill="none" stroke="'+k+'" stroke-width="2.6"/>'+
-      '<rect x="17" y="17" width="266" height="226" fill="none" stroke="'+k+'" stroke-width="0.9" opacity=".45"/>'+
-      '<g fill="'+k+'" text-anchor="middle">'+
-      '<text x="150" y="47" font-size="9.5" letter-spacing="4.4" font-family="var(--mono)">NAMASTE EQUINE RESCUE</text>'+
-      '<rect x="36" y="59" width="228" height="1.2" opacity=".4"/>'+
-      '<text x="150" y="112" font-size="45" letter-spacing="1.4" font-family="var(--display)">INTAKE</text>'+
-      '<text x="150" y="157" font-size="45" letter-spacing="1.4" font-family="var(--display)">RECORD</text>'+
-      '<rect x="36" y="170" width="228" height="1.2" opacity=".4"/></g>'+
-      '<g fill="'+k+'" font-family="var(--mono)" font-size="7.6" letter-spacing="2">'+
-      '<text x="36" y="192" opacity=".6">SEIZED BY</text><text x="264" y="192" text-anchor="end">LAW ENFORCEMENT</text>'+
-      '<text x="36" y="210" opacity=".6">STATE</text><text x="264" y="210" text-anchor="end">WISCONSIN</text>'+
-      '<text x="36" y="228" opacity=".6">OUTCOME</text><text x="264" y="228" text-anchor="end">RE-HOMED</text></g>'+
-      '<text x="150" y="245" text-anchor="middle" fill="'+k+'" font-family="var(--mono)" font-size="7" '+
-      'letter-spacing="3" opacity=".55">EST. 2014 · UNION GROVE, WI</text>' },
-
-    tee:function(k){ return '<g fill="'+k+'" text-anchor="middle">'+
-      '<text x="150" y="38" font-size="8.5" letter-spacing="5.4" font-family="var(--mono)" opacity=".7">WHAT RECOVERY WEIGHS</text>'+
-      '<text x="150" y="152" font-size="112" letter-spacing="-3" font-family="var(--display)">+250</text>'+
-      '<text x="150" y="181" font-size="13" letter-spacing="9" font-family="var(--mono)">POUNDS</text>'+
-      '<rect x="72" y="197" width="156" height="1.3" opacity=".45"/>'+
-      '<text x="150" y="219" font-size="8" letter-spacing="2.6" font-family="var(--mono)" opacity=".85">RED · 7YO QUARTER HORSE</text>'+
-      '<text x="150" y="235" font-size="8" letter-spacing="2.6" font-family="var(--mono)" opacity=".85">PLEASANT PRAIRIE · 2015</text></g>' },
-
-    tote:function(k){ return '<g fill="'+k+'">'+
-      '<text x="24" y="74" font-size="50" font-family="var(--display)">HAY.</text>'+
-      '<text x="24" y="128" font-size="50" font-family="var(--display)">WATER.</text>'+
-      '<text x="24" y="182" font-size="50" font-family="var(--display)">TIME.</text>'+
-      '<rect x="24" y="198" width="176" height="1.4" opacity=".45"/>'+
-      '<text x="24" y="219" font-size="8.6" letter-spacing="3.2" font-family="var(--mono)">IN THAT ORDER.</text>'+
-      '<text x="24" y="238" font-size="6.4" letter-spacing="1.8" font-family="var(--mono)" opacity=".6">NAMASTE EQUINE RESCUE · UNION GROVE, WI</text></g>' },
-
-    beanie:function(k){ return '<g transform="translate(150,122)">'+
-      '<circle r="78" fill="none" stroke="'+k+'" stroke-width="3.4"/>'+
-      '<circle r="67" fill="none" stroke="'+k+'" stroke-width="1" opacity=".5"/>'+
-      '<path d="M-25 42 C-37 8 -29 -24 -7 -37 C-1 -50 20 -54 30 -42 C38 -32 36 -13 26 -2 C20 8 15 22 13 42 Z" fill="'+k+'"/>'+
-      '<path d="M-7 -37 C-12 -46 -9 -53 -2 -50" fill="none" stroke="'+k+'" stroke-width="2.4" stroke-linecap="round"/>'+
-      '</g>'+
-      '<text x="150" y="232" text-anchor="middle" fill="'+k+'" font-family="var(--mono)" font-size="9" '+
-      'letter-spacing="5">EST. 2014</text>' },
-
-    stickers:function(){ return ''+
-      '<rect x="4" y="4" width="292" height="252" rx="9" fill="#F4F2F6" stroke="#E3DFEA" stroke-width="1.6"/>'+
-      '<g stroke="#CFC9D8" stroke-width="1.1" stroke-dasharray="3.5 3.5" fill="none">'+
-      '<circle cx="66" cy="80" r="46"/><rect x="128" y="34" width="76" height="92" rx="9"/>'+
-      '<rect x="216" y="34" width="66" height="92" rx="9"/>'+
-      '<rect x="20" y="150" width="150" height="76" rx="9"/><rect x="184" y="150" width="98" height="76" rx="9"/></g>'+
-      '<g transform="translate(66,80)"><circle r="39" fill="#6E2A93"/>'+
-      '<path d="M-12 20 C-18 4 -14 -12 -3 -18 C0 -24 10 -26 15 -20 C19 -15 18 -6 13 -1 C10 4 7 11 6 20 Z" fill="#F4E4FC"/></g>'+
-      '<g transform="translate(166,80)" text-anchor="middle"><rect x="-33" y="-42" width="66" height="84" rx="7" fill="#16131B"/>'+
-      '<text y="4" font-size="27" font-family="var(--display)" fill="#F2ECF7">+250</text>'+
-      '<text y="22" font-size="6" letter-spacing="1.8" font-family="var(--mono)" fill="#C77BE6">POUNDS BACK</text></g>'+
-      '<g transform="translate(249,80)" text-anchor="middle"><rect x="-28" y="-42" width="56" height="84" rx="7" fill="#6E2A93"/>'+
-      '<text y="6" font-size="34" font-family="var(--display)" fill="#fff">0</text>'+
-      '<text y="22" font-size="5" letter-spacing="1.1" font-family="var(--mono)" fill="#F4E4FC">WAITING FOR</text>'+'<text y="32" font-size="5" letter-spacing="1.1" font-family="var(--mono)" fill="#F4E4FC">A HOME</text></g>'+
-      '<g transform="translate(95,188)" text-anchor="middle"><rect x="-72" y="-34" width="144" height="68" rx="7" fill="#16131B"/>'+
-      '<text y="-4" font-size="8" font-family="var(--display)" fill="#F2ECF7">When the law takes a horse away,</text>'+
-      '<text y="11" font-size="8" font-family="var(--display)" font-style="italic" fill="#C77BE6">we take him next.</text></g>'+
-      '<g transform="translate(233,188)" text-anchor="middle"><rect x="-46" y="-34" width="92" height="68" rx="7" fill="#E7E2DA"/>'+
-      '<text y="-4" font-size="5.8" letter-spacing="1.2" font-family="var(--mono)" fill="#16131B">NAMASTE EQUINE</text>'+
-      '<text y="8" font-size="5.8" letter-spacing="1.2" font-family="var(--mono)" fill="#16131B">RESCUE · EST. 2014</text></g>' }
-  };
-
-  /* ─────────── garments: shaded, seamed, and given real cloth ─────────── */
-  /* one light source across the whole garment: userSpaceOnUse, so sleeves and body
-     share the same gradient instead of each mapping it across its own little box */
-  function defs(u,c){ return '<defs>'+
-    '<linearGradient id="f'+u+'" gradientUnits="userSpaceOnUse" x1="110" y1="20" x2="330" y2="380">'+
-      '<stop offset="0" stop-color="'+c.hi+'"/><stop offset=".5" stop-color="'+c.fab+'"/>'+
-      '<stop offset="1" stop-color="'+c.lo+'"/></linearGradient>'+
-    '<linearGradient id="t'+u+'" gradientUnits="userSpaceOnUse" x1="110" y1="20" x2="330" y2="380">'+
-      '<stop offset="0" stop-color="'+c.trim+'"/><stop offset="1" stop-color="'+c.lo+'"/></linearGradient>'+
-    '</defs>' }
-  var FOLD='<g stroke="rgba(0,0,0,.085)" stroke-width="13" stroke-linecap="round" fill="none">';
-  var STITCH='stroke-dasharray="3 3.4" stroke-width="1" opacity=".38"';
-
-  var GARMENT={
-    hoodie:function(c,u){ return defs(u,c)+
-      '<ellipse cx="210" cy="366" rx="116" ry="12" fill="rgba(0,0,0,.3)" filter="url(#soft)"/>'+
-      '<path d="M160 94 C160 40 178 20 210 20 C242 20 260 40 260 94 Z" fill="url(#t'+u+')" filter="url(#cloth)"/>'+
-      '<path d="M173 92 C173 48 187 33 210 33 C233 33 247 48 247 92 Z" fill="rgba(0,0,0,.16)"/>'+
-      '<path d="M152 84 C126 90 106 103 96 124 L64 238 C61 248 66 257 76 259 L108 267 C117 269 124 264 126 255 L150 150 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
-      '<path d="M268 84 C294 90 314 103 324 124 L356 238 C359 248 354 257 344 259 L312 267 C303 269 296 264 294 255 L270 150 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
-      '<path d="M152 88 C178 77 242 77 268 88 L290 122 C284 192 281 268 280 312 C280 322 273 328 262 328 L158 328 C147 328 140 322 140 312 C139 268 136 192 130 122 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
-      FOLD+'<path d="M172 140 C178 210 176 262 174 300"/><path d="M248 140 C242 210 244 262 246 300"/></g>'+
-      '<path d="M63 234 L128 250 L121 277 L56 261 Z" fill="url(#t'+u+')"/>'+
-      '<path d="M357 234 L292 250 L299 277 L364 261 Z" fill="url(#t'+u+')"/>'+
-      '<path d="M140 306 L280 306 L280 320 C280 326 275 330 268 330 L152 330 C145 330 140 326 140 320 Z" fill="url(#t'+u+')"/>'+
-      '<g stroke="rgba(0,0,0,.22)" fill="none">'+
-        '<path d="M152 88 C178 77 242 77 268 88" '+STITCH+'/>'+
-        '<path d="M150 96 L150 150" '+STITCH+'/><path d="M270 96 L270 150" '+STITCH+'/>'+
-        '<path d="M146 306 L274 306" '+STITCH+'/></g>'+
-      '<g transform="translate(144,138) scale(0.44)" filter="url(#ink)" opacity=".94">'+ART.hoodie(c.print)+'</g>' },
-
-    tee:function(c,u){ return defs(u,c)+
-      '<ellipse cx="210" cy="342" rx="112" ry="11" fill="rgba(0,0,0,.3)" filter="url(#soft)"/>'+
-      '<path d="M152 74 C126 80 108 94 98 116 L70 188 C67 197 72 205 81 207 L112 215 C120 217 127 212 129 204 L150 138 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
-      '<path d="M268 74 C294 80 312 94 322 116 L350 188 C353 197 348 205 339 207 L308 215 C300 217 293 212 291 204 L270 138 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
-      '<path d="M150 76 C176 66 244 66 270 76 L288 108 C283 172 281 252 280 292 C280 301 274 306 264 306 L156 306 C146 306 140 301 140 292 C139 252 137 172 132 108 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
-      FOLD+'<path d="M170 120 C176 190 174 246 172 288"/><path d="M250 120 C244 190 246 246 248 288"/></g>'+
-      '<path d="M168 70 C186 92 234 92 252 70 L260 75 C238 102 182 102 160 75 Z" fill="url(#t'+u+')"/>'+
-      '<path d="M172 76 C188 94 232 94 248 76" fill="none" stroke="rgba(0,0,0,.2)" stroke-width="1.2"/>'+
-      '<g stroke="rgba(0,0,0,.22)" fill="none">'+
-        '<path d="M150 92 L150 138" '+STITCH+'/><path d="M270 92 L270 138" '+STITCH+'/>'+
-        '<path d="M146 296 L274 296" '+STITCH+'/>'+
-        '<path d="M78 202 L126 214" '+STITCH+'/><path d="M342 202 L294 214" '+STITCH+'/></g>'+
-      '<g transform="translate(147,116) scale(0.42)" filter="url(#ink)" opacity=".94">'+ART.tee(c.print)+'</g>' },
-
-    beanie:function(c,u){ return defs(u,c)+
-      '<ellipse cx="210" cy="300" rx="104" ry="11" fill="rgba(0,0,0,.3)" filter="url(#soft)"/>'+
-      '<path d="M112 216 C112 92 152 60 210 60 C268 60 308 92 308 216 Z" fill="url(#f'+u+')" filter="url(#knit)"/>'+
-      '<g stroke="rgba(0,0,0,.17)" stroke-width="2.4" fill="none">'+
-        '<path d="M146 68 C142 130 141 178 141 214"/><path d="M178 61 C176 130 175 180 175 214"/>'+
-        '<path d="M210 60 L210 214"/><path d="M242 61 C244 130 245 180 245 214"/>'+
-        '<path d="M274 68 C278 130 279 178 279 214"/></g>'+
-      '<rect x="100" y="206" width="220" height="72" rx="13" fill="url(#t'+u+')" filter="url(#knit)"/>'+
-      '<rect x="100" y="206" width="220" height="7" rx="3" fill="rgba(0,0,0,.2)"/>'+
-      '<g stroke="rgba(0,0,0,.12)" stroke-width="1.8" fill="none">'+
-        '<path d="M124 216 L124 268"/><path d="M148 216 L148 268"/><path d="M172 216 L172 268"/>'+
-        '<path d="M248 216 L248 268"/><path d="M272 216 L272 268"/><path d="M296 216 L296 268"/></g>'+
-      '<g transform="translate(186,222) scale(0.16)">'+ART.beanie(c.print)+'</g>' },
-
-    tote:function(c,u){ return defs(u,c)+
-      '<ellipse cx="210" cy="322" rx="100" ry="10" fill="rgba(0,0,0,.3)" filter="url(#soft)"/>'+
-      '<path d="M152 118 C152 44 268 44 268 118" fill="none" stroke="'+c.lo+'" stroke-width="13" stroke-linecap="round"/>'+
-      '<path d="M152 118 C152 48 268 48 268 118" fill="none" stroke="url(#f'+u+')" stroke-width="8.5" stroke-linecap="round"/>'+
-      '<rect x="110" y="112" width="200" height="198" rx="7" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
-      '<rect x="110" y="112" width="200" height="15" rx="5" fill="url(#t'+u+')"/>'+
-      FOLD+'<path d="M138 136 L138 300"/><path d="M282 136 L282 300"/></g>'+
-      '<g stroke="rgba(0,0,0,.2)" fill="none">'+
-        '<path d="M116 130 L304 130" '+STITCH+'/><path d="M116 300 L304 300" '+STITCH+'/>'+
-        '<path d="M152 118 L152 132" '+STITCH+'/><path d="M268 118 L268 132" '+STITCH+'/></g>'+
-      '<g transform="translate(135,142) scale(0.5)" filter="url(#ink)" opacity=".93">'+ART.tote(c.print)+'</g>' },
-
-    stickers:function(c,u){ return ART.stickers() }
-  };
-
-  function garmentSVG(p,c){
-    var u=(++uid), vb=(p.kind==="stickers")?"0 0 300 260":"0 0 420 400";
-    return '<svg viewBox="'+vb+'" role="img" aria-label="'+p.name+', '+c.name+'">'+GARMENT[p.kind](c,u)+'</svg>';
+  function garmentSVG(p){
+    return '<img src="data:image/jpeg;base64,'+SHOT[p.id]+'" alt="'+p.name+'" loading="lazy">';
   }
-  function artSVG(p,c){
-    return '<svg viewBox="0 0 300 260" role="img" aria-label="'+p.artTitle+'">'+
-      (p.kind==="stickers"?ART.stickers():ART[p.kind](c.print))+'</svg>';
+  function artSVG(p){
+    return '<img src="data:image/jpeg;base64,'+ARTW[p.id]+'" alt="'+p.artTitle+'" loading="lazy">';
   }
 
   /* ─────────── the grid ─────────── */
   function renderShop(){
     var g=$("#shopGrid"); if(!g)return;
     g.innerHTML=PRODUCTS.map(function(p){
-      var c=p.colors[0];
       return '<a class="card rv'+(p.span?" span2":"")+'" href="#/shop/'+p.id+'" data-nav>'+
-        '<div class="stage"><span class="tag'+(p.tagAlt?" tag-alt":"")+'">'+p.tag+'</span>'+garmentSVG(p,c)+'</div>'+
+        '<div class="stage"><span class="tag'+(p.tagAlt?" tag-alt":"")+'">'+p.tag+'</span>'+garmentSVG(p)+'</div>'+
         '<div class="card-body"><div class="card-top"><h3>'+p.name+'</h3>'+
         '<span class="price">$'+p.price+'</span></div><p>'+p.blurb+'</p>'+
-        '<div class="card-foot"><div class="dots">'+
-        p.colors.map(function(x){return '<span class="dot" style="background:'+x.fab+'"></span>'}).join("")+
-        '</div><span class="view">View <svg><use href="#i-arrow"/></svg></span></div></div></a>';
+        '<div class="card-foot"><span class="p-col">'+p.colors[0].name+'</span>'+
+        '<span class="view">View <svg><use href="#i-arrow"/></svg></span></div></div></a>';
     }).join("");
     $$(".rv",g).forEach(function(el){ if(io)io.observe(el) });
   }
@@ -1668,7 +1528,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<div class="phead" style="padding-block:26px"><div class="wrap">'+
         '<a class="crumb" href="#/shop" data-nav>← All five pieces</a></div></div>'+
       '<div class="sec wrap"><div class="pdp">'+
-        '<div><div class="pdp-stage" id="pdpStage">'+garmentSVG(p,c)+'</div>'+
+        '<div><div class="pdp-stage" id="pdpStage">'+garmentSVG(p)+'</div>'+
           (p.colors.length>1?'<div class="pdp-sub">'+p.colors.map(function(x,n){
             return '<button class="swatch-tile" data-ci="'+n+'" aria-pressed="'+(n===s.ci)+'" '+
               'aria-label="'+x.name+'">'+garmentSVG(p,x)+'</button>'}).join("")+'</div>':'')+
@@ -1700,7 +1560,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         '</div>'+
       '</div></div>'+
       '<div class="art-band"><div class="sec wrap"><div class="art-grid">'+
-        '<div class="art-card" style="background:'+c.fab+'" id="artCard">'+artSVG(p,c)+'</div>'+
+        '<div class="art-card" id="artCard">'+artSVG(p)+'</div>'+
         '<div class="art-meta"><p class="eyebrow">The artwork</p><h2>'+p.artTitle+'</h2>'+
         '<p>'+p.artText+'</p></div>'+
       '</div></div></div>'+
@@ -1738,7 +1598,7 @@ textarea.field-in{min-height:130px;resize:vertical}
 
   function thumb(id,ci){
     var p=byId(id); if(!p)return "";
-    return garmentSVG(p, p.colors[ci||0]);
+    return garmentSVG(p);
   }
   function render(){
     var body=$("#cartBody"), n=0, sum=0;
@@ -1830,9 +1690,9 @@ textarea.field-in{min-height:130px;resize:vertical}
   var teaser=$("#shopTeaser");
   if(teaser){
     teaser.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'+
-      ["tee","hoodie","tote","beanie"].map(function(id){
+      ["tee","crew","tote","beanie"].map(function(id){
         return '<a href="#/shop/'+id+'" data-nav style="display:block;border:1px solid var(--rule);'+
-          'border-radius:14px;overflow:hidden;aspect-ratio:1;background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%)">'+thumb(id,0)+'</a>';
+          'border-radius:14px;overflow:hidden;aspect-ratio:1;background:#EDEAF2">'+thumb(id,0)+'</a>';
       }).join("")+'</div>';
   }
 
