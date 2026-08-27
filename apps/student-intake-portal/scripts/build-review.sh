@@ -21,17 +21,17 @@ mkdir -p "$WORK/assets" "$WORK/photos"
 echo "Building with invented students..."
 PORTAL_DEMO=1 NEXT_PUBLIC_PORTAL_DEMO=1 npx next build >/dev/null
 
-PORTAL_DEMO=1 NEXT_PUBLIC_PORTAL_DEMO=1 npx next start -p "$PORT" >"$WORK/server.log" 2>&1 &
+PORTAL_DEMO=1 NEXT_PUBLIC_PORTAL_DEMO=1 npx next start -H 127.0.0.1 -p "$PORT" >"$WORK/server.log" 2>&1 &
 SERVER=$!
 trap 'kill $SERVER 2>/dev/null || true' EXIT
 
 for _ in $(seq 1 60); do
-  curl -sf -o /dev/null "http://localhost:$PORT/review" && break
+  curl -sf -o /dev/null "http://127.0.0.1:$PORT/review" && break
   sleep 1
 done
 
 echo "Capturing the page..."
-curl -s "http://localhost:$PORT/review" > "$WORK/review.html"
+curl -s "http://127.0.0.1:$PORT/review" > "$WORK/review.html"
 
 if grep -q "gid://shopify/Customer/demo" "$WORK/review.html"; then
   :
@@ -41,7 +41,7 @@ else
 fi
 
 for asset in $(grep -oh '/_next/static/[^"]*\.\(css\|js\)' "$WORK/review.html" | sort -u); do
-  curl -s "http://localhost:$PORT$asset" -o "$WORK/assets/$(echo "$asset" | sed 's#/#_#g')"
+  curl -s "http://127.0.0.1:$PORT$asset" -o "$WORK/assets/$(echo "$asset" | sed 's#/#_#g')"
 done
 
 echo "Shrinking the photographs..."
@@ -53,3 +53,8 @@ for photo in $(grep -oh '/photos/[a-z0-9-]*\.jpg' "$WORK/review.html" | sed 's#/
 done
 
 REVIEW_WORK="$WORK" python3 scripts/build-review.py "$@"
+REVIEW_WORK="$WORK" python3 scripts/build-review.py --file "$@"
+
+DESKTOP="$HOME/Desktop/Student-Intake-Portal.html"
+cp "$WORK/review-file.html" "$DESKTOP"
+echo "Also on the Desktop: $DESKTOP"

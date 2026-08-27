@@ -15,6 +15,12 @@ PHOTOS = WORK / "photos"
 
 TRACE = "--trace" in sys.argv
 
+# Two shapes of the same page. The published link needs the app inside a frame, because
+# the host injects its own runtime into the page's head and the app will not hydrate
+# around it. A file Daniel double-clicks has no host and no such problem, so it is the
+# app's own document, straight — which is also the sturdier of the two.
+AS_FILE = "--file" in sys.argv
+
 # Two things the app assumes it has and a single published file does not.
 #
 # A base: the app is served from a blob, whose address nothing can be resolved against.
@@ -87,10 +93,17 @@ def app_document() -> str:
     return html.replace("<head>", "<head>" + PREAMBLE + (CATCH if TRACE else ""), 1)
 
 
-# The app hydrates the whole document, so it needs a document of its own: the publishing
-# host adds its runtime to the page's head, and the app will not hydrate around it. The
-# frame has to be loaded from a blob — srcdoc gives it no address, and it never starts.
-app = base64.b64encode(app_document().encode("utf-8")).decode("ascii")
+document = app_document()
+
+if AS_FILE:
+    out = WORK / "review-file.html"
+    out.write_text(document, encoding="utf-8")
+    print(f"{out}  {len(document) / 1024 / 1024:.2f} MB")
+    sys.exit(0)
+
+# For the published copy the frame has to be loaded from a blob: srcdoc gives the document
+# no address of its own, and the app never finishes starting.
+app = base64.b64encode(document.encode("utf-8")).decode("ascii")
 
 page = """<title>Student Intake Portal</title>
 <style>
