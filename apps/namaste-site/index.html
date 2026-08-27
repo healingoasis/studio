@@ -300,47 +300,107 @@ p{margin:0}
 .promise p{margin-top:8px;color:var(--ink-soft);font-size:15.5px}
 @media(max-width:560px){.promise{grid-template-columns:1fr}}
 
-.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
-  gap:clamp(20px,2.6vw,32px)}
-.product{background:var(--surface);border:1px solid var(--rule);border-radius:18px;overflow:hidden;
-  display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s,border-color .3s}
-.product:hover{box-shadow:var(--shadow-lift);transform:translateY(-3px);border-color:var(--rule)}
-.product.wide{grid-column:span 2}
-@media(max-width:760px){.product.wide{grid-column:span 1}}
-.garment{position:relative;aspect-ratio:4/3.4;display:grid;place-items:center;padding:22px;
-  overflow:hidden;background:radial-gradient(120% 100% at 50% 8%,var(--surface-2) 0%,var(--ground-deep) 100%)}
-.g-svg{filter:drop-shadow(0 12px 22px rgba(0,0,0,.34))}
-.garment svg{width:100%;height:100%;overflow:visible}
-.product.wide .garment{aspect-ratio:16/9}
-.tag{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;background:var(--invert-bg);color:var(--invert-fg);
-  padding:6px 10px;border-radius:20px;z-index:2}
+/* ============================================================
+   Shop, rebuilt: clickable products, real product pages,
+   and the artwork treated as artwork.
+   ============================================================ */
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:clamp(18px,2.2vw,28px)}
+.card{display:block;text-decoration:none;color:inherit;background:var(--surface);
+  border:1px solid var(--rule);border-radius:18px;overflow:hidden;
+  transition:box-shadow .35s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1),border-color .3s}
+.card:hover{box-shadow:var(--shadow-lift);transform:translateY(-4px);border-color:var(--rule)}
+.card:hover .stage svg{transform:scale(1.045)}
+.card.span2{grid-column:span 2}
+@media(max-width:760px){.card.span2{grid-column:span 1}}
+.stage{position:relative;aspect-ratio:4/3.5;overflow:hidden;background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%)}
+.card.span2 .stage{aspect-ratio:16/8.4}
+.stage svg{width:100%;height:100%;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.tag{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;background:var(--invert-bg);color:var(--invert-fg);
+  padding:6px 11px;border-radius:20px}
 .tag-alt{background:var(--accent);color:var(--on-accent)}
-.p-body{padding:24px clamp(20px,2.4vw,28px) 26px;display:flex;flex-direction:column;flex:1}
-.p-head{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
-.p-body h3{font-size:22px;line-height:1.15}
-.price{font-family:var(--mono);font-size:16px;font-weight:600;white-space:nowrap}
-.p-desc{margin-top:12px;font-size:15px;color:var(--ink-soft);line-height:1.6}
-.p-meta{margin-top:16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--faint);line-height:1.9}
-.opts{margin-top:20px;display:grid;gap:14px}
-.opt-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.opt-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--faint);width:100%;margin-bottom:-4px}
-.pill{border:1px solid var(--rule);background:var(--surface);border-radius:8px;padding:7px 13px;
-  font-family:var(--mono);font-size:12px;cursor:pointer;transition:all .16s;color:var(--ink-soft)}
+.card-body{padding:22px clamp(18px,2.2vw,26px) 24px}
+.card-top{display:flex;justify-content:space-between;gap:14px;align-items:baseline}
+.card-body h3{font-size:21px;line-height:1.15}
+.price{font-family:var(--mono);font-size:15.5px;font-weight:500;white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.card-body p{margin-top:10px;font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+.card-foot{margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.dots{display:flex;gap:6px}
+.dot{width:15px;height:15px;border-radius:50%;box-shadow:0 0 0 1px var(--rule) inset}
+.view{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent);display:inline-flex;align-items:center;gap:7px}
+.view svg{width:13px;height:13px;transition:transform .3s}
+.card:hover .view svg{transform:translateX(4px)}
+
+/* ---------- product page ---------- */
+.pdp{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:clamp(28px,4vw,64px);align-items:start}
+@media(max-width:900px){.pdp{grid-template-columns:1fr}}
+.pdp-stage{position:relative;border:1px solid var(--rule);border-radius:20px;overflow:hidden;
+  background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%);aspect-ratio:1/.9}
+.pdp-stage svg{width:100%;height:100%;display:block}
+.pdp-sub{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.swatch-tile{border:1px solid var(--rule);border-radius:13px;overflow:hidden;cursor:pointer;
+  background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%);padding:0;aspect-ratio:1/.9;transition:border-color .2s,transform .2s}
+.swatch-tile:hover{transform:translateY(-2px)}
+.swatch-tile[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.swatch-tile svg{width:100%;height:100%;display:block}
+.pdp-info h1{font-size:clamp(30px,4vw,44px);line-height:1.06;margin-top:12px}
+.pdp-price{font-family:var(--mono);font-size:22px;margin-top:16px;font-variant-numeric:tabular-nums}
+.pdp-info .lede{margin-top:18px;font-size:17px}
+.pdp-block{margin-top:30px;padding-top:26px;border-top:1px solid var(--rule)}
+.pdp-block h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);font-weight:400;margin-bottom:14px}
+.opt-row{display:flex;flex-wrap:wrap;gap:9px}
+.sw{width:34px;height:34px;border-radius:50%;border:1px solid var(--rule);cursor:pointer;padding:0;
+  position:relative;transition:transform .18s}
+.sw:hover{transform:scale(1.09)}
+.sw[aria-pressed="true"]::after{content:"";position:absolute;inset:-6px;border-radius:50%;
+  border:1.5px solid var(--accent)}
+.pill{border:1px solid var(--rule);background:var(--surface);border-radius:9px;padding:10px 16px;
+  font-family:var(--mono);font-size:12.5px;cursor:pointer;transition:all .16s;color:var(--ink-soft)}
 .pill:hover{border-color:var(--accent)}
 .pill[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
-.sw{width:28px;height:28px;border-radius:50%;border:1px solid var(--rule);cursor:pointer;
-  padding:0;position:relative;transition:transform .16s}
-.sw:hover{transform:scale(1.1)}
-.sw[aria-pressed="true"]::after{content:"";position:absolute;inset:-5px;border-radius:50%;
-  border:1.5px solid var(--accent)}
-.p-foot{margin-top:auto;padding-top:22px}
+.chosen{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:12px}
+.spec{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:9px 0;
+  border-bottom:1px solid var(--rule-soft);font-size:14.5px}
+.spec dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0}
+.spec dd{margin:0;color:var(--ink-soft)}
+@media(max-width:520px){.spec{grid-template-columns:1fr;gap:2px}}
+.sizetable{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+.sizetable th,.sizetable td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft)}
+.sizetable th{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);font-weight:400}
+.sizetable td:first-child{font-family:var(--mono);font-size:12px}
+.table-wrap{overflow-x:auto}
 .added{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);text-align:center;margin-top:10px;height:14px;opacity:0;transition:opacity .3s}
+  color:var(--accent);text-align:center;margin-top:12px;height:14px;opacity:0;transition:opacity .3s}
 .added.on{opacity:1}
 
+/* ---------- the artwork, shown as artwork ---------- */
+.art-band{background:var(--ground-deep);border-block:1px solid var(--rule)}
+.art-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,60px);
+  align-items:center}
+@media(max-width:860px){.art-grid{grid-template-columns:1fr}}
+.art-card{background:var(--surface);border:1px solid var(--rule);border-radius:18px;
+  padding:clamp(24px,3.4vw,44px);box-shadow:var(--shadow)}
+.art-card svg{width:100%;height:auto;display:block}
+.art-meta .eyebrow{color:var(--accent)}
+.art-meta h2{font-size:clamp(26px,3.4vw,40px);line-height:1.1;margin-top:14px}
+.art-meta p{margin-top:16px;color:var(--ink-soft);font-size:16.5px;line-height:1.65}
+
+.pdp-nav{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding-top:28px;border-top:1px solid var(--rule);margin-top:8px}
+.pdp-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;color:var(--muted);display:inline-flex;gap:8px;align-items:center}
+.pdp-nav a:hover{color:var(--accent)}
+.crumb{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none}
+.crumb:hover{color:var(--accent)}
 /* ---------- cart drawer ---------- */
 .scrim{position:fixed;inset:0;background:rgba(12,10,17,.5);opacity:0;pointer-events:none;
   transition:opacity .34s;z-index:70;backdrop-filter:blur(2px)}
@@ -360,7 +420,7 @@ p{margin:0}
 .empty svg{width:44px;height:44px;margin:0 auto 18px;color:var(--rule)}
 .line{display:grid;grid-template-columns:64px 1fr auto;gap:16px;padding:20px 0;
   border-bottom:1px solid var(--rule-soft);align-items:start}
-.line-thumb{width:64px;height:64px;border-radius:10px;background:var(--ground-deep);display:grid;
+.line-thumb{width:64px;height:64px;border-radius:10px;background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%);display:grid;
   place-items:center;overflow:hidden;padding:6px}
 .line-thumb svg{width:100%;height:100%}
 .line h4{font-family:var(--sans);font-size:15px;font-weight:600;line-height:1.3}
@@ -439,6 +499,20 @@ textarea.field-in{min-height:130px;resize:vertical}
 <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
 <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
 <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4 5.8v6c0 5 3.4 9.6 8 10.7 4.6-1.1 8-5.7 8-10.7v-6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></symbol>
+<filter id="cloth" x="-6%" y="-6%" width="112%" height="112%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" seed="7" result="n"/>
+  <feDisplacementMap in="SourceGraphic" in2="n" scale="1.7" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+<filter id="knit" x="-6%" y="-6%" width="112%" height="112%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.4" numOctaves="2" seed="3" result="n"/>
+  <feDisplacementMap in="SourceGraphic" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+<filter id="ink" x="-4%" y="-4%" width="108%" height="108%">
+  <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="1" seed="11" result="n"/>
+  <feDisplacementMap in="SourceGraphic" in2="n" scale="0.7" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+<filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+<symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 <symbol id="i-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m8.2 14.2-1.4 7L12 18.6l5.2 2.6-1.4-7"/></symbol>
 </defs></svg>
 
@@ -1103,7 +1177,9 @@ textarea.field-in{min-height:130px;resize:vertical}
   <div class="phead"><div class="wrap narrow">
     <p class="eyebrow">The shop</p>
     <h1>If you can't be here, wear it.</h1>
-    <p class="lede">Five things, made for real barn use, carrying the records of horses this rescue brought back. Nothing decorative, nothing that wouldn't survive a Wisconsin February.</p>
+    <p class="lede">Five pieces, made for real barn use. Every graphic on them is lifted
+       straight out of this rescue's own files — the intake header, the weight a horse had
+       to put back on, the three things that actually save one.</p>
   </div></div>
 
   <div class="sec-tight wrap">
@@ -1111,234 +1187,14 @@ textarea.field-in{min-height:130px;resize:vertical}
       <svg><use href="#i-shield"/></svg>
       <div>
         <h3>100% of every order goes back to the horses.</h3>
-        <p>Not "a portion of proceeds". After the cost of making the item, everything left goes to hay, farrier work, and veterinary bills for the next intake.</p>
+        <p>Not "a portion of proceeds". After the cost of making the item, everything left
+           goes to hay, farrier work, and veterinary bills for the next intake.</p>
       </div>
     </div>
   </div>
 
   <div class="sec" style="padding-top:0"><div class="wrap">
-    <div class="shop-grid" id="shopGrid">
-
-      <!-- ── 01 Hoodie ── -->
-      <article class="product rv" data-id="hoodie" data-name="Intake Record Hoodie" data-price="58">
-        <div class="garment">
-          <span class="tag">Back print shown</span>
-          <svg viewBox="0 0 400 340" class="g-svg" style="--fabric:#2E2B33;--print:#EDE9F2;--trim:#3B3742">
-            <path d="M155 74 C155 30 170 14 200 14 C230 14 245 30 245 74 Z" fill="var(--trim)"/>
-            <path d="M150 70 L250 70 L262 92 L262 288 Q262 296 254 296 L146 296 Q138 296 138 288 L138 92 Z" fill="var(--fabric)"/>
-            <path d="M138 94 L92 110 L64 212 L104 226 L138 152 Z" fill="var(--fabric)"/>
-            <path d="M262 94 L308 110 L336 212 L296 226 L262 152 Z" fill="var(--fabric)"/>
-            <path d="M62 208 L104 223 L97 244 L55 229 Z" fill="var(--trim)"/>
-            <path d="M338 208 L296 223 L303 244 L345 229 Z" fill="var(--trim)"/>
-            <rect x="138" y="276" width="124" height="20" rx="4" fill="var(--trim)"/>
-            <path d="M155 74 Q200 92 245 74" fill="none" stroke="var(--trim)" stroke-width="2.5"/>
-            <g fill="var(--print)" text-anchor="middle" font-family="ui-monospace,Menlo,monospace">
-              <text x="200" y="142" font-size="5.4" letter-spacing="1.2">NAMASTE EQUINE RESCUE</text>
-              <rect x="152" y="150" width="96" height="1" opacity=".5"/>
-              <text x="200" y="176" font-size="14" letter-spacing="0.4" font-family="Georgia,serif">INTAKE RECORD</text>
-              <rect x="152" y="185" width="96" height="1" opacity=".5"/>
-              <text x="200" y="200" font-size="4.6" letter-spacing="1" opacity=".8">UNION GROVE, WISCONSIN</text>
-              <text x="200" y="212" font-size="4.6" letter-spacing="1" opacity=".8">EST. 2014</text>
-            </g>
-          </svg>
-        </div>
-        <div class="p-body">
-          <div class="p-head"><h3>Intake Record Hoodie</h3><span class="price">$58</span></div>
-          <p class="p-desc">Heavyweight fleece, cut long enough to stay tucked in when you're bent over a hoof. The back carries the header from a real intake file.</p>
-          <p class="p-meta">Heavyweight fleece · Unisex · Kangaroo pocket</p>
-          <div class="opts">
-            <div class="opt-row"><span class="opt-label">Color</span>
-              <button class="sw" data-color="Charcoal" data-fabric="#2E2B33" data-print="#EDE9F2" data-trim="#3B3742" style="background:#2E2B33" aria-pressed="true" aria-label="Charcoal"></button>
-              <button class="sw" data-color="Ash Violet" data-fabric="#6B6076" data-print="#F4EFF8" data-trim="#7A6E85" style="background:#6B6076" aria-pressed="false" aria-label="Ash Violet"></button>
-              <button class="sw" data-color="Bone" data-fabric="#E7E2DA" data-print="#2E2B33" data-trim="#DAD3C8" style="background:#E7E2DA" aria-pressed="false" aria-label="Bone"></button>
-            </div>
-            <div class="opt-row"><span class="opt-label">Size</span>
-              <button class="pill" data-size="S">S</button><button class="pill" data-size="M" aria-pressed="true">M</button>
-              <button class="pill" data-size="L">L</button><button class="pill" data-size="XL">XL</button>
-              <button class="pill" data-size="2XL">2XL</button>
-            </div>
-          </div>
-          <div class="p-foot">
-            <button class="btn btn-solid btn-wide add">Add to bag</button>
-            <p class="added">Added</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- ── 02 Tee ── -->
-      <article class="product rv" data-id="tee" data-name="&ldquo;+250&rdquo; Recovery Tee" data-price="32">
-        <div class="garment">
-          <span class="tag tag-alt">Red's real weight</span>
-          <svg viewBox="0 0 400 340" class="g-svg" style="--fabric:#1B1820;--print:#F2ECF7;--trim:#252129">
-            <path d="M150 56 L250 56 L268 84 L268 292 Q268 300 260 300 L140 300 Q132 300 132 292 L132 84 Z" fill="var(--fabric)"/>
-            <path d="M132 86 L86 102 L62 176 L108 194 L132 136 Z" fill="var(--fabric)"/>
-            <path d="M268 86 L314 102 L338 176 L292 194 L268 136 Z" fill="var(--fabric)"/>
-            <path d="M158 56 Q200 84 242 56 L250 56 L250 62 Q200 92 150 62 L150 56 Z" fill="var(--trim)"/>
-            <g fill="var(--print)" text-anchor="middle">
-              <text x="200" y="180" font-size="54" font-family="Georgia,serif" letter-spacing="-1.5">+250</text>
-              <text x="200" y="197" font-size="7" letter-spacing="3" font-family="ui-monospace,Menlo,monospace" opacity=".75">POUNDS</text>
-              <rect x="168" y="207" width="64" height="1" opacity=".45"/>
-              <text x="200" y="222" font-size="4.4" letter-spacing="0.6" font-family="ui-monospace,Menlo,monospace" opacity=".85">RED · PLEASANT PRAIRIE · 2015</text>
-              <text x="200" y="234" font-size="4.4" letter-spacing="0.6" font-family="ui-monospace,Menlo,monospace" opacity=".6">WHAT RECOVERY WEIGHS</text>
-            </g>
-          </svg>
-        </div>
-        <div class="p-body">
-          <div class="p-head"><h3>“+250” Recovery Tee</h3><span class="price">$32</span></div>
-          <p class="p-desc">The number Red had to put back on after the 2015 Pleasant Prairie intervention. Two hundred and fifty pounds, one slow feeding plan at a time.</p>
-          <p class="p-meta">Ringspun cotton · Unisex · Pre-shrunk</p>
-          <div class="opts">
-            <div class="opt-row"><span class="opt-label">Color</span>
-              <button class="sw" data-color="Black" data-fabric="#1B1820" data-print="#F2ECF7" data-trim="#252129" style="background:#1B1820" aria-pressed="true" aria-label="Black"></button>
-              <button class="sw" data-color="Snow" data-fabric="#F4F2F6" data-print="#1B1820" data-trim="#E6E2EC" style="background:#F4F2F6" aria-pressed="false" aria-label="Snow"></button>
-              <button class="sw" data-color="Orchid" data-fabric="#6E2A93" data-print="#F9F1FD" data-trim="#7C3AA1" style="background:#6E2A93" aria-pressed="false" aria-label="Orchid"></button>
-            </div>
-            <div class="opt-row"><span class="opt-label">Size</span>
-              <button class="pill" data-size="S">S</button><button class="pill" data-size="M" aria-pressed="true">M</button>
-              <button class="pill" data-size="L">L</button><button class="pill" data-size="XL">XL</button>
-              <button class="pill" data-size="2XL">2XL</button>
-            </div>
-          </div>
-          <div class="p-foot">
-            <button class="btn btn-solid btn-wide add">Add to bag</button>
-            <p class="added">Added</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- ── 03 Beanie ── -->
-      <article class="product rv" data-id="beanie" data-name="Barn Beanie" data-price="28">
-        <div class="garment">
-          <span class="tag">Embroidered</span>
-          <svg viewBox="0 0 400 340" class="g-svg" style="--fabric:#2E2B33;--print:#C77BE6;--trim:#3B3742">
-            <path d="M112 200 Q112 74 200 74 Q288 74 288 200 Z" fill="var(--fabric)"/>
-            <path d="M140 78 Q140 200 140 200 M170 74 Q168 200 168 200 M200 73 Q200 200 200 200 M230 74 Q232 200 232 200 M260 78 Q260 200 260 200"
-                  stroke="var(--trim)" stroke-width="2" fill="none" opacity=".85"/>
-            <rect x="104" y="196" width="192" height="66" rx="12" fill="var(--trim)"/>
-            <rect x="104" y="196" width="192" height="6" fill="rgba(0,0,0,.14)"/>
-            <g transform="translate(200,229)">
-              <circle r="20" fill="none" stroke="var(--print)" stroke-width="1.8"/>
-              <path d="M-7 7 C-9 -1 -5 -8 0 -9 C3 -12 7 -11 8 -8 C11 -6 10 -1 7 2 L6 8 Z"
-                    fill="var(--print)"/>
-            </g>
-            <text x="200" y="290" text-anchor="middle" font-size="7" letter-spacing="2.4"
-                  font-family="ui-monospace,Menlo,monospace" fill="#8D8799">NAMASTE EQUINE RESCUE</text>
-          </svg>
-        </div>
-        <div class="p-body">
-          <div class="p-head"><h3>Barn Beanie</h3><span class="price">$28</span></div>
-          <p class="p-desc">Ribbed cuffed knit with the orchid mark from the rescue's own logo stitched on the fold. Made for five-thirty in the morning in January.</p>
-          <p class="p-meta">Ribbed knit · One size · Embroidered mark</p>
-          <div class="opts">
-            <div class="opt-row"><span class="opt-label">Color</span>
-              <button class="sw" data-color="Charcoal" data-fabric="#2E2B33" data-print="#C77BE6" data-trim="#3B3742" style="background:#2E2B33" aria-pressed="true" aria-label="Charcoal"></button>
-              <button class="sw" data-color="Orchid" data-fabric="#6E2A93" data-print="#F4E4FC" data-trim="#7C3AA1" style="background:#6E2A93" aria-pressed="false" aria-label="Orchid"></button>
-              <button class="sw" data-color="Bone" data-fabric="#E7E2DA" data-print="#6E2A93" data-trim="#DAD3C8" style="background:#E7E2DA" aria-pressed="false" aria-label="Bone"></button>
-            </div>
-            <div class="opt-row"><span class="opt-label">Size</span>
-              <button class="pill" data-size="One size" aria-pressed="true">One size</button>
-            </div>
-          </div>
-          <div class="p-foot">
-            <button class="btn btn-solid btn-wide add">Add to bag</button>
-            <p class="added">Added</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- ── 04 Tote ── -->
-      <article class="product rv" data-id="tote" data-name="Canvas Feed Tote" data-price="24">
-        <div class="garment">
-          <span class="tag">Heavy canvas</span>
-          <svg viewBox="0 0 400 340" class="g-svg" style="--fabric:#DDD5C6;--print:#2E2B33;--trim:#CEC5B4">
-            <path d="M150 116 C150 46 250 46 250 116" fill="none" stroke="var(--trim)" stroke-width="11" stroke-linecap="round"/>
-            <path d="M150 116 C150 46 250 46 250 116" fill="none" stroke="var(--fabric)" stroke-width="7" stroke-linecap="round"/>
-            <rect x="106" y="108" width="188" height="192" rx="7" fill="var(--fabric)"/>
-            <rect x="106" y="108" width="188" height="13" rx="4" fill="var(--trim)"/>
-            <g fill="var(--print)" text-anchor="middle" font-family="Georgia,serif">
-              <text x="200" y="186" font-size="30" letter-spacing="1">HAY.</text>
-              <text x="200" y="220" font-size="30" letter-spacing="1">WATER.</text>
-              <text x="200" y="254" font-size="30" letter-spacing="1">TIME.</text>
-            </g>
-            <text x="200" y="280" text-anchor="middle" font-size="5.4" letter-spacing="1.4"
-                  font-family="ui-monospace,Menlo,monospace" fill="var(--print)" opacity=".62">NAMASTE EQUINE RESCUE · WI</text>
-          </svg>
-        </div>
-        <div class="p-body">
-          <div class="p-head"><h3>Canvas Feed Tote</h3><span class="price">$24</span></div>
-          <p class="p-desc">The three things a starved horse actually needs, in order. Heavy enough for grain, brushes, or a week's worth of farmers' market.</p>
-          <p class="p-meta">12 oz cotton canvas · Reinforced handles · 15&Prime; × 16&Prime;</p>
-          <div class="opts">
-            <div class="opt-row"><span class="opt-label">Color</span>
-              <button class="sw" data-color="Natural" data-fabric="#DDD5C6" data-print="#2E2B33" data-trim="#CEC5B4" style="background:#DDD5C6" aria-pressed="true" aria-label="Natural"></button>
-              <button class="sw" data-color="Black" data-fabric="#1B1820" data-print="#EDE9F2" data-trim="#252129" style="background:#1B1820" aria-pressed="false" aria-label="Black"></button>
-            </div>
-            <div class="opt-row"><span class="opt-label">Size</span>
-              <button class="pill" data-size="One size" aria-pressed="true">One size</button>
-            </div>
-          </div>
-          <div class="p-foot">
-            <button class="btn btn-solid btn-wide add">Add to bag</button>
-            <p class="added">Added</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- ── 05 Stickers ── -->
-      <article class="product rv wide" data-id="stickers" data-name="Case File Sticker Sheet" data-price="12">
-        <div class="garment">
-          <span class="tag">Five die-cuts</span>
-          <svg viewBox="0 0 640 340" class="g-svg" style="--fabric:#F4F2F6;--print:#16131B;--trim:#E3DFEA">
-            <rect x="60" y="34" width="520" height="272" rx="10" fill="var(--fabric)" stroke="var(--trim)" stroke-width="2"/>
-            <g stroke="var(--trim)" stroke-width="1.4" stroke-dasharray="4 4" fill="none">
-              <circle cx="150" cy="120" r="52"/><rect x="238" y="68" width="150" height="104" rx="10"/>
-              <rect x="416" y="68" width="132" height="104" rx="10"/>
-              <rect x="98" y="206" width="230" height="72" rx="10"/><rect x="356" y="206" width="192" height="72" rx="10"/>
-            </g>
-            <g transform="translate(150,120)">
-              <circle r="44" fill="#6E2A93"/>
-              <path d="M-14 15 C-19 -2 -11 -17 0 -19 C7 -25 15 -23 17 -17 C23 -13 21 -2 15 4 L13 17 Z" fill="#F4E4FC"/>
-            </g>
-            <g transform="translate(313,120)" text-anchor="middle">
-              <rect x="-67" y="-46" width="134" height="92" rx="8" fill="#16131B"/>
-              <text y="8" font-size="40" font-family="Georgia,serif" fill="#F2ECF7">+250</text>
-              <text y="28" font-size="7.5" letter-spacing="2.6" font-family="ui-monospace,Menlo,monospace" fill="#C77BE6">POUNDS BACK</text>
-            </g>
-            <g transform="translate(482,120)" text-anchor="middle">
-              <rect x="-58" y="-46" width="116" height="92" rx="8" fill="#6E2A93"/>
-              <text y="6" font-size="46" font-family="Georgia,serif" fill="#fff">0</text>
-              <text y="24" font-size="7" letter-spacing="1.8" font-family="ui-monospace,Menlo,monospace" fill="#F4E4FC">WAITING FOR</text>
-              <text y="36" font-size="7" letter-spacing="1.8" font-family="ui-monospace,Menlo,monospace" fill="#F4E4FC">A HOME</text>
-            </g>
-            <g transform="translate(213,242)" text-anchor="middle">
-              <rect x="-107" y="-30" width="214" height="60" rx="8" fill="#16131B"/>
-              <text y="-2" font-size="13" font-family="Georgia,serif" fill="#F2ECF7">When the law takes a horse away,</text>
-              <text y="16" font-size="13" font-family="Georgia,serif" font-style="italic" fill="#C77BE6">we take him next.</text>
-            </g>
-            <g transform="translate(452,242)" text-anchor="middle">
-              <rect x="-88" y="-30" width="176" height="60" rx="8" fill="#E7E2DA"/>
-              <text y="-4" font-size="10.5" letter-spacing="2.4" font-family="ui-monospace,Menlo,monospace" fill="#16131B">NAMASTE EQUINE</text>
-              <text y="12" font-size="10.5" letter-spacing="2.4" font-family="ui-monospace,Menlo,monospace" fill="#16131B">RESCUE · EST. 2014</text>
-            </g>
-          </svg>
-        </div>
-        <div class="p-body">
-          <div class="p-head"><h3>Case File Sticker Sheet</h3><span class="price">$12</span></div>
-          <p class="p-desc">Five weatherproof die-cuts on one sheet — the logo mark, Red's number, the zero we are proud of, the line this rescue runs on, and the plain stamp. For trailers, tack boxes, water bottles and truck windows.</p>
-          <p class="p-meta">Weatherproof vinyl · 5 stickers · 6&Prime; × 8&Prime; sheet</p>
-          <div class="opts">
-            <div class="opt-row"><span class="opt-label">Size</span>
-              <button class="pill" data-size="One sheet" aria-pressed="true">One sheet</button>
-            </div>
-          </div>
-          <div class="p-foot">
-            <button class="btn btn-solid btn-wide add">Add to bag</button>
-            <p class="added">Added</p>
-          </div>
-        </div>
-      </article>
-
-    </div>
+    <div class="shop-grid" id="shopGrid"></div>
 
     <div class="cols3" style="margin-top:clamp(44px,6vw,72px)">
       <div class="panel rv"><p class="eyebrow">Why merchandise</p><h3 style="margin-top:10px;font-size:20px">Steady money, not just appeal money</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Donations spike after a bad case and then go quiet. Hay does not. A shop gives supporters a reason to give in the months when nothing dramatic is happening.</p></div>
@@ -1346,9 +1202,14 @@ textarea.field-in{min-height:130px;resize:vertical}
       <div class="panel rv"><p class="eyebrow">Why the numbers</p><h3 style="margin-top:10px;font-size:20px">Real records, not slogans</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Every graphic here is a fact from this rescue's own files. People ask what "+250" means, and then they get told about Red.</p></div>
     </div>
 
-    <p class="note rv" style="margin-top:38px;max-width:70ch">This shop is a proposal. Nothing on this page is connected to a payment system, no order can be placed, and the "100% to the horses" promise is a commitment for the board to approve — not an existing policy.</p>
+    <p class="note rv" style="margin-top:38px;max-width:70ch">This shop is a proposal. Nothing on
+      these pages is connected to a payment system, no order can be placed, and the
+      "100% to the horses" promise is a commitment for the board to approve — not an existing policy.</p>
   </div></div>
 </section>
+
+<!-- ══════════════════════════ PRODUCT ══════════════════════════ -->
+<section class="page" id="p-product"><div id="productView"></div></section>
 
 <!-- ══════════════════════════ CONTACT ══════════════════════════ -->
 <section class="page" id="p-contact">
@@ -1502,17 +1363,19 @@ textarea.field-in{min-height:130px;resize:vertical}
 
   function route(){
     var h=(location.hash||"#/").replace(/^#/,"");
-    if(!ROUTES[h]){h="/"}
-    var id=ROUTES[h];
+    var m=/^\/shop\/([a-z]+)$/.exec(h), id, prod=null;
+    if(m && byId(m[1])){ prod=byId(m[1]); id="p-product"; renderPDP(m[1]); }
+    else { if(!ROUTES[h]){h="/"} id=ROUTES[h]; }
+    var navKey = h.indexOf("/shop")===0 ? "/shop" : h;
     $$(".page").forEach(function(p){p.classList.toggle("live",p.id===id)});
     $$("#nav a,[data-nav]").forEach(function(a){
       var t=a.getAttribute("href")||"";
-      a.classList.toggle("on", a.parentNode===nav && t==="#"+h);
+      a.classList.toggle("on", a.parentNode===nav && t==="#"+navKey);
     });
     closeNav();
     window.scrollTo({top:0,behavior:"instant"});
     reveal();
-    var nm=TITLES[h]||"";
+    var nm=prod?prod.name:(TITLES[h]||"");
     document.title=(nm?nm+" — ":"")+"Namaste Equine Rescue";
   }
   window.addEventListener("hashchange",route);
@@ -1544,29 +1407,335 @@ textarea.field-in{min-height:130px;resize:vertical}
     });
   }
 
-  /* ─────────── product options ─────────── */
-  function paint(card){
-    var svg=$(".g-svg",card); if(!svg)return;
-    var sw=$('.sw[aria-pressed="true"]',card); if(!sw)return;
-    svg.style.setProperty("--fabric",sw.dataset.fabric);
-    svg.style.setProperty("--print",sw.dataset.print);
-    if(sw.dataset.trim)svg.style.setProperty("--trim",sw.dataset.trim);
+  /* ══════════════════════════════════════════════════════════
+     Products. Every graphic is a real fact out of the rescue's
+     own files — that is the whole point of the range.
+     ══════════════════════════════════════════════════════════ */
+  var uid=0;
+  var PRODUCTS=[
+    { id:"hoodie", kind:"hoodie", name:"Intake Record Hoodie", price:58,
+      tag:"Back print", span:false,
+      blurb:"The header off a real intake file, printed the size it deserves.",
+      lede:"Heavyweight fleece, cut long enough to stay tucked in when you are bent over a hoof. "+
+           "The back carries the form every horse here arrives on.",
+      artTitle:"The form every horse arrives on",
+      artText:"Before a seized horse gets hay, it gets a file. Date, department, condition, outcome — "+
+              "the same four lines whether the case takes three weeks or three years. The print is that "+
+              "form, set the way it deserves to be set. The last line always reads RE-HOMED, because so far it always has.",
+      specs:[["Fabric","80/20 cotton-poly fleece, 380 gsm"],["Fit","Unisex, relaxed"],
+             ["Details","Kangaroo pocket, ribbed cuffs and hem"],["Print","Water-based ink, back panel"],
+             ["Care","Cold wash, hang dry, inside out"]],
+      sizes:["S","M","L","XL","2XL"], chart:true,
+      colors:[{name:"Charcoal",fab:"#34313A",hi:"#45414D",lo:"#211E27",trim:"#2A272F",print:"#EFEBF4"},
+              {name:"Ash Violet",fab:"#6A5F76",hi:"#7D7189",lo:"#544A60",trim:"#5D5368",print:"#F5F0F9"},
+              {name:"Bone",fab:"#E6E1D8",hi:"#F3EFE9",lo:"#CFC8BC",trim:"#DAD4C9",print:"#26232B"}] },
+
+    { id:"tee", kind:"tee", name:"“+250” Recovery Tee", price:32,
+      tag:"Red's real weight", tagAlt:true, span:false,
+      blurb:"The number one horse had to put back on. Two hundred and fifty pounds.",
+      lede:"Ringspun cotton, pre-shrunk. The front carries the single most useful number this "+
+           "rescue has ever published.",
+      artTitle:"Two hundred and fifty pounds",
+      artText:"Red came in from a 2015 Pleasant Prairie intervention: seven years old, extremely "+
+              "dehydrated, and 250 pounds under where he should have been. That is not a slogan, it is "+
+              "a scale reading. Anyone who asks what the number means gets told about Red, which is "+
+              "exactly what a shirt is for.",
+      specs:[["Fabric","100% ringspun cotton, 180 gsm"],["Fit","Unisex, true to size"],
+             ["Details","Pre-shrunk, taped neck and shoulders"],["Print","Water-based ink, front"],
+             ["Care","Cold wash, tumble low"]],
+      sizes:["S","M","L","XL","2XL"], chart:true,
+      colors:[{name:"Black",fab:"#1D1A22",hi:"#2C2833",lo:"#121016",trim:"#17151C",print:"#F3EEF8"},
+              {name:"Snow",fab:"#F2F0F5",hi:"#FCFBFD",lo:"#DAD6E1",trim:"#E7E4EC",print:"#1B1820"},
+              {name:"Orchid",fab:"#6E2A93",hi:"#8135A7",lo:"#551E72",trim:"#642686",print:"#FBF3FE"}] },
+
+    { id:"beanie", kind:"beanie", name:"Barn Beanie", price:28,
+      tag:"Embroidered", span:false,
+      blurb:"Ribbed knit with the orchid mark stitched on the fold.",
+      lede:"For five-thirty in the morning in January, which is when most of the actual work "+
+           "of this rescue happens.",
+      artTitle:"Their own orchid, stitched small",
+      artText:"The rescue's logo is a horse's head over a violet flame. On a beanie it has no business "+
+              "being big — it sits on the fold at the size a maker's mark should be, satin-stitched, "+
+              "the one flash of color on an otherwise plain hat.",
+      specs:[["Fabric","Acrylic rib knit, double layer"],["Fit","Cuffed, one size"],
+             ["Details","Embroidered mark on the fold"],["Care","Cold wash, lay flat"]],
+      sizes:["One size"], chart:false,
+      colors:[{name:"Charcoal",fab:"#34313A",hi:"#45414D",lo:"#211E27",trim:"#2A272F",print:"#C77BE6"},
+              {name:"Orchid",fab:"#6E2A93",hi:"#8135A7",lo:"#551E72",trim:"#642686",print:"#F6E7FD"},
+              {name:"Bone",fab:"#E6E1D8",hi:"#F3EFE9",lo:"#CFC8BC",trim:"#DAD4C9",print:"#6E2A93"}] },
+
+    { id:"tote", kind:"tote", name:"Canvas Feed Tote", price:24,
+      tag:"Heavy canvas", span:false,
+      blurb:"Hay. Water. Time. The three things that actually bring a horse back.",
+      lede:"Twelve-ounce canvas with reinforced handles. Heavy enough for grain, brushes, or a "+
+           "week's worth of farmers' market.",
+      artTitle:"Hay. Water. Time.",
+      artText:"People assume rescue is dramatic. Mostly it is three things repeated for a year: forage "+
+              "in front of the horse, clean water, and enough time for a body to rebuild itself. Printed "+
+              "in that order, because the order is the part everyone gets wrong.",
+      specs:[["Fabric","12 oz cotton canvas"],["Size","15″ wide × 16″ tall"],
+             ["Details","Reinforced handles, boxed base"],["Print","Water-based ink, one side"],
+             ["Care","Cold wash, hang dry"]],
+      sizes:["One size"], chart:false,
+      colors:[{name:"Natural",fab:"#DCD3C2",hi:"#EAE3D6",lo:"#C6BCA8",trim:"#CDC3B0",print:"#26232B"},
+              {name:"Black",fab:"#1D1A22",hi:"#2C2833",lo:"#121016",trim:"#17151C",print:"#EFEBF4"}] },
+
+    { id:"stickers", kind:"stickers", name:"Case File Sticker Sheet", price:12, span:true,
+      tag:"Five die-cuts",
+      blurb:"Five weatherproof die-cuts: the mark, the number, the zero, the line, the stamp.",
+      lede:"The cheapest way to say yes. For trailers, tack boxes, water bottles and truck windows.",
+      artTitle:"The whole rescue on one sheet",
+      artText:"Five stickers that between them tell the entire story: the logo mark, Red's number, the "+
+              "zero we are proud of, the line this place runs on, and the plain stamp for anyone who "+
+              "wants none of the drama.",
+      specs:[["Material","Weatherproof vinyl, matte laminate"],["Sheet","6″ × 8″, five stickers"],
+             ["Details","Kiss-cut, UV and dishwasher safe"],["Care","Apply to clean dry surface"]],
+      sizes:["One sheet"], chart:false,
+      colors:[{name:"One sheet",fab:"#F4F2F6",hi:"#FFFFFF",lo:"#E2DEE9",trim:"#E3DFEA",print:"#16131B"}] },
+  ];
+  function byId(id){ for(var i=0;i<PRODUCTS.length;i++){ if(PRODUCTS[i].id===id)return PRODUCTS[i] } return null }
+  function idx(id){ for(var i=0;i<PRODUCTS.length;i++){ if(PRODUCTS[i].id===id)return i } return -1 }
+
+  /* ─────────── the artwork, drawn once and reused at every size ─────────── */
+  var ART={
+    hoodie:function(k){ return ''+
+      '<rect x="8" y="8" width="284" height="244" fill="none" stroke="'+k+'" stroke-width="2.6"/>'+
+      '<rect x="17" y="17" width="266" height="226" fill="none" stroke="'+k+'" stroke-width="0.9" opacity=".45"/>'+
+      '<g fill="'+k+'" text-anchor="middle">'+
+      '<text x="150" y="47" font-size="9.5" letter-spacing="4.4" font-family="var(--mono)">NAMASTE EQUINE RESCUE</text>'+
+      '<rect x="36" y="59" width="228" height="1.2" opacity=".4"/>'+
+      '<text x="150" y="112" font-size="45" letter-spacing="1.4" font-family="var(--display)">INTAKE</text>'+
+      '<text x="150" y="157" font-size="45" letter-spacing="1.4" font-family="var(--display)">RECORD</text>'+
+      '<rect x="36" y="170" width="228" height="1.2" opacity=".4"/></g>'+
+      '<g fill="'+k+'" font-family="var(--mono)" font-size="7.6" letter-spacing="2">'+
+      '<text x="36" y="192" opacity=".6">SEIZED BY</text><text x="264" y="192" text-anchor="end">LAW ENFORCEMENT</text>'+
+      '<text x="36" y="210" opacity=".6">STATE</text><text x="264" y="210" text-anchor="end">WISCONSIN</text>'+
+      '<text x="36" y="228" opacity=".6">OUTCOME</text><text x="264" y="228" text-anchor="end">RE-HOMED</text></g>'+
+      '<text x="150" y="245" text-anchor="middle" fill="'+k+'" font-family="var(--mono)" font-size="7" '+
+      'letter-spacing="3" opacity=".55">EST. 2014 · UNION GROVE, WI</text>' },
+
+    tee:function(k){ return '<g fill="'+k+'" text-anchor="middle">'+
+      '<text x="150" y="38" font-size="8.5" letter-spacing="5.4" font-family="var(--mono)" opacity=".7">WHAT RECOVERY WEIGHS</text>'+
+      '<text x="150" y="152" font-size="112" letter-spacing="-3" font-family="var(--display)">+250</text>'+
+      '<text x="150" y="181" font-size="13" letter-spacing="9" font-family="var(--mono)">POUNDS</text>'+
+      '<rect x="72" y="197" width="156" height="1.3" opacity=".45"/>'+
+      '<text x="150" y="219" font-size="8" letter-spacing="2.6" font-family="var(--mono)" opacity=".85">RED · 7YO QUARTER HORSE</text>'+
+      '<text x="150" y="235" font-size="8" letter-spacing="2.6" font-family="var(--mono)" opacity=".85">PLEASANT PRAIRIE · 2015</text></g>' },
+
+    tote:function(k){ return '<g fill="'+k+'">'+
+      '<text x="24" y="74" font-size="50" font-family="var(--display)">HAY.</text>'+
+      '<text x="24" y="128" font-size="50" font-family="var(--display)">WATER.</text>'+
+      '<text x="24" y="182" font-size="50" font-family="var(--display)">TIME.</text>'+
+      '<rect x="24" y="198" width="176" height="1.4" opacity=".45"/>'+
+      '<text x="24" y="219" font-size="8.6" letter-spacing="3.2" font-family="var(--mono)">IN THAT ORDER.</text>'+
+      '<text x="24" y="238" font-size="6.4" letter-spacing="1.8" font-family="var(--mono)" opacity=".6">NAMASTE EQUINE RESCUE · UNION GROVE, WI</text></g>' },
+
+    beanie:function(k){ return '<g transform="translate(150,122)">'+
+      '<circle r="78" fill="none" stroke="'+k+'" stroke-width="3.4"/>'+
+      '<circle r="67" fill="none" stroke="'+k+'" stroke-width="1" opacity=".5"/>'+
+      '<path d="M-25 42 C-37 8 -29 -24 -7 -37 C-1 -50 20 -54 30 -42 C38 -32 36 -13 26 -2 C20 8 15 22 13 42 Z" fill="'+k+'"/>'+
+      '<path d="M-7 -37 C-12 -46 -9 -53 -2 -50" fill="none" stroke="'+k+'" stroke-width="2.4" stroke-linecap="round"/>'+
+      '</g>'+
+      '<text x="150" y="232" text-anchor="middle" fill="'+k+'" font-family="var(--mono)" font-size="9" '+
+      'letter-spacing="5">EST. 2014</text>' },
+
+    stickers:function(){ return ''+
+      '<rect x="4" y="4" width="292" height="252" rx="9" fill="#F4F2F6" stroke="#E3DFEA" stroke-width="1.6"/>'+
+      '<g stroke="#CFC9D8" stroke-width="1.1" stroke-dasharray="3.5 3.5" fill="none">'+
+      '<circle cx="66" cy="80" r="46"/><rect x="128" y="34" width="76" height="92" rx="9"/>'+
+      '<rect x="216" y="34" width="66" height="92" rx="9"/>'+
+      '<rect x="20" y="150" width="150" height="76" rx="9"/><rect x="184" y="150" width="98" height="76" rx="9"/></g>'+
+      '<g transform="translate(66,80)"><circle r="39" fill="#6E2A93"/>'+
+      '<path d="M-12 20 C-18 4 -14 -12 -3 -18 C0 -24 10 -26 15 -20 C19 -15 18 -6 13 -1 C10 4 7 11 6 20 Z" fill="#F4E4FC"/></g>'+
+      '<g transform="translate(166,80)" text-anchor="middle"><rect x="-33" y="-42" width="66" height="84" rx="7" fill="#16131B"/>'+
+      '<text y="4" font-size="27" font-family="var(--display)" fill="#F2ECF7">+250</text>'+
+      '<text y="22" font-size="6" letter-spacing="1.8" font-family="var(--mono)" fill="#C77BE6">POUNDS BACK</text></g>'+
+      '<g transform="translate(249,80)" text-anchor="middle"><rect x="-28" y="-42" width="56" height="84" rx="7" fill="#6E2A93"/>'+
+      '<text y="6" font-size="34" font-family="var(--display)" fill="#fff">0</text>'+
+      '<text y="22" font-size="5" letter-spacing="1.1" font-family="var(--mono)" fill="#F4E4FC">WAITING FOR</text>'+'<text y="32" font-size="5" letter-spacing="1.1" font-family="var(--mono)" fill="#F4E4FC">A HOME</text></g>'+
+      '<g transform="translate(95,188)" text-anchor="middle"><rect x="-72" y="-34" width="144" height="68" rx="7" fill="#16131B"/>'+
+      '<text y="-4" font-size="8" font-family="var(--display)" fill="#F2ECF7">When the law takes a horse away,</text>'+
+      '<text y="11" font-size="8" font-family="var(--display)" font-style="italic" fill="#C77BE6">we take him next.</text></g>'+
+      '<g transform="translate(233,188)" text-anchor="middle"><rect x="-46" y="-34" width="92" height="68" rx="7" fill="#E7E2DA"/>'+
+      '<text y="-4" font-size="5.8" letter-spacing="1.2" font-family="var(--mono)" fill="#16131B">NAMASTE EQUINE</text>'+
+      '<text y="8" font-size="5.8" letter-spacing="1.2" font-family="var(--mono)" fill="#16131B">RESCUE · EST. 2014</text></g>' }
+  };
+
+  /* ─────────── garments: shaded, seamed, and given real cloth ─────────── */
+  /* one light source across the whole garment: userSpaceOnUse, so sleeves and body
+     share the same gradient instead of each mapping it across its own little box */
+  function defs(u,c){ return '<defs>'+
+    '<linearGradient id="f'+u+'" gradientUnits="userSpaceOnUse" x1="110" y1="20" x2="330" y2="380">'+
+      '<stop offset="0" stop-color="'+c.hi+'"/><stop offset=".5" stop-color="'+c.fab+'"/>'+
+      '<stop offset="1" stop-color="'+c.lo+'"/></linearGradient>'+
+    '<linearGradient id="t'+u+'" gradientUnits="userSpaceOnUse" x1="110" y1="20" x2="330" y2="380">'+
+      '<stop offset="0" stop-color="'+c.trim+'"/><stop offset="1" stop-color="'+c.lo+'"/></linearGradient>'+
+    '</defs>' }
+  var FOLD='<g stroke="rgba(0,0,0,.085)" stroke-width="13" stroke-linecap="round" fill="none">';
+  var STITCH='stroke-dasharray="3 3.4" stroke-width="1" opacity=".38"';
+
+  var GARMENT={
+    hoodie:function(c,u){ return defs(u,c)+
+      '<ellipse cx="210" cy="366" rx="116" ry="12" fill="rgba(0,0,0,.3)" filter="url(#soft)"/>'+
+      '<path d="M160 94 C160 40 178 20 210 20 C242 20 260 40 260 94 Z" fill="url(#t'+u+')" filter="url(#cloth)"/>'+
+      '<path d="M173 92 C173 48 187 33 210 33 C233 33 247 48 247 92 Z" fill="rgba(0,0,0,.16)"/>'+
+      '<path d="M152 84 C126 90 106 103 96 124 L64 238 C61 248 66 257 76 259 L108 267 C117 269 124 264 126 255 L150 150 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
+      '<path d="M268 84 C294 90 314 103 324 124 L356 238 C359 248 354 257 344 259 L312 267 C303 269 296 264 294 255 L270 150 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
+      '<path d="M152 88 C178 77 242 77 268 88 L290 122 C284 192 281 268 280 312 C280 322 273 328 262 328 L158 328 C147 328 140 322 140 312 C139 268 136 192 130 122 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
+      FOLD+'<path d="M172 140 C178 210 176 262 174 300"/><path d="M248 140 C242 210 244 262 246 300"/></g>'+
+      '<path d="M63 234 L128 250 L121 277 L56 261 Z" fill="url(#t'+u+')"/>'+
+      '<path d="M357 234 L292 250 L299 277 L364 261 Z" fill="url(#t'+u+')"/>'+
+      '<path d="M140 306 L280 306 L280 320 C280 326 275 330 268 330 L152 330 C145 330 140 326 140 320 Z" fill="url(#t'+u+')"/>'+
+      '<g stroke="rgba(0,0,0,.22)" fill="none">'+
+        '<path d="M152 88 C178 77 242 77 268 88" '+STITCH+'/>'+
+        '<path d="M150 96 L150 150" '+STITCH+'/><path d="M270 96 L270 150" '+STITCH+'/>'+
+        '<path d="M146 306 L274 306" '+STITCH+'/></g>'+
+      '<g transform="translate(144,138) scale(0.44)" filter="url(#ink)" opacity=".94">'+ART.hoodie(c.print)+'</g>' },
+
+    tee:function(c,u){ return defs(u,c)+
+      '<ellipse cx="210" cy="342" rx="112" ry="11" fill="rgba(0,0,0,.3)" filter="url(#soft)"/>'+
+      '<path d="M152 74 C126 80 108 94 98 116 L70 188 C67 197 72 205 81 207 L112 215 C120 217 127 212 129 204 L150 138 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
+      '<path d="M268 74 C294 80 312 94 322 116 L350 188 C353 197 348 205 339 207 L308 215 C300 217 293 212 291 204 L270 138 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
+      '<path d="M150 76 C176 66 244 66 270 76 L288 108 C283 172 281 252 280 292 C280 301 274 306 264 306 L156 306 C146 306 140 301 140 292 C139 252 137 172 132 108 Z" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
+      FOLD+'<path d="M170 120 C176 190 174 246 172 288"/><path d="M250 120 C244 190 246 246 248 288"/></g>'+
+      '<path d="M168 70 C186 92 234 92 252 70 L260 75 C238 102 182 102 160 75 Z" fill="url(#t'+u+')"/>'+
+      '<path d="M172 76 C188 94 232 94 248 76" fill="none" stroke="rgba(0,0,0,.2)" stroke-width="1.2"/>'+
+      '<g stroke="rgba(0,0,0,.22)" fill="none">'+
+        '<path d="M150 92 L150 138" '+STITCH+'/><path d="M270 92 L270 138" '+STITCH+'/>'+
+        '<path d="M146 296 L274 296" '+STITCH+'/>'+
+        '<path d="M78 202 L126 214" '+STITCH+'/><path d="M342 202 L294 214" '+STITCH+'/></g>'+
+      '<g transform="translate(147,116) scale(0.42)" filter="url(#ink)" opacity=".94">'+ART.tee(c.print)+'</g>' },
+
+    beanie:function(c,u){ return defs(u,c)+
+      '<ellipse cx="210" cy="300" rx="104" ry="11" fill="rgba(0,0,0,.3)" filter="url(#soft)"/>'+
+      '<path d="M112 216 C112 92 152 60 210 60 C268 60 308 92 308 216 Z" fill="url(#f'+u+')" filter="url(#knit)"/>'+
+      '<g stroke="rgba(0,0,0,.17)" stroke-width="2.4" fill="none">'+
+        '<path d="M146 68 C142 130 141 178 141 214"/><path d="M178 61 C176 130 175 180 175 214"/>'+
+        '<path d="M210 60 L210 214"/><path d="M242 61 C244 130 245 180 245 214"/>'+
+        '<path d="M274 68 C278 130 279 178 279 214"/></g>'+
+      '<rect x="100" y="206" width="220" height="72" rx="13" fill="url(#t'+u+')" filter="url(#knit)"/>'+
+      '<rect x="100" y="206" width="220" height="7" rx="3" fill="rgba(0,0,0,.2)"/>'+
+      '<g stroke="rgba(0,0,0,.12)" stroke-width="1.8" fill="none">'+
+        '<path d="M124 216 L124 268"/><path d="M148 216 L148 268"/><path d="M172 216 L172 268"/>'+
+        '<path d="M248 216 L248 268"/><path d="M272 216 L272 268"/><path d="M296 216 L296 268"/></g>'+
+      '<g transform="translate(186,222) scale(0.16)">'+ART.beanie(c.print)+'</g>' },
+
+    tote:function(c,u){ return defs(u,c)+
+      '<ellipse cx="210" cy="322" rx="100" ry="10" fill="rgba(0,0,0,.3)" filter="url(#soft)"/>'+
+      '<path d="M152 118 C152 44 268 44 268 118" fill="none" stroke="'+c.lo+'" stroke-width="13" stroke-linecap="round"/>'+
+      '<path d="M152 118 C152 48 268 48 268 118" fill="none" stroke="url(#f'+u+')" stroke-width="8.5" stroke-linecap="round"/>'+
+      '<rect x="110" y="112" width="200" height="198" rx="7" fill="url(#f'+u+')" filter="url(#cloth)"/>'+
+      '<rect x="110" y="112" width="200" height="15" rx="5" fill="url(#t'+u+')"/>'+
+      FOLD+'<path d="M138 136 L138 300"/><path d="M282 136 L282 300"/></g>'+
+      '<g stroke="rgba(0,0,0,.2)" fill="none">'+
+        '<path d="M116 130 L304 130" '+STITCH+'/><path d="M116 300 L304 300" '+STITCH+'/>'+
+        '<path d="M152 118 L152 132" '+STITCH+'/><path d="M268 118 L268 132" '+STITCH+'/></g>'+
+      '<g transform="translate(135,142) scale(0.5)" filter="url(#ink)" opacity=".93">'+ART.tote(c.print)+'</g>' },
+
+    stickers:function(c,u){ return ART.stickers() }
+  };
+
+  function garmentSVG(p,c){
+    var u=(++uid), vb=(p.kind==="stickers")?"0 0 300 260":"0 0 420 400";
+    return '<svg viewBox="'+vb+'" role="img" aria-label="'+p.name+', '+c.name+'">'+GARMENT[p.kind](c,u)+'</svg>';
   }
-  $$(".product").forEach(function(card){
-    $$(".sw",card).forEach(function(b){
+  function artSVG(p,c){
+    return '<svg viewBox="0 0 300 260" role="img" aria-label="'+p.artTitle+'">'+
+      (p.kind==="stickers"?ART.stickers():ART[p.kind](c.print))+'</svg>';
+  }
+
+  /* ─────────── the grid ─────────── */
+  function renderShop(){
+    var g=$("#shopGrid"); if(!g)return;
+    g.innerHTML=PRODUCTS.map(function(p){
+      var c=p.colors[0];
+      return '<a class="card rv'+(p.span?" span2":"")+'" href="#/shop/'+p.id+'" data-nav>'+
+        '<div class="stage"><span class="tag'+(p.tagAlt?" tag-alt":"")+'">'+p.tag+'</span>'+garmentSVG(p,c)+'</div>'+
+        '<div class="card-body"><div class="card-top"><h3>'+p.name+'</h3>'+
+        '<span class="price">$'+p.price+'</span></div><p>'+p.blurb+'</p>'+
+        '<div class="card-foot"><div class="dots">'+
+        p.colors.map(function(x){return '<span class="dot" style="background:'+x.fab+'"></span>'}).join("")+
+        '</div><span class="view">View <svg><use href="#i-arrow"/></svg></span></div></div></a>';
+    }).join("");
+    $$(".rv",g).forEach(function(el){ if(io)io.observe(el) });
+  }
+
+  /* ─────────── one product ─────────── */
+  var CHART={ hoodie:[["S",20,27],["M",21,28],["L",22.5,29],["XL",24,30],["2XL",26,31]],
+              tee:[["S",18,28],["M",20,29],["L",22,30],["XL",24,31],["2XL",26,32]] };
+  var sel={};
+  function pick(p){ if(!sel[p.id])sel[p.id]={ci:0,size:p.sizes.length>2?p.sizes[1]:p.sizes[0]}; return sel[p.id] }
+
+  function renderPDP(id){
+    var p=byId(id), host=$("#productView"); if(!p||!host)return false;
+    var s=pick(p), c=p.colors[s.ci], i=idx(id);
+    var prev=PRODUCTS[(i-1+PRODUCTS.length)%PRODUCTS.length], next=PRODUCTS[(i+1)%PRODUCTS.length];
+    var rows=CHART[p.kind];
+
+    host.innerHTML=
+      '<div class="phead" style="padding-block:26px"><div class="wrap">'+
+        '<a class="crumb" href="#/shop" data-nav>← All five pieces</a></div></div>'+
+      '<div class="sec wrap"><div class="pdp">'+
+        '<div><div class="pdp-stage" id="pdpStage">'+garmentSVG(p,c)+'</div>'+
+          (p.colors.length>1?'<div class="pdp-sub">'+p.colors.map(function(x,n){
+            return '<button class="swatch-tile" data-ci="'+n+'" aria-pressed="'+(n===s.ci)+'" '+
+              'aria-label="'+x.name+'">'+garmentSVG(p,x)+'</button>'}).join("")+'</div>':'')+
+        '</div>'+
+        '<div class="pdp-info">'+
+          '<p class="eyebrow">'+p.tag+'</p><h1>'+p.name+'</h1>'+
+          '<div class="pdp-price">$'+p.price+'</div>'+
+          '<p class="lede">'+p.lede+'</p>'+
+          (p.colors.length>1?'<div class="pdp-block"><h4>Color</h4><div class="opt-row">'+
+            p.colors.map(function(x,n){return '<button class="sw" data-ci="'+n+'" style="background:'+x.fab+
+              '" aria-pressed="'+(n===s.ci)+'" aria-label="'+x.name+'"></button>'}).join("")+
+            '</div><p class="chosen" id="chosen">'+c.name+'</p></div>':'')+
+          (p.sizes.length>1?'<div class="pdp-block"><h4>Size</h4><div class="opt-row">'+
+            p.sizes.map(function(z){return '<button class="pill" data-size="'+z+'" aria-pressed="'+
+              (z===s.size)+'">'+z+'</button>'}).join("")+'</div></div>':'')+
+          '<div class="pdp-block" style="border:0;padding-top:26px">'+
+            '<button class="btn btn-solid btn-lg btn-wide" id="addBtn">Add to bag — $'+p.price+'</button>'+
+            '<p class="added" id="addedMsg">Added to your bag</p>'+
+            '<p class="note" style="margin-top:12px;font-size:11.5px">Nothing on this page is connected '+
+            'to a payment system — no order can be placed.</p></div>'+
+          '<div class="pdp-block"><h4>Details</h4><dl style="margin:0">'+
+            p.specs.map(function(r){return '<div class="spec"><dt>'+r[0]+'</dt><dd>'+r[1]+'</dd></div>'}).join("")+
+            '</dl></div>'+
+          (rows?'<div class="pdp-block"><h4>Size guide — inches, garment laid flat</h4>'+
+            '<div class="table-wrap"><table class="sizetable"><thead><tr><th>Size</th><th>Chest</th>'+
+            '<th>Length</th></tr></thead><tbody>'+rows.map(function(r){
+              return '<tr><td>'+r[0]+'</td><td>'+r[1]+'″</td><td>'+r[2]+'″</td></tr>'}).join("")+
+            '</tbody></table></div></div>':'')+
+        '</div>'+
+      '</div></div>'+
+      '<div class="art-band"><div class="sec wrap"><div class="art-grid">'+
+        '<div class="art-card" style="background:'+c.fab+'" id="artCard">'+artSVG(p,c)+'</div>'+
+        '<div class="art-meta"><p class="eyebrow">The artwork</p><h2>'+p.artTitle+'</h2>'+
+        '<p>'+p.artText+'</p></div>'+
+      '</div></div></div>'+
+      '<div class="sec-tight wrap"><div class="pdp-nav">'+
+        '<a href="#/shop/'+prev.id+'" data-nav>← '+prev.name+'</a>'+
+        '<a href="#/shop/'+next.id+'" data-nav>'+next.name+' →</a>'+
+      '</div></div>';
+
+    $$(".sw,.swatch-tile",host).forEach(function(b){
       b.addEventListener("click",function(){
-        $$(".sw",card).forEach(function(o){o.setAttribute("aria-pressed","false")});
-        b.setAttribute("aria-pressed","true"); paint(card);
+        s.ci=+b.dataset.ci; renderPDP(id); reveal();
       });
     });
-    $$(".pill",card).forEach(function(b){
+    $$(".pill",host).forEach(function(b){
       b.addEventListener("click",function(){
-        $$(".pill",card).forEach(function(o){o.setAttribute("aria-pressed","false")});
+        s.size=b.dataset.size;
+        $$(".pill",host).forEach(function(o){o.setAttribute("aria-pressed","false")});
         b.setAttribute("aria-pressed","true");
       });
     });
-    paint(card);
-  });
+    $("#addBtn",host).addEventListener("click",function(){
+      addToBag(p,s.ci,s.size);
+      var m=$("#addedMsg",host);
+      m.classList.add("on"); setTimeout(function(){m.classList.remove("on")},1500);
+    });
+    return true;
+  }
 
   /* ─────────── cart ─────────── */
   var cart=[];
@@ -1575,12 +1744,9 @@ textarea.field-in{min-height:130px;resize:vertical}
   function save(){ try{localStorage.setItem("ner_bag",JSON.stringify(cart))}catch(e){} }
   function money(n){ return "$"+n.toFixed(n%1?2:0) }
 
-  function thumb(id){
-    var src=$('.product[data-id="'+id+'"] .g-svg');
-    if(!src)return "";
-    var c=src.cloneNode(true); c.removeAttribute("class");
-    c.setAttribute("preserveAspectRatio","xMidYMid meet");
-    return c.outerHTML;
+  function thumb(id,ci){
+    var p=byId(id); if(!p)return "";
+    return garmentSVG(p, p.colors[ci||0]);
   }
   function render(){
     var body=$("#cartBody"), n=0, sum=0;
@@ -1597,7 +1763,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     }
     body.innerHTML=cart.map(function(l,i){
       var opt=[l.color,l.size].filter(Boolean).join(" · ");
-      return '<div class="line"><div class="line-thumb">'+thumb(l.id)+'</div>'+
+      return '<div class="line"><div class="line-thumb">'+thumb(l.id,l.ci)+'</div>'+
         '<div><h4>'+l.name+'</h4>'+(opt?'<p class="line-opt">'+opt+'</p>':'')+
         '<div class="qty"><button data-d="-1" data-i="'+i+'" aria-label="One fewer">−</button>'+
         '<span>'+l.qty+'</span>'+
@@ -1614,21 +1780,13 @@ textarea.field-in{min-height:130px;resize:vertical}
     });
   }
 
-  $$(".product .add").forEach(function(btn){
-    btn.addEventListener("click",function(){
-      var card=btn.closest(".product");
-      var sw=$('.sw[aria-pressed="true"]',card), pl=$('.pill[aria-pressed="true"]',card);
-      var item={ id:card.dataset.id, name:card.dataset.name, price:+card.dataset.price,
-        color:sw?sw.dataset.color:"", size:pl?pl.dataset.size:"", qty:1 };
-      var hit=null;
-      cart.forEach(function(l){ if(l.id===item.id&&l.color===item.color&&l.size===item.size)hit=l });
-      if(hit)hit.qty++; else cart.push(item);
-      save();render();
-      var msg=$(".added",card);
-      if(msg){msg.classList.add("on");setTimeout(function(){msg.classList.remove("on")},1400)}
-      openCart();
-    });
-  });
+  function addToBag(p,ci,size){
+    var c=p.colors[ci], hit=null;
+    cart.forEach(function(l){ if(l.id===p.id&&l.ci===ci&&l.size===size)hit=l });
+    if(hit)hit.qty++;
+    else cart.push({id:p.id,name:p.name,price:p.price,ci:ci,color:c.name,size:size,qty:1});
+    save(); render(); openCart();
+  }
 
   /* ─────────── drawer + modal ─────────── */
   var drawer=$("#drawer"), scrim=$("#scrim"), modal=$("#modal");
@@ -1680,17 +1838,15 @@ textarea.field-in{min-height:130px;resize:vertical}
   var teaser=$("#shopTeaser");
   if(teaser){
     teaser.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'+
-      '<div style="background:var(--ground-deep);border:1px solid var(--rule);border-radius:14px;padding:18px;aspect-ratio:1;overflow:hidden">'+thumb("tee")+'</div>'+
-      '<div style="background:var(--ground-deep);border:1px solid var(--rule);border-radius:14px;padding:18px;aspect-ratio:1;overflow:hidden">'+thumb("hoodie")+'</div>'+
-      '<div style="background:var(--ground-deep);border:1px solid var(--rule);border-radius:14px;padding:18px;aspect-ratio:1;overflow:hidden">'+thumb("tote")+'</div>'+
-      '<div style="background:var(--ground-deep);border:1px solid var(--rule);border-radius:14px;padding:18px;aspect-ratio:1;overflow:hidden">'+thumb("beanie")+'</div>'+
-      '</div>';
-    $$("#shopTeaser svg").forEach(function(s){s.style.width="100%";s.style.height="100%"});
+      ["tee","hoodie","tote","beanie"].map(function(id){
+        return '<a href="#/shop/'+id+'" data-nav style="display:block;border:1px solid var(--rule);'+
+          'border-radius:14px;overflow:hidden;aspect-ratio:1;background:radial-gradient(118% 96% at 50% 2%,#F7F5FA 0%,#DED9E8 74%,#CEC8DC 100%)">'+thumb(id,0)+'</a>';
+      }).join("")+'</div>';
   }
 
   window.addEventListener("scroll",reveal,{passive:true});
   window.addEventListener("resize",reveal);
-  render(); route();
+  renderShop(); render(); route();
 })();
 </script>
 
