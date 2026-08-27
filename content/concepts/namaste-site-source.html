@@ -1487,6 +1487,9 @@ textarea.field-in{min-height:130px;resize:vertical}
   var ROUTES={"/":"p-home","/about":"p-about","/horses":"p-horses","/alumni":"p-alumni",
     "/adopt":"p-adopt","/foster":"p-foster","/volunteer":"p-volunteer","/donate":"p-donate",
     "/shop":"p-shop","/contact":"p-contact"};
+  var TITLES={"/":"","/about":"About","/horses":"Our Horses","/alumni":"Alumni",
+    "/adopt":"Adopt","/foster":"Foster","/volunteer":"Volunteer","/donate":"Donate",
+    "/shop":"Shop","/contact":"Contact"};
   var nav=$("#nav"), burger=$("#burger");
 
   function route(){
@@ -1501,8 +1504,8 @@ textarea.field-in{min-height:130px;resize:vertical}
     closeNav();
     window.scrollTo({top:0,behavior:"instant"});
     reveal();
-    var pg=document.getElementById(id), hd=pg&&pg.querySelector("h1");
-    if(hd){document.title=(h==="/"?"":hd.textContent.trim().slice(0,44)+" — ")+"Namaste Equine Rescue"}
+    var nm=TITLES[h]||"";
+    document.title=(nm?nm+" — ":"")+"Namaste Equine Rescue";
   }
   window.addEventListener("hashchange",route);
 
