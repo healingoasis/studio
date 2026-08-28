@@ -19,11 +19,13 @@ Every factual claim is sourced from namasteequinerescue.org, read page by page o
 The rescue's own words: *99% of our purpose was to educate horse owners.* Until now that was
 one paragraph. It is now a working tool, and it is the reason to send anyone to this site.
 
-**Score a horse in six places.** An interactive Henneke body condition scale. The six palpation
-points are marked on the real photograph of Red; pick any score 1–9 and every point tells you
-what that horse feels like under the hand, with the clinical band colour-coded. The rescue's own
-foster agreement already requires a minimum of 4 on this scale — the tool makes that number mean
-something. System: Don Henneke, Texas A&M, first published 1983. Descriptions are written here,
+**Score a horse in six places.** An interactive Henneke body condition scale, built on a horse
+drawn in true lateral view so all six palpation sites sit exactly on the anatomy. Pick any score
+1–9 and the horse itself changes shape — crest, topline, ribs, flank, tailhead — while each site
+tells you what that horse feels like under the hand, with the clinical band colour-coded. The
+rescue's own foster agreement already requires a minimum of 4 on this scale, so the tool makes
+that number mean something. Red's photograph sits alongside as the real case, uncaptioned by
+markers. System: Don Henneke, Texas A&M, first published 1983. Descriptions are written here,
 not copied from the chart.
 
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
