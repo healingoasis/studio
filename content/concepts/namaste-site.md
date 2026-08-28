@@ -85,6 +85,12 @@ variants that were never shot.
 - **Photography is the biggest gap.** Two horse photographs for an entire rescue. Kat has
   no picture at all, and the page says so rather than substituting a stand-in horse.
 
+## Light and dark
+
+A sun/moon toggle sits in the header, left of the bag. The page follows the viewer's system
+setting until someone presses it; that choice then sticks on the device. Daniel runs everything
+dark, so this is how he checks what a light-mode visitor actually sees.
+
 ## Verified before handing over
 
 Ten routes render; no horizontal overflow at any width; light and dark themes both checked;
