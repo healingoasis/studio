@@ -9,10 +9,34 @@ Build: `python3 scripts/build-namaste-site.py <output.html>`
 
 ## Pages
 
-Home · About · Our Horses · Alumni · Adopt · Foster · Volunteer · Donate · Shop · Contact
+Home · About · **Learn** · Our Horses · Alumni · Adopt · Foster · Volunteer · Donate · Shop · Contact
 
 Every factual claim is sourced from namasteequinerescue.org, read page by page on
 2026-08-26. Nothing about horses, people, money, or outcomes was invented.
+
+## Learn — the part that sets this rescue apart
+
+The rescue's own words: *99% of our purpose was to educate horse owners.* Until now that was
+one paragraph. It is now a working tool, and it is the reason to send anyone to this site.
+
+**Score a horse in six places.** An interactive Henneke body condition scale. The six palpation
+points are marked on the real photograph of Red; pick any score 1–9 and every point tells you
+what that horse feels like under the hand, with the clinical band colour-coded. The rescue's own
+foster agreement already requires a minimum of 4 on this scale — the tool makes that number mean
+something. System: Don Henneke, Texas A&M, first published 1983. Descriptions are written here,
+not copied from the chart.
+
+**You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
+obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
+refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding
+trials and the equine-nutrition guidance built on them. Framed explicitly as *why a starved
+horse needs a vet*, not as a protocol for the reader to run.
+
+**What to do**, in two lanes: the public (call your county sheriff — we cannot seize a horse and
+neither can you) and a dedicated lane addressed to law enforcement with the farm's number. No
+other rescue site in the state speaks to a deputy at 2am. That is the positioning.
+
+Not veterinary advice, and the page says so twice.
 
 ## The shop
 

@@ -114,7 +114,7 @@ p{margin:0}
 .cart-count.show{display:grid}
 .burger{display:none;border:1px solid var(--rule);background:var(--surface);border-radius:9px;
   width:42px;height:42px;place-items:center;cursor:pointer}
-@media(max-width:1080px){
+@media(max-width:1180px){
   .nav{position:fixed;inset:0 0 auto;top:0;flex-direction:column;align-items:stretch;gap:0;
     background:var(--ground);padding:96px var(--pad) 36px;transform:translateY(-102%);
     transition:transform .38s cubic-bezier(.4,0,.2,1);z-index:45;border-bottom:1px solid var(--rule);
@@ -126,7 +126,7 @@ p{margin:0}
   .burger{display:grid}
   .header-tools{margin-left:auto}
 }
-@media(max-width:1080px){ .nav-donate{display:block;color:var(--accent)} }
+@media(max-width:1180px){ .nav-donate{display:block;color:var(--accent)} }
 @media(max-width:620px){
   .header-tools > .btn-solid{display:none}   /* lives in the menu instead */
   .header-tools{gap:6px}
@@ -396,6 +396,99 @@ p{margin:0}
 .crumb{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted);text-decoration:none}
 .crumb:hover{color:var(--accent)}
+/* ============================================================
+   Learn — the body condition tool and the refeeding protocol.
+   Semantic color here is deliberately separate from the accent:
+   it encodes clinical bands, not brand.
+   ============================================================ */
+:root{ --crit:#A8342C; --crit-wash:#F7EAE9; --ok:#2C6A4C; --ok-wash:#E9F2ED;
+       --over:#8E6318; --over-wash:#F6F0E4; }
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --crit:#EE8279; --crit-wash:#2E1A18; --ok:#79C79C; --ok-wash:#16261E;
+  --over:#DFAE5C; --over-wash:#2A2114; } }
+:root[data-theme="dark"]{ --crit:#EE8279; --crit-wash:#2E1A18; --ok:#79C79C;
+  --ok-wash:#16261E; --over:#DFAE5C; --over-wash:#2A2114; }
+
+.bcs{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  gap:clamp(26px,3.4vw,52px);align-items:start}
+@media(max-width:980px){.bcs{grid-template-columns:1fr}}
+
+.bcs-photo{position:relative;border:1px solid var(--rule);border-radius:18px;overflow:hidden;
+  background:var(--ground-deep)}
+.bcs-photo img{width:100%;display:block}
+.pt{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.92);background:rgba(22,19,27,.55);color:#fff;
+  font-family:var(--mono);font-size:12px;cursor:pointer;display:grid;place-items:center;
+  backdrop-filter:blur(3px);transition:transform .2s,background .2s,border-color .2s;padding:0}
+.pt:hover{transform:scale(1.14)}
+.pt[aria-pressed="true"]{background:var(--accent);border-color:#fff;transform:scale(1.18)}
+.pt::after{content:"";position:absolute;inset:-9px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.34)}
+.bcs-cap{position:absolute;left:12px;bottom:10px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);
+  background:rgba(12,10,17,.5);padding:5px 9px;border-radius:5px;backdrop-filter:blur(3px)}
+
+.rail{display:flex;gap:5px;flex-wrap:wrap}
+.rail button{flex:1 1 0;min-width:42px;padding:13px 0;border:1px solid var(--rule);
+  background:var(--surface);border-radius:9px;font-family:var(--mono);font-size:15px;
+  cursor:pointer;color:var(--ink-soft);transition:all .16s;font-variant-numeric:tabular-nums}
+.rail button:hover{border-color:var(--accent)}
+.rail button[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+@media(max-width:460px){
+  .rail{gap:4px} .rail button{min-width:0;padding:12px 0;font-size:14px}
+  .rail-key{font-size:9px}
+}
+.rail-key{display:flex;justify-content:space-between;margin-top:9px;font-family:var(--mono);
+  font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint)}
+
+.read{margin-top:26px;border:1px solid var(--rule);border-radius:16px;overflow:hidden}
+.read-top{display:flex;gap:20px;align-items:center;padding:22px clamp(18px,2.2vw,26px)}
+.read-num{font-family:var(--display);font-size:64px;line-height:.9;letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums}
+.read-label{font-family:var(--display);font-size:26px;line-height:1.1}
+.read-band{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  margin-top:7px;display:inline-block;padding:4px 9px;border-radius:20px}
+.read p{padding:0 clamp(18px,2.2vw,26px) 22px;color:var(--ink-soft);font-size:15.5px;margin:0}
+.band-crit{background:var(--crit-wash);color:var(--crit)}
+.band-ok{background:var(--ok-wash);color:var(--ok)}
+.band-over{background:var(--over-wash);color:var(--over)}
+.read.is-crit .read-num{color:var(--crit)} .read.is-ok .read-num{color:var(--ok)}
+.read.is-over .read-num{color:var(--over)}
+
+.areas{margin-top:22px;border-top:1px solid var(--rule)}
+.area{display:grid;grid-template-columns:30px 118px 1fr;gap:14px;align-items:baseline;
+  padding:12px 0;border-bottom:1px solid var(--rule-soft);cursor:pointer;
+  transition:background .18s;font-size:15px}
+.area:hover{background:var(--surface-2)}
+.area.on{background:var(--accent-wash)}
+.area i{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--accent)}
+.area b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);font-weight:400}
+.area span{color:var(--ink-soft)}
+@media(max-width:560px){.area{grid-template-columns:26px 1fr;gap:8px}.area b{grid-column:2}
+  .area span{grid-column:2}}
+
+.steps-feed{counter-reset:none;display:grid;gap:2px;background:var(--invert-rule);
+  border-radius:14px;overflow:hidden}
+.feed{background:var(--invert-bg);padding:24px clamp(20px,2.6vw,32px);display:grid;
+  grid-template-columns:132px 1fr;gap:22px;align-items:start}
+.feed dt{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--invert-accent);margin:0}
+.feed dd{margin:0}
+.feed h4{font-family:var(--sans);font-size:17.5px;font-weight:600;color:var(--invert-fg);letter-spacing:0}
+.feed p{margin-top:7px;color:var(--invert-soft);font-size:15px}
+@media(max-width:620px){.feed{grid-template-columns:1fr;gap:6px}}
+
+.lane{background:var(--invert-bg);color:var(--invert-fg);border-radius:18px;
+  padding:clamp(28px,3.6vw,48px);border:1px solid var(--invert-rule)}
+.lane .eyebrow{color:var(--invert-accent)}
+.lane h3{color:var(--invert-fg);font-size:clamp(24px,3vw,34px);line-height:1.12;margin-top:14px}
+.lane p{color:var(--invert-soft);margin-top:14px;font-size:16.5px}
+.lane-num{font-family:var(--mono);font-size:clamp(22px,3vw,32px);color:var(--invert-fg);
+  display:inline-block;margin-top:20px;text-decoration:none;border-bottom:2px solid var(--invert-accent);
+  padding-bottom:3px}
+.lane-num:hover{color:var(--invert-accent)}
+
 /* ---------- cart drawer ---------- */
 .scrim{position:fixed;inset:0;background:rgba(12,10,17,.5);opacity:0;pointer-events:none;
   transition:opacity .34s;z-index:70;backdrop-filter:blur(2px)}
@@ -527,6 +620,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     </a>
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#/about" data-nav>About</a>
+      <a href="#/learn" data-nav>Learn</a>
       <a href="#/horses" data-nav>Our Horses</a>
       <a href="#/alumni" data-nav>Alumni</a>
       <a href="#/adopt" data-nav>Adopt</a>
@@ -615,6 +709,8 @@ textarea.field-in{min-height:130px;resize:vertical}
     <div class="panel panel-accent rv" style="margin-top:32px">
       <h3>The part nobody expects</h3>
       <p style="color:var(--ink-soft)">The rescue was created in 2014 to help law enforcement with seized equines. What we learned was that <b>99% of our purpose was to educate horse owners</b> — turning a seizure into a more positive experience of education and knowledge, so that the next horse never has to be seized at all.</p>
+      <p style="color:var(--ink-soft);margin-top:14px">So we built the lesson into this website: the six places you put your hands on a horse, and why you must never simply feed a starved one.</p>
+      <a class="btn btn-solid btn-lg" style="margin-top:22px" href="#/learn" data-nav>Learn to read a horse</a>
     </div>
   </div>
 
@@ -927,6 +1023,140 @@ textarea.field-in{min-height:130px;resize:vertical}
       <a class="btn btn-lg btn-invert" style="margin-top:32px" href="#/donate" data-nav>Fund the next one</a>
     </div>
   </div></div>
+</section>
+
+<!-- ══════════════════════════ LEARN ══════════════════════════ -->
+<section class="page" id="p-learn">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Learn</p>
+    <h1>Ninety-nine percent of this job is teaching people to read a horse.</h1>
+    <p class="lede">That is not a slogan, it is what this rescue found out. Most neglect cases are
+       not malice — they are an owner who never learned what a healthy horse feels like under the
+       hand. So here is the thing we actually want you to take away from this website.</p>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">The Henneke scale</p>
+      <h2>Score a horse in six places.</h2>
+      <p class="lede">Body condition is not a guess and it is not a look. It is six places you put
+         your hands, each scored one to nine, then averaged. Pick a score to see what that horse
+         feels like. The points are marked on Red, who came to us 250 pounds under.</p>
+    </div>
+
+    <div class="bcs">
+      <div class="bcs-photo rv">
+        <img src="data:image/jpeg;base64,{{RED}}" alt="Red, a chestnut quarter horse standing side-on, with the six body-condition scoring points marked">
+        <button class="pt" data-a="0" style="left:68%;top:17.8%" aria-pressed="false"><span>1</span></button>
+        <button class="pt" data-a="1" style="left:55.2%;top:20.2%"     aria-pressed="false"><span>2</span></button>
+        <button class="pt" data-a="2" style="left:63.2%;top:38.4%" aria-pressed="false"><span>3</span></button>
+        <button class="pt" data-a="3" style="left:46.8%;top:42.4%" aria-pressed="false"><span>4</span></button>
+        <button class="pt" data-a="4" style="left:40.4%;top:20.5%" aria-pressed="false"><span>5</span></button>
+        <button class="pt" data-a="5" style="left:23.2%;top:24.2%" aria-pressed="false"><span>6</span></button>
+        <span class="bcs-cap">Red · after</span>
+      </div>
+
+      <div class="rv">
+        <p class="eyebrow" style="margin-bottom:10px">Choose a score</p>
+        <div class="rail" id="bcsRail"></div>
+        <div class="rail-key"><span>1 · emaciated</span><span>5 · ideal</span><span>9 · obese</span></div>
+
+        <div class="read" id="bcsRead"></div>
+        <div class="areas" id="bcsAreas"></div>
+      </div>
+    </div>
+
+    <div class="cols2" style="margin-top:clamp(34px,4vw,52px)">
+      <div class="panel panel-accent rv">
+        <p class="eyebrow">What we ask of a foster home</p>
+        <h3 style="margin-top:10px">Never below a 4.</h3>
+        <p style="color:var(--ink-soft);margin-top:10px">Every horse placed with a Namaste foster
+           home has to be kept at a minimum of 4 on this scale, monitored daily and written down.
+           That number is on our foster agreement, and now you know exactly what it means.</p>
+        <a class="btn btn-line" style="margin-top:20px" href="#/foster" data-nav>Foster requirements</a>
+      </div>
+      <div class="rv">
+        <p class="note">The scale was developed by Don Henneke at Texas A&amp;M University and first
+           published in 1983. It is scored by sight <em>and</em> by hand — a winter coat hides a great
+           deal, which is why January cases are so often missed. Score all six areas separately and
+           average them; one thin patch is not a thin horse.</p>
+        <p class="note" style="margin-top:16px;border-left-color:var(--accent)">This page is here to
+           teach, not to diagnose. If a horse you own scores 3 or below, that is a veterinary call,
+           today — not a feeding decision you make on your own.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="band"><div class="wrap sec">
+    <div class="sec-head rv">
+      <p class="eyebrow">The part everybody gets wrong</p>
+      <h2>You cannot just feed a starved horse.</h2>
+      <p style="color:var(--invert-soft);font-size:18px;max-width:66ch">This is the single most
+         useful thing on this website. The instinct — put food in front of it — is the instinct that
+         kills. Reintroducing feed too fast triggers refeeding syndrome: insulin drives minerals and
+         electrolytes out of the bloodstream and the horse can go down with edema, diarrhea,
+         neurological signs or heart failure. It does not come from one meal. It builds over the
+         first days to a week, right when everybody thinks the rescue is going well.</p>
+    </div>
+
+    <dl class="steps-feed rv">
+      <div class="feed"><dt>Days 1–3</dt><dd>
+        <h4>One pound of alfalfa, every four hours</h4>
+        <p>Six small feeds a day, roughly half of what the horse actually needs. No grain at all.
+           Good leafy alfalfa, because it produces a lower glucose and insulin response than grain
+           or grass — which is precisely what you are trying to avoid.</p></dd></div>
+      <div class="feed"><dt>Days 4–5</dt><dd>
+        <h4>Two to three pounds, every four hours</h4>
+        <p>Still six feeds. Still no grain. About three quarters of requirement.</p></dd></div>
+      <div class="feed"><dt>Days 6–10</dt><dd>
+        <h4>Four to five pounds, every four hours</h4>
+        <p>Full requirement, and the feeds start consolidating toward three a day.</p></dd></div>
+      <div class="feed"><dt>Day 10 onward</dt><dd>
+        <h4>Slowly, for months</h4>
+        <p>Hay every eight to twelve hours, increasing gradually. Grain is not introduced until
+           body condition has come up off the floor, and then in half-pound meals.</p></dd></div>
+    </dl>
+
+    <div class="cols3 rv" style="margin-top:clamp(30px,4vw,48px)">
+      <div><div class="stat-n" style="color:var(--invert-fg)">1 in 5</div>
+        <div class="stat-l" style="color:var(--invert-soft)">Emaciated horses that die during refeeding</div></div>
+      <div><div class="stat-n" style="color:var(--invert-fg)">3–10<small style="color:var(--invert-soft)"> months</small></div>
+        <div class="stat-l" style="color:var(--invert-soft)">To bring body condition back</div></div>
+      <div><div class="stat-n" style="color:var(--invert-fg)">+250<small style="color:var(--invert-soft)"> lb</small></div>
+        <div class="stat-l" style="color:var(--invert-soft)">What Red had to put back on</div></div>
+    </div>
+
+    <p class="note rv" style="margin-top:34px;border-left-color:var(--invert-rule);color:var(--invert-soft);max-width:74ch">
+      Protocol as published from the refeeding trials run at UC Davis with rescue groups, and
+      reproduced across equine nutrition guidance since. It is here so you understand why a starved
+      horse needs a vet and a plan rather than a full hay net — not so you can run it yourself.</p>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">What to do</p>
+      <h2>If a horse near you scores a 3 or below.</h2>
+    </div>
+    <div class="cols2">
+      <div class="panel rv">
+        <p class="eyebrow">If it is not your horse</p>
+        <h3 style="margin-top:12px">Call your county sheriff.</h3>
+        <p style="color:var(--ink-soft);margin-top:12px">Not us, first. We cannot seize a horse and
+           neither can you — only law enforcement has that authority. Report it to them, in writing
+           if you can, with the date and what you saw. Once a department has taken the animal, that
+           is the point where this farm can step in.</p>
+        <a class="btn btn-line" style="margin-top:20px" href="#/contact" data-nav>Then tell us</a>
+      </div>
+      <div class="lane rv">
+        <p class="eyebrow">For law enforcement</p>
+        <h3>You have a seized equine and nowhere to put it tonight.</h3>
+        <p>That is the call this rescue exists to take. Tell us the county, the condition and how many.
+           We will tell you straight away whether we have space, and we will open a file the moment
+           the trailer arrives — the same file that follows the horse to its adopter.</p>
+        <a class="lane-num" href="tel:+12624920767">(262) 492-0767</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ══════════════════════════ ADOPT ══════════════════════════ -->
@@ -1283,6 +1513,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         <a href="#/about" data-nav>About</a>
         <a href="#/horses" data-nav>Our Horses</a>
         <a href="#/alumni" data-nav>Alumni</a>
+        <a href="#/learn" data-nav>Learn</a>
         <a href="#/contact" data-nav>Contact</a>
       </div>
       <div>
@@ -1348,10 +1579,10 @@ textarea.field-in{min-height:130px;resize:vertical}
   var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 
   /* ─────────── router ─────────── */
-  var ROUTES={"/":"p-home","/about":"p-about","/horses":"p-horses","/alumni":"p-alumni",
+  var ROUTES={"/":"p-home","/about":"p-about","/learn":"p-learn","/horses":"p-horses","/alumni":"p-alumni",
     "/adopt":"p-adopt","/foster":"p-foster","/volunteer":"p-volunteer","/donate":"p-donate",
     "/shop":"p-shop","/contact":"p-contact"};
-  var TITLES={"/":"","/about":"About","/horses":"Our Horses","/alumni":"Alumni",
+  var TITLES={"/":"","/about":"About","/learn":"Learn","/horses":"Our Horses","/alumni":"Alumni",
     "/adopt":"Adopt","/foster":"Foster","/volunteer":"Volunteer","/donate":"Donate",
     "/shop":"Shop","/contact":"Contact"};
   var nav=$("#nav"), burger=$("#burger");
@@ -1424,7 +1655,7 @@ textarea.field-in{min-height:130px;resize:vertical}
               "The print is that form, set the way it deserves to be set. The last line always "+
               "reads RE-HOMED, because so far it always has.",
       specs:[["Fabric","80/20 cotton-poly brushed fleece, 380 gsm"],["Fit","Unisex, relaxed"],
-             ["Colour","Washed black"],["Print","Water-based ink, front panel"],
+             ["Color","Washed black"],["Print","Water-based ink, front panel"],
              ["Care","Cold wash, hang dry, inside out"]],
       sizes:["S","M","L","XL","2XL"], chart:true,
       colors:[{name:"Washed Black"}] },
@@ -1440,7 +1671,7 @@ textarea.field-in{min-height:130px;resize:vertical}
               "it is a scale reading. Anyone who asks what the number means gets told about Red, "+
               "which is exactly what a shirt is for.",
       specs:[["Fabric","100% ringspun cotton, 180 gsm"],["Fit","Unisex, true to size"],
-             ["Colour","Black"],["Print","Water-based ink, front"],
+             ["Color","Black"],["Print","Water-based ink, front"],
              ["Care","Cold wash, tumble low"]],
       sizes:["S","M","L","XL","2XL"], chart:true,
       colors:[{name:"Black"}] },
@@ -1453,9 +1684,9 @@ textarea.field-in{min-height:130px;resize:vertical}
       artTitle:"Their own logo, at maker's-mark size",
       artText:"The rescue already has a logo — a horse's head over a violet flame — and it does "+
               "not need redrawing. On a beanie it has no business being big: it sits on the fold "+
-              "on a bone woven patch, the one flash of colour on an otherwise plain hat.",
+              "on a bone woven patch, the one flash of color on an otherwise plain hat.",
       specs:[["Fabric","Acrylic rib knit, double layer"],["Fit","Cuffed, one size"],
-             ["Colour","Charcoal"],["Detail","Woven patch, stitched at the fold"],
+             ["Color","Charcoal"],["Detail","Woven patch, stitched at the fold"],
              ["Care","Cold wash, lay flat"]],
       sizes:["One size"], chart:false,
       colors:[{name:"Charcoal"}] },
@@ -1470,7 +1701,7 @@ textarea.field-in{min-height:130px;resize:vertical}
               "forage in front of the horse, clean water, and enough time for a body to rebuild "+
               "itself. Printed in that order, because the order is the part everyone gets wrong.",
       specs:[["Fabric","12 oz cotton canvas"],["Size","15″ wide × 16″ tall"],
-             ["Colour","Natural"],["Detail","Reinforced handles, boxed base"],
+             ["Color","Natural"],["Detail","Reinforced handles, boxed base"],
              ["Care","Cold wash, hang dry"]],
       sizes:["One size"], chart:false,
       colors:[{name:"Natural"}] },
@@ -1496,6 +1727,100 @@ textarea.field-in{min-height:130px;resize:vertical}
   }
   function artSVG(p){
     return '<img src="data:image/jpeg;base64,'+ARTW[p.id]+'" alt="'+p.artTitle+'" loading="lazy">';
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     Body condition scoring. Six areas, nine scores, averaged —
+     the instrument this rescue already writes into its own
+     foster agreements. Descriptions are ours; the system is
+     Henneke's (Texas A&M, 1983).
+     ══════════════════════════════════════════════════════════ */
+  var AREAS=["Neck","Withers","Shoulder","Ribs","Loin","Tailhead"];
+  var BCS=[
+    {n:1,label:"Poor",band:"crit",
+     desc:"Emaciated. There is no fat anywhere on this horse — the skeleton is doing all the work of the outline. This is a veterinary emergency and a call to law enforcement, not a feeding project.",
+     a:["bone structure plainly visible","bone structure plainly visible","bone structure plainly visible",
+        "projecting prominently","spinous processes project","hooks and pins project sharply"]},
+    {n:2,label:"Very thin",band:"crit",
+     desc:"Barely covered. A trace of tissue over the bones, but the frame still reads through from across a paddock.",
+     a:["faint bone structure","faint bone structure","slight cover behind it",
+        "still prominent","minimal cover over the vertebrae","prominent"]},
+    {n:3,label:"Thin",band:"crit",
+     desc:"Thin, and obviously so. Fat is beginning to build along the spine, but the ribs are still easy to see and the neck and shoulders look accentuated.",
+     a:["accentuated","accentuated","accentuated",
+        "slight cover, easily seen","processes covered but discernible","bony; vertebrae not individually visible"]},
+    {n:4,label:"Moderately thin",band:"ok",
+     desc:"Lean, not neglected. A faint rib outline and a slight ridge along the back. Plenty of working horses live here quite properly — and this is the floor we hold foster homes to.",
+     a:["not obviously thin","not obviously thin","not obviously thin",
+        "faint outline visible","a negative crease along the back","prominence varies with conformation"]},
+    {n:5,label:"Moderate",band:"ok",
+     desc:"Ideal for most horses. You cannot see the ribs but you can feel every one of them without pressing. The back is level and the whole horse blends together.",
+     a:["blends smoothly into the body","rounded over the processes","blends smoothly into the body",
+        "not visible, easily felt","the back is level","beginning to feel spongy"]},
+    {n:6,label:"Moderately fleshy",band:"ok",
+     desc:"Carrying a little extra. Fat is settling along the crest, behind the shoulder and over the ribs, which start to feel spongy.",
+     a:["fat along the crest","fat along the sides","fat behind it",
+        "palpable but no longer seen","may show a slight crease","feels soft"]},
+    {n:7,label:"Fleshy",band:"over",
+     desc:"Over-conditioned. A crease is forming down the back and there is fat filling the spaces between the ribs.",
+     a:["clear fat along the crest","clear fat deposits","filling behind it",
+        "felt, with fat between them","a crease down the back","soft"]},
+    {n:8,label:"Fat",band:"over",
+     desc:"Fat. The ribs are hard to find, the neck has visibly thickened, and the crease down the back is obvious.",
+     a:["noticeably thickened","filled with fat","filled flush with the body",
+        "difficult to feel","an obvious crease","very soft"]},
+    {n:9,label:"Extremely fat",band:"over",
+     desc:"Obese, with consequences of its own — laminitis and metabolic disease. Fat bulges at the crest, the tailhead and behind the shoulder.",
+     a:["bulging fat","bulging fat","flank filled flush",
+        "patchy fat over them","an obvious crease","bulging fat"]}
+  ];
+  var BANDNAME={crit:"Neglect range",ok:"Healthy range",over:"Over-conditioned"};
+  var bcsScore=5, bcsArea=-1;
+
+  function paintBCS(){
+    var s=BCS[bcsScore-1];
+    $$("#bcsRail button").forEach(function(b){
+      b.setAttribute("aria-pressed", String(+b.dataset.n===bcsScore));
+    });
+    var read=$("#bcsRead");
+    if(read){
+      read.className="read is-"+s.band;
+      read.innerHTML='<div class="read-top"><div class="read-num">'+s.n+'</div><div>'+
+        '<div class="read-label">'+s.label+'</div>'+
+        '<span class="read-band band-'+s.band+'">'+BANDNAME[s.band]+'</span></div></div>'+
+        '<p>'+s.desc+'</p>';
+    }
+    var areas=$("#bcsAreas");
+    if(areas){
+      areas.innerHTML=AREAS.map(function(name,i){
+        return '<div class="area'+(i===bcsArea?" on":"")+'" data-a="'+i+'">'+
+          '<i>'+(i+1)+'</i><b>'+name+'</b><span>'+s.a[i]+'</span></div>';
+      }).join("");
+      $$(".area",areas).forEach(function(el){
+        el.addEventListener("click",function(){ bcsArea=+el.dataset.a; paintBCS() });
+      });
+    }
+    $$(".pt").forEach(function(b){
+      b.setAttribute("aria-pressed", String(+b.dataset.a===bcsArea));
+    });
+  }
+
+  function initBCS(){
+    var rail=$("#bcsRail"); if(!rail||rail.dataset.on)return;
+    rail.dataset.on="1";
+    rail.innerHTML=BCS.map(function(s){
+      return '<button data-n="'+s.n+'" aria-pressed="false" aria-label="Score '+s.n+', '+s.label+'">'+s.n+'</button>';
+    }).join("");
+    $$("button",rail).forEach(function(b){
+      b.addEventListener("click",function(){ bcsScore=+b.dataset.n; paintBCS() });
+    });
+    $$(".pt").forEach(function(b){
+      b.addEventListener("click",function(){
+        var i=+b.dataset.a; bcsArea=(bcsArea===i?-1:i); paintBCS();
+      });
+    });
+    paintBCS();
   }
 
   /* ─────────── the grid ─────────── */
@@ -1698,6 +2023,6 @@ textarea.field-in{min-height:130px;resize:vertical}
 
   window.addEventListener("scroll",reveal,{passive:true});
   window.addEventListener("resize",reveal);
-  renderShop(); render(); route();
+  renderShop(); initBCS(); render(); route();
 })();
 </script>
