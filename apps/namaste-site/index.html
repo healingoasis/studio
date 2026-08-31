@@ -472,6 +472,53 @@ p{margin:0}
 #bcsPts.has-sel .hp:not(.on){opacity:.5}
 .hp{transition:opacity .2s}
 
+.hz-grain{opacity:.16;mix-blend-mode:soft-light}
+.dt-ln{fill:none;stroke:#5C2E12;stroke-width:2.8;stroke-linecap:round;opacity:.46}
+.dt-hi{fill:none;stroke:#F6D9B4;stroke-width:3.4;stroke-linecap:round;opacity:.5}
+.dt-co{fill:none;stroke:#F0D6B4;stroke-width:5;stroke-linecap:round;opacity:.55}
+.bcs-figure.xray .hz-detail,.bcs-figure.xray .hz-grain{opacity:.2}
+.hz-detail{transition:opacity .32s}
+
+/* the detail plate: the same drawing, magnified */
+.zoombox{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  gap:clamp(20px,2.8vw,40px);align-items:center;margin-top:clamp(26px,3.4vw,44px);
+  padding:clamp(18px,2.4vw,30px);border:1px solid var(--rule);border-radius:20px;
+  background:var(--surface)}
+@media(max-width:860px){.zoombox{grid-template-columns:1fr}}
+#bcsZoom{width:100%;height:auto;display:block;border-radius:14px;
+  background:var(--surface-2);border:1px solid var(--rule-soft)}
+.zm-ring{fill:none;stroke:var(--accent);stroke-width:4}
+.zm-dot{fill:var(--accent)}
+.zm-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);display:block}
+.zm-where{margin-top:12px;font-size:17px;line-height:1.6;color:var(--ink)}
+.zm-feel{margin-top:12px;font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.zm-feel b{color:var(--ink);font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:400}
+
+/* the nine-score reference row */
+.stripbox{margin-top:clamp(26px,3.4vw,44px);padding:clamp(20px,2.6vw,32px);
+  border:1px solid var(--rule);border-radius:20px;background:var(--surface)}
+.strip{display:grid;grid-template-columns:repeat(9,1fr);gap:8px;margin-top:22px}
+@media(max-width:900px){.strip{grid-template-columns:repeat(3,1fr)}}
+.st{position:relative;overflow:hidden;border:1px solid var(--rule);border-radius:13px;
+  background:var(--surface-2);padding:12px 4px 9px;cursor:pointer;display:flex;
+  flex-direction:column;align-items:center;gap:1px;transition:all .16s}
+.st:hover{border-color:var(--accent)}
+.st svg{width:100%;height:auto;display:block}
+.st-body{fill:var(--ink);opacity:.42;transition:opacity .16s}
+.st-tail{fill:var(--ink);opacity:.55}
+.st-mark{fill:none;stroke:var(--surface);stroke-width:7;stroke-linecap:round}
+.st-n{font-family:var(--display);font-size:19px;line-height:1.1;margin-top:2px}
+.st-l{font-family:var(--mono);font-size:8px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--faint);text-align:center;line-height:1.3}
+.st-band{position:absolute;left:0;right:0;top:0;height:3px;display:block}
+.st-band.band-crit{background:var(--crit)} .st-band.band-ok{background:var(--ok)}
+.st-band.band-over{background:var(--over)}
+.st[aria-pressed="true"]{border-color:var(--ink);background:var(--surface);
+  box-shadow:0 0 0 1px var(--ink)}
+.st[aria-pressed="true"] .st-body{opacity:.72}
+
 .bcs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
   padding:11px 4px 13px;border-top:1px solid var(--rule-soft)}
 .bcs-chip{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
@@ -1162,6 +1209,12 @@ textarea.field-in{min-height:130px;resize:vertical}
       </div>
     </div>
 
+    <div class="zoombox rv">
+      <svg id="bcsZoom" viewBox="0 0 300 232" role="img"
+           aria-label="The chosen scoring site, magnified from the same drawing"></svg>
+      <div id="bcsZoomRead"></div>
+    </div>
+
     <div class="fatbox rv">
       <div>
         <p class="eyebrow">What your hand is pressing through</p>
@@ -1173,6 +1226,15 @@ textarea.field-in{min-height:130px;resize:vertical}
       </div>
       <svg id="bcsFat" viewBox="0 0 700 262" role="img"
            aria-label="A cutaway through the skin, fat, muscle and bone at the chosen site"></svg>
+    </div>
+
+    <div class="stripbox rv">
+      <p class="eyebrow">The whole scale on one line</p>
+      <h3 style="margin-top:10px">Nine horses. One animal.</h3>
+      <p class="note-sm" style="max-width:70ch">This is the same horse at every score on the
+         scale, drawn to the same outline. Print this row, put it on the barn wall, and you have
+         the reference. Pick any one of them to open it up.</p>
+      <div class="strip" id="bcsStrip"></div>
     </div>
 
     <div class="cols2" style="margin-top:clamp(34px,4vw,52px)">
@@ -2245,6 +2307,56 @@ textarea.field-in{min-height:130px;resize:vertical}
     return { bones: bones, plates: plates, ribs: ribs, skull: skull };
   }
 
+  /* ══════════════════════════════════════════════════════════════════
+     Surface anatomy. The landmarks a hand actually finds, drawn as
+     they read on a live horse: joints, muscle bellies, tendon lines.
+     Legs and head take no condition vector, so these are constants.
+     ══════════════════════════════════════════════════════════════════ */
+
+  /* near fore limb: carpus, fetlock, pastern, coronet, tendon, chestnut */
+  var h_DT_FORE = [
+    ["dt-ln", "M 780 556 C 792 560, 804 560, 812 556"],
+    ["dt-ln", "M 780 578 C 792 582, 804 582, 812 578"],
+    ["dt-hi", "M 806 546 C 812 564, 812 580, 806 596"],
+    ["dt-ln", "M 786 640 C 796 646, 808 646, 815 640"],
+    ["dt-hi", "M 808 632 C 813 646, 813 658, 808 670"],
+    ["dt-co", "M 777 684 C 793 678, 813 680, 825 686"]
+  ];
+  /* near hind limb: hock, Achilles line, fetlock, coronet */
+  var h_DT_HIND = [
+    ["dt-hi", "M 380 512 C 374 532, 374 552, 381 568"],
+    ["dt-ln", "M 392 532 C 404 536, 414 536, 421 532"],
+    ["dt-ln", "M 400 640 C 410 646, 422 646, 429 640"],
+    ["dt-hi", "M 422 632 C 427 646, 427 658, 422 670"],
+    ["dt-co", "M 393 684 C 409 678, 429 680, 441 686"]
+  ];
+  /* head: mandible, lip, eyelid, inner ear, nasal plane */
+  var h_DT_HEAD = [
+    ["dt-ln", "M 986 262 C 1004 286, 1016 312, 1014 336"],
+    ["dt-ln", "M 1056 344 C 1072 350, 1086 350, 1098 342"],
+    ["dt-ln", "M 992 214 C 1000 206, 1014 206, 1022 214"],
+    ["dt-ln", "M 976 140 C 972 122, 970 108, 972 98"],
+    ["dt-sh", "M 1078 322 C 1090 316, 1100 322, 1100 334 C 1096 344, 1082 342, 1076 332 Z"]
+  ];
+
+  /* A published plate carries few lines, each one certain. These are the
+     landmarks a hand finds on a live horse, and nothing else. */
+  function h_detail(s){
+    var p = h_hpos(s);
+    var wi=h_P(p,"withers"), ps=h_P(p,"pt_shoulder"), eb=h_P(p,"elbow_back"),
+        tl=h_P(p,"throatlatch"), nl=h_P(p,"neck_low"), fl=h_P(p,"flank"), st=h_P(p,"stifle");
+    return [
+      /* jugular groove */
+      ["dt-ln", h_open([{x:tl.x-10,y:tl.y+14},{x:nl.x+16,y:nl.y-24},{x:ps.x+14,y:ps.y-6}])],
+      /* spine of the scapula: the ridge point 3 is scored behind */
+      ["dt-ln", h_open([{x:wi.x+26,y:wi.y+44},{x:wi.x+16,y:wi.y+112},{x:ps.x-2,y:ps.y+2}])],
+      /* flank fold */
+      ["dt-ln", h_open([{x:fl.x+8,y:fl.y-34},{x:fl.x-6,y:fl.y+18},{x:st.x-6,y:st.y+30}])],
+      /* point of shoulder and elbow: two hard landmarks a hand lands on */
+      ["dt-hi", h_open([{x:ps.x-16,y:ps.y-12},{x:ps.x-4,y:ps.y+16},{x:ps.x-18,y:ps.y+42}])],
+      ["dt-hi", h_open([{x:eb.x+10,y:eb.y-24},{x:eb.x+22,y:eb.y-4},{x:eb.x+14,y:eb.y+16}])]
+    ];
+  }
 
   /* ── fixed parts: condition does not touch the head, the legs or the hooves ── */
   var H_EAR_N="M 974 149 C 967 125, 962 106, 967 94 C 975 99, 989 120, 994 142 Z";
@@ -2259,6 +2371,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   var H_HOOF_FF="M 710 684 L 746 686 L 748 720 L 708 716 Z";
   var H_HOOF_FH="M 424 684 L 458 686 L 462 720 L 421 716 Z";
 
+  var H_DT_FORE=h_DT_FORE, H_DT_HIND=h_DT_HIND, H_DT_HEAD=h_DT_HEAD;
   var bcsScore=5, bcsArea=-1, bcsShown=5, bcsRAF=null, bcsXray=false;
   var bcsStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
   var HZ=null;
@@ -2284,8 +2397,12 @@ textarea.field-in{min-height:130px;resize:vertical}
         '<filter id="hzSf" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="17"/></filter>'+
         '<filter id="hzSg" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="30"/></filter>'+
         '<filter id="hzGr" x="-30%" y="-70%" width="160%" height="240%"><feGaussianBlur stdDeviation="15"/></filter>'+
+        '<filter id="hzGn" x="0" y="0" width="100%" height="100%">'+
+          '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/>'+
+          '<feColorMatrix type="saturate" values="0"/></filter>'+
         '<clipPath id="hzClip"><path d=""/></clipPath>'+
       '</defs>'+
+      '<g id="hzArt">'+
       '<ellipse class="hz-shadow" cx="740" cy="726" rx="300" ry="17" filter="url(#hzGr)"/>'+
       '<path class="hz-far" d="'+H_FAR_HIND+'"/><path class="hz-far" d="'+H_FAR_FORE+'"/>'+
       '<path class="hz-hoof-f" d="'+H_HOOF_FH+'"/><path class="hz-hoof-f" d="'+H_HOOF_FF+'"/>'+
@@ -2298,6 +2415,12 @@ textarea.field-in{min-height:130px;resize:vertical}
           '<ellipse/><ellipse/><ellipse/><ellipse/><ellipse/><ellipse/>'+
           '<ellipse/><ellipse/><ellipse/><ellipse/><ellipse/><ellipse/></g>'+
         '<path class="hz-blaze" d="'+H_BLAZE+'"/>'+
+        '<rect class="hz-grain" x="290" y="60" width="880" height="700" filter="url(#hzGn)"/>'+
+        '<g class="hz-detail">'+pathsG(5,"")+
+          H_DT_FORE.map(function(x){ return '<path class="'+x[0]+'" d="'+x[1]+'"/>' }).join("")+
+          H_DT_HIND.map(function(x){ return '<path class="'+x[0]+'" d="'+x[1]+'"/>' }).join("")+
+          H_DT_HEAD.map(function(x){ return '<path class="'+x[0]+'" d="'+x[1]+'"/>' }).join("")+
+        '</g>'+
         '<g class="hz-ribs">'+pathsG(8,"hz-rib-d")+pathsG(8,"hz-rib-l")+'</g>'+
         '<path class="hz-bonemark" d=""/><path class="hz-bonemark" d=""/>'+
         '<g class="hz-skel">'+
@@ -2318,7 +2441,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<ellipse class="hz-eye" cx="1006" cy="222" rx="13" ry="11"/>'+
       '<ellipse class="hz-glint" cx="1002" cy="218" rx="4" ry="3.5"/>'+
       '<path class="hz-nostril" d="'+H_NOSTRIL+'"/>'+
-      '<g id="bcsPts"></g>';
+      '</g><g id="bcsPts"></g>';
 
     var q=function(s){ return $$(s,svg) };
     HZ={ clip:$("#hzClip path",svg), body:$(".hz-body",svg), contour:$(".hz-contour",svg),
@@ -2329,7 +2452,8 @@ textarea.field-in{min-height:130px;resize:vertical}
          skel:$(".hz-skel",svg), dim:$(".hz-dim",svg),
          skRibO:q(".hz-rib-o"), skRibB:q(".hz-rib-b"),
          skBoneO:q(".hz-bone-o"), skBoneB:q(".hz-bone-b"),
-         skPlate:q(".hz-plate"), skull:$(".hz-skull",svg) };
+         skPlate:q(".hz-plate"), skull:$(".hz-skull",svg),
+         detail:$$(".hz-detail > path",svg).slice(0,5) };
   }
 
   function setD(el, d){ if(el) el.setAttribute("d", d) }
@@ -2373,6 +2497,11 @@ textarea.field-in{min-height:130px;resize:vertical}
     });
     setD(HZ.boneMark[0],h_spineRidge(v)); HZ.boneMark[0].setAttribute("opacity", bo*.5);
     setD(HZ.boneMark[1],h_hipMark(v));    HZ.boneMark[1].setAttribute("opacity", bo*.55);
+
+    h_detail(v).forEach(function(x,i){
+      var el=HZ.detail[i]; if(!el)return;
+      el.setAttribute("d",x[1]); el.setAttribute("class",x[0]);
+    });
 
     var sk=h_skeleton(v);
     sk.ribs.forEach(function(d,i){ setD(HZ.skRibO[i],d); setD(HZ.skRibB[i],d) });
@@ -2450,6 +2579,59 @@ textarea.field-in{min-height:130px;resize:vertical}
     if(t) t.innerHTML='<b>'+(siteName||"At every one of the six")+'.</b> '+FAT_READ[score-1];
   }
 
+  /* ══ the whole scale on one line, the way a printed chart shows it ══ */
+  function buildStrip(){
+    var host=$("#bcsStrip"); if(!host||host.dataset.on)return;
+    host.dataset.on="1";
+    host.innerHTML=BCS.map(function(b){
+      var ro=h_ribOpacity(b.n), bo=h_boneOpacity(b.n), g="";
+      g+='<path class="st-body" d="'+h_outline(b.n)+'"/>';
+      g+='<path class="st-tail" d="'+h_tail(b.n)+'"/>';
+      g+='<path class="st-tail" d="'+h_mane(b.n)+'"/>';
+      h_ribMarks(b.n).forEach(function(d){
+        g+='<path class="st-mark" d="'+d+'" style="opacity:'+(ro*.8)+'"/>' });
+      g+='<path class="st-mark" d="'+h_spineRidge(b.n)+'" style="opacity:'+(bo*.8)+'"/>';
+      g+='<path class="st-mark" d="'+h_hipMark(b.n)+'" style="opacity:'+(bo*.8)+'"/>';
+      return '<button class="st" data-n="'+b.n+'" aria-pressed="false" '+
+        'aria-label="Score '+b.n+', '+b.label+'">'+
+        '<svg viewBox="300 76 848 664" aria-hidden="true">'+g+'</svg>'+
+        '<span class="st-n">'+b.n+'</span><span class="st-l">'+b.label+'</span>'+
+        '<i class="st-band band-'+b.band+'"></i></button>';
+    }).join("");
+    host.addEventListener("click",function(e){
+      var b=e.target.closest("button.st"); if(!b)return;
+      bcsScore=+b.dataset.n; paintBCS();
+    });
+  }
+  function paintStrip(){
+    $$("#bcsStrip .st").forEach(function(b){
+      b.setAttribute("aria-pressed", String(+b.dataset.n===bcsScore));
+    });
+  }
+
+  /* ══ the detail plate: the chosen site, magnified off the same drawing ══ */
+  var SITE_WHERE=[
+    "The top line of the neck, a hand's width in front of the withers. Press with the flat of your hand, not your fingertips.",
+    "The ridge at the base of the mane, where the neck ends and the back begins. Run a flat palm over it.",
+    "Directly behind the shoulder blade, above the elbow. Find the rear edge of the blade first, then feel just behind it.",
+    "The middle of the barrel. Lay your whole hand flat and draw it back across the ribs; do not poke.",
+    "The back between the last rib and the point of hip. Press down either side of the spine.",
+    "Either side of the dock, where the tail leaves the body. Feel for the two bones under your thumbs."
+  ];
+  function drawZoom(){
+    var svg=$("#bcsZoom"); if(!svg)return;
+    var i = bcsArea>=0 ? bcsArea : 3;
+    var p = h_points(bcsShown)[i], W=300, H=232;
+    svg.setAttribute("viewBox",(p.x-W/2)+" "+(p.y-H/2)+" "+W+" "+H);
+    svg.innerHTML='<use href="#hzArt"/>'+
+      '<circle class="zm-ring" cx="'+p.x+'" cy="'+p.y+'" r="46"/>'+
+      '<circle class="zm-dot" cx="'+p.x+'" cy="'+p.y+'" r="9"/>';
+    var s=BCS[bcsScore-1], t=$("#bcsZoomRead");
+    if(t) t.innerHTML='<span class="zm-eyebrow">Site '+(i+1)+' &middot; '+AREAS[i]+'</span>'+
+      '<p class="zm-where">'+SITE_WHERE[i]+'</p>'+
+      '<p class="zm-feel"><b>At a '+s.n+':</b> '+s.a[i]+'.</p>';
+  }
+
   function paintBCS(){
     var s=BCS[bcsScore-1];
     $$("#bcsRail button").forEach(function(b){
@@ -2478,7 +2660,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       });
     }
     drawFat(bcsScore, bcsArea>=0 ? AREAS[bcsArea] : null);
-    tweenHorse(bcsScore);
+    paintStrip(); tweenHorse(bcsScore); drawZoom();
   }
 
   function initBCS(){
@@ -2499,6 +2681,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     });
 
     buildHorse();
+    buildStrip();
 
     var fig=$("#bcsFigure"), view=$(".bcs-view");
     if(view){

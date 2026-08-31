@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { class_label, UNPLACED } from "@/lib/roster";
+import { class_label, UNPLACED } from "@/lib/class_terms";
 
 /**
  * The class list, and the four things the office can correct on it: who is in it, what
@@ -25,6 +25,7 @@ export type Row = {
   class_slug: string;
   auto_placed: boolean;
   dropped: boolean;
+  needs_name: boolean;
   remaining: number;
 };
 
@@ -98,6 +99,14 @@ export default function ClassView({
 
       {problem ? <p className="problem">{problem}</p> : null}
 
+      {active.filter((e) => e.needs_name).length > 0 ? (
+        <p className="note tight warn-note">
+          {active.filter((e) => e.needs_name).length} of these came from the store as a
+          clinic or with a piece missing, rather than as a person&rsquo;s name. Type the
+          real name over it before printing anything.
+        </p>
+      ) : null}
+
       <section className="card">
         <div className="card-head">
           <div>
@@ -146,10 +155,14 @@ export default function ClassView({
                         })
                       }
                     />
-                    <div className="roster-sub">
-                      {row.store_name !== row.name
-                        ? `Store has "${row.store_name}"`
-                        : row.email ?? "No email on file"}
+                    <div
+                      className={`roster-sub ${row.needs_name ? "warn" : ""}`}
+                    >
+                      {row.needs_name
+                        ? `The store has "${row.store_name}" — type the student's own name`
+                        : row.store_name !== row.name
+                          ? `Store has "${row.store_name}"`
+                          : row.email ?? "No email on file"}
                     </div>
                   </td>
                   <td>

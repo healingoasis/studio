@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { load_program_folder } from "@/lib/office_data";
 import { find_class, UNPLACED } from "@/lib/roster";
-import { line_top_pt, NAME_TAG } from "@/lib/admin_docs";
+import { NAME_TAG } from "@/lib/admin_docs";
 import PrintButton from "./print-button";
 
 export const dynamic = "force-dynamic";
@@ -21,8 +21,6 @@ export async function generateMetadata({
       : "Not found",
   };
 }
-
-const pt = (n: number) => `${n}pt`;
 
 export default async function NameTagsPage({
   params,
@@ -65,6 +63,17 @@ export default async function NameTagsPage({
         </p>
       ) : null}
 
+      {cards.some((c) => c.needs_name) ? (
+        <p className="tags-warn bad">
+          {cards.filter((c) => c.needs_name).length} of these are printing a clinic name
+          or half a name, because that is all the store has.{" "}
+          <Link href={`/office/${folder.program.key}/class/${klass.slug}`}>
+            Fix the names
+          </Link>{" "}
+          before this goes near a printer.
+        </p>
+      ) : null}
+
       {cards.some((c) => !c.degree) ? (
         <p className="tags-warn">
           {cards.filter((c) => !c.degree).length} of these have no degree yet, so their
@@ -79,48 +88,65 @@ export default async function NameTagsPage({
       <div className="tags">
         {cards.map((entry) => (
           <div className="tag-frame" key={entry.student.student_id}>
-          <div className="tag">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="tag-logo"
-              src="/healing-oasis-logo.jpg"
-              alt="The Healing Oasis Wellness Center"
-              style={{
-                left: pt(NAME_TAG.logo.left_pt),
-                top: pt(NAME_TAG.logo.top_pt),
-                width: pt(NAME_TAG.logo.width_pt),
-                height: pt(NAME_TAG.logo.height_pt),
-              }}
-            />
-            <div
-              className="tag-line tag-first"
-              style={{
-                top: pt(line_top_pt(NAME_TAG.first)),
-                fontSize: pt(NAME_TAG.first.size_pt),
-              }}
+            {/* Drawn in the page's own points, so a baseline is a baseline whatever
+                serif the printing machine happens to have. */}
+            <svg
+              className="tag"
+              viewBox={`0 0 ${NAME_TAG.page_width} ${NAME_TAG.page_height}`}
+              width={`${NAME_TAG.page_width}pt`}
+              height={`${NAME_TAG.page_height}pt`}
+              xmlns="http://www.w3.org/2000/svg"
             >
-              {entry.first_name}
-            </div>
-            <div
-              className="tag-line tag-last"
-              style={{
-                top: pt(line_top_pt(NAME_TAG.last)),
-                fontSize: pt(NAME_TAG.last.size_pt),
-              }}
-            >
-              {entry.last_name}
-              {entry.degree ? `, ${entry.degree}` : ""}
-            </div>
-            <div
-              className="tag-line tag-state"
-              style={{
-                top: pt(line_top_pt(NAME_TAG.state)),
-                fontSize: pt(NAME_TAG.state.size_pt),
-              }}
-            >
-              {entry.state ?? ""}
-            </div>
-          </div>
+              <rect
+                x={0}
+                y={0}
+                width={NAME_TAG.page_width}
+                height={NAME_TAG.page_height}
+                fill="#ffffff"
+              />
+              <rect
+                x={NAME_TAG.logo_backing.x}
+                y={NAME_TAG.logo_backing.y}
+                width={NAME_TAG.logo_backing.width}
+                height={NAME_TAG.logo_backing.height}
+                fill="#ffffff"
+              />
+              <image
+                href="/healing-oasis-logo.jpg"
+                x={NAME_TAG.logo.x}
+                y={NAME_TAG.logo.y}
+                width={NAME_TAG.logo.width}
+                height={NAME_TAG.logo.height}
+              />
+              <g
+                textAnchor="middle"
+                fill="#000000"
+                fontFamily={NAME_TAG.font_stack}
+              >
+                <text
+                  x={NAME_TAG.centre_x}
+                  y={NAME_TAG.first.baseline}
+                  fontSize={NAME_TAG.first.size}
+                >
+                  {entry.first_name}
+                </text>
+                <text
+                  x={NAME_TAG.centre_x}
+                  y={NAME_TAG.last.baseline}
+                  fontSize={NAME_TAG.last.size}
+                >
+                  {entry.last_name}
+                  {entry.degree ? `, ${entry.degree}` : ""}
+                </text>
+                <text
+                  x={NAME_TAG.centre_x}
+                  y={NAME_TAG.state.baseline}
+                  fontSize={NAME_TAG.state.size}
+                >
+                  {entry.state ?? ""}
+                </text>
+              </g>
+            </svg>
           </div>
         ))}
       </div>

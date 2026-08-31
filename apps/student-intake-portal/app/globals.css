@@ -2852,9 +2852,8 @@ button.file-state {
 /* ================= desk name tags ================= */
 
 /* Measured from Daniel's own "NAME ID for the Table.pdf": one landscape 11 x 8.5in page
-   per student, Bookman Old Style, the three lines centred on the page with the logo to
-   the left. On screen the pages are shrunk so a class can be checked at a glance; on
-   paper they come out at exactly the size his file uses. */
+   per student. The card is an SVG in the page's own points, so on screen it shrinks to
+   whatever fits and on paper it comes out at exactly the size his file uses. */
 
 .tags-bar {
   position: sticky;
@@ -2888,7 +2887,6 @@ button.file-state {
 .tags-empty { background: var(--surface-2); color: var(--ink-soft); }
 
 .tags {
-  --tag-scale: 0.66;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2897,43 +2895,18 @@ button.file-state {
 }
 
 .tag-frame {
-  width: calc(792pt * var(--tag-scale));
-  height: calc(612pt * var(--tag-scale));
-  overflow: hidden;
+  width: min(92vw, 900px);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   background: #fff;
+  line-height: 0;
 }
 
+/* An SVG scales itself, so on screen the card just fills the frame. */
 .tag {
-  position: relative;
-  width: 792pt;
-  height: 612pt;
-  background: #fff;
-  /* Always black on white: this is ink on paper, not a screen that can go dark. */
-  color: #000;
-  transform: scale(var(--tag-scale));
-  transform-origin: top left;
-  font-family: "Bookman Old Style", Bookman, "URW Bookman L",
-    "Century Schoolbook", "New Century Schoolbook", Georgia, serif;
-}
-
-.tag-logo {
-  position: absolute;
-  object-fit: contain;
-}
-
-.tag-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  text-align: center;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-@media (max-width: 900px) {
-  .tags { --tag-scale: 0.44; }
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 @media print {
@@ -2950,7 +2923,6 @@ button.file-state {
   }
 
   .tags {
-    --tag-scale: 1;
     display: block;
     gap: 0;
     padding: 0;
@@ -2958,8 +2930,6 @@ button.file-state {
 
   .tag-frame {
     width: auto;
-    height: auto;
-    overflow: visible;
     border: 0;
     box-shadow: none;
     /* One student per sheet, which is what a folded desk card is. */
@@ -2972,10 +2942,24 @@ button.file-state {
     page-break-after: auto;
   }
 
+  /* Back to the exact size his file uses, rather than whatever fitted the screen. */
   .tag {
-    transform: none;
-    /* The logo has a white block behind it in the original; keep the ink faithful. */
+    width: 792pt;
+    height: 612pt;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+}
+
+.roster-sub.warn { color: var(--st-renew); }
+
+.note.warn-note {
+  border-left-color: var(--st-renew);
+  background: var(--st-renew-bg);
+  color: var(--st-renew);
+}
+
+.tags-warn.bad {
+  background: var(--st-none-bg);
+  color: var(--st-none);
 }

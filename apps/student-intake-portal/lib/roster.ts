@@ -1,5 +1,6 @@
 import { PROGRAMS, type Program, type ProgramKey, type Student } from "./students";
 import { record_for, type OfficeRecord, type OfficeStore } from "./office_records";
+import { class_label, class_slug, class_sort, SEASONS, UNPLACED } from "./class_terms";
 
 /**
  * The office view as folders: program, then the classes inside it.
@@ -11,35 +12,7 @@ import { record_for, type OfficeRecord, type OfficeStore } from "./office_record
  * a person actually checked.
  */
 
-// ---------------------------------------------------------------- class terms
-
-const SEASONS = ["spring", "summer", "fall", "winter"] as const;
-
-export function class_slug(term: string): string | null {
-  const t = term.toLowerCase();
-  const a = /(spring|summer|fall|winter)\s*(20\d\d)/.exec(t);
-  const b = /(20\d\d)\s*(spring|summer|fall|winter)/.exec(t);
-  const season = a?.[1] ?? b?.[2];
-  const year = a?.[2] ?? b?.[1];
-  if (!season || !year) return null;
-  return `${season}-${year}`;
-}
-
-export function class_label(slug: string): string {
-  const [season, year] = slug.split("-");
-  if (!season || !year) return slug;
-  return `${season.charAt(0).toUpperCase()}${season.slice(1)} ${year}`;
-}
-
-/** Earliest class first, so the folder list reads as a calendar. */
-export function class_sort(slug: string): number {
-  const [season, year] = slug.split("-");
-  const index = SEASONS.indexOf(season as (typeof SEASONS)[number]);
-  return Number(year ?? 0) * 10 + (index < 0 ? 0 : index);
-}
-
-/** Where a person with no class of their own waits to be placed. */
-export const UNPLACED = "unplaced";
+export { class_label, class_slug, class_sort, UNPLACED };
 
 // ---------------------------------------------------------------- entries
 
@@ -56,6 +29,8 @@ export type RosterEntry = {
   /** True when the class came from the product title rather than from a person. */
   auto_placed: boolean;
   dropped: boolean;
+  /** The store's name is not a person's, so a card printed from it would be wrong. */
+  needs_name: boolean;
   record: OfficeRecord;
 };
 
@@ -73,6 +48,20 @@ function split_name(name: string): { first: string; last: string } {
 /** The store holds "null Kasten" where a first name is missing. */
 function tidy_store_name(name: string): string {
   return name.replace(/\bnull\b/gi, "").replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Clinics buy seats for their staff, so the customer on the order is sometimes a
+ * business — "Whitewater Hospital", "Fredonia Vet Clinic" — and sometimes half a person,
+ * where the store has no first name. Neither belongs on a card in front of a chair, so
+ * they are flagged for the office rather than quietly printed.
+ */
+const BUSINESS = /\b(hospital|clinic|veterinar|vet|animal|equine|center|centre|llc|inc|ltd|services|associates)\b/i;
+
+function looks_unusable(name: string, last: string): boolean {
+  if (!name || /name not on file/i.test(name)) return true;
+  if (!last) return true;
+  return BUSINESS.test(name);
 }
 
 export function entry_for(student: Student, records: OfficeStore): RosterEntry {
@@ -93,6 +82,8 @@ export function entry_for(student: Student, records: OfficeStore): RosterEntry {
     class_slug: placed,
     auto_placed: !record.class_slug && auto !== null,
     dropped: record.enrollment === "dropped",
+    // A name the office typed is a person's by definition; only the store's is suspect.
+    needs_name: !record.display_name && looks_unusable(name, last),
     record,
   };
 }

@@ -39,7 +39,7 @@ export const ADMIN_DOCS: AdminDocDef[] = [
     fills: "Student name and the program they completed.",
     ready: false,
     per_student: true,
-    waiting_for: "Daniel's diploma file, so the layout can be matched exactly.",
+    waiting_for: "Your diploma file, so the layout can be matched exactly.",
   },
 ];
 
@@ -50,20 +50,27 @@ export function admin_doc(doc_id: string): AdminDocDef | null {
 /**
  * Measured from `NAME ID for the Table.pdf`: one landscape page, 792 x 612 pt, Bookman
  * Old Style, everything centred on the page at x = 396 with the logo to the left.
- * Baselines are given from the top of the page, converted from the PDF's own coordinates.
+ *
+ * The card is drawn as SVG in the page's own coordinates, which is the one way to place
+ * a line of type by its baseline rather than by guessing where a given font puts it. A
+ * machine with Bookman Old Style installed and one falling back to Georgia then put the
+ * text in exactly the same place; only the letterforms differ.
+ *
+ * `baseline` is measured down from the top of the page, converted from the PDF's own
+ * bottom-up coordinates.
  */
 export const NAME_TAG = {
-  page_width_pt: 792,
-  page_height_pt: 612,
-  /** Ascent as a share of the font size, used to place a baseline from a CSS `top`. */
-  ascent_ratio: 0.73,
-  first: { size_pt: 72.024, baseline_pt: 327.05 },
-  last: { size_pt: 36, baseline_pt: 377.59 },
-  state: { size_pt: 12, baseline_pt: 397.15 },
-  logo: { left_pt: 76.9, top_pt: 281.9, width_pt: 124.6, height_pt: 144.6 },
+  page_width: 792,
+  page_height: 612,
+  /** Everything is centred on the page, not on the space beside the logo. */
+  centre_x: 396,
+  first: { size: 72.024, baseline: 327.05 },
+  last: { size: 36, baseline: 377.59 },
+  state: { size: 12, baseline: 397.15 },
+  logo: { x: 76.9, y: 281.9, width: 124.6, height: 144.6 },
+  /** The original paints a white block behind the logo; keep it so the ink matches. */
+  logo_backing: { x: 69.75, y: 278.25, width: 139, height: 151.8 },
+  font_stack:
+    '"Bookman Old Style", Bookman, "URW Bookman L", "Century Schoolbook", ' +
+    '"New Century Schoolbook", Georgia, serif',
 } as const;
-
-/** Where a line's box has to start for its baseline to land where the PDF puts it. */
-export function line_top_pt(line: { size_pt: number; baseline_pt: number }): number {
-  return line.baseline_pt - line.size_pt * NAME_TAG.ascent_ratio;
-}

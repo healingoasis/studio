@@ -58,6 +58,7 @@ export default async function ClassPage({
             class_slug: e.class_slug,
             auto_placed: e.auto_placed,
             dropped: e.dropped,
+            needs_name: e.needs_name,
             remaining: e.student.remaining,
           })),
         }}

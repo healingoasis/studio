@@ -80,3 +80,31 @@ renderer now builds the SVG **once** (`buildHorse`) and thereafter only sets att
 The geometry module's functions are all prefixed `h_` because it lives inside the page's single
 IIFE alongside the shop and the router, and names like `points`, `outline`, `tail` and `open`
 would otherwise collide.
+
+
+## 2026-08-31, later — to a published-chart standard
+
+Daniel again: *"i need what the highest level of education would publish or produce ... this is a
+standard i am trying to teach as many people as possible."* Two separate problems in that: the
+plate itself, and what a teaching reference has to carry beyond one picture.
+
+**The plate.** Added surface anatomy — carpus and fetlock creases, coronet bands, point of hock,
+jugular groove, spine of the scapula, flank fold, point of shoulder and elbow — plus a
+`feTurbulence` coat grain at soft-light. The first attempt added a dozen faint lines and made it
+look *worse*: a published plate carries few lines, each one certain. Cut back to five body
+landmarks and five per limb. That is the lesson worth keeping.
+
+**What a reference carries.**
+- `buildStrip()` — the nine scores as one row of clean silhouettes, the way a printed chart shows
+  them, each clickable. Deliberately flat: no blur, no shading, no detail lines. Chart, not plate.
+- `drawZoom()` — a magnified detail of the chosen site, via `<use href="#hzArt"/>` into a second
+  SVG with a tight viewBox. It is the *same* drawing, so it can never drift out of sync, and it
+  costs one element. Paired with `SITE_WHERE[]`: where exactly to put the hand, in words.
+
+Everything in the art group sits under `<g id="hzArt">` for that `<use>` to target. If you add
+layers to the horse, add them inside that group or they will not appear in the detail plate.
+
+### Still not done
+
+No rear view. Henneke also reads the tailhead and ribs from behind, and that is a second drawing
+rather than a variation on this one. Worth doing if this becomes a printed handout.
