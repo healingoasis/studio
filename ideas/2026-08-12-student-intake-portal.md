@@ -71,3 +71,14 @@ who stops fielding those emails and chasing paperwork by hand before every modul
   nothing separating one student's documents from another's.
 - 2026-08-18: shareable review link published — both versions in one page, with
   invented students in place of the real ones. Notes in `docs/claude/notes/`.
+- 2026-08-31: the office view became folders. Opening a program shows its classes and a
+  separate Admin Documents folder. The first document is real: the desk name tags, drawn
+  to match Daniel's own "NAME ID for the Table.pdf" exactly — same 11 x 8.5in landscape
+  page, same positions, one page per student, a Print button that prints the class as it
+  stands. A student who withdraws or moves to the next intake comes off the list straight
+  away. Three things the store cannot answer are now typed by the office and stick:
+  degree, state, and a real name where Shopify holds a clinic ("Whitewater Hospital") or
+  half a name ("null Kasten"). 13 of the 32 VSMT students bought without naming a class
+  and wait in a holding folder to be placed. A live test product was quietly adding a
+  16th student to the Fall class; it is filtered out now. The diploma has a slot waiting
+  for Daniel's file.
