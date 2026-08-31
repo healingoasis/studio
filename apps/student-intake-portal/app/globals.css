@@ -2643,3 +2643,339 @@ button.file-state {
   opacity: 1;
   transform: translate(-50%, 0);
 }
+
+/* ================= office folders ================= */
+
+/* Folders, because that is the word Daniel used and the shape he pictured: open a
+   program, find the classes and the paperwork side by side. */
+.folders {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 14px;
+  margin-bottom: 1.5rem;
+}
+
+.folder {
+  display: block;
+  padding: 1.1rem 1.2rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.folder:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.folder-icon {
+  display: block;
+  width: 30px;
+  height: 25px;
+  margin-bottom: 0.7rem;
+  color: var(--accent);
+}
+
+.folder.waiting .folder-icon { color: var(--st-renew); }
+.folder.docs .folder-icon { color: var(--ink-soft); }
+
+.folder-name {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  line-height: 1.25;
+  margin-bottom: 0.15rem;
+}
+
+.folder-sub {
+  display: block;
+  font-size: 0.83rem;
+  color: var(--ink-soft);
+}
+
+.note {
+  margin: 0 0 1.4rem;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-2);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.note.tight {
+  margin: 0 0 1rem;
+}
+
+.problem {
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: var(--st-none-bg);
+  color: var(--st-none);
+  font-size: 0.88rem;
+}
+
+/* ---------- the editable class list ---------- */
+
+.roster-edit td {
+  vertical-align: top;
+}
+
+.roster-edit tr.is-dropped {
+  opacity: 0.5;
+}
+
+.roster-edit tr.is-dropped .cell-input {
+  text-decoration: line-through;
+}
+
+.cell-input,
+.cell-select {
+  width: 100%;
+  max-width: 13rem;
+  padding: 0.34rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.92rem;
+}
+
+.cell-input:hover,
+.cell-select:hover {
+  border-color: var(--line);
+}
+
+.cell-input:focus,
+.cell-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.cell-input.short { max-width: 4.5rem; }
+.cell-input.wide { max-width: 15rem; font-weight: 500; }
+.cell-input::placeholder { color: var(--ink-faint); }
+
+.cell-select {
+  max-width: 10.5rem;
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.coming {
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: inherit;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.coming.yes { color: var(--st-ready); background: var(--st-ready-bg); border-color: transparent; }
+.coming.no { color: var(--st-none); background: var(--st-none-bg); border-color: transparent; }
+.coming:disabled { opacity: 0.5; cursor: default; }
+
+.print-link,
+.print-button {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: inherit;
+  font-size: 0.88rem;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.print-button:disabled { opacity: 0.45; cursor: default; }
+
+/* ---------- the document shelf ---------- */
+
+.print-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 0.4rem;
+}
+
+.print-class {
+  display: block;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface-2);
+  text-decoration: none;
+  color: inherit;
+  min-width: 9rem;
+}
+
+.print-class:hover { border-color: var(--accent); }
+.print-class.empty { opacity: 0.55; }
+
+.print-class-name { display: block; font-size: 0.95rem; }
+.print-class-sub { display: block; font-size: 0.8rem; color: var(--ink-soft); }
+
+.dropzone {
+  padding: 1.6rem 1.2rem;
+  border: 1.5px dashed var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.dropzone:hover,
+.dropzone.over {
+  border-color: var(--accent);
+  background: var(--accent-tint);
+}
+
+.dropzone.busy { opacity: 0.6; cursor: default; }
+
+.drop-have { margin: 0 0 0.3rem; font-size: 0.98rem; }
+.drop-sub { margin: 0; font-size: 0.85rem; color: var(--ink-soft); line-height: 1.5; }
+
+/* ================= desk name tags ================= */
+
+/* Measured from Daniel's own "NAME ID for the Table.pdf": one landscape 11 x 8.5in page
+   per student, Bookman Old Style, the three lines centred on the page with the logo to
+   the left. On screen the pages are shrunk so a class can be checked at a glance; on
+   paper they come out at exactly the size his file uses. */
+
+.tags-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.4rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.tags-bar a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+.tags-bar-mid { flex: 1; display: flex; flex-direction: column; }
+.tags-bar-mid strong { font-weight: 500; font-size: 0.98rem; }
+.tags-bar-mid span { font-size: 0.83rem; color: var(--ink-soft); }
+
+.tags-warn,
+.tags-empty {
+  margin: 1.2rem auto;
+  max-width: 46rem;
+  padding: 0.85rem 1rem;
+  border-radius: 9px;
+  background: var(--st-progress-bg);
+  color: var(--st-progress);
+  font-size: 0.9rem;
+}
+
+.tags-warn a { color: inherit; }
+.tags-empty { background: var(--surface-2); color: var(--ink-soft); }
+
+.tags {
+  --tag-scale: 0.66;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 0 48px;
+}
+
+.tag-frame {
+  width: calc(792pt * var(--tag-scale));
+  height: calc(612pt * var(--tag-scale));
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  background: #fff;
+}
+
+.tag {
+  position: relative;
+  width: 792pt;
+  height: 612pt;
+  background: #fff;
+  /* Always black on white: this is ink on paper, not a screen that can go dark. */
+  color: #000;
+  transform: scale(var(--tag-scale));
+  transform-origin: top left;
+  font-family: "Bookman Old Style", Bookman, "URW Bookman L",
+    "Century Schoolbook", "New Century Schoolbook", Georgia, serif;
+}
+
+.tag-logo {
+  position: absolute;
+  object-fit: contain;
+}
+
+.tag-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .tags { --tag-scale: 0.44; }
+}
+
+@media print {
+  @page {
+    size: 11in 8.5in;
+    margin: 0;
+  }
+
+  .tags-bar,
+  .tags-warn,
+  .tags-empty,
+  .theme-preview {
+    display: none !important;
+  }
+
+  .tags {
+    --tag-scale: 1;
+    display: block;
+    gap: 0;
+    padding: 0;
+  }
+
+  .tag-frame {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    border: 0;
+    box-shadow: none;
+    /* One student per sheet, which is what a folded desk card is. */
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .tag-frame:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .tag {
+    transform: none;
+    /* The logo has a white block behind it in the original; keep the ink faithful. */
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

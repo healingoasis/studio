@@ -41,3 +41,42 @@ Red's photograph stays on the page as the real case, with no markers on it.
 `host.className = ...` does not work on an SVG element — `className` there is a read-only
 `SVGAnimatedString`. Use `setAttribute("class", ...)`. That one line threw during init and blanked
 the whole page, because `initBCS()` runs before `render()` and `route()` on the same line.
+
+
+## 2026-08-31 — rebuilt again, properly
+
+Daniel's verdict on the flat-fill version: *"that drawing is horrible ... i need next level
+design and i want this to be mind blowing and how informative it is."* Fair. A flat silhouette
+does not teach anyone to read a horse.
+
+There is no photograph that can do this job. Red is at a three-quarter angle; Captain is black,
+mid-stride and small in frame; and no photograph can show the same horse at all nine scores.
+So the illustration had to carry it.
+
+What it is now, in `content/concepts/namaste-site-source.html`:
+
+- Same anchor-and-condition-vector system, rebuilt at a 1200x800 viewBox with real equine
+  proportions (body length equals height at the withers; body depth equals leg length).
+- **Tonal modelling.** Shading paths and ellipses are blurred with SVG filters and clipped to
+  the silhouette, so they read as airbrushed volume but stop crisply at the contour. All of it
+  is hung off the anchors, so the shading tracks the body as it changes.
+- **Condition changes tone, not just outline.** `h_tone()` fades the muscle highlights and
+  deepens the shadows as the score drops; `h_hollows()` opens the paralumbar fossa, the hollow
+  behind the shoulder and the hollows beside the dock below a 4.5.
+- **A skeleton layer.** Cervical vertebrae (running low in the neck, well below the crest you
+  palpate), thoracolumbar spine, spinous processes, nine ribs, scapula, pelvis, limb bones,
+  skull. Toggled from the figure's footer.
+- **A fat cutaway** under the tool: skin, fat, muscle, bone, with only the fat band scaling to
+  the score. Labelled as relative depth, never measured.
+
+### Performance
+
+The blur filters made per-frame `innerHTML` rebuilds during the tween far too expensive. The
+renderer now builds the SVG **once** (`buildHorse`) and thereafter only sets attributes
+(`drawHorse`), and the shading shares two filtered groups rather than a filter per element.
+
+### Naming
+
+The geometry module's functions are all prefixed `h_` because it lives inside the page's single
+IIFE alongside the shop and the router, and names like `points`, `outline`, `tail` and `open`
+would otherwise collide.

@@ -416,44 +416,89 @@ p{margin:0}
   --h-coat:#9C7C62; --h-far:#7A614E; --h-line:#E4D6C8; --h-mane:#4A3527;
   --h-mark:#EBC49F; --h-eye:#241C16; }
 
-.bcs{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+.bcs{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);
   gap:clamp(26px,3.4vw,52px);align-items:start}
 @media(max-width:980px){.bcs{grid-template-columns:1fr}}
 
-.bcs-figure{position:relative;border:1px solid var(--rule);border-radius:18px;
-  background:var(--surface-2);padding:8px 8px 0;overflow:hidden}
+.bcs-figure{position:relative;border:1px solid var(--rule);border-radius:20px;overflow:hidden;
+  background:radial-gradient(120% 92% at 50% 8%, var(--surface) 0%, var(--surface-2) 72%);
+  padding:4px 10px 0}
 .bcs-figure svg{width:100%;height:auto;display:block}
 
-.h-coat{fill:var(--h-coat);stroke:var(--h-line);stroke-width:2.6;stroke-linejoin:round}
-.h-far {fill:var(--h-far); stroke:var(--h-line);stroke-width:2;stroke-linejoin:round}
-.h-mane{fill:var(--h-mane);stroke:var(--h-line);stroke-width:1.8;stroke-linejoin:round}
-.h-mark{fill:none;stroke:var(--h-mark);stroke-width:2.4;stroke-linecap:round}
-.h-soft{fill:none;stroke:var(--h-mark);stroke-width:1.6;opacity:.34}
-.h-eye {fill:var(--h-eye)}
-.h-hair{fill:none;stroke:var(--h-line);stroke-width:1.4;opacity:.3;stroke-linecap:round}
-.h-ground{fill:none;stroke:var(--rule);stroke-width:2;stroke-linecap:round}
+/* the horse. Coat colours are fixed in both themes — a chestnut is a chestnut. */
+.hz-shadow{fill:#2A1B12;opacity:.18}
+.hz-body{fill:url(#hzCoat)}
+.hz-far{fill:url(#hzFar);stroke:#4A2A14;stroke-width:2.5;stroke-linejoin:round}
+.hz-contour{fill:none;stroke:#3A1E0C;stroke-width:2.6;stroke-linejoin:round}
+.hz-tail,.hz-mane{fill:url(#hzMane);stroke:#3A1C09;stroke-width:2;stroke-linejoin:round}
+.hz-tail-edge{fill:none;stroke:#3A1C09;stroke-width:2;opacity:.85}
+.hz-hair{fill:none;stroke:#9A6538;stroke-width:2;opacity:.36;stroke-linecap:round}
+.hz-blaze{fill:#EFE4D6;opacity:.9}
+.hz-ear{fill:url(#hzCoat);stroke:#3A1E0C;stroke-width:2.4}
+.hz-cheek{fill:none;stroke:#6E3616;stroke-width:2;opacity:.34}
+.hz-eye{fill:#1C1310} .hz-glint{fill:#FFFFFF;opacity:.55} .hz-nostril{fill:#4A2A18}
+.hz-hoof{fill:#2E251F;stroke:#1B1510;stroke-width:2} .hz-hoof-f{fill:#241D18}
+.sh-dark{fill:#4A2410} .sh-lite{fill:#F6D9B4}
+.hz-rib-d{fill:none;stroke:#5A2E12;stroke-width:3.5;stroke-linecap:round}
+.hz-rib-l{fill:none;stroke:#E6B584;stroke-width:2;stroke-linecap:round;transform:translate(6px,5px)}
+.hz-bonemark{fill:none;stroke:#5A2E12;stroke-width:4;stroke-linecap:round}
 
-/* the six sites. They are SVG, so they scale with the drawing and cannot drift. */
-.hp{cursor:pointer}
-.hp:focus{outline:none}
+/* the skeleton, and why those six places are the six places */
+.hz-skel{opacity:0;transition:opacity .32s}
+.hz-ribs,.hz-bonemark{transition:opacity .32s}
+.bcs-figure.xray .hz-skel{opacity:1}
+.bcs-figure.xray .hz-ribs{opacity:0}
+.hz-tail,.hz-mane,.hz-tail-edge,.hz-hair,.hz-ear,.hz-blaze{transition:opacity .32s}
+.bcs-figure.xray .hz-tail,.bcs-figure.xray .hz-mane,.bcs-figure.xray .hz-tail-edge,
+.bcs-figure.xray .hz-hair,.bcs-figure.xray .hz-ear,.bcs-figure.xray .hz-blaze{opacity:.5}
+.hz-dim{fill:#2A1A10;opacity:.46}
+.hz-bone-o{fill:none;stroke:#4A3524;stroke-width:10.5;stroke-linecap:round;stroke-linejoin:round}
+.hz-bone-b{fill:none;stroke:#F4EADA;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.hz-rib-o{fill:none;stroke:#4A3524;stroke-width:8.5;stroke-linecap:round}
+.hz-rib-b{fill:none;stroke:#F4EADA;stroke-width:5.5;stroke-linecap:round}
+.hz-plate{fill:#F4EADA;stroke:#4A3524;stroke-width:2.5;stroke-linejoin:round;opacity:.92}
+.hz-skull{fill:none;stroke:#F4EADA;stroke-width:5;stroke-linejoin:round}
+
+/* the six sites live in the drawing's own coordinates, so they cannot drift */
+.hp{cursor:pointer} .hp:focus{outline:none}
 .hp-hit{fill:transparent}
-.hp-dot{fill:var(--ink);stroke:var(--surface-2);stroke-width:3.5;transition:fill .18s}
-.hp-n{fill:var(--ground);font-family:var(--mono);font-size:19px;text-anchor:middle;
+.hp-dot{fill:var(--ink);stroke:var(--surface);stroke-width:4;transition:fill .18s}
+.hp-n{fill:var(--ground);font-family:var(--mono);font-size:27px;text-anchor:middle;
   dominant-baseline:central;pointer-events:none;transition:fill .18s}
-.hp-ring{fill:none;stroke:var(--accent);stroke-width:2.5;opacity:0;transition:opacity .2s}
+.hp-ring{fill:none;stroke:var(--accent);stroke-width:3.5;opacity:0;transition:opacity .2s}
 .hp:hover .hp-dot{fill:var(--accent-bright)}
-.hp.on .hp-dot{fill:var(--accent)}
-.hp.on .hp-n{fill:var(--on-accent)}
+.hp.on .hp-dot{fill:var(--accent)} .hp.on .hp-n{fill:var(--on-accent)}
 .hp.on .hp-ring,.hp:focus-visible .hp-ring{opacity:1}
-#bcsPts.has-sel .hp:not(.on){opacity:.38}
-.hp,.hp-dot{transition:opacity .2s}
+#bcsPts.has-sel .hp:not(.on){opacity:.5}
+.hp{transition:opacity .2s}
 
-.bcs-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;
-  padding:11px 6px 13px;border-top:1px solid var(--rule-soft);margin-top:4px}
+.bcs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+  padding:11px 4px 13px;border-top:1px solid var(--rule-soft)}
 .bcs-chip{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  padding:5px 10px;border-radius:20px;background:var(--ink);color:var(--ground)}
-.bcs-foot-note{font-family:var(--mono);font-size:10px;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--faint)}
+  padding:6px 12px;border-radius:20px;background:var(--ink);color:var(--ground)}
+.bcs-view{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;
+  background:var(--surface)}
+.bcs-view button{border:none;background:none;padding:7px 15px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--faint);cursor:pointer;transition:all .16s}
+.bcs-view button[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
+
+/* the cutaway */
+.fatbox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(22px,3vw,44px);align-items:center;margin-top:clamp(28px,3.6vw,48px);
+  padding:clamp(20px,2.6vw,34px);border:1px solid var(--rule);border-radius:20px;
+  background:var(--surface-2)}
+@media(max-width:860px){.fatbox{grid-template-columns:1fr}}
+.fatbox svg{width:100%;height:auto;display:block}
+.fat-read{margin-top:14px;font-size:17px;line-height:1.62;color:var(--ink-soft)}
+.fat-read b{color:var(--ink);font-family:var(--display);font-weight:400}
+.note-sm{margin-top:14px;font-size:13px;color:var(--faint);line-height:1.62}
+.hz-skin{fill:#7A4A28} .hz-fat{fill:#F0D48A} .hz-mus{fill:#9C3B33}
+.hz-bonel{fill:#F2E8D8;stroke:#8A7B66;stroke-width:2}
+.hz-finger{fill:#E8C4A2;stroke:#B98C63;stroke-width:2.5;stroke-linejoin:round}
+.hz-lead{fill:none;stroke:var(--rule);stroke-width:1.5}
+.hz-depth-l{fill:var(--accent);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-anchor:end;dominant-baseline:central}
+.hz-lbl{fill:var(--faint);font-family:var(--mono);font-size:13px;dominant-baseline:central}
+.hz-depth{fill:none;stroke:var(--accent);stroke-width:2}
 
 .rail{display:flex;gap:5px;flex-wrap:wrap}
 .rail button{flex:1 1 0;min-width:42px;padding:13px 0;border:1px solid var(--rule);
@@ -1090,15 +1135,16 @@ textarea.field-in{min-height:130px;resize:vertical}
     </div>
 
     <div class="bcs">
-      <div class="bcs-figure rv">
-        <svg id="bcsHorse" viewBox="238 52 716 566" role="img" aria-labelledby="bcsHorseTitle">
-          <title id="bcsHorseTitle">A horse in side view with the six body-condition scoring sites marked on the body</title>
-          <g id="bcsArt"></g>
-          <g id="bcsPts"></g>
+      <div class="bcs-figure rv" id="bcsFigure">
+        <svg id="bcsHorse" viewBox="300 76 848 664" role="img" aria-labelledby="bcsHorseTitle">
+          <title id="bcsHorseTitle">A horse in side view, with the six body-condition scoring sites marked on the body</title>
         </svg>
         <div class="bcs-foot">
           <span class="bcs-chip" id="bcsChip">5 · Moderate</span>
-          <span class="bcs-foot-note">Side view, drawn to the six Henneke sites. Tap a number.</span>
+          <div class="bcs-view" role="group" aria-label="What to show">
+            <button type="button" data-view="coat" aria-pressed="true">Coat</button>
+            <button type="button" data-view="skel" aria-pressed="false">Skeleton</button>
+          </div>
         </div>
       </div>
 
@@ -1114,6 +1160,19 @@ textarea.field-in{min-height:130px;resize:vertical}
         <div class="read" id="bcsRead"></div>
         <div class="areas" id="bcsAreas"></div>
       </div>
+    </div>
+
+    <div class="fatbox rv">
+      <div>
+        <p class="eyebrow">What your hand is pressing through</p>
+        <h3 style="margin-top:10px">A score is a feel, not a look.</h3>
+        <p class="fat-read" id="bcsFatRead"></p>
+        <p class="note-sm">Relative depths, drawn to show the idea rather than to measure it. Fat
+           is the only layer that changes: the bone stays exactly where it was, which is why a hand
+           on the same six places tells you the truth about a horse when your eye will not.</p>
+      </div>
+      <svg id="bcsFat" viewBox="0 0 700 262" role="img"
+           aria-label="A cutaway through the skin, fat, muscle and bone at the chosen site"></svg>
     </div>
 
     <div class="cols2" style="margin-top:clamp(34px,4vw,52px)">
@@ -1874,300 +1933,521 @@ textarea.field-in{min-height:130px;resize:vertical}
   ];
   var BANDNAME={crit:"Neglect range",ok:"Healthy range",over:"Over-conditioned"};
 
-  /* ══════════════════════════════════════════════════════════════════
-     A horse in true lateral view, drawn from anatomical landmarks so
-     the six Henneke scoring points sit exactly where a hand would go.
+  /* ══════════════════════════════════════════════════════════════════════
+     A horse in true lateral view, built from anatomical landmarks.
 
-     The outline is a closed Catmull-Rom spline through named anchors.
-     Each anchor carries a condition vector: where that piece of the
-     body moves as the horse goes from emaciated (1) to obese (9).
-     The head and legs carry no vector — condition does not change them,
-     which is exactly why Henneke scores the six soft-tissue sites.
-     ══════════════════════════════════════════════════════════════════ */
+     The silhouette is a closed Catmull-Rom spline through named anchors.
+     Each anchor carries a condition vector — where that piece of the body
+     sits at a 9. Score 1 is its negative, 5 is the drawing as authored.
+     Head and legs carry no vector: condition does not change bone, which
+     is the whole reason Henneke scores six soft-tissue sites.
 
-  /* name, x, y, condition dx, condition dy, corner
-     The condition vector is the displacement at score 9. Score 1 is its
-     negative, so score 5 is the drawing as authored. */
-  var HORSE_ANCHORS = [
-    /* ── crest, poll back to withers ── */
-    ["poll",        820, 122,   0,   0, 0],
-    ["crest_a",     782, 124,   0, -14, 0],
-    ["crest_b",     738, 134,   0, -19, 0],
-    ["crest_c",     692, 150,   0, -14, 0],
-    ["withers",     650, 161,   0,  -7, 0],
+     Everything else — h_shading, muscle, the h_skeleton, the fat cover — is
+     derived from those same anchors so it tracks the body as it changes.
+     ══════════════════════════════════════════════════════════════════════ */
 
-    /* ── topline, withers back to tail ── */
-    ["back_fore",   586, 179,   0, -17, 0],
-    ["back_mid",    510, 183,   0, -17, 0],
-    ["loin",        442, 177,   0, -15, 0],
-    ["croup",       370, 164,   0,  -8, 0],
-    ["tailhead",    306, 189,   0, -11, 0],
-    ["buttock",     282, 255, -11,   0, 0],
+  /* name, x, y, dx@9, dy@9, corner */
+  var h_HA = [
+    ["poll",       1000, 148,   0,   0, 0],
+    ["crest_a",     952, 150,   0, -22, 0],
+    ["crest_b",     898, 162,   0, -31, 0],
+    ["crest_c",     852, 176,   0, -23, 0],
+    ["withers",     810, 191,   0,  -9, 0],
 
-    /* ── near hind leg ── */
-    ["thigh_back",  292, 341, -17,   0, 0],
-    ["hock_point",  318, 449,   0,   0, 1],
-    ["cannon_bh",   332, 517,   0,   0, 0],
-    ["fetlock_bh",  337, 553,   0,   0, 0],
-    ["heel_h",      329, 597,   0,   0, 1],
-    ["toe_h",       369, 601,   0,   0, 1],
-    ["pastern_fh",  357, 553,   0,   0, 0],
-    ["cannon_fh",   351, 517,   0,   0, 0],
-    ["hock_front",  348, 451,   0,   0, 0],
-    ["stifle",      374, 377,   9,   0, 0],
-    ["flank",       394, 349,   0,  17, 0],
+    ["back_fore",   720, 214,   0, -26, 0],
+    ["back_mid",    620, 219,   0, -26, 0],
+    ["loin",        530, 210,   0, -23, 0],
+    ["croup",       440, 196,   0, -10, 0],
+    ["tailhead",    368, 225,   0, -13, 0],
+    ["buttock",     338, 301, -13,   0, 0],
 
-    /* ── underline ── */
-    ["belly_rear",  470, 381,   0,  22, 0],
-    ["belly_mid",   548, 387,   0,  22, 0],
-    ["girth",       614, 379,   0,  11, 0],
+    ["thigh_back",  332, 404, -22,   0, 0],
+    ["gaskin_bk",   352, 476, -12,   0, 0],
+    ["hock_point",  372, 533,   0,   0, 1],
+    ["cannon_bh",   396, 613,   0,   0, 0],
+    ["fetlock_bh",  402, 651,   0,   0, 0],
+    ["heel_h",      391, 713,   0,   0, 1],
+    ["toe_h",       441, 719,   0,   0, 1],
+    ["pastern_fh",  428, 651,   0,   0, 0],
+    ["cannon_fh",   420, 613,   0,   0, 0],
+    ["hock_front",  414, 533,   0,   0, 0],
+    ["stifle",      450, 453,  11,   0, 0],
+    ["flank",       472, 419,   0,  26, 0],
 
-    /* ── near fore leg ── */
-    ["elbow_back",  638, 393,   0,   0, 0],
-    ["forearm_bk",  652, 449,   0,   0, 0],
-    ["knee_back",   650, 473,   0,   0, 0],
-    ["cannon_bf",   652, 521,   0,   0, 0],
-    ["fetlock_bf",  655, 553,   0,   0, 0],
-    ["heel_f",      647, 597,   0,   0, 1],
-    ["toe_f",       687, 601,   0,   0, 1],
-    ["pastern_ff",  674, 553,   0,   0, 0],
-    ["cannon_ff",   667, 521,   0,   0, 0],
-    ["knee_front",  670, 473,   0,   0, 0],
-    ["forearm_fr",  683, 431,   0,   0, 0],
-    ["elbow_front", 701, 379,   0,   0, 0],
+    ["belly_rear",  560, 457,   0,  34, 0],
+    ["belly_mid",   655, 463,   0,  34, 0],
+    ["girth",       735, 455,   0,  17, 0],
 
-    /* ── chest, shoulder, underside of neck ── */
-    ["brisket",     713, 334,   9,   0, 0],
-    ["pt_shoulder", 719, 295,   8,   0, 0],
-    ["neck_low",    737, 279,   5,  12, 0],
-    ["neck_under",  763, 253,   4,  15, 0],
-    ["throatlatch", 795, 223,   1,   4, 0],
+    ["elbow_back",  766, 471,   0,   0, 0],
+    ["forearm_bk",  782, 537,   0,   0, 0],
+    ["knee_back",   780, 567,   0,   0, 0],
+    ["cannon_bf",   782, 621,   0,   0, 0],
+    ["fetlock_bf",  786, 655,   0,   0, 0],
+    ["heel_f",      775, 713,   0,   0, 1],
+    ["toe_f",       825, 719,   0,   0, 1],
+    ["pastern_ff",  812, 655,   0,   0, 0],
+    ["cannon_ff",   804, 621,   0,   0, 0],
+    ["knee_front",  802, 567,   0,   0, 0],
+    ["forearm_fr",  818, 519,   0,   0, 0],
+    ["elbow_front", 840, 453,   0,   0, 0],
 
-    /* ── head: jaw forward to muzzle, then up the face ── */
-    ["jowl",        818, 258,   0,   0, 0],
-    ["jaw",         848, 277,   0,   0, 0],
-    ["chin",        881, 289,   0,   0, 0],
-    ["lip",         910, 296,   0,   0, 0],
-    ["muzzle",      927, 283,   0,   0, 0],
-    ["nostril_ln",  925, 266,   0,   0, 0],
-    ["nasal_low",   910, 249,   0,   0, 0],
-    ["nasal_mid",   885, 213,   0,   0, 0],
-    ["nasal_top",   857, 167,   0,   0, 0]
-    /* closes back to poll */
+    ["brisket",     856, 401,  11,   0, 0],
+    ["pt_shoulder", 866, 353,  10,   0, 0],
+    ["neck_low",    888, 333,   6,  15, 0],
+    ["neck_under",  918, 303,   5,  18, 0],
+    ["throatlatch", 958, 267,   1,   5, 0],
+
+    ["jowl",        984, 307,   0,   0, 0],
+    ["jaw",        1018, 331,   0,   0, 0],
+    ["chin",       1056, 345,   0,   0, 0],
+    ["lip",        1088, 353,   0,   0, 0],
+    ["muzzle",     1108, 337,   0,   0, 0],
+    ["nostril_ln", 1106, 317,   0,   0, 0],
+    ["nasal_low",  1090, 297,   0,   0, 0],
+    ["nasal_mid",  1062, 255,   0,   0, 0],
+    ["nasal_top",  1030, 201,   0,   0, 0]
+  ];
+  var h_HI = {}; h_HA.forEach(function(a,i){ h_HI[a[0]] = i });
+
+  /* The six sites, each pinned to the flesh it is measuring. */
+  var h_HPTS = [
+    { n:1, name:"Neck",     x:900, y:206, dx:0,  dy:-21, hint:"along the crest" },
+    { n:2, name:"Withers",  x:812, y:225, dx:0,  dy:-12, hint:"over the wither" },
+    { n:3, name:"Shoulder", x:778, y:358, dx:7,  dy:0,   hint:"behind the shoulder" },
+    { n:4, name:"Ribs",     x:660, y:360, dx:0,  dy:6,   hint:"across the barrel" },
+    { n:5, name:"Loin",     x:530, y:248, dx:0,  dy:-18, hint:"along the loin" },
+    { n:6, name:"Tailhead", x:374, y:260, dx:-5, dy:-13, hint:"beside the dock" }
   ];
 
-  var A_INDEX = {};
-  HORSE_ANCHORS.forEach(function(a, i){ A_INDEX[a[0]] = i; });
-
-  /* The six Henneke areas. Each is pinned to the spot a hand is actually
-     placed, and tracks the flesh underneath it as condition changes. */
-  var HORSE_POINTS = [
-    { n:1, name:"Neck",     x:740, y:172, cdx:0,  cdy:-17, hint:"along the crest" },
-    { n:2, name:"Withers",  x:652, y:190, cdx:0,  cdy:-10, hint:"over the wither" },
-    { n:3, name:"Shoulder", x:626, y:298, cdx:6,  cdy:0,   hint:"behind the shoulder" },
-    { n:4, name:"Ribs",     x:548, y:300, cdx:0,  cdy:5,   hint:"across the barrel" },
-    { n:5, name:"Loin",     x:442, y:207, cdx:0,  cdy:-15, hint:"along the loin" },
-    { n:6, name:"Tailhead", x:312, y:218, cdx:-4, cdy:-11, hint:"beside the dock" }
-  ];
-
-  function horseT(score){ return (score - 5) / 4; }
-  function hr(v){ return Math.round(v * 10) / 10; }
-
-  function horseAnchors(score){
-    var t = horseT(score);
-    return HORSE_ANCHORS.map(function(a){
-      return { x: a[1] + a[3] * t, y: a[2] + a[4] * t, corner: !!a[5] };
-    });
+  function h_ht(s){ return (s - 5) / 4 }
+  function h_rn(v){ return Math.round(v * 10) / 10 }
+  function h_hpos(s){
+    var t = h_ht(s);
+    return h_HA.map(function(a){ return { x:a[1]+a[3]*t, y:a[2]+a[4]*t, c:!!a[5] } });
   }
-  function hAt(pts, name){ return pts[A_INDEX[name]]; }
+  function h_P(p, n){ return p[h_HI[n]] }
 
-  /* Closed Catmull-Rom through the anchors, converted to cubic Beziers.
-     A corner anchor collapses its handles so hooves and hocks stay sharp. */
-  function horseOutline(score){
-    var p = horseAnchors(score), n = p.length;
-    var d = "M " + hr(p[0].x) + " " + hr(p[0].y);
+  /* closed spline through the anchors; corner anchors keep hooves sharp */
+  function h_outline(s){
+    var p = h_hpos(s), n = p.length, d = "M " + h_rn(p[0].x) + " " + h_rn(p[0].y);
     for (var i = 0; i < n; i++){
-      var p0 = p[(i - 1 + n) % n], p1 = p[i], p2 = p[(i + 1) % n], p3 = p[(i + 2) % n];
-      var c1x = p1.corner ? p1.x : p1.x + (p2.x - p0.x) / 6;
-      var c1y = p1.corner ? p1.y : p1.y + (p2.y - p0.y) / 6;
-      var c2x = p2.corner ? p2.x : p2.x - (p3.x - p1.x) / 6;
-      var c2y = p2.corner ? p2.y : p2.y - (p3.y - p1.y) / 6;
-      d += " C " + hr(c1x) + " " + hr(c1y) + ", " + hr(c2x) + " " + hr(c2y) +
-           ", " + hr(p2.x) + " " + hr(p2.y);
+      var a = p[(i-1+n)%n], b = p[i], c = p[(i+1)%n], e = p[(i+2)%n];
+      d += " C " + h_rn(b.c ? b.x : b.x+(c.x-a.x)/6) + " " + h_rn(b.c ? b.y : b.y+(c.y-a.y)/6) +
+           ", "  + h_rn(c.c ? c.x : c.x-(e.x-b.x)/6) + " " + h_rn(c.c ? c.y : c.y-(e.y-b.y)/6) +
+           ", "  + h_rn(c.x) + " " + h_rn(c.y);
     }
     return d + " Z";
   }
-
-  function horsePoints(score){
-    var t = horseT(score);
-    return HORSE_POINTS.map(function(q){
-      return { n:q.n, name:q.name, hint:q.hint, x:q.x + q.cdx * t, y:q.y + q.cdy * t };
-    });
-  }
-
-  /* ── an open Catmull-Rom, for the parts that are not closed shapes ── */
-  function hSmooth(pts){
-    var d = "M " + hr(pts[0].x) + " " + hr(pts[0].y);
-    for (var i = 0; i < pts.length - 1; i++){
-      var p0 = pts[Math.max(i - 1, 0)], p1 = pts[i], p2 = pts[i + 1],
-          p3 = pts[Math.min(i + 2, pts.length - 1)];
-      d += " C " + hr(p1.x + (p2.x - p0.x) / 6) + " " + hr(p1.y + (p2.y - p0.y) / 6) + ", " +
-           hr(p2.x - (p3.x - p1.x) / 6) + " " + hr(p2.y - (p3.y - p1.y) / 6) + ", " +
-           hr(p2.x) + " " + hr(p2.y);
+  function h_open(pts){
+    var d = "M " + h_rn(pts[0].x) + " " + h_rn(pts[0].y);
+    for (var i = 0; i < pts.length-1; i++){
+      var a = pts[Math.max(i-1,0)], b = pts[i], c = pts[i+1], e = pts[Math.min(i+2,pts.length-1)];
+      d += " C " + h_rn(b.x+(c.x-a.x)/6) + " " + h_rn(b.y+(c.y-a.y)/6) + ", " +
+           h_rn(c.x-(e.x-b.x)/6) + " " + h_rn(c.y-(e.y-b.y)/6) + ", " + h_rn(c.x) + " " + h_rn(c.y);
     }
     return d;
   }
+  function h_blob(pts){ return h_open(pts) + " Z" }
 
-  /* ── the mane, riding on the crest wherever the crest currently is ── */
-  function horseMane(score){
-    var p = horseAnchors(score);
-    var crest = ["poll","crest_a","crest_b","crest_c","withers"].map(function(k){ return hAt(p, k); });
-    var lift  = [4, 22, 27, 24, 10];
-    var outer = crest.map(function(c, i){ return { x: c.x + (i === 0 ? 4 : 6), y: c.y - lift[i] }; });
-    var back  = crest.slice().reverse().map(function(c){ return { x: c.x, y: c.y + 3 }; });
-    return hSmooth(outer) + " " + hSmooth(back).replace(/^M/, "L") + " Z";
+  function h_points(s){
+    var t = h_ht(s);
+    return h_HPTS.map(function(q){
+      return { n:q.n, name:q.name, hint:q.hint, x:q.x+q.dx*t, y:q.y+q.dy*t };
+    });
   }
 
-  /* ── the tail, hanging behind the dock wherever the dock currently sits ── */
-  function horseTail(score){
-    var p = horseAnchors(score), T = hAt(p, "tailhead");
-    var outer = [
-      { x: T.x + 14, y: T.y + 2   },
-      { x: T.x - 20, y: T.y + 72  },
-      { x: T.x - 38, y: T.y + 168 },
-      { x: T.x - 40, y: T.y + 248 },
-      { x: T.x - 28, y: T.y + 272 }
-    ];
-    var inner = [
-      { x: T.x - 16, y: T.y + 248 },
-      { x: T.x - 10, y: T.y + 164 },
-      { x: T.x + 4,  y: T.y + 72  },
-      { x: T.x + 24, y: T.y + 4   }
-    ];
-    return hSmooth(outer) + " " + hSmooth(inner).replace(/^M/, "L") + " Z";
+  /* ── h_mane and h_tail, riding wherever the crest and dock have moved ── */
+  function h_mane(s){
+    var p = h_hpos(s), c = ["poll","crest_a","crest_b","crest_c","withers"].map(function(k){ return h_P(p,k) });
+    var lift = [6, 30, 36, 32, 14];
+    return h_open(c.map(function(v,i){ return { x:v.x+(i?8:5), y:v.y-lift[i] } })) + " " +
+           h_open(c.slice().reverse().map(function(v){ return { x:v.x, y:v.y+4 } })).replace(/^M/, "L") + " Z";
   }
-  /* two strands, so the tail reads as hair and not as a shape */
-  function horseTailHair(score){
-    var p = horseAnchors(score), T = hAt(p, "tailhead");
-    return [
-      hSmooth([{x:T.x+2,y:T.y+18},{x:T.x-16,y:T.y+96},{x:T.x-28,y:T.y+184},{x:T.x-28,y:T.y+244}]),
-      hSmooth([{x:T.x+12,y:T.y+22},{x:T.x-4,y:T.y+104},{x:T.x-14,y:T.y+188},{x:T.x-16,y:T.y+238}])
-    ];
+  function h_forelock(s){
+    var p = h_hpos(s), a = h_P(p,"poll");
+    return h_blob([{x:a.x-4,y:a.y-6},{x:a.x+22,y:a.y+16},{x:a.x+30,y:a.y+54},{x:a.x+16,y:a.y+40},{x:a.x+2,y:a.y+10}]);
   }
-
-  /* ── ears, eye, nostril: fixed, condition does not touch the head ── */
-  var HORSE_EAR_NEAR = "M 812 124 C 806 104, 802 88, 806 78 C 812 82, 824 100, 828 118 Z";
-  var HORSE_EAR_FAR  = "M 832 118 C 832 98, 834 82, 840 74 C 846 84, 850 104, 848 120 Z";
-  var HORSE_EYE      = { cx: 841, cy: 176, rx: 8, ry: 6.5 };
-  var HORSE_NOSTRIL  = "M 909 263 C 916 260, 921 264, 920 271 C 918 277, 910 277, 907 272 Z";
-  /* the cheekbone, the line that makes a head read as a head */
-  var HORSE_CHEEK    = "M 810 213 C 828 224, 838 244, 836 264";
-  /* the shoulder blade, the landmark point 3 is measured behind */
-  function horseScapula(score){
-    var p = horseAnchors(score), w = hAt(p, "withers"), s = hAt(p, "pt_shoulder");
-    return "M " + hr(w.x + 6) + " " + hr(w.y + 14) +
-           " C " + hr(w.x + 4) + " " + hr(w.y + 90) + ", " + hr(s.x - 30) + " " + hr(s.y - 40) +
-           ", " + hr(s.x - 6) + " " + hr(s.y - 2);
+  function h_tail(s){
+    var p = h_hpos(s), T = h_P(p,"tailhead");
+    return h_open([{x:T.x+22,y:T.y+2},{x:T.x-14,y:T.y+70},{x:T.x-48,y:T.y+172},
+                 {x:T.x-58,y:T.y+266},{x:T.x-40,y:T.y+334},{x:T.x-24,y:T.y+352}]) + " " +
+           h_open([{x:T.x-14,y:T.y+344},{x:T.x+10,y:T.y+252},{x:T.x+26,y:T.y+142},
+                 {x:T.x+36,y:T.y+4}]).replace(/^M/, "L") + " Z";
   }
-
-  /* ── far-side legs, drawn behind the body for depth ── */
-  var HORSE_FAR_LEGS = [
-    "M 612 372 C 604 420, 600 450, 602 476 C 604 512, 606 540, 604 560 " +
-    "L 598 596 L 632 599 L 630 556 C 632 534, 634 508, 634 476 " +
-    "C 636 448, 644 414, 652 380 Z",
-    "M 298 330 C 288 372, 298 424, 312 458 C 322 494, 326 528, 324 556 " +
-    "L 318 597 L 352 600 L 350 554 C 352 522, 348 490, 342 462 " +
-    "C 352 424, 370 384, 378 350 Z"
-  ];
-
-  /* ── what surfaces on a thin horse, and fades out by a 6 ── */
-  function horseRibs(score){
-    var t = horseT(score), drop = t * 10, out = [];
-    for (var i = 0; i < 7; i++){
-      var x = 604 - i * 20;
-      out.push("M " + hr(x) + " " + hr(246 + drop) +
-               " C " + hr(x - 10) + " " + hr(282 + drop) + ", " + hr(x - 24) + " " + hr(316 + drop) +
-               ", " + hr(x - 38) + " " + hr(338 + drop));
+  function h_tailHair(s){
+    var p = h_hpos(s), T = h_P(p,"tailhead"), out = [];
+    var lanes = [[6,-4,-26,-18],[16,10,-8,0],[-2,-18,-40,-32],[24,22,8,14]];
+    lanes.forEach(function(L){
+      out.push(h_open([{x:T.x+L[0],y:T.y+30},{x:T.x+L[1],y:T.y+124},
+                     {x:T.x+L[2],y:T.y+234},{x:T.x+L[3],y:T.y+322}]));
+    });
+    return out;
+  }
+  function h_maneHair(s){
+    var p = h_hpos(s), c = ["poll","crest_a","crest_b","crest_c","withers"].map(function(k){ return h_P(p,k) });
+    var out = [];
+    for (var i = 0; i < 4; i++){
+      var a = c[i], b = c[i+1];
+      for (var j = 0; j < 3; j++){
+        var k = (j+1)/4, x = a.x+(b.x-a.x)*k, y = a.y+(b.y-a.y)*k;
+        out.push("M " + h_rn(x+4) + " " + h_rn(y-2) + " C " + h_rn(x-4) + " " + h_rn(y-14) + ", " +
+                 h_rn(x-2) + " " + h_rn(y-22) + ", " + h_rn(x+6) + " " + h_rn(y-30));
+      }
     }
     return out;
   }
-  /* Ribs are gone by a 5 — at a 5 you feel them, you do not see them.
-     The spine and the point of hip surface later still, below a 4. */
-  function horseRibOpacity(score){
-    if (score >= 5) return 0;
-    return Math.min(1, (5 - score) / 2.4);
+
+  /* the topline, sampled at any x, so ribs and h_shading hang off the real back */
+  function h_spineY(p, x){
+    var k = ["withers","back_fore","back_mid","loin","croup","tailhead"].map(function(n){ return h_P(p,n) });
+    for (var i = 0; i < k.length-1; i++){
+      var a = k[i], b = k[i+1];
+      if (x <= a.x && x >= b.x){
+        var u = (a.x - x) / (a.x - b.x);
+        return a.y + (b.y - a.y) * u;
+      }
+    }
+    return x > k[0].x ? k[0].y : k[k.length-1].y;
   }
-  function horseBoneOpacity(score){
-    if (score >= 4) return 0;
-    return Math.min(1, (4 - score) / 1.8);
+
+  /* ── tonal h_shading, all of it hung off the anchors so it tracks the body ── */
+  /* highlights fade and shadows deepen as condition drops */
+  function h_tone(s){
+    var k = Math.max(0, Math.min(1, (s-1)/8));
+    return { lite: 0.44 + 0.56*k, dark: 1.26 - 0.26*k };
   }
-  function horseSpine(score){
-    var p = horseAnchors(score), a = hAt(p, "back_fore"), b = hAt(p, "back_mid"), c = hAt(p, "loin");
-    return "M " + hr(a.x) + " " + hr(a.y + 17) + " C " + hr(b.x + 30) + " " + hr(b.y + 19) + ", " +
-           hr(b.x - 30) + " " + hr(b.y + 18) + ", " + hr(c.x) + " " + hr(c.y + 15);
+  /* the h_hollows a starved horse opens up, gone by a 4 and a half */
+  function h_hollowOpacity(s){ return Math.max(0, Math.min(1, (4.5-s)/3.5)) }
+  function h_hollows(s){
+    var p = h_hpos(s);
+    var fl=h_P(p,"flank"), eb=h_P(p,"elbow_back"), th=h_P(p,"tailhead"), cr=h_P(p,"croup"),
+        nu=h_P(p,"neck_under"), bu=h_P(p,"buttock");
+    return [
+      { cx:fl.x+46, cy:fl.y-128, rx:52, ry:62, rot:-8 },
+      { cx:eb.x-6,  cy:eb.y-118, rx:44, ry:64, rot:6 },
+      { cx:th.x+40, cy:th.y+52,  rx:40, ry:40, rot:0 },
+      { cx:bu.x+40, cy:bu.y+64,  rx:34, ry:52, rot:-6 },
+      { cx:nu.x-42, cy:nu.y-34,  rx:56, ry:32, rot:-24 },
+      { cx:1002,    cy:206,      rx:22, ry:18, rot:0 }
+    ];
   }
-  /* the point of hip: the first bone anyone notices */
-  function horseHook(score){
-    var p = horseAnchors(score), c = hAt(p, "croup");
-    return "M " + hr(c.x + 6) + " " + hr(c.y + 22) + " C " + hr(c.x - 10) + " " + hr(c.y + 38) + ", " +
-           hr(c.x - 26) + " " + hr(c.y + 47) + ", " + hr(c.x - 40) + " " + hr(c.y + 50);
+
+  function h_shading(s){
+    var p = h_hpos(s);
+    var fl=h_P(p,"flank"), br=h_P(p,"belly_rear"), bm=h_P(p,"belly_mid"), gi=h_P(p,"girth"),
+        wi=h_P(p,"withers"), bf=h_P(p,"back_fore"), b2=h_P(p,"back_mid"), lo=h_P(p,"loin"),
+        cr=h_P(p,"croup"), th=h_P(p,"tailhead"), bu=h_P(p,"buttock"), st=h_P(p,"stifle"),
+        ps=h_P(p,"pt_shoulder"), nu=h_P(p,"neck_under"), tl=h_P(p,"throatlatch"),
+        eb=h_P(p,"elbow_back"), cb=h_P(p,"crest_b"), tb=h_P(p,"thigh_back");
+
+    var paths = [
+      { cls:"sh-dark", o:.5, d: h_blob([
+          {x:fl.x,y:fl.y-4},{x:br.x,y:br.y+4},{x:bm.x,y:bm.y+4},{x:gi.x,y:gi.y-2},
+          {x:gi.x-10,y:gi.y-78},{x:bm.x,y:bm.y-72},{x:br.x,y:br.y-72},{x:fl.x+10,y:fl.y-74}]) },
+      { cls:"sh-lite", o:.55, d: h_blob([
+          {x:wi.x,y:wi.y+6},{x:bf.x,y:bf.y+5},{x:b2.x,y:b2.y+5},{x:lo.x,y:lo.y+5},{x:cr.x,y:cr.y+6},
+          {x:cr.x-16,y:cr.y+62},{x:lo.x,y:lo.y+66},{x:b2.x,y:b2.y+68},{x:bf.x,y:bf.y+66},{x:wi.x+8,y:wi.y+58}]) },
+      { cls:"sh-dark", o:.42, d: h_blob([
+          {x:fl.x+34,y:fl.y-176},{x:fl.x+16,y:fl.y-96},{x:fl.x+4,y:fl.y-22},{x:st.x,y:st.y+6},
+          {x:st.x+30,y:st.y+2},{x:fl.x+34,y:fl.y-28},{x:fl.x+46,y:fl.y-98},{x:fl.x+62,y:fl.y-176}]) },
+      { cls:"sh-dark", o:.36, d: h_blob([
+          {x:wi.x+10,y:wi.y+30},{x:wi.x-8,y:wi.y+118},{x:eb.x-22,y:eb.y-76},{x:eb.x-6,y:eb.y-14},
+          {x:eb.x+24,y:eb.y-22},{x:wi.x+26,y:wi.y+116},{x:wi.x+38,y:wi.y+32}]) },
+      { cls:"sh-dark", o:.38, d: h_blob([
+          {x:tl.x-6,y:tl.y+10},{x:nu.x-4,y:nu.y+6},{x:ps.x+4,y:ps.y+4},
+          {x:ps.x-14,y:ps.y-40},{x:nu.x-34,y:nu.y-40},{x:tl.x-24,y:tl.y-26}]) },
+      { cls:"sh-dark", o:.30, d: h_blob([
+          {x:cb.x+34,y:cb.y+12},{x:cb.x-10,y:cb.y+26},{x:cb.x-52,y:cb.y+46},
+          {x:cb.x-46,y:cb.y+64},{x:cb.x-4,y:cb.y+44},{x:cb.x+38,y:cb.y+30}]) }
+    ];
+
+    var ells = [
+      { cls:"sh-lite", o:.5,  cx:(cr.x+bu.x)/2+4, cy:(cr.y+st.y)/2-14, rx:96, ry:80, rot:-12 },
+      { cls:"sh-lite", o:.34, cx:(b2.x+bm.x)/2+8, cy:(b2.y+bm.y)/2+6,  rx:112, ry:62, rot:-4 },
+      { cls:"sh-dark", o:.34, cx:tb.x+26,         cy:tb.y+96,          rx:38, ry:78, rot:6 },
+      { cls:"sh-lite", o:.34, cx:816,             cy:520,              rx:26, ry:52, rot:2 },
+      { cls:"sh-dark", o:.30, cx:826,             cy:430,              rx:44, ry:44, rot:0 },
+      { cls:"sh-dark", o:.26, cx:1000,            cy:310,              rx:34, ry:44, rot:14 }
+    ];
+    return { paths: paths, ells: ells };
+  }
+
+  /* ── what surfaces as condition drops ── */
+  function h_ribMarks(s){
+    var p = h_hpos(s), gi = h_P(p,"girth"), out = [];
+    var len = [1,.96,1,1.04,1,.94,.88,.8];
+    for (var i = 0; i < 8; i++){
+      var x = 754 - i * 25, top = h_spineY(p, x) + 62, drop = (gi.y - 116 - top) * len[i];
+      out.push("M " + h_rn(x) + " " + h_rn(top) +
+               " C " + h_rn(x-14) + " " + h_rn(top+drop*.42) + ", " + h_rn(x-33) + " " + h_rn(top+drop*.78) +
+               ", " + h_rn(x-48) + " " + h_rn(top+drop));
+    }
+    return out;
+  }
+  function h_ribOpacity(s){ return s >= 5 ? 0 : Math.min(1, (5-s)/2.4) }
+  function h_boneOpacity(s){ return s >= 4 ? 0 : Math.min(1, (4-s)/1.8) }
+  function h_spineRidge(s){
+    var p = h_hpos(s), a = h_P(p,"back_fore"), b = h_P(p,"back_mid"), c = h_P(p,"loin");
+    return "M " + h_rn(a.x) + " " + h_rn(a.y+22) + " C " + h_rn(b.x+36) + " " + h_rn(b.y+24) + ", " +
+           h_rn(b.x-36) + " " + h_rn(b.y+23) + ", " + h_rn(c.x) + " " + h_rn(c.y+19);
+  }
+  function h_hipMark(s){
+    var p = h_hpos(s), c = h_P(p,"croup");
+    return "M " + h_rn(c.x+8) + " " + h_rn(c.y+26) + " C " + h_rn(c.x-12) + " " + h_rn(c.y+46) + ", " +
+           h_rn(c.x-32) + " " + h_rn(c.y+57) + ", " + h_rn(c.x-48) + " " + h_rn(c.y+60);
+  }
+
+  /* ══ the h_skeleton: why those six places and not any other six ══ */
+  function h_skeleton(s){
+    var p = h_hpos(s);
+    var wi=h_P(p,"withers"), lo=h_P(p,"loin"), cr=h_P(p,"croup"), th=h_P(p,"tailhead"), bu=h_P(p,"buttock"),
+        ps=h_P(p,"pt_shoulder"), eb=h_P(p,"elbow_back"), gi=h_P(p,"girth"), st=h_P(p,"stifle"),
+        cb=h_P(p,"crest_b"), po=h_P(p,"poll"), tl=h_P(p,"throatlatch");
+
+    var bones = [], plates = [], ribs = [], skull = '';
+
+    /* the neck bones run LOW — the crest you feel for fat sits well above them */
+    bones.push(h_open([{x:po.x-26,y:po.y+54},{x:cb.x+40,y:cb.y+104},{x:cb.x-16,y:cb.y+128},
+                     {x:wi.x+22,y:wi.y+96},{x:wi.x+4,y:wi.y+62}]));
+    /* thoracic and lumbar spine, just under the topline */
+    bones.push(h_open([{x:wi.x+2,y:wi.y+40},{x:720,y:h_spineY(p,720)+34},{x:620,y:h_spineY(p,620)+34},
+                     {x:lo.x,y:lo.y+30},{x:cr.x,y:cr.y+28},{x:th.x+6,y:th.y+22}]));
+    /* the tall spinous processes that make a wither a wither */
+    for (var i = 0; i < 7; i++){
+      var sx = wi.x + 26 - i*22, sy = h_spineY(p, sx);
+      bones.push("M " + h_rn(sx) + " " + h_rn(sy+40) + " L " + h_rn(sx+3) + " " + h_rn(sy+9));
+    }
+    /* ribs, spine down and back to the sternum */
+    for (var j = 0; j < 9; j++){
+      var x = 772 - j*26, top = h_spineY(p, x) + 40;
+      ribs.push("M " + h_rn(x) + " " + h_rn(top) +
+                " C " + h_rn(x-18) + " " + h_rn(top+70) + ", " + h_rn(x-44) + " " + h_rn(top+126) +
+                ", " + h_rn(x-66) + " " + h_rn(gi.y-30));
+    }
+    /* scapula: point 3 is scored just behind this blade */
+    plates.push(h_blob([{x:wi.x+20,y:wi.y+36},{x:wi.x+50,y:wi.y+52},{x:ps.x+6,y:ps.y-14},
+                      {x:ps.x-6,y:ps.y+8},{x:wi.x+4,y:wi.y+112},{x:wi.x+6,y:wi.y+62}]));
+    /* pelvis and the point of hip, what a hand finds at the tailhead */
+    plates.push(h_blob([{x:cr.x+26,y:cr.y+26},{x:cr.x-14,y:cr.y+44},{x:th.x+4,y:th.y+52},
+                      {x:bu.x+16,y:bu.y+34},{x:bu.x+52,y:bu.y+6},{x:bu.x+62,y:bu.y-38},
+                      {x:cr.x+10,y:cr.y+20}]));
+    /* fore limb */
+    bones.push("M " + h_rn(ps.x) + " " + h_rn(ps.y+6) + " L " + h_rn(eb.x+18) + " " + h_rn(eb.y-6));
+    bones.push("M " + h_rn(eb.x+18) + " " + h_rn(eb.y-6) + " L " + h_rn(796) + " " + h_rn(566));
+    bones.push("M 796 566 L 796 650");
+    /* hind limb */
+    bones.push("M " + h_rn(bu.x+30) + " " + h_rn(bu.y+8) + " L " + h_rn(st.x+8) + " " + h_rn(st.y-6));
+    bones.push("M " + h_rn(st.x+8) + " " + h_rn(st.y-6) + " L " + h_rn(396) + " " + h_rn(534));
+    bones.push("M 396 534 L 408 648");
+    /* skull */
+    skull = h_blob([{x:po.x+6,y:po.y+18},{x:1040,y:238},{x:1078,y:300},{x:1092,y:328},
+                  {x:1062,y:332},{x:1018,y:314},{x:992,y:284},{x:990,y:234}]);
+    return { bones: bones, plates: plates, ribs: ribs, skull: skull };
   }
 
 
-  var bcsScore=5, bcsArea=-1, bcsShown=5, bcsRAF=null;
+  /* ── fixed parts: condition does not touch the head, the legs or the hooves ── */
+  var H_EAR_N="M 974 149 C 967 125, 962 106, 967 94 C 975 99, 989 120, 994 142 Z";
+  var H_EAR_F="M 998 142 C 998 118, 1001 98, 1008 89 C 1015 101, 1020 125, 1018 144 Z";
+  var H_CHEEK="M 972 256 C 994 269, 1006 293, 1003 317";
+  var H_BLAZE="M 1024 200 C 1056 254, 1084 296, 1098 326 L 1090 336 C 1064 306, 1036 264, 1004 210 Z";
+  var H_NOSTRIL="M 1086 314 C 1096 310, 1103 316, 1101 326 C 1098 335, 1086 334, 1083 325 Z";
+  var H_FAR_FORE="M 726 442 C 714 500, 710 540, 712 574 C 714 620, 716 656, 714 682 L 708 716 L 748 720 L 746 676 C 748 648, 750 618, 750 574 C 752 538, 762 496, 772 452 Z";
+  var H_FAR_HIND="M 396 396 C 384 448, 396 510, 412 550 C 424 592, 430 634, 428 668 L 421 716 L 462 720 L 460 666 C 462 628, 457 590, 450 556 C 462 510, 484 462, 494 420 Z";
+  var H_HOOF_NF="M 778 686 L 822 688 L 825 719 L 775 713 Z";
+  var H_HOOF_NH="M 394 686 L 438 688 L 441 719 L 391 713 Z";
+  var H_HOOF_FF="M 710 684 L 746 686 L 748 720 L 708 716 Z";
+  var H_HOOF_FH="M 424 684 L 458 686 L 462 720 L 421 716 Z";
+
+  var bcsScore=5, bcsArea=-1, bcsShown=5, bcsRAF=null, bcsXray=false;
   var bcsStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var HZ=null;
 
-  /* ── draw the horse at any score, whole or part-way between two ── */
-  function renderHorse(v){
-    var art=$("#bcsArt"); if(!art)return;
-    var op=horseRibOpacity(v), s="";
-    s+='<path class="h-ground" d="M 336 610 L 700 610"/>';
-    HORSE_FAR_LEGS.forEach(function(d){ s+='<path class="h-far" d="'+d+'"/>' });
-    s+='<path class="h-far" d="'+HORSE_EAR_FAR+'"/>';
-    s+='<path class="h-mane" d="'+horseTail(v)+'"/>';
-    horseTailHair(v).forEach(function(d){ s+='<path class="h-hair" d="'+d+'"/>' });
-    s+='<path class="h-coat" d="'+horseOutline(v)+'"/>';
-    s+='<path class="h-mane" d="'+horseMane(v)+'"/>';
-    s+='<path class="h-coat" d="'+HORSE_EAR_NEAR+'"/>';
-    horseRibs(v).forEach(function(d){ s+='<path class="h-mark" d="'+d+'" style="opacity:'+op+'"/>' });
-    var bone=horseBoneOpacity(v);
-    s+='<path class="h-mark" d="'+horseSpine(v)+'" style="opacity:'+bone+'"/>';
-    s+='<path class="h-mark" d="'+horseHook(v)+'" style="opacity:'+bone+'"/>';
-    s+='<path class="h-soft" d="'+horseScapula(v)+'"/>';
-    s+='<path class="h-soft" d="'+HORSE_CHEEK+'"/>';
-    s+='<ellipse class="h-eye" cx="'+HORSE_EYE.cx+'" cy="'+HORSE_EYE.cy+'" rx="'+HORSE_EYE.rx+'" ry="'+HORSE_EYE.ry+'"/>';
-    s+='<path class="h-eye" d="'+HORSE_NOSTRIL+'"/>';
-    art.innerHTML=s;
+  function pathsG(n, cls){
+    var s=""; for(var i=0;i<n;i++) s+='<path class="'+cls+'" d=""/>'; return s;
   }
 
-  /* ── the six sites, pinned to the body they are measuring ── */
-  function renderPts(v){
-    var host=$("#bcsPts"); if(!host)return;
-    host.setAttribute("class", bcsArea>=0?"has-sel":"");
-    host.innerHTML=horsePoints(v).map(function(p,i){
-      var on=(i===bcsArea);
-      return '<g class="hp'+(on?" on":"")+'" data-a="'+i+'" role="button" tabindex="0" '+
-        'aria-pressed="'+on+'" aria-label="Site '+p.n+', '+p.name+', '+p.hint+'">'+
-        '<circle class="hp-hit"  cx="'+p.x+'" cy="'+p.y+'" r="34"/>'+
-        '<circle class="hp-ring" cx="'+p.x+'" cy="'+p.y+'" r="27"/>'+
-        '<circle class="hp-dot"  cx="'+p.x+'" cy="'+p.y+'" r="20"/>'+
-        '<text class="hp-n" x="'+p.x+'" y="'+p.y+'">'+p.n+'</text></g>';
-    }).join("");
+  /* Built once. After that only attributes change, so the blur filters are not
+     torn down and rebuilt on every frame of the tween. */
+  function buildHorse(){
+    var svg=$("#bcsHorse"); if(!svg||HZ)return;
+    var sk=h_skeleton(5);
+    svg.innerHTML=
+      '<defs>'+
+        '<linearGradient id="hzCoat" x1="0" y1="0" x2="0.15" y2="1">'+
+          '<stop offset="0" stop-color="#D2894F"/><stop offset=".38" stop-color="#B3652F"/>'+
+          '<stop offset=".78" stop-color="#8E4A20"/><stop offset="1" stop-color="#6E3616"/></linearGradient>'+
+        '<linearGradient id="hzFar" x1="0" y1="0" x2="0" y2="1">'+
+          '<stop offset="0" stop-color="#8A4A22"/><stop offset="1" stop-color="#5E2F13"/></linearGradient>'+
+        '<linearGradient id="hzMane" x1="0" y1="0" x2="0" y2="1">'+
+          '<stop offset="0" stop-color="#5C2E12"/><stop offset="1" stop-color="#3A1C09"/></linearGradient>'+
+        '<filter id="hzSf" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="17"/></filter>'+
+        '<filter id="hzSg" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="30"/></filter>'+
+        '<filter id="hzGr" x="-30%" y="-70%" width="160%" height="240%"><feGaussianBlur stdDeviation="15"/></filter>'+
+        '<clipPath id="hzClip"><path d=""/></clipPath>'+
+      '</defs>'+
+      '<ellipse class="hz-shadow" cx="740" cy="726" rx="300" ry="17" filter="url(#hzGr)"/>'+
+      '<path class="hz-far" d="'+H_FAR_HIND+'"/><path class="hz-far" d="'+H_FAR_FORE+'"/>'+
+      '<path class="hz-hoof-f" d="'+H_HOOF_FH+'"/><path class="hz-hoof-f" d="'+H_HOOF_FF+'"/>'+
+      '<path class="hz-far" d="'+H_EAR_F+'"/>'+
+      '<path class="hz-tail" d=""/><g class="hz-tailhair">'+pathsG(4,"hz-hair")+'</g>'+
+      '<path class="hz-body" d=""/>'+
+      '<g clip-path="url(#hzClip)">'+
+        '<g class="hz-sha" filter="url(#hzSf)">'+pathsG(6,"")+'</g>'+
+        '<g class="hz-shb" filter="url(#hzSg)">'+
+          '<ellipse/><ellipse/><ellipse/><ellipse/><ellipse/><ellipse/>'+
+          '<ellipse/><ellipse/><ellipse/><ellipse/><ellipse/><ellipse/></g>'+
+        '<path class="hz-blaze" d="'+H_BLAZE+'"/>'+
+        '<g class="hz-ribs">'+pathsG(8,"hz-rib-d")+pathsG(8,"hz-rib-l")+'</g>'+
+        '<path class="hz-bonemark" d=""/><path class="hz-bonemark" d=""/>'+
+        '<g class="hz-skel">'+
+          '<path class="hz-dim" d=""/>'+
+          pathsG(sk.ribs.length,"hz-rib-o")+pathsG(sk.bones.length,"hz-bone-o")+
+          pathsG(sk.plates.length,"hz-plate")+
+          pathsG(sk.ribs.length,"hz-rib-b")+pathsG(sk.bones.length,"hz-bone-b")+
+          '<path class="hz-skull" d=""/>'+
+        '</g>'+
+      '</g>'+
+      '<path class="hz-contour" d=""/>'+
+      '<path class="hz-hoof" d="'+H_HOOF_NH+'"/><path class="hz-hoof" d="'+H_HOOF_NF+'"/>'+
+      '<path class="hz-tail-edge" d=""/>'+
+      '<path class="hz-mane" d=""/><g class="hz-manehair">'+pathsG(12,"hz-hair")+'</g>'+
+      '<path class="hz-mane" d=""/>'+
+      '<path class="hz-ear" d="'+H_EAR_N+'"/>'+
+      '<path class="hz-cheek" d="'+H_CHEEK+'"/>'+
+      '<ellipse class="hz-eye" cx="1006" cy="222" rx="13" ry="11"/>'+
+      '<ellipse class="hz-glint" cx="1002" cy="218" rx="4" ry="3.5"/>'+
+      '<path class="hz-nostril" d="'+H_NOSTRIL+'"/>'+
+      '<g id="bcsPts"></g>';
+
+    var q=function(s){ return $$(s,svg) };
+    HZ={ clip:$("#hzClip path",svg), body:$(".hz-body",svg), contour:$(".hz-contour",svg),
+         tail:$(".hz-tail",svg), tailEdge:$(".hz-tail-edge",svg), tailHair:q(".hz-tailhair path"),
+         mane:q(".hz-mane"), maneHair:q(".hz-manehair path"),
+         sha:q(".hz-sha path"), shb:q(".hz-shb ellipse"),
+         ribD:q(".hz-rib-d"), ribL:q(".hz-rib-l"), boneMark:q(".hz-bonemark"),
+         skel:$(".hz-skel",svg), dim:$(".hz-dim",svg),
+         skRibO:q(".hz-rib-o"), skRibB:q(".hz-rib-b"),
+         skBoneO:q(".hz-bone-o"), skBoneB:q(".hz-bone-b"),
+         skPlate:q(".hz-plate"), skull:$(".hz-skull",svg) };
   }
 
-  function drawBCS(v){ renderHorse(v); renderPts(v); }
+  function setD(el, d){ if(el) el.setAttribute("d", d) }
 
-  /* ── ease from the score on screen to the score just picked ── */
+  function drawHorse(v){
+    if(!HZ)return;
+    var out=h_outline(v), sh=h_shading(v), tn=h_tone(v),
+        ho=h_hollowOpacity(v), ro=h_ribOpacity(v), bo=h_boneOpacity(v), hl=h_hollows(v);
+    setD(HZ.clip,out); setD(HZ.body,out); setD(HZ.contour,out); setD(HZ.dim,out);
+    setD(HZ.tail,h_tail(v)); setD(HZ.tailEdge,h_tail(v));
+    h_tailHair(v).forEach(function(d,i){ setD(HZ.tailHair[i],d) });
+    var mn=h_mane(v); setD(HZ.mane[0],mn); setD(HZ.mane[1],h_forelock(v));
+    h_maneHair(v).forEach(function(d,i){ setD(HZ.maneHair[i],d) });
+
+    sh.paths.forEach(function(x,i){
+      var el=HZ.sha[i]; if(!el)return;
+      el.setAttribute("d",x.d); el.setAttribute("class",x.cls);
+      el.setAttribute("opacity", x.o*(x.cls==="sh-lite"?tn.lite:tn.dark));
+    });
+    sh.ells.forEach(function(e,i){
+      var el=HZ.shb[i]; if(!el)return;
+      el.setAttribute("cx",e.cx); el.setAttribute("cy",e.cy);
+      el.setAttribute("rx",e.rx); el.setAttribute("ry",e.ry);
+      el.setAttribute("class",e.cls);
+      el.setAttribute("transform","rotate("+e.rot+" "+e.cx+" "+e.cy+")");
+      el.setAttribute("opacity", e.o*(e.cls==="sh-lite"?tn.lite:tn.dark));
+    });
+    hl.forEach(function(e,i){
+      var el=HZ.shb[6+i]; if(!el)return;
+      el.setAttribute("cx",e.cx); el.setAttribute("cy",e.cy);
+      el.setAttribute("rx",e.rx); el.setAttribute("ry",e.ry);
+      el.setAttribute("class","sh-dark");
+      el.setAttribute("transform","rotate("+e.rot+" "+e.cx+" "+e.cy+")");
+      el.setAttribute("opacity", ho*0.42);
+    });
+
+    var rm=h_ribMarks(v);
+    rm.forEach(function(d,i){
+      setD(HZ.ribD[i],d); HZ.ribD[i].setAttribute("opacity", ro*.55);
+      setD(HZ.ribL[i],d); HZ.ribL[i].setAttribute("opacity", ro*.5);
+    });
+    setD(HZ.boneMark[0],h_spineRidge(v)); HZ.boneMark[0].setAttribute("opacity", bo*.5);
+    setD(HZ.boneMark[1],h_hipMark(v));    HZ.boneMark[1].setAttribute("opacity", bo*.55);
+
+    var sk=h_skeleton(v);
+    sk.ribs.forEach(function(d,i){ setD(HZ.skRibO[i],d); setD(HZ.skRibB[i],d) });
+    sk.bones.forEach(function(d,i){ setD(HZ.skBoneO[i],d); setD(HZ.skBoneB[i],d) });
+    sk.plates.forEach(function(d,i){ setD(HZ.skPlate[i],d) });
+    setD(HZ.skull,sk.skull);
+
+    var pts=$("#bcsPts");
+    if(pts){
+      pts.setAttribute("class", bcsArea>=0?"has-sel":"");
+      pts.innerHTML=h_points(v).map(function(p,i){
+        var on=(i===bcsArea);
+        return '<g class="hp'+(on?" on":"")+'" data-a="'+i+'" role="button" tabindex="0" '+
+          'aria-pressed="'+on+'" aria-label="Site '+p.n+', '+p.name+', '+p.hint+'">'+
+          '<circle class="hp-hit"  cx="'+p.x+'" cy="'+p.y+'" r="44"/>'+
+          '<circle class="hp-ring" cx="'+p.x+'" cy="'+p.y+'" r="35"/>'+
+          '<circle class="hp-dot"  cx="'+p.x+'" cy="'+p.y+'" r="26"/>'+
+          '<text class="hp-n" x="'+p.x+'" y="'+p.y+'">'+p.n+'</text></g>';
+      }).join("");
+    }
+  }
+
   function tweenHorse(target){
     if(bcsRAF)cancelAnimationFrame(bcsRAF);
-    if(bcsStill||Math.abs(target-bcsShown)<0.01){ bcsShown=target; drawBCS(target); return }
-    var from=bcsShown, t0=(window.performance||Date).now(), dur=380;
+    if(bcsStill||Math.abs(target-bcsShown)<0.01){ bcsShown=target; drawHorse(target); return }
+    var from=bcsShown, t0=(window.performance||Date).now(), dur=420;
     bcsRAF=requestAnimationFrame(function step(now){
       var k=Math.min(1,(now-t0)/dur), e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
-      bcsShown=from+(target-from)*e;
-      drawBCS(bcsShown);
+      bcsShown=from+(target-from)*e; drawHorse(bcsShown);
       if(k<1)bcsRAF=requestAnimationFrame(step);
     });
+  }
+
+  /* ══ the cutaway: what a hand is actually pressing through ══
+     Relative depths only. This is a schematic of the idea, not a measurement. */
+  var FAT_READ=[
+    "Your fingers hit bone the moment they touch. There is nothing over it.",
+    "Bone almost at once, with only a trace of tissue in the way.",
+    "Bone comes up quickly under an easy press.",
+    "A thin, even cover. Bone is there under a light press.",
+    "Bone under an easy press, and every rib countable. This is what healthy feels like.",
+    "You have to mean it a little. The cover is soft and springy.",
+    "A firm press to find bone, and fat filling the spaces between the ribs.",
+    "Hard to find bone at all. The cover has stopped being a cover.",
+    "You will not find bone here by hand."
+  ];
+  function drawFat(score, siteName){
+    var svg=$("#bcsFat"); if(!svg)return;
+    var fh = 3 + (score-1)/8*58, X=200, W=320, R=X+W;
+    var skinT=86, skinH=15, fatT=skinT+skinH, musT=fatT+fh, musH=44, boneT=musT+musH, boneH=38;
+    var lay=[["hz-skin",skinT,skinH,"Skin"],["hz-fat",fatT,fh,"Fat"],
+             ["hz-mus",musT,musH,"Muscle"],["hz-bonel",boneT,boneH,"Bone"]];
+
+    /* label anchors, nudged apart from the bottom up so a thin fat band stays readable */
+    var ys = lay.map(function(L){ return L[1] + Math.max(L[2],2)/2 });
+    for (var i = ys.length-2; i >= 0; i--) if (ys[i+1]-ys[i] < 18) ys[i] = ys[i+1]-18;
+
+    var tipY = skinT-6;
+    var s='<path class="hz-finger" d="M 322 2 L 322 '+(tipY-34)+
+          ' Q 322 '+tipY+' 360 '+tipY+' Q 398 '+tipY+' 398 '+(tipY-34)+' L 398 2 Z"/>';
+    lay.forEach(function(L,i){
+      s+='<rect class="'+L[0]+'" x="'+X+'" y="'+L[1]+'" width="'+W+'" height="'+Math.max(L[2],2)+
+         '" rx="'+(L[0]==="hz-bonel"?16:5)+'"/>';
+      var my=L[1]+Math.max(L[2],2)/2;
+      s+='<path class="hz-lead" d="M '+R+' '+my+' L '+(R+14)+' '+my+' L '+(R+26)+' '+ys[i]+' L '+(R+34)+' '+ys[i]+'"/>';
+      s+='<text class="hz-lbl" x="'+(R+42)+'" y="'+ys[i]+'">'+L[3]+'</text>';
+    });
+    s+='<path class="hz-depth" d="M '+(X-30)+' '+fatT+' L '+(X-18)+' '+fatT+
+       ' M '+(X-24)+' '+fatT+' L '+(X-24)+' '+boneT+
+       ' M '+(X-30)+' '+boneT+' L '+(X-18)+' '+boneT+'"/>';
+    s+='<text class="hz-depth-l" x="'+(X-40)+'" y="'+((fatT+boneT)/2-8)+'">what a hand</text>';
+    s+='<text class="hz-depth-l" x="'+(X-40)+'" y="'+((fatT+boneT)/2+10)+'">presses through</text>';
+    svg.innerHTML=s;
+    var t=$("#bcsFatRead");
+    if(t) t.innerHTML='<b>'+(siteName||"At every one of the six")+'.</b> '+FAT_READ[score-1];
   }
 
   function paintBCS(){
@@ -2175,7 +2455,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     $$("#bcsRail button").forEach(function(b){
       b.setAttribute("aria-pressed", String(+b.dataset.n===bcsScore));
     });
-    var chip=$("#bcsChip"); if(chip)chip.textContent=s.n+" · "+s.label;
+    var chip=$("#bcsChip"); if(chip)chip.textContent=s.n+" \u00b7 "+s.label;
     var read=$("#bcsRead");
     if(read){
       read.className="read is-"+s.band;
@@ -2188,7 +2468,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     if(areas){
       areas.innerHTML=AREAS.map(function(name,i){
         return '<div class="area'+(i===bcsArea?" on":"")+'" data-a="'+i+'">'+
-          '<i>'+(i+1)+'</i><b>'+name+'<u>'+HORSE_POINTS[i].hint+'</u></b>'+
+          '<i>'+(i+1)+'</i><b>'+name+'<u>'+h_HPTS[i].hint+'</u></b>'+
           '<span>'+s.a[i]+'</span></div>';
       }).join("");
       $$(".area",areas).forEach(function(el){
@@ -2197,6 +2477,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         });
       });
     }
+    drawFat(bcsScore, bcsArea>=0 ? AREAS[bcsArea] : null);
     tweenHorse(bcsScore);
   }
 
@@ -2216,6 +2497,20 @@ textarea.field-in{min-height:130px;resize:vertical}
       bcsScore=Math.min(9,Math.max(1,bcsScore+d)); paintBCS();
       var b=$('#bcsRail button[data-n="'+bcsScore+'"]'); if(b)b.focus();
     });
+
+    buildHorse();
+
+    var fig=$("#bcsFigure"), view=$(".bcs-view");
+    if(view){
+      view.addEventListener("click",function(e){
+        var b=e.target.closest("button"); if(!b)return;
+        bcsXray=(b.dataset.view==="skel");
+        $$("button",view).forEach(function(x){
+          x.setAttribute("aria-pressed", String((x.dataset.view==="skel")===bcsXray));
+        });
+        if(fig)fig.classList.toggle("xray", bcsXray);
+      });
+    }
 
     var pts=$("#bcsPts");
     if(pts){

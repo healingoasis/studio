@@ -158,6 +158,25 @@ function Chip({ status, text }: { status: DocStatus; text?: string }) {
   );
 }
 
+/** Same mark as the office folder pages, so opening one lands somewhere familiar. */
+function FolderIcon() {
+  return (
+    <svg className="folder-icon" viewBox="0 0 24 20" fill="none" aria-hidden="true">
+      <path
+        d="M1 4.5A2.5 2.5 0 0 1 3.5 2h5.2c.7 0 1.35.32 1.78.87l1.1 1.4c.2.25.5.4.83.4H20.5A2.5 2.5 0 0 1 23 7.17V15.5a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 15.5z"
+        fill="currentColor"
+        opacity="0.16"
+      />
+      <path
+        d="M1 4.5A2.5 2.5 0 0 1 3.5 2h5.2c.7 0 1.35.32 1.78.87l1.1 1.4c.2.25.5.4.83.4H20.5A2.5 2.5 0 0 1 23 7.17V15.5a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 15.5z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function Legend() {
   return (
     <div className="legend">
@@ -292,6 +311,38 @@ export default function Portal({
     () => (filter === "all" ? students : students.filter((s) => s.standing === filter)),
     [students, filter]
   );
+
+  /**
+   * One folder per program that actually has people on it, with a count of the distinct
+   * classes underneath. Built from the students themselves rather than from the program
+   * table, because this component runs in the browser and that table reaches the store.
+   */
+  const program_folders = useMemo(() => {
+    const seen = new Map<
+      string,
+      { key: string; short_name: string; count: number; terms: Set<string> }
+    >();
+    for (const s of students) {
+      const found = seen.get(s.program.key);
+      const folder =
+        found ??
+        {
+          key: s.program.key,
+          short_name: s.program.short_name,
+          count: 0,
+          terms: new Set<string>(),
+        };
+      folder.count += 1;
+      if (s.class_term) folder.terms.add(s.class_term);
+      if (!found) seen.set(s.program.key, folder);
+    }
+    return [...seen.values()].map((f) => ({
+      key: f.key,
+      short_name: f.short_name,
+      count: f.count,
+      classes: f.terms.size,
+    }));
+  }, [students]);
 
   /**
    * Records the school has issued. Read-only for the student — they never upload here,
@@ -833,6 +884,37 @@ export default function Portal({
         </div>
       ) : (
         <div className="stack">
+          <section className="card">
+            <div className="card-head">
+              <div>
+                <h2>Classes and paperwork</h2>
+                <p className="sub">
+                  Open a program to find its classes and the documents that print from
+                  them
+                </p>
+              </div>
+            </div>
+
+            <div className="folders">
+              {program_folders.map((f) => (
+                <Link key={f.key} className="folder" href={`/office/${f.key}`}>
+                  <FolderIcon />
+                  <span className="folder-name">{f.short_name}</span>
+                  <span className="folder-sub">
+                    {f.count} {f.count === 1 ? "student" : "students"}
+                    {f.classes > 0
+                      ? ` · ${f.classes} ${f.classes === 1 ? "class" : "classes"}`
+                      : ""}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <p className="card-foot">
+              Desk name tags print from here, from the class exactly as it stands.
+            </p>
+          </section>
+
           <section className="card">
             <div className="card-head">
               <div>

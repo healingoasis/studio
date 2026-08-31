@@ -101,6 +101,8 @@ export type RawOrder = {
   customer_id: string;
   customer_name: string;
   customer_email: string | null;
+  /** Two-letter state, for the bottom line of a desk name tag. */
+  customer_state: string | null;
   net_payment: number;
   total_price: number;
   line_items: RawLineItem[];
@@ -120,7 +122,10 @@ type OrdersResponse = {
           firstName: string | null;
           lastName: string | null;
           email: string | null;
+          defaultAddress: { provinceCode: string | null } | null;
         } | null;
+        billingAddress: { provinceCode: string | null } | null;
+        shippingAddress: { provinceCode: string | null } | null;
         netPaymentSet: { shopMoney: { amount: string } };
         totalPriceSet: { shopMoney: { amount: string } };
         lineItems: {
@@ -146,7 +151,12 @@ const ORDERS_QUERY = `
         name
         createdAt
         displayFinancialStatus
-        customer { id firstName lastName email }
+        customer {
+          id firstName lastName email
+          defaultAddress { provinceCode }
+        }
+        billingAddress { provinceCode }
+        shippingAddress { provinceCode }
         netPaymentSet { shopMoney { amount } }
         totalPriceSet { shopMoney { amount } }
         lineItems(first: 20) { edges { node {
@@ -186,6 +196,13 @@ export async function fetch_recent_orders(max_pages = 4): Promise<RawOrder[]> {
         customer_id: n.customer.id,
         customer_name: name || "Name not on file",
         customer_email: n.customer.email,
+        // The customer's own address first; the order's addresses are the fallback,
+        // since a clinic may have been billed for someone who lives elsewhere.
+        customer_state:
+          n.customer.defaultAddress?.provinceCode ||
+          n.billingAddress?.provinceCode ||
+          n.shippingAddress?.provinceCode ||
+          null,
         net_payment: Number(n.netPaymentSet.shopMoney.amount),
         total_price: Number(n.totalPriceSet.shopMoney.amount),
         line_items: n.lineItems.edges.map((l) => ({

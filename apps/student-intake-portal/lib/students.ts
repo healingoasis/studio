@@ -89,6 +89,16 @@ function is_fee_line(title: string): boolean {
   return FEE_LINE.test(title);
 }
 
+/**
+ * The store keeps a live test product — "LAB — VSMT Fall 2026 (TEST — do not buy)".
+ * Anything bought against it is not a student, and must never reach a printed class list.
+ */
+const TEST_LINE = /\btest\b|do not buy|^\s*lab\s*[—-]/i;
+
+function is_test_line(title: string): boolean {
+  return TEST_LINE.test(title);
+}
+
 export type PaymentKind =
   | "Deposit"
   | "Balance"
@@ -143,6 +153,8 @@ export type Student = {
   student_id: string;
   name: string;
   email: string | null;
+  /** Two-letter state from the store, for the bottom line of a desk name tag. */
+  state: string | null;
   program: Program;
   class_term: string | null;
   tuition: number;
@@ -163,7 +175,10 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
 
   for (const order of orders) {
     const touches_program = order.line_items.some(
-      (li) => !is_fee_line(li.title) && program_of(li.title) !== null
+      (li) =>
+        !is_fee_line(li.title) &&
+        !is_test_line(li.title) &&
+        program_of(li.title) !== null
     );
     if (!touches_program) continue;
     const list = by_customer.get(order.customer_id);
@@ -187,7 +202,7 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
     };
     for (const order of sorted) {
       for (const li of order.line_items) {
-        if (is_fee_line(li.title)) continue;
+        if (is_fee_line(li.title) || is_test_line(li.title)) continue;
         const key = program_of(li.title);
         if (key) tally[key] += 1;
       }
@@ -210,7 +225,7 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
       const status = (order.financial_status || "").toUpperCase();
       const refunded = status === "REFUNDED" || status === "VOIDED";
       const titles = order.line_items
-        .filter((li) => !is_fee_line(li.title))
+        .filter((li) => !is_fee_line(li.title) && !is_test_line(li.title))
         .map((li) => li.title);
 
       const fee_lines = order.line_items
@@ -255,8 +270,15 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
       student_id: customer_id,
       name: sorted[sorted.length - 1]?.customer_name ?? "Name not on file",
       email: sorted[sorted.length - 1]?.customer_email ?? null,
+      // Walk back from the newest order: an older one may predate an address.
+      state:
+        [...sorted].reverse().map((o) => o.customer_state).find(Boolean) ?? null,
       program,
-      class_term: class_term(sorted.flatMap((o) => o.line_items.map((li) => li.title))),
+      class_term: class_term(
+        sorted.flatMap((o) =>
+          o.line_items.map((li) => li.title).filter((t) => !is_test_line(t))
+        )
+      ),
       tuition,
       paid,
       remaining,

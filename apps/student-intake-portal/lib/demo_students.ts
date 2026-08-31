@@ -33,7 +33,7 @@ const with_fee = (base: number) => Math.round(base * 1.034 * 100) / 100;
 
 let n = 1040;
 const order = (
-  customer: { id: string; name: string; email: string },
+  customer: { id: string; name: string; email: string; state?: string },
   created_at: string,
   lines: { title: string; quantity: number; original_total: number }[],
   paid: number,
@@ -48,6 +48,7 @@ const order = (
     customer_id: customer.id,
     customer_name: customer.name,
     customer_email: customer.email,
+    customer_state: customer.state ?? "WI",
     net_payment: paid,
     total_price: total,
     line_items: lines,
