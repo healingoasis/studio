@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { load_program_folder } from "@/lib/office_data";
 import { ADMIN_DOCS } from "@/lib/admin_docs";
 import { UNPLACED } from "@/lib/roster";
+import { FolderIcon } from "../folder-icon";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -21,24 +22,6 @@ export async function generateMetadata({
   };
 }
 
-function FolderIcon() {
-  return (
-    <svg className="folder-icon" viewBox="0 0 24 20" fill="none" aria-hidden="true">
-      <path
-        d="M1 4.5A2.5 2.5 0 0 1 3.5 2h5.2c.7 0 1.35.32 1.78.87l1.1 1.4c.2.25.5.4.83.4H20.5A2.5 2.5 0 0 1 23 7.17V15.5a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 15.5z"
-        fill="currentColor"
-        opacity="0.16"
-      />
-      <path
-        d="M1 4.5A2.5 2.5 0 0 1 3.5 2h5.2c.7 0 1.35.32 1.78.87l1.1 1.4c.2.25.5.4.83.4H20.5A2.5 2.5 0 0 1 23 7.17V15.5a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 15.5z"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export default async function ProgramFolderPage({
   params,
 }: {
@@ -53,7 +36,7 @@ export default async function ProgramFolderPage({
   return (
     <main className="wrap">
       <div className="crumb">
-        <Link href="/">← Back to the portal</Link>
+        <Link href="/office">← All programs</Link>
       </div>
 
       <div className="masthead">

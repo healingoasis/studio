@@ -2963,3 +2963,15 @@ button.file-state {
   background: var(--st-none-bg);
   color: var(--st-none);
 }
+
+/* A way back to the student's own page, without competing with the work on this one. */
+.print-link.ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+.print-link.ghost:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+}
