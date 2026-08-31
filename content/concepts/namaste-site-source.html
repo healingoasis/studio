@@ -416,9 +416,14 @@ p{margin:0}
   --h-coat:#9C7C62; --h-far:#7A614E; --h-line:#E4D6C8; --h-mane:#4A3527;
   --h-mark:#EBC49F; --h-eye:#241C16; }
 
-.bcs{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);
-  gap:clamp(26px,3.4vw,52px);align-items:start}
-@media(max-width:980px){.bcs{grid-template-columns:1fr}}
+.bcs{display:block}
+.bcs-figure{max-width:960px;margin:0 auto}
+.bcs-panel{margin-top:clamp(24px,3vw,38px)}
+.bcs-ctl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);
+  gap:clamp(22px,3vw,46px);align-items:start}
+@media(max-width:860px){.bcs-ctl{grid-template-columns:1fr}}
+.bcs-ctl .read{margin-top:0}
+.bcs-ctl .areas{margin-top:0;border-top:none}
 
 .bcs-figure{position:relative;border:1px solid var(--rule);border-radius:20px;overflow:hidden;
   background:radial-gradient(120% 92% at 50% 8%, var(--surface) 0%, var(--surface-2) 72%);
@@ -429,7 +434,7 @@ p{margin:0}
 .hz-shadow{fill:#2A1B12;opacity:.18}
 .hz-body{fill:url(#hzCoat)}
 .hz-far{fill:url(#hzFar);stroke:#4A2A14;stroke-width:2.5;stroke-linejoin:round}
-.hz-contour{fill:none;stroke:#3A1E0C;stroke-width:2.6;stroke-linejoin:round}
+.hz-contour{fill:none;stroke:#3A1E0C;stroke-width:2.1;stroke-linejoin:round}
 .hz-tail,.hz-mane{fill:url(#hzMane);stroke:#3A1C09;stroke-width:2;stroke-linejoin:round}
 .hz-tail-edge{fill:none;stroke:#3A1C09;stroke-width:2;opacity:.85}
 .hz-hair{fill:none;stroke:#9A6538;stroke-width:2;opacity:.36;stroke-linecap:round}
@@ -439,9 +444,9 @@ p{margin:0}
 .hz-eye{fill:#1C1310} .hz-glint{fill:#FFFFFF;opacity:.55} .hz-nostril{fill:#4A2A18}
 .hz-hoof{fill:#2E251F;stroke:#1B1510;stroke-width:2} .hz-hoof-f{fill:#241D18}
 .sh-dark{fill:#4A2410} .sh-lite{fill:#F6D9B4}
-.hz-rib-d{fill:none;stroke:#5A2E12;stroke-width:3.5;stroke-linecap:round}
+.hz-rib-d{fill:none;stroke:#5A2E12;stroke-width:2.8;stroke-linecap:round}
 .hz-rib-l{fill:none;stroke:#E6B584;stroke-width:2;stroke-linecap:round;transform:translate(6px,5px)}
-.hz-bonemark{fill:none;stroke:#5A2E12;stroke-width:4;stroke-linecap:round}
+.hz-bonemark{fill:none;stroke:#5A2E12;stroke-width:3.2;stroke-linecap:round}
 
 /* the skeleton, and why those six places are the six places */
 .hz-skel{opacity:0;transition:opacity .32s}
@@ -463,7 +468,7 @@ p{margin:0}
 .hp{cursor:pointer} .hp:focus{outline:none}
 .hp-hit{fill:transparent}
 .hp-dot{fill:var(--ink);stroke:var(--surface);stroke-width:4;transition:fill .18s}
-.hp-n{fill:var(--ground);font-family:var(--mono);font-size:27px;text-anchor:middle;
+.hp-n{fill:var(--ground);font-family:var(--mono);font-size:22px;text-anchor:middle;
   dominant-baseline:central;pointer-events:none;transition:fill .18s}
 .hp-ring{fill:none;stroke:var(--accent);stroke-width:3.5;opacity:0;transition:opacity .2s}
 .hp:hover .hp-dot{fill:var(--accent-bright)}
@@ -472,10 +477,10 @@ p{margin:0}
 #bcsPts.has-sel .hp:not(.on){opacity:.5}
 .hp{transition:opacity .2s}
 
-.hz-grain{opacity:.16;mix-blend-mode:soft-light}
-.dt-ln{fill:none;stroke:#5C2E12;stroke-width:2.8;stroke-linecap:round;opacity:.46}
-.dt-hi{fill:none;stroke:#F6D9B4;stroke-width:3.4;stroke-linecap:round;opacity:.5}
-.dt-co{fill:none;stroke:#F0D6B4;stroke-width:5;stroke-linecap:round;opacity:.55}
+.hz-grain{opacity:.14;mix-blend-mode:soft-light}
+.dt-ln{fill:none;stroke:#5C2E12;stroke-width:2.1;stroke-linecap:round;opacity:.5}
+.dt-hi{fill:none;stroke:#F6D9B4;stroke-width:2.6;stroke-linecap:round;opacity:.56}
+.dt-co{fill:none;stroke:#F0D6B4;stroke-width:4;stroke-linecap:round;opacity:.6}
 .bcs-figure.xray .hz-detail,.bcs-figure.xray .hz-grain{opacity:.2}
 .hz-detail{transition:opacity .32s}
 
@@ -1195,7 +1200,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         </div>
       </div>
 
-      <div class="rv">
+      <div class="rv bcs-panel">
         <p class="eyebrow" style="margin-bottom:10px">Choose a score</p>
         <div class="rail" id="bcsRail"></div>
         <div class="rail-bands" aria-hidden="true">
@@ -1204,8 +1209,10 @@ textarea.field-in{min-height:130px;resize:vertical}
           <span class="rb-over"><i></i>7–9 · over</span>
         </div>
 
-        <div class="read" id="bcsRead"></div>
-        <div class="areas" id="bcsAreas"></div>
+        <div class="bcs-ctl">
+          <div class="read" id="bcsRead"></div>
+          <div class="areas" id="bcsAreas"></div>
+        </div>
       </div>
     </div>
 
@@ -2398,7 +2405,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         '<filter id="hzSg" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="30"/></filter>'+
         '<filter id="hzGr" x="-30%" y="-70%" width="160%" height="240%"><feGaussianBlur stdDeviation="15"/></filter>'+
         '<filter id="hzGn" x="0" y="0" width="100%" height="100%">'+
-          '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/>'+
+          '<feTurbulence type="fractalNoise" baseFrequency="2.4" numOctaves="2" seed="7"/>'+
           '<feColorMatrix type="saturate" values="0"/></filter>'+
         '<clipPath id="hzClip"><path d=""/></clipPath>'+
       '</defs>'+
@@ -2487,7 +2494,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       el.setAttribute("rx",e.rx); el.setAttribute("ry",e.ry);
       el.setAttribute("class","sh-dark");
       el.setAttribute("transform","rotate("+e.rot+" "+e.cx+" "+e.cy+")");
-      el.setAttribute("opacity", ho*0.42);
+      el.setAttribute("opacity", ho*0.32);
     });
 
     var rm=h_ribMarks(v);
@@ -2516,9 +2523,9 @@ textarea.field-in{min-height:130px;resize:vertical}
         var on=(i===bcsArea);
         return '<g class="hp'+(on?" on":"")+'" data-a="'+i+'" role="button" tabindex="0" '+
           'aria-pressed="'+on+'" aria-label="Site '+p.n+', '+p.name+', '+p.hint+'">'+
-          '<circle class="hp-hit"  cx="'+p.x+'" cy="'+p.y+'" r="44"/>'+
-          '<circle class="hp-ring" cx="'+p.x+'" cy="'+p.y+'" r="35"/>'+
-          '<circle class="hp-dot"  cx="'+p.x+'" cy="'+p.y+'" r="26"/>'+
+          '<circle class="hp-hit"  cx="'+p.x+'" cy="'+p.y+'" r="38"/>'+
+          '<circle class="hp-ring" cx="'+p.x+'" cy="'+p.y+'" r="29"/>'+
+          '<circle class="hp-dot"  cx="'+p.x+'" cy="'+p.y+'" r="21"/>'+
           '<text class="hp-n" x="'+p.x+'" y="'+p.y+'">'+p.n+'</text></g>';
       }).join("");
     }
