@@ -424,6 +424,32 @@ p{margin:0}
   background:radial-gradient(120% 92% at 50% 8%, var(--surface) 0%, var(--surface-2) 72%);
   padding:4px 10px 0}
 .bcs-figure svg{width:100%;height:auto;display:block}
+.bcs-photo{position:relative;border-radius:15px;overflow:hidden;margin:4px 0}
+.bcs-photo img{width:100%;display:block}
+.bcs-figure.photo > svg{display:none}
+.bcs-figure:not(.photo) .bcs-photo{display:none}
+.pp{position:absolute;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;
+  border:3px solid #fff;background:rgba(20,17,25,.74);color:#fff;font-family:var(--mono);
+  font-size:13px;cursor:pointer;display:grid;place-items:center;padding:0;
+  transition:transform .18s,background .18s,box-shadow .18s;backdrop-filter:blur(2px)}
+.pp:hover{transform:scale(1.12);background:var(--accent-bright)}
+.pp[aria-pressed="true"]{background:var(--accent);transform:scale(1.16);
+  box-shadow:0 0 0 7px rgba(110,42,147,.26)}
+.bcs-photo.has-sel .pp:not([aria-pressed="true"]){opacity:.5}
+.bcs-cap{position:absolute;left:12px;bottom:11px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.82);
+  background:rgba(12,10,17,.55);padding:6px 10px;border-radius:6px;backdrop-filter:blur(3px)}
+.zoomwrap{position:relative}
+#bcsZoomPhoto{position:relative;width:100%;aspect-ratio:640/440;border-radius:14px;
+  border:1px solid var(--rule-soft);background-repeat:no-repeat;display:none}
+.zm-mark{position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;
+  border-radius:50%;border:3px solid var(--accent);
+  box-shadow:0 0 0 2px rgba(255,255,255,.55),inset 0 0 0 2px rgba(255,255,255,.35)}
+.zm-mark::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;
+  margin:-5px 0 0 -5px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 2px rgba(255,255,255,.6)}
+.zoom-photo #bcsZoomPhoto{display:block}
+.zoom-photo #bcsZoom{display:none}
 
 /* the horse. Coat colours are fixed in both themes — a chestnut is a chestnut. */
 .hz-shadow{fill:#2A1B12;opacity:.18}
@@ -1177,19 +1203,31 @@ textarea.field-in{min-height:130px;resize:vertical}
       <p class="eyebrow">The Henneke scale</p>
       <h2>Score a horse in six places.</h2>
       <p class="lede">Body condition is not a guess and it is not a look. It is six places you put
-         your hands, each scored one to nine, then averaged. Move through the nine scores and watch
-         the same horse change shape — that is what your hand is being asked to find.</p>
+         your hands, each scored one to nine, then averaged. The six places are marked here on
+         Captain, who came through this farm. Switch to the drawing to move through the nine
+         scores and watch the same horse change shape.</p>
     </div>
 
     <div class="bcs">
-      <div class="bcs-figure rv" id="bcsFigure">
+      <div class="bcs-figure rv photo" id="bcsFigure">
+        <div class="bcs-photo" id="bcsPhoto">
+          <img src="data:image/jpeg;base64,{{BCSHORSE}}" alt="Captain, a black quarter horse standing side-on, with the six body-condition scoring sites marked on him">
+          <button class="pp" data-a="0" style="left:61.67%;top:29.17%" aria-pressed="false" aria-label="Site 1, Neck, along the crest"><span>1</span></button>
+          <button class="pp" data-a="1" style="left:56.25%;top:33.41%" aria-pressed="false" aria-label="Site 2, Withers, over the wither"><span>2</span></button>
+          <button class="pp" data-a="2" style="left:53.12%;top:50.38%" aria-pressed="false" aria-label="Site 3, Shoulder, behind the shoulder"><span>3</span></button>
+          <button class="pp" data-a="3" style="left:44.79%;top:47.95%" aria-pressed="false" aria-label="Site 4, Ribs, across the barrel"><span>4</span></button>
+          <button class="pp" data-a="4" style="left:34.38%;top:38.26%" aria-pressed="false" aria-label="Site 5, Loin, along the loin"><span>5</span></button>
+          <button class="pp" data-a="5" style="left:28.50%;top:41.00%" aria-pressed="false" aria-label="Site 6, Tailhead, beside the dock"><span>6</span></button>
+          <span class="bcs-cap">Captain &middot; the six places, on a real horse</span>
+        </div>
         <svg id="bcsHorse" viewBox="300 76 848 664" role="img" aria-labelledby="bcsHorseTitle">
           <title id="bcsHorseTitle">A horse in side view, with the six body-condition scoring sites marked on the body</title>
         </svg>
         <div class="bcs-foot">
           <span class="bcs-chip" id="bcsChip">5 · Moderate</span>
           <div class="bcs-view" role="group" aria-label="What to show">
-            <button type="button" data-view="coat" aria-pressed="true">Coat</button>
+            <button type="button" data-view="photo" aria-pressed="true">Photo</button>
+            <button type="button" data-view="coat" aria-pressed="false">Drawing</button>
             <button type="button" data-view="skel" aria-pressed="false">Skeleton</button>
           </div>
         </div>
@@ -1210,8 +1248,11 @@ textarea.field-in{min-height:130px;resize:vertical}
     </div>
 
     <div class="zoombox rv">
-      <svg id="bcsZoom" viewBox="0 0 300 232" role="img"
-           aria-label="The chosen scoring site, magnified from the same drawing"></svg>
+      <div class="zoomwrap">
+        <div id="bcsZoomPhoto" aria-hidden="true"><span class="zm-mark"></span></div>
+        <svg id="bcsZoom" viewBox="0 0 300 232" role="img"
+             aria-label="The chosen scoring site, magnified"></svg>
+      </div>
       <div id="bcsZoomRead"></div>
     </div>
 
@@ -2372,7 +2413,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   var H_HOOF_FH="M 424 684 L 458 686 L 462 720 L 421 716 Z";
 
   var H_DT_FORE=h_DT_FORE, H_DT_HIND=h_DT_HIND, H_DT_HEAD=h_DT_HEAD;
-  var bcsScore=5, bcsArea=-1, bcsShown=5, bcsRAF=null, bcsXray=false;
+  var bcsScore=5, bcsArea=-1, bcsShown=5, bcsRAF=null, bcsView="photo";
   var bcsStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
   var HZ=null;
 
@@ -2618,9 +2659,21 @@ textarea.field-in{min-height:130px;resize:vertical}
     "The back between the last rib and the point of hip. Press down either side of the spine.",
     "Either side of the dock, where the tail leaves the body. Feel for the two bones under your thumbs."
   ];
+  /* the six sites as fractions of the photograph, measured off the image */
+  var PHOTO_PTS=[[.6167,.2917],[.5625,.3341],[.5312,.5038],[.4479,.4795],[.3438,.3826],[.2850,.4100]];
+  function drawZoomPhoto(i){
+    var box=$("#bcsZoomPhoto"), img=$("#bcsPhoto img"); if(!box||!img)return;
+    var Z=2.2, f=PHOTO_PTS[i];
+    var px=100*(f[0]*Z-0.5)/(Z-1), py=100*(f[1]*Z-0.5)/(Z-1);
+    box.style.backgroundImage="url("+img.src+")";
+    box.style.position="relative";
+    box.style.backgroundSize=(Z*100)+"% auto";
+    box.style.backgroundPosition=px.toFixed(2)+"% "+py.toFixed(2)+"%";
+  }
   function drawZoom(){
     var svg=$("#bcsZoom"); if(!svg)return;
     var i = bcsArea>=0 ? bcsArea : 3;
+    drawZoomPhoto(i);
     var p = h_points(bcsShown)[i], W=300, H=232;
     svg.setAttribute("viewBox",(p.x-W/2)+" "+(p.y-H/2)+" "+W+" "+H);
     svg.innerHTML='<use href="#hzArt"/>'+
@@ -2632,8 +2685,27 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<p class="zm-feel"><b>At a '+s.n+':</b> '+s.a[i]+'.</p>';
   }
 
+  function paintView(){
+    var fig=$("#bcsFigure"); if(!fig)return;
+    fig.classList.toggle("photo", bcsView==="photo");
+    fig.classList.toggle("xray",  bcsView==="skel");
+    $$(".bcs-view button").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.view===bcsView));
+    });
+    var zw=$(".zoombox");
+    if(zw) zw.classList.toggle("zoom-photo", bcsView==="photo");
+    var ph=$("#bcsPhoto");
+    if(ph){
+      ph.classList.toggle("has-sel", bcsArea>=0);
+      $$(".pp",ph).forEach(function(b){
+        b.setAttribute("aria-pressed", String(+b.dataset.a===bcsArea));
+      });
+    }
+  }
+
   function paintBCS(){
     var s=BCS[bcsScore-1];
+    paintView();
     $$("#bcsRail button").forEach(function(b){
       b.setAttribute("aria-pressed", String(+b.dataset.n===bcsScore));
     });
@@ -2683,15 +2755,19 @@ textarea.field-in{min-height:130px;resize:vertical}
     buildHorse();
     buildStrip();
 
-    var fig=$("#bcsFigure"), view=$(".bcs-view");
+    var view=$(".bcs-view");
     if(view){
       view.addEventListener("click",function(e){
         var b=e.target.closest("button"); if(!b)return;
-        bcsXray=(b.dataset.view==="skel");
-        $$("button",view).forEach(function(x){
-          x.setAttribute("aria-pressed", String((x.dataset.view==="skel")===bcsXray));
-        });
-        if(fig)fig.classList.toggle("xray", bcsXray);
+        bcsView=b.dataset.view; paintBCS();
+      });
+    }
+
+    var photo=$("#bcsPhoto");
+    if(photo){
+      photo.addEventListener("click",function(e){
+        var b=e.target.closest(".pp"); if(!b)return;
+        var i=+b.dataset.a; bcsArea=(bcsArea===i?-1:i); paintBCS();
       });
     }
 

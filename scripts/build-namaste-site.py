@@ -12,6 +12,8 @@ IMAGES = {
     "HERO":    "web/01-captain-a-black-quarter-horse-walking-in.jpg",
     "RED":     "web/02-red-a-chestnut-quarter-horse-with-a-whit.jpg",
     "CAPTAIN": "web/03-captain-a-black-horse-walking-sound-and.jpg",
+    # cropped tight on Captain so the six sites have room to sit apart
+    "BCSHORSE": "web/bcs-captain-lateral.jpg",
 }
 # product mockups: real garment photography with the rescue's artwork printed on
 for _k in ("crew", "tee", "beanie", "tote", "stickers"):

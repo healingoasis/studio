@@ -108,3 +108,40 @@ layers to the horse, add them inside that group or they will not appear in the d
 
 No rear view. Henneke also reads the tailhead and ribs from behind, and that is a second drawing
 rather than a variation on this one. Worth doing if this becomes a printed handout.
+
+
+## 2026-08-31, third pass — the photograph, after all
+
+*"cant you use one of the images from the site for now? jsut actually have the points in the
+right location."* Yes — and my earlier refusal was wrong.
+
+I had rejected all three photographs on the grounds that none was true lateral. That was the
+right test for a *scoring* reference (you cannot judge condition off a three-quarter view) but
+the wrong test for a *locating* one. Captain in `03-captain-a-black-horse-walking-sound-and.jpg`
+is near enough to lateral that all six sites are visible and markable. Marking where the six
+places are does not require the horse to be at any particular score.
+
+### Getting the coordinates right
+
+Eyeballing percentages is how the original dots ended up in the sky. Instead: draw a labelled
+coordinate grid over the photograph with PIL, read the anatomy off it in image pixels, then
+render candidate dots onto the image and look. Two passes got all six correct. The grid script
+is worth repeating for any future photograph.
+
+### The trap that cost a round
+
+First attempt put the points at correct percentages of the *uncropped* photo — and they still
+looked wrong, clustered and off the animal. The points were right; Captain simply occupies about
+a third of that frame, so at the rendered width the horse is ~170px and six 40px markers cannot
+sit on him without piling up. Fixed by cropping to `web/bcs-captain-lateral.jpg` (640x440, from
+the 1200px original, not the 900px web copy) and remapping the fractions.
+
+**If a photograph's subject is small in frame, crop before placing markers.** Percentages being
+arithmetically correct is not the same as the overlay being usable.
+
+### Three views
+
+Photo / Drawing / Skeleton, photo first. Each medium does what it is good at: the photograph
+shows *where*, the drawing shows *what each score looks like* (no photograph can be nine
+scores), the skeleton shows *why*. The detail plate follows the active view — a magnified
+background-position crop of the photograph, or `<use href="#hzArt">` on the drawing.

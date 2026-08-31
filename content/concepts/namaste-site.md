@@ -19,18 +19,19 @@ Every factual claim is sourced from namasteequinerescue.org, read page by page o
 The rescue's own words: *99% of our purpose was to educate horse owners.* Until now that was
 one paragraph. It is now a working tool, and it is the reason to send anyone to this site.
 
-**Score a horse in six places.** An interactive Henneke body condition scale, built on a
-shaded anatomical horse in true lateral view so all six palpation sites sit exactly on the
-anatomy. Pick any score 1-9 and the horse itself changes: crest, topline, ribs, flank, belly,
-tailhead, and the tone with it - highlights flatten and the hollows of a starved horse open up.
-A **Skeleton** toggle dims the coat and shows the bone underneath, which is the answer to the
-question the scale always raises: why those six places and not any other six. Below it, a
-cutaway shows what a hand actually presses through at the chosen site - skin, fat, muscle,
-bone - with fat as the only layer that moves. The rescue's own foster agreement already requires
-a minimum of 4 on this scale, so the tool makes that number mean something. Red's photograph
-sits alongside as the real case, with no markers on it. System: Don Henneke, Texas A&M, first
-published 1983. Descriptions are written here, not copied from the chart; the cutaway is
-labelled as relative depth, not measurement.
+**Score a horse in six places.** An interactive Henneke body condition scale with three views.
+**Photo** is the default and shows the six palpation sites marked on Captain — a real horse who
+came through this farm — measured off the photograph itself and cropped tight so the sites sit
+clear of each other. **Drawing** is a shaded anatomical horse in true lateral view: pick any
+score 1-9 and it changes shape, crest to tailhead, with the hollows of a starved horse opening
+up below a 4. **Skeleton** dims the coat and shows the bone underneath, which answers why those
+six places and not any other six. A detail plate magnifies whichever view you are in at the
+chosen site and says in words where exactly to put your hand; a cutaway shows what a hand
+presses through, with fat the only layer that moves; and a nine-horse row gives the whole scale
+at a glance, printable. The rescue's own foster agreement already requires a minimum of 4, so
+the tool makes that number mean something. Red's photograph sits below as the real case, with
+no markers on it. System: Don Henneke, Texas A&M, 1983. Descriptions are written here, not
+copied from the chart; the cutaway is labelled as relative depth, not measurement.
 
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
