@@ -13,7 +13,11 @@ from lut import Look, grade_rgb, slog3_to_linear
 from analyze import probe, sample_frames, FF
 
 # Targets from the earlier notes, measured on the approved grade.
-T_MID = 125/255.0
+# A scene is not supposed to average mid-grey. Forcing every clip to 125 pushed
+# dim barns 4-6x brighter than they were shot, washing out the highlights.
+# 105 with a tight clamp keeps this a correction, not a normaliser.
+T_MID = 105/255.0
+EXP_MIN, EXP_MAX = 0.70, 2.20
 # The black floor is a LOOK choice, not a per-clip correction, so it is fixed.
 # Solving it per clip to hit a shadow target made contrasty scenes go milky --
 # the p1 target in the old notes came off a flat-lit arena and does not travel.
@@ -56,12 +60,12 @@ def solve(clip, wb_r=1.0, wb_b=1.0, look_kw=None, frames=6):
     # vary per clip; the look sits on top of them unchanged, which is what makes
     # 99 clips read as one piece of film.
     lift = LIFT
-    lo, hi = 0.30, 6.0
+    lo, hi = EXP_MIN, EXP_MAX
     for _ in range(18):
         mid = (lo+hi)/2
         if percentiles(px, mk(mid, lift), qs=(0.50,))[0] < T_MID: lo = mid
         else: hi = mid
-    exposure = round((lo+hi)/2, 4)
+    exposure = round(min(EXP_MAX, max(EXP_MIN, (lo+hi)/2)), 4)
     final = mk(exposure, lift)
     p1, p50 = percentiles(px, final, qs=(0.01, 0.50))
     return {"exposure": exposure, "lift": lift, "toe": 0.38, "full_range": full,
