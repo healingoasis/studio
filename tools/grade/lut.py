@@ -33,11 +33,14 @@ def clamp01(v):
 class Look:
     def __init__(self, exposure=1.0, contrast=1.0, saturation=1.0, toe=0.0,
                  scurve=0.0, split=0.0, legal_range=True, white=9.0,
-                 wb_r=1.0, wb_b=1.0):
+                 wb_r=1.0, wb_b=1.0, lift=0.0):
         self.exposure = exposure; self.contrast = contrast
         self.saturation = saturation; self.toe = toe
         self.scurve = scurve; self.split = split
         self.legal_range = legal_range; self.white = white
+        # black lift: raises the floor so shadows keep detail instead of
+        # crushing to zero. This is what reads as "filmic" rather than "harsh".
+        self.lift = lift
         # per-clip white balance, applied in LINEAR light where it belongs
         self.wb_r = wb_r; self.wb_b = wb_b
 
@@ -53,6 +56,8 @@ def grade_rgb(inRGB, k):
 
     if k.toe > 0:   # subtract most at the bottom, almost nothing by mid grey
         out = [clamp01(v - k.toe * (1.0 - v)**3) for v in out]
+    if k.lift > 0:
+        out = [clamp01(k.lift + (1.0 - k.lift) * v) for v in out]
     if k.contrast != 1.0:   # around 0.435, mid grey in Rec.709
         out = [clamp01(0.435 + (v - 0.435) * k.contrast) for v in out]
     if k.scurve > 0:        # filmic S: firms the mids, leaves the ends alone
@@ -90,6 +95,7 @@ def report(look):
     def through(code):
         v = encode_gamma(tone_map(slog3_to_linear(code) * look.exposure * rowsum, look.white))
         if look.toe > 0: v = clamp01(v - look.toe * (1.0 - v)**3)
+        if look.lift > 0: v = clamp01(look.lift + (1.0 - look.lift) * v)
         if look.contrast != 1.0: v = clamp01(0.435 + (v - 0.435) * look.contrast)
         return round(v * 255)
     return (f"  reference: S-Log3 black(95) -> {through(95)}, "
@@ -109,10 +115,11 @@ if __name__ == "__main__":
     p.add_argument("--white", type=float, default=9.0)
     p.add_argument("--wbr", type=float, default=1.0)
     p.add_argument("--wbb", type=float, default=1.0)
+    p.add_argument("--lift", type=float, default=0.0)
     a = p.parse_args()
     look = Look(exposure=a.exp, contrast=a.con, saturation=a.sat, toe=a.toe,
                 scurve=a.scurve, split=a.split, legal_range=not a.full,
-                white=a.white, wb_r=a.wbr, wb_b=a.wbb)
+                white=a.white, wb_r=a.wbr, wb_b=a.wbb, lift=a.lift)
     write_cube(a.out, look, N=a.size)
     print(f"S-Log3 -> Rec.709  range: {'full(0-1023)' if a.full else 'legal(64-940)'}  "
           f"exp {a.exp:.2f} con {a.con:.2f} sat {a.sat:.2f} toe {a.toe:.2f} "

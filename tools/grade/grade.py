@@ -8,6 +8,7 @@ encode is the classic amateur tell.
 """
 import subprocess, os, sys, argparse, tempfile, json, time
 from analyze import measure, FF
+from balance import solve
 from lut import Look, write_cube
 
 # The look Daniel approved on C8181.
@@ -18,7 +19,14 @@ def grade(clip, out, encoder="hw", bitrate="100M", crf=18, seconds=None,
     m = measure(clip, frames=6)
     if m is None:
         return None, "could not read"
-    look = Look(toe=LOOK["toe"], contrast=LOOK["con"], saturation=LOOK["sat"],
+    # per-clip: neutralise the colour cast, then solve exposure and black floor
+    # so this clip lands on the same targets as every other clip
+    b = solve(clip, wb_r=m["wb_r"], wb_b=m["wb_b"], look_kw=LOOK)
+    if b is None:
+        return None, "could not balance"
+    m.update(b)
+    look = Look(exposure=b["exposure"], lift=b["lift"], toe=b["toe"],
+                contrast=LOOK["con"], saturation=LOOK["sat"],
                 scurve=LOOK["scurve"], split=LOOK["split"],
                 legal_range=not m["full_range"],
                 wb_r=m["wb_r"], wb_b=m["wb_b"])
