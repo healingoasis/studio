@@ -42,6 +42,20 @@ files do not contain them. Below the files, the two deficits are set against eac
 Red at 250 lb, Captain at roughly 500 — because those two figures are the proof the place works.
 Kat's record stays as it is, with the missing photograph named rather than filled.
 
+**Help us to help them.** The Donate page now makes the argument before it makes the ask.
+*The fund has to be full before the phone rings* — the rescue currently has no horses waiting,
+which is the best sentence on the site and also the reason to give today, because a seized horse
+needs a barn, a vet and a farrier the same day and not a fundraiser. Four panels say where money
+actually goes: feed on a plan (thirty small meals in the first five days, counted off the
+refeeding protocol), the veterinary side (all costs but routine checkups, and the $350 a foster
+home may authorize without asking), feet and the rest of it (Red's hoof issues), and months not
+weeks (Captain's year). Each panel links to the page it is drawn from.
+
+**No invented money.** The only dollar figure on the page is the $350 the rescue already
+publishes in its foster agreement. A visible note says so and asks the board for the real
+per-horse costs — a week of feed, a farrier visit, a full rehabilitation — which is the single
+change that would most improve this page.
+
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
 refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding

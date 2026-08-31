@@ -234,6 +234,14 @@ p{margin:0}
 .tag-file{background:var(--accent-wash);color:var(--accent)}
 .tag-proto{background:var(--surface-2);color:var(--faint);border:1px solid var(--rule-soft)}
 
+.gives{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.6vw,34px)}
+@media(max-width:760px){.gives{grid-template-columns:1fr}}
+.give-src{margin-top:18px;font-family:var(--mono);font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase}
+.give-src a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;
+  transition:border-color .16s}
+.give-src a:hover{border-bottom-color:var(--accent)}
+
 .scaleof{margin-top:clamp(26px,3.2vw,44px);padding:clamp(24px,3vw,40px);
   border:1px solid var(--rule);border-radius:20px;background:var(--surface)}
 .wbars{margin-top:28px;display:grid;gap:16px}
@@ -1617,10 +1625,65 @@ textarea.field-in{min-height:130px;resize:vertical}
   <div class="phead"><div class="wrap narrow">
     <p class="eyebrow">Donate</p>
     <h1>Help us to help them.</h1>
-    <p class="lede">Your generous donations help to keep us operating, so we are able to save more lives. Money is the flexible kind of help — but the buckets and blankets matter just as much, and they go straight into use.</p>
+    <p class="lede">Money is the flexible kind of help. It is what lets this farm say yes on the day a department calls, and it is what pays for the months afterwards. The buckets and blankets matter just as much, and they go straight into use.</p>
   </div></div>
 
   <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Why today, and not when it happens</p>
+      <h2>The fund has to be full before the phone rings.</h2>
+      <p class="lede">There are no horses on this farm waiting for a home right now, and that is the best
+         sentence on this website. It is also exactly why today is the day. When a Wisconsin department
+         seizes an equine, the horse needs a barn, a vet and a farrier <em>that same day</em> — not a
+         fundraiser.</p>
+    </div>
+
+    <div class="gives">
+      <div class="panel rv">
+        <p class="eyebrow">Where it goes · 01</p>
+        <h3 style="margin-top:12px">Feed, on a plan</h3>
+        <p style="color:var(--ink-soft);margin-top:14px">A starved horse eats thirty small meals in its
+           first five days here — a pound of alfalfa every four hours, six times a day, then two to three
+           pounds, still six times a day. It is not on full rations until day six.</p>
+        <p class="give-src"><a href="#/learn" data-nav>From the refeeding protocol &rarr;</a></p>
+      </div>
+      <div class="panel rv">
+        <p class="eyebrow">Where it goes · 02</p>
+        <h3 style="margin-top:12px">The veterinary side</h3>
+        <p style="color:var(--ink-soft);margin-top:14px">This farm covers all veterinary costs except
+           routine checkups. A foster home may authorize up to <b>$350</b> of emergency care without
+           asking us first. That is money promised before a horse ever arrives.</p>
+        <p class="give-src"><a href="#/foster" data-nav>From the foster agreement &rarr;</a></p>
+      </div>
+      <div class="panel rv">
+        <p class="eyebrow">Where it goes · 03</p>
+        <h3 style="margin-top:12px">Feet, and everything else</h3>
+        <p style="color:var(--ink-soft);margin-top:14px">Red arrived 250 pounds underweight with serious
+           hoof issues on top of it. Weight is rarely the only thing wrong with a neglected horse, and the
+           rest of it does not wait politely for the weight to come back.</p>
+        <p class="give-src"><a href="#/alumni" data-nav>From Red's file &rarr;</a></p>
+      </div>
+      <div class="panel rv">
+        <p class="eyebrow">Where it goes · 04</p>
+        <h3 style="margin-top:12px">Months, not weeks</h3>
+        <p style="color:var(--ink-soft);margin-top:14px">Three to ten months to bring body condition back.
+           Captain took well over a year. Every one of those days is fed, bedded, watched and written
+           down — long after anyone else has stopped paying attention.</p>
+        <p class="give-src"><a href="#/alumni" data-nav>From Captain's file &rarr;</a></p>
+      </div>
+    </div>
+
+    <p class="note rv" style="margin-top:clamp(26px,3vw,40px);max-width:78ch">This concept carries no dollar
+       figures beyond the one the rescue already publishes. What a week of feed, a farrier visit or a full
+       rehabilitation actually costs would make this page considerably stronger — those numbers are the
+       board's to give.</p>
+  </div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Two ways</p>
+      <h2>How to give.</h2>
+    </div>
     <div class="cols2">
       <div class="panel rv">
         <p class="eyebrow">By post</p>
