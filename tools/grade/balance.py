@@ -21,7 +21,7 @@ LIFT = 0.05
 LUMA = (0.2126, 0.7152, 0.0722)
 
 def collect(clip, frames=6, per_frame=1200):
-    dur, full, tenbit = probe(clip)
+    dur, full, tenbit, w, h, fps = probe(clip)
     px = []
     with tempfile.TemporaryDirectory() as d:
         for fp in sample_frames(clip, frames, dur, d):
@@ -29,7 +29,7 @@ def collect(clip, frames=6, per_frame=1200):
             data = list(im.getdata())
             step = max(1, len(data)//per_frame)
             px += [tuple(v/255.0 for v in p) for p in data[::step]]
-    return px, dur, full, tenbit
+    return px, dur, full, tenbit, w, h, fps
 
 def percentiles(px, look, qs=(0.01, 0.50)):
     ys = []
@@ -43,7 +43,7 @@ def percentiles(px, look, qs=(0.01, 0.50)):
 def solve(clip, wb_r=1.0, wb_b=1.0, look_kw=None, frames=6):
     """Bisect exposure to put the midtone on target, then toe for the shadows."""
     look_kw = look_kw or {}
-    px, dur, full, tenbit = collect(clip, frames=frames)
+    px, dur, full, tenbit, w, h, fps = collect(clip, frames=frames)
     if not px: return None
     def mk(exp, lift, toe=0.38):
         return Look(exposure=exp, toe=toe, lift=lift, legal_range=not full,
@@ -66,6 +66,7 @@ def solve(clip, wb_r=1.0, wb_b=1.0, look_kw=None, frames=6):
     p1, p50 = percentiles(px, final, qs=(0.01, 0.50))
     return {"exposure": exposure, "lift": lift, "toe": 0.38, "full_range": full,
             "ten_bit": tenbit, "duration": round(dur,2),
+            "w": w, "h": h, "fps": fps,
             "p1": round(p1*255), "p50": round(p50*255)}
 
 if __name__ == "__main__":

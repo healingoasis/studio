@@ -8,7 +8,7 @@ reports (a) the white balance gains needed to neutralise the scene and
 step: without it, one look across 99 clips shot in different light is a preset,
 not a grade.
 """
-import subprocess, sys, os, json, argparse, tempfile
+import subprocess, sys, os, json, argparse, tempfile, re
 from PIL import Image
 from lut import slog3_to_linear, M, Look, grade_rgb
 
@@ -16,16 +16,31 @@ FF = "/Users/danielrivera/studio/tools/ffmpeg"
 
 def probe(path):
     out = subprocess.run([FF, "-i", path], capture_output=True, text=True).stderr
-    dur = 0.0
+    dur, full, tenbit, w, h, fps = 0.0, False, False, 1920, 1080, 30.0
     for line in out.splitlines():
         if "Duration:" in line:
             t = line.split("Duration:")[1].split(",")[0].strip()
-            h, m, s = t.split(":"); dur = int(h)*3600 + int(m)*60 + float(s)
+            hh, mm, ss = t.split(":"); dur = int(hh)*3600 + int(mm)*60 + float(ss)
         if "Stream #0:0" in line and "Video:" in line:
             full = "(pc" in line or "yuvj" in line
             tenbit = "p10" in line
-            res = [w for w in line.split() if "x" in w and w.replace("x","").isdigit()]
-    return dur, full, tenbit
+            for tok in line.replace(",", " ").split():
+                a = tok.split("x")
+                if len(a) == 2 and a[0].isdigit() and a[1].isdigit() and int(a[0]) > 300:
+                    w, h = int(a[0]), int(a[1])
+            m = re.search(r"([0-9.]+) fps", line)
+            if m: fps = float(m.group(1))
+    return dur, full, tenbit, w, h, fps
+
+def target_bitrate(w, h, fps):
+    """Scale the bitrate to what the clip actually is.
+
+    A flat rate wastes enormous space on the 1080p material -- the first run
+    turned a 1.07 GB 1080p clip into a 909 MB file, saving nothing. ~0.2 bits
+    per pixel-second is generous for HEVC and visually transparent here.
+    """
+    mbps = 0.20 * (w * h * fps) / 1e6
+    return f"{int(max(18, min(110, round(mbps))))}M"
 
 def sample_frames(path, n, dur, tmpd):
     """Pull n frames spread across the clip, avoiding the first/last second."""
@@ -42,7 +57,7 @@ def sample_frames(path, n, dur, tmpd):
     return paths
 
 def measure(path, frames=6):
-    dur, full, tenbit = probe(path)
+    dur, full, tenbit, _w, _h, _fps = probe(path)
     with tempfile.TemporaryDirectory() as tmpd:
         fps = sample_frames(path, frames, dur, tmpd)
         if not fps: return None

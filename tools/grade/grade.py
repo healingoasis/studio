@@ -7,14 +7,14 @@ surfaces this footage is full of -- pale walls, concrete floors -- and an 8-bit
 encode is the classic amateur tell.
 """
 import subprocess, os, sys, argparse, tempfile, json, time
-from analyze import measure, FF
+from analyze import measure, FF, probe, target_bitrate
 from balance import solve
 from lut import Look, write_cube
 
 # The look Daniel approved on C8181.
 LOOK = dict(toe=0.38, con=1.12, sat=1.28, scurve=0.30, split=1.05)
 
-def grade(clip, out, encoder="hw", bitrate="100M", crf=18, seconds=None,
+def grade(clip, out, encoder="hw", bitrate="auto", crf=18, seconds=None,
           lut_size=64, verbose=True):
     m = measure(clip, frames=6)
     if m is None:
@@ -25,6 +25,10 @@ def grade(clip, out, encoder="hw", bitrate="100M", crf=18, seconds=None,
     if b is None:
         return None, "could not balance"
     m.update(b)
+    if bitrate == "auto":
+        _d, _f, _t, w, h, fps = probe(clip)
+        bitrate = target_bitrate(w, h, fps)
+        m["bitrate"] = bitrate
     look = Look(exposure=b["exposure"], lift=b["lift"], toe=b["toe"],
                 contrast=LOOK["con"], saturation=LOOK["sat"],
                 scurve=LOOK["scurve"], split=LOOK["split"],
