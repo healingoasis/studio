@@ -564,6 +564,7 @@ p{margin:0}
 .hz-eye{fill:#1C1310} .hz-glint{fill:#FFFFFF;opacity:.55} .hz-nostril{fill:#4A2A18}
 .hz-hoof{fill:#2E251F;stroke:#1B1510;stroke-width:2} .hz-hoof-f{fill:#241D18}
 .sh-dark{fill:#4A2410} .sh-lite{fill:#F6D9B4}
+.sh-deep{fill:#241004} .sh-rim{fill:#FBE7C6}
 .hz-rib-d{fill:none;stroke:#5A2E12;stroke-width:3.5;stroke-linecap:round}
 .hz-rib-l{fill:none;stroke:#E6B584;stroke-width:2;stroke-linecap:round;transform:translate(6px,5px)}
 .hz-bonemark{fill:none;stroke:#5A2E12;stroke-width:4;stroke-linecap:round}
@@ -2472,33 +2473,60 @@ textarea.field-in{min-height:130px;resize:vertical}
         eb=h_P(p,"elbow_back"), cb=h_P(p,"crest_b"), tb=h_P(p,"thigh_back");
 
     var paths = [
-      { cls:"sh-dark", o:.5, d: h_blob([
+      /* the broad shadow up under the barrel */
+      { cls:"sh-dark", o:.52, d: h_blob([
           {x:fl.x,y:fl.y-4},{x:br.x,y:br.y+4},{x:bm.x,y:bm.y+4},{x:gi.x,y:gi.y-2},
-          {x:gi.x-10,y:gi.y-78},{x:bm.x,y:bm.y-72},{x:br.x,y:br.y-72},{x:fl.x+10,y:fl.y-74}]) },
-      { cls:"sh-lite", o:.55, d: h_blob([
+          {x:gi.x-10,y:gi.y-84},{x:bm.x,y:bm.y-78},{x:br.x,y:br.y-78},{x:fl.x+10,y:fl.y-80}]) },
+      /* light coming down onto the back */
+      { cls:"sh-lite", o:.58, d: h_blob([
           {x:wi.x,y:wi.y+6},{x:bf.x,y:bf.y+5},{x:b2.x,y:b2.y+5},{x:lo.x,y:lo.y+5},{x:cr.x,y:cr.y+6},
-          {x:cr.x-16,y:cr.y+62},{x:lo.x,y:lo.y+66},{x:b2.x,y:b2.y+68},{x:bf.x,y:bf.y+66},{x:wi.x+8,y:wi.y+58}]) },
-      { cls:"sh-dark", o:.42, d: h_blob([
+          {x:cr.x-16,y:cr.y+66},{x:lo.x,y:lo.y+70},{x:b2.x,y:b2.y+72},{x:bf.x,y:bf.y+70},{x:wi.x+8,y:wi.y+60}]) },
+      /* the seam where the hindquarter meets the barrel */
+      { cls:"sh-dark", o:.44, d: h_blob([
           {x:fl.x+34,y:fl.y-176},{x:fl.x+16,y:fl.y-96},{x:fl.x+4,y:fl.y-22},{x:st.x,y:st.y+6},
           {x:st.x+30,y:st.y+2},{x:fl.x+34,y:fl.y-28},{x:fl.x+46,y:fl.y-98},{x:fl.x+62,y:fl.y-176}]) },
-      { cls:"sh-dark", o:.36, d: h_blob([
+      /* behind the shoulder blade */
+      { cls:"sh-dark", o:.38, d: h_blob([
           {x:wi.x+10,y:wi.y+30},{x:wi.x-8,y:wi.y+118},{x:eb.x-22,y:eb.y-76},{x:eb.x-6,y:eb.y-14},
           {x:eb.x+24,y:eb.y-22},{x:wi.x+26,y:wi.y+116},{x:wi.x+38,y:wi.y+32}]) },
-      { cls:"sh-dark", o:.38, d: h_blob([
+      /* the dark under the chest, between the forelegs */
+      { cls:"sh-deep", o:.34, d: h_blob([
+          {x:ps.x-6,y:ps.y+54},{x:ps.x+6,y:ps.y+104},{x:eb.x+40,y:eb.y+4},
+          {x:eb.x+6,y:eb.y+22},{x:ps.x-30,y:ps.y+96}]) },
+      /* under the neck */
+      { cls:"sh-dark", o:.40, d: h_blob([
           {x:tl.x-6,y:tl.y+10},{x:nu.x-4,y:nu.y+6},{x:ps.x+4,y:ps.y+4},
           {x:ps.x-14,y:ps.y-40},{x:nu.x-34,y:nu.y-40},{x:tl.x-24,y:tl.y-26}]) },
-      { cls:"sh-dark", o:.30, d: h_blob([
+      /* the mane throwing shade down the crest */
+      { cls:"sh-dark", o:.34, d: h_blob([
           {x:cb.x+34,y:cb.y+12},{x:cb.x-10,y:cb.y+26},{x:cb.x-52,y:cb.y+46},
-          {x:cb.x-46,y:cb.y+64},{x:cb.x-4,y:cb.y+44},{x:cb.x+38,y:cb.y+30}]) }
+          {x:cb.x-46,y:cb.y+64},{x:cb.x-4,y:cb.y+44},{x:cb.x+38,y:cb.y+30}]) },
+
+      /* ── the deep end. A real animal goes almost black underneath. ── */
+      { cls:"sh-deep", o:.62, d: h_blob([
+          {x:fl.x+4,y:fl.y+2},{x:br.x,y:br.y+8},{x:bm.x,y:bm.y+8},{x:gi.x-4,y:gi.y+2},
+          {x:gi.x-14,y:gi.y-38},{x:bm.x,y:bm.y-34},{x:br.x,y:br.y-34},{x:fl.x+14,y:fl.y-34}]) },
+      { cls:"sh-deep", o:.5, d: h_blob([
+          {x:eb.x-10,y:eb.y-16},{x:eb.x+34,y:eb.y-10},{x:eb.x+44,y:eb.y+40},
+          {x:eb.x-4,y:eb.y+34},{x:eb.x-24,y:eb.y+8}]) },
+
     ];
 
     var ells = [
-      { cls:"sh-lite", o:.5,  cx:(cr.x+bu.x)/2+4, cy:(cr.y+st.y)/2-14, rx:96, ry:80, rot:-12 },
-      { cls:"sh-lite", o:.34, cx:(b2.x+bm.x)/2+8, cy:(b2.y+bm.y)/2+6,  rx:112, ry:62, rot:-4 },
-      { cls:"sh-dark", o:.34, cx:tb.x+26,         cy:tb.y+96,          rx:38, ry:78, rot:6 },
-      { cls:"sh-lite", o:.34, cx:816,             cy:520,              rx:26, ry:52, rot:2 },
-      { cls:"sh-dark", o:.30, cx:826,             cy:430,              rx:44, ry:44, rot:0 },
-      { cls:"sh-dark", o:.26, cx:1000,            cy:310,              rx:34, ry:44, rot:14 }
+      { cls:"sh-lite", o:.56, cx:(cr.x+bu.x)/2+4, cy:(cr.y+st.y)/2-14, rx:96, ry:80, rot:-12 },
+      { cls:"sh-lite", o:.38, cx:(b2.x+bm.x)/2+8, cy:(b2.y+bm.y)/2+6,  rx:112, ry:62, rot:-4 },
+      { cls:"sh-dark", o:.36, cx:tb.x+26,         cy:tb.y+96,          rx:38, ry:78, rot:6 },
+      { cls:"sh-lite", o:.36, cx:816,             cy:520,              rx:26, ry:52, rot:2 },
+      { cls:"sh-dark", o:.32, cx:826,             cy:430,              rx:44, ry:44, rot:0 },
+      { cls:"sh-dark", o:.26, cx:1000,            cy:310,              rx:34, ry:44, rot:14 },
+      { cls:"sh-dark", o:.30, cx:1000,            cy:288,              rx:36, ry:32, rot:-6 },
+      { cls:"sh-dark", o:.26, cx:1008,            cy:214,              rx:28, ry:20, rot:-12 },
+      { cls:"sh-deep", o:.30, cx:1034,            cy:334,              rx:46, ry:18, rot:12 },
+      { cls:"sh-dark", o:.34, cx:1086,            cy:322,              rx:30, ry:24, rot:16 },
+      /* where the far limbs disappear behind the near ones */
+      { cls:"sh-deep", o:.42, cx:748,             cy:470,              rx:44, ry:40, rot:0 },
+      { cls:"sh-deep", o:.38, cx:428,             cy:434,              rx:46, ry:40, rot:0 },
+      /* the croup, catching the most light on the whole animal */
     ];
     return { paths: paths, ells: ells };
   }
@@ -2657,8 +2685,8 @@ textarea.field-in{min-height:130px;resize:vertical}
     svg.innerHTML=
       '<defs>'+
         '<linearGradient id="hzCoat" x1="0" y1="0" x2="0.15" y2="1">'+
-          '<stop offset="0" stop-color="#D2894F"/><stop offset=".38" stop-color="#B3652F"/>'+
-          '<stop offset=".78" stop-color="#8E4A20"/><stop offset="1" stop-color="#6E3616"/></linearGradient>'+
+          '<stop offset="0" stop-color="#D68B4E"/><stop offset=".32" stop-color="#B3652E"/>'+
+          '<stop offset=".70" stop-color="#8A4519"/><stop offset="1" stop-color="#4E240C"/></linearGradient>'+
         '<linearGradient id="hzFar" x1="0" y1="0" x2="0" y2="1">'+
           '<stop offset="0" stop-color="#8A4A22"/><stop offset="1" stop-color="#5E2F13"/></linearGradient>'+
         '<linearGradient id="hzMane" x1="0" y1="0" x2="0" y2="1">'+
@@ -2679,10 +2707,9 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<path class="hz-tail" d=""/><g class="hz-tailhair">'+pathsG(4,"hz-hair")+'</g>'+
       '<path class="hz-body" d=""/>'+
       '<g clip-path="url(#hzClip)">'+
-        '<g class="hz-sha" filter="url(#hzSf)">'+pathsG(6,"")+'</g>'+
+        '<g class="hz-sha" filter="url(#hzSf)">'+pathsG(h_shading(5).paths.length,"")+'</g>'+
         '<g class="hz-shb" filter="url(#hzSg)">'+
-          '<ellipse/><ellipse/><ellipse/><ellipse/><ellipse/><ellipse/>'+
-          '<ellipse/><ellipse/><ellipse/><ellipse/><ellipse/><ellipse/></g>'+
+          new Array(h_shading(5).ells.length + h_hollows(5).length + 1).join("<ellipse/>")+'</g>'+
         '<path class="hz-blaze" d="'+H_BLAZE+'"/>'+
         '<rect class="hz-grain" x="290" y="60" width="880" height="700" filter="url(#hzGn)"/>'+
         '<g class="hz-detail">'+pathsG(5,"")+
@@ -2740,7 +2767,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     sh.paths.forEach(function(x,i){
       var el=HZ.sha[i]; if(!el)return;
       el.setAttribute("d",x.d); el.setAttribute("class",x.cls);
-      el.setAttribute("opacity", x.o*(x.cls==="sh-lite"?tn.lite:tn.dark));
+      el.setAttribute("opacity", x.o*(x.cls==="sh-lite"?tn.lite:x.cls==="sh-dark"?tn.dark:1));
     });
     sh.ells.forEach(function(e,i){
       var el=HZ.shb[i]; if(!el)return;
@@ -2748,10 +2775,10 @@ textarea.field-in{min-height:130px;resize:vertical}
       el.setAttribute("rx",e.rx); el.setAttribute("ry",e.ry);
       el.setAttribute("class",e.cls);
       el.setAttribute("transform","rotate("+e.rot+" "+e.cx+" "+e.cy+")");
-      el.setAttribute("opacity", e.o*(e.cls==="sh-lite"?tn.lite:tn.dark));
+      el.setAttribute("opacity", e.o*(e.cls==="sh-lite"?tn.lite:e.cls==="sh-dark"?tn.dark:1));
     });
     hl.forEach(function(e,i){
-      var el=HZ.shb[6+i]; if(!el)return;
+      var el=HZ.shb[h_shading(v).ells.length+i]; if(!el)return;
       el.setAttribute("cx",e.cx); el.setAttribute("cy",e.cy);
       el.setAttribute("rx",e.rx); el.setAttribute("ry",e.ry);
       el.setAttribute("class","sh-dark");
