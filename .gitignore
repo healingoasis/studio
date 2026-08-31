@@ -48,3 +48,4 @@ apps/*/carousel/thumb/
 apps/*/carousel/deliver/
 apps/*/review.html
 apps/*/carousel/review.html
+tools/ffmpeg
