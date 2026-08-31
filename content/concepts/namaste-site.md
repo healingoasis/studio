@@ -33,6 +33,15 @@ the tool makes that number mean something. Red's photograph sits below as the re
 no markers on it. System: Don Henneke, Texas A&M, 1983. Descriptions are written here, not
 copied from the chart; the cutaway is labelled as relative depth, not measurement.
 
+**The ones who made it out.** Red and Captain's files now carry a four-stage recovery track —
+intake, the ten dangerous days of refeeding, the long middle, and placement — with every stage
+tagged either *from the file* or *from the protocol*, so a reader can see which parts are the
+rescue's own record and which are the published refeeding plan. Nothing invents a number the
+rescue did not write down: no weekly weights, no Henneke scores on their horses, because the
+files do not contain them. Below the files, the two deficits are set against each other —
+Red at 250 lb, Captain at roughly 500 — because those two figures are the proof the place works.
+Kat's record stays as it is, with the missing photograph named rather than filled.
+
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
 refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding

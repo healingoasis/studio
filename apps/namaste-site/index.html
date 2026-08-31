@@ -217,6 +217,35 @@ p{margin:0}
   padding:24px;background:
    repeating-linear-gradient(45deg,var(--ground-deep) 0 10px,var(--surface-2) 10px 20px)}
 .nophoto span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.file-track{grid-column:1/-1;order:3;list-style:none;margin:0;
+  padding:0 clamp(26px,3.2vw,42px) clamp(26px,3.2vw,40px);
+  border-top:1px solid var(--rule-soft);display:grid;gap:clamp(16px,1.8vw,26px);
+  grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:900px){.file-track{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.file-track{grid-template-columns:1fr}}
+.tk{padding-top:18px;border-top:2px solid var(--rule);display:flex;flex-direction:column}
+.tk.is-file{border-top-color:var(--accent)}
+.tk-when{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint)}
+.tk h4{font-family:var(--display);font-weight:400;font-size:19px;margin-top:7px;line-height:1.2}
+.tk-t{margin-top:9px;margin-bottom:14px;font-size:14.5px;line-height:1.6;color:var(--ink-soft)}
+.tk-tag{align-self:flex-start;margin-top:auto;font-family:var(--mono);font-size:8.5px;
+  letter-spacing:.13em;text-transform:uppercase;padding:4px 9px;border-radius:20px}
+.tag-file{background:var(--accent-wash);color:var(--accent)}
+.tag-proto{background:var(--surface-2);color:var(--faint);border:1px solid var(--rule-soft)}
+
+.scaleof{margin-top:clamp(26px,3.2vw,44px);padding:clamp(24px,3vw,40px);
+  border:1px solid var(--rule);border-radius:20px;background:var(--surface)}
+.wbars{margin-top:28px;display:grid;gap:16px}
+.wbar{display:grid;grid-template-columns:110px minmax(0,1fr) 92px;gap:18px;align-items:center}
+@media(max-width:600px){.wbar{grid-template-columns:74px minmax(0,1fr) 74px;gap:10px}}
+.wb-name{font-family:var(--display);font-size:20px}
+.wb-track{height:28px;border-radius:7px;background:var(--surface-2);
+  border:1px solid var(--rule-soft);overflow:hidden}
+.wb-track i{display:block;height:100%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-bright))}
+.wb-n{font-family:var(--mono);font-size:15px;text-align:right;font-variant-numeric:tabular-nums}
+
 .file-body{padding:clamp(26px,3.2vw,42px)}
 .file-body h3{font-size:clamp(26px,3.2vw,36px);margin-top:12px;line-height:1.08}
 .file-body .quote{margin-top:20px;font-family:var(--display);font-style:italic;font-size:19px;
@@ -1136,6 +1165,12 @@ textarea.field-in{min-height:130px;resize:vertical}
             <div class="field"><dt>Status</dt><dd><b>Recovered · placed</b></dd></div>
           </dl>
         </div>
+        <ol class="file-track">
+          <li class="tk is-file"><p class="tk-when">Day 0</p><h4>Intake</h4><p class="tk-t">Extremely dehydrated and 250 pounds underweight, with serious hoof issues on top of it and what the file calls emotional challenges.</p><span class="tk-tag tag-file">From the file</span></li>
+          <li class="tk"><p class="tk-when">Days 1&ndash;10</p><h4>The dangerous part</h4><p class="tk-t">A pound of alfalfa every four hours, six feeds a day, no grain at all. Roughly one emaciated horse in five is lost in this stretch &mdash; right when everybody thinks the rescue is going well.</p><span class="tk-tag tag-proto">From the protocol</span></li>
+          <li class="tk"><p class="tk-when">Months</p><h4>Condition comes back</h4><p class="tk-t">Three to ten months to bring body condition back, in half&#8209;pound steps. Red's hooves had to be worked through across the same stretch.</p><span class="tk-tag tag-proto">From the protocol</span></li>
+          <li class="tk is-file"><p class="tk-when">Then</p><h4>Placed</h4><p class="tk-t">Recovered and placed. He cannot be sold on, leased or loaned without our approval, and a representative may check on him for the rest of his life.</p><span class="tk-tag tag-file">From the file</span></li>
+        </ol>
       </article>
 
       <article class="file flip rv">
@@ -1154,6 +1189,12 @@ textarea.field-in{min-height:130px;resize:vertical}
             <div class="field"><dt>Status</dt><dd><b>Recovered · placed</b></dd></div>
           </dl>
         </div>
+        <ol class="file-track">
+          <li class="tk is-file"><p class="tk-when">Day 0</p><h4>Intake</h4><p class="tk-t">Found loose in November 2015. Around 500 pounds underweight, and covered in sores and rain rot from end to end.</p><span class="tk-tag tag-file">From the file</span></li>
+          <li class="tk"><p class="tk-when">Days 1&ndash;10</p><h4>The dangerous part</h4><p class="tk-t">The same six small feeds a day, and the same risk. Nothing about being 500 pounds down lets you go faster; if anything it lets you go slower.</p><span class="tk-tag tag-proto">From the protocol</span></li>
+          <li class="tk is-file"><p class="tk-when">Over a year</p><h4>The long middle</h4><p class="tk-t">Well over a year of rehabilitation &mdash; longer than the three to ten months that bringing body condition back usually takes. The skin had to heal while the weight came back.</p><span class="tk-tag tag-file">From the file</span></li>
+          <li class="tk is-file"><p class="tk-when">Then</p><h4>Placed</h4><p class="tk-t">Recovered and placed, and checked on for the lifetime of the horse. The file never really closes.</p><span class="tk-tag tag-file">From the file</span></li>
+        </ol>
       </article>
 
       <article class="file rv">
@@ -1175,6 +1216,21 @@ textarea.field-in{min-height:130px;resize:vertical}
           <p class="note" style="margin-top:24px">The rescue's own page carries no photograph of Kat and no further detail. Rather than fill the gap with a stand-in horse, the record stays as it is. A proper photo session at the farm would fix this for every future intake.</p>
         </div>
       </article>
+    </div>
+
+    <div class="scaleof rv">
+      <p class="eyebrow">What they had to put back on</p>
+      <h2 style="margin-top:12px;font-size:clamp(26px,3.4vw,40px)">Two hundred and fifty pounds. Then five hundred.</h2>
+      <div class="wbars">
+        <div class="wbar"><span class="wb-name">Red</span>
+          <div class="wb-track"><i style="width:50%"></i></div><span class="wb-n">250 lb</span></div>
+        <div class="wbar"><span class="wb-name">Captain</span>
+          <div class="wb-track"><i style="width:100%"></i></div><span class="wb-n">&asymp;500 lb</span></div>
+      </div>
+      <p class="note" style="margin-top:26px;max-width:74ch">Both figures are the rescue's own, out of the
+         files above. Weight comes off a horse over months, and it goes back on over months. The second
+         half is the part that cannot be hurried, and it is the part most people get wrong.</p>
+      <a class="btn btn-line" style="margin-top:22px" href="#/learn" data-nav>Why you cannot just feed a starved horse</a>
     </div>
   </div>
 
