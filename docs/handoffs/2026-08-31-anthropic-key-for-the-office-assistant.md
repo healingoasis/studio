@@ -2,9 +2,9 @@
 
 ## What was built
 
-"Ask" — a new place in the enrollment portal's Console rail where the office can type a
-question about the school's own records and get an answer. Branch `prototype/accounting`
-on `github.com/healingoasis/portal`, commit `c39ccef`.
+"Ask" — a chat bubble in the bottom-left of the enrollment portal where the office can
+type a question about the school's own records and get an answer. Branch
+`prototype/accounting` on `github.com/healingoasis/portal`, through commit `6fdb2a0`.
 
 - `apps/admin/lib/ask/tools.ts` — seven read-only lookups over `loadStudents()` and
   `loadRoster()`: the whole school, one class, one person, who owes, the money (with a
@@ -12,7 +12,13 @@ on `github.com/healingoasis/portal`, commit `c39ccef`.
 - `apps/admin/lib/ask/system.ts` — instructions, cached as a fixed prefix.
 - `apps/admin/app/api/ask/route.ts` — streaming manual tool loop, `claude-opus-5`,
   adaptive thinking, low effort.
-- `apps/admin/components/ask-panel.tsx` — the panel, wired into the rail under Dashboard.
+- `apps/admin/components/ask-widget.tsx` — the bubble and its panel, mounted on both admin
+  screens (`LookConsole` and `app/page.tsx`) so it floats over whatever is already open.
+  It started as a rail item; Daniel asked for a bubble instead, because the question is
+  nearly always *about* the screen you are on and navigating away to ask it is the wrong
+  trade. The conversation lives in the widget and survives moving around underneath it.
+- `apps/admin/public/ask-avatar.jpg` — the avatar, a square crop of a photograph Daniel
+  supplied.
 
 Every lookup was checked against live data and ties out to the dashboard: 98 students,
 VSMT $139,700 collected, $16,488 outstanding across 3 students, VSMT Fall 2026 showing
@@ -29,7 +35,8 @@ It fails honestly rather than mysteriously — the panel says the key is missing
 it is one for you, instead of showing a generic error.
 
 **What is needed:** `ANTHROPIC_API_KEY` in `apps/admin/.env.local` for local work, and
-whatever the deployed portal uses in its own environment. The site chat next door
+whatever the deployed portal uses in its own environment. This is the only thing standing
+between Daniel and a working assistant. The site chat next door
 (`app/api/chat/route.ts`) already constructs `new Anthropic()` the same way, so if the
 deployed portal has a key configured, this needs nothing new there.
 
@@ -60,3 +67,14 @@ else in `2026-08-25-portal-storage-and-scopes.md`:
 
 Daniel's own rule for both, and it should survive into the build: the assistant proposes
 and waits for a yes before writing anything, and records which member of staff said it.
+
+## One cosmetic note
+
+The bubble sits slightly above the bottom-left corner rather than in it, because Next's
+dev-tools badge occupies that spot while running locally. If that badge is not present
+in the deployed build, it can drop to `bottom-5` in `ask-widget.tsx`.
+
+## Updated
+
+- 2026-08-31: written against the rail version (`c39ccef`); revised the same day when it
+  became a bubble (`6fdb2a0`). The blocker is unchanged — it is the key.
