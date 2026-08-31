@@ -277,15 +277,18 @@ export default function Portal({
   docs,
   shelves,
   photos,
+  initial_view = "student",
 }: {
   students: Student[];
   docs: DocMap;
   shelves: Shelves;
   /** When given, the page opens with the student's programme photograph. */
   photos?: Record<string, { src: string | null; alt: string }>;
+  /** Coming back from an office page should land on the office side, not the student. */
+  initial_view?: "student" | "office";
 }) {
   const router = useRouter();
-  const [view, set_view] = useState<"student" | "office">("student");
+  const [view, set_view] = useState<"student" | "office">(initial_view);
   const [current_id, set_current_id] = useState(students[0]?.student_id ?? "");
   const [filter, set_filter] = useState<Filter>("all");
   const [privacy, set_privacy] = useState(false);

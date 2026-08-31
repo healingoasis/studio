@@ -9,7 +9,16 @@ import Portal from "./portal";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default async function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ view?: string }>;
+}) {
+  // ?view=office opens straight onto the office side, which is where every link back
+  // from a class or a document folder points.
+  const { view } = await searchParams;
+  const initial_view = view === "office" ? "office" : "student";
+
   let students;
 
   try {
@@ -76,5 +85,12 @@ export default async function Page() {
     );
   }
 
-  return <Portal students={students} docs={docs} shelves={shelves} />;
+  return (
+    <Portal
+      students={students}
+      docs={docs}
+      shelves={shelves}
+      initial_view={initial_view}
+    />
+  );
 }
