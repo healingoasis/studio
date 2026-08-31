@@ -145,3 +145,21 @@ Photo / Drawing / Skeleton, photo first. Each medium does what it is good at: th
 shows *where*, the drawing shows *what each score looks like* (no photograph can be nine
 scores), the skeleton shows *why*. The detail plate follows the active view — a magnified
 background-position crop of the photograph, or `<use href="#hzArt">` on the drawing.
+
+
+## 2026-08-31, later still — a correction about mobile
+
+I told Daniel the site needed a mobile pass, on the strength of screenshots at
+`--window-size=390` that showed every page clipped down the right-hand edge.
+
+That was wrong, and the tooling caused it: **headless Chrome on macOS has a minimum window
+width of about 500px.** Asking for 390 renders at 500 and then crops the screenshot to 390,
+which looks exactly like horizontal overflow and is not.
+
+To get a true narrow viewport, load the page in an `<iframe width="390">` inside a wrapper page
+and screenshot the wrapper (with `--allow-file-access-from-files` if you also want to reach into
+the frame's DOM). Measured that way the Learn page reports `clientWidth 390, scrollWidth 390` —
+no overflow anywhere, and the only elements past the right edge are the cart drawer, which is
+parked off-screen deliberately.
+
+**Do not trust a narrow `--window-size` screenshot as a mobile check.**

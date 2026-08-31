@@ -56,6 +56,20 @@ publishes in its foster agreement. A visible note says so and asks the board for
 per-horse costs — a week of feed, a farrier visit, a full rehabilitation — which is the single
 change that would most improve this page.
 
+**Take it with you.** The Learn page ends with the two things that turn a reader into a
+supporter. **Print the chart** generates a genuine one-page Henneke reference — all nine
+silhouettes, the full nine-by-six matrix of descriptions, the rescue's phone number, the
+attribution, and the minimum-of-4 foster line — built from the same data as the tool, landscape,
+no signup required. It is the artifact to put on a barn wall. Beside it, an email capture offers
+the same chart by post, which on a live site would be the only thing on the website that turns a
+visitor into someone the rescue can reach again. Neither sends anything in this concept.
+
+**Give monthly.** The Donate page now leads its ask with recurring giving — a monthly/one-time
+toggle, four amounts, a custom field — argued from the rescue's own timelines rather than from
+fundraising theory: a horse takes three to ten months to bring back, and Captain took over a
+year, so a gift shaped the same way is worth more than the same money once. Nothing takes a
+payment here.
+
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
 refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding
