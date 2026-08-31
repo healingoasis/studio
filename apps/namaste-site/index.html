@@ -551,6 +551,41 @@ p{margin:0}
 .zoom-photo #bcsZoom{display:none}
 
 /* the horse. Coat colours are fixed in both themes — a chestnut is a chestnut. */
+/* The diagram view. A plate, not a painting: flat tone, one confident
+   line, and a dashed outline of the ideal to measure the score against. */
+:root{ --dg-fill:#DCD7E4; --dg-far:#C5BFD1; --dg-mane:#948DA4; --dg-line:#241F2E; }
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --dg-fill:#3A3345; --dg-far:#2C2735; --dg-mane:#6E6880; --dg-line:#E6E0F0; } }
+:root[data-theme="dark"]{ --dg-fill:#3A3345; --dg-far:#2C2735; --dg-mane:#6E6880;
+  --dg-line:#E6E0F0; }
+
+.hz-ref{fill:none;stroke:var(--accent);stroke-width:2.6;stroke-dasharray:11 8;
+  stroke-linecap:round;opacity:0}
+.bcs-legend{display:none;align-items:center;gap:8px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.bcs-legend i{display:block;width:26px;height:0;border-top:2.5px dashed var(--accent)}
+.flat .bcs-legend{display:inline-flex}
+.flat.at5 .bcs-legend{display:none}
+.bcs-figure:not(.flat) .hz-ref{display:none}
+.flat .hz-body{fill:var(--dg-fill)}
+.flat .hz-far{fill:var(--dg-far);stroke:var(--dg-line);stroke-width:2}
+.flat .hz-contour{stroke:var(--dg-line);stroke-width:2.6}
+.flat .hz-mane,.flat .hz-tail{fill:var(--dg-mane);stroke:var(--dg-line);stroke-width:2}
+.flat .hz-tail-edge{stroke:var(--dg-line)}
+.flat .hz-hair{stroke:var(--dg-line);opacity:.22}
+.flat .hz-ear{fill:var(--dg-fill);stroke:var(--dg-line);stroke-width:2.4}
+.flat .hz-eye{fill:var(--dg-line)}
+.flat .hz-hoof{fill:var(--dg-mane);stroke:var(--dg-line)}
+.flat .hz-hoof-f{fill:var(--dg-far)}
+.flat .hz-nostril{fill:var(--dg-line);opacity:.55}
+.flat .hz-cheek{stroke:var(--dg-line);opacity:.3}
+.flat .hz-rib-d{stroke:var(--dg-line);stroke-width:2.8}
+.flat .hz-bonemark{stroke:var(--dg-line);stroke-width:3.2}
+.flat .hz-ground{stroke:var(--rule);stroke-width:2}
+.flat .hz-sha,.flat .hz-shb,.flat .hz-grain,.flat .hz-detail,
+.flat .hz-blaze,.flat .hz-glint,.flat .hz-rib-l,.flat .hz-shadow{display:none}
+.flat.xray .hz-body{opacity:.3} .flat .hz-dim{display:none}
+
 .hz-shadow{fill:#2A1B12;opacity:.18}
 .hz-body{fill:url(#hzCoat)}
 .hz-far{fill:url(#hzFar);stroke:#4A2A14;stroke-width:2.5;stroke-linejoin:round}
@@ -1331,7 +1366,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       <h2>Score a horse in six places.</h2>
       <p class="lede">Body condition is not a guess and it is not a look. It is six places you put
          your hands, each scored one to nine, then averaged. The six places are marked here on
-         Captain, who came through this farm. Switch to the drawing to move through the nine
+         Captain, who came through this farm. Switch to the diagram to move through the nine
          scores and watch the same horse change shape.</p>
     </div>
 
@@ -1352,9 +1387,10 @@ textarea.field-in{min-height:130px;resize:vertical}
         </svg>
         <div class="bcs-foot">
           <span class="bcs-chip" id="bcsChip">5 · Moderate</span>
+          <span class="bcs-legend"><i></i>Dashed &middot; where an ideal 5 would sit</span>
           <div class="bcs-view" role="group" aria-label="What to show">
             <button type="button" data-view="photo" aria-pressed="true">Photo</button>
-            <button type="button" data-view="coat" aria-pressed="false">Drawing</button>
+            <button type="button" data-view="coat" aria-pressed="false">Diagram</button>
             <button type="button" data-view="skel" aria-pressed="false">Skeleton</button>
           </div>
         </div>
@@ -2381,6 +2417,16 @@ textarea.field-in{min-height:130px;resize:vertical}
   }
   function h_blob(pts){ return h_open(pts) + " Z" }
 
+  /* the ideal, as two open curves — the legs and head never move, so they
+     are left out rather than doubling the outline with a second line */
+  function h_refline(s){
+    var p = h_hpos(s);
+    var top = ["poll","crest_a","crest_b","crest_c","withers","back_fore","back_mid",
+               "loin","croup","tailhead","buttock","thigh_back"].map(function(k){ return h_P(p,k) });
+    var und = ["stifle","flank","belly_rear","belly_mid","girth","elbow_back"].map(function(k){ return h_P(p,k) });
+    return { top: h_open(top), under: h_open(und) };
+  }
+
   function h_points(s){
     var t = h_ht(s);
     return h_HPTS.map(function(q){
@@ -2728,6 +2774,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         '</g>'+
       '</g>'+
       '<path class="hz-contour" d=""/>'+
+      '<path class="hz-ref" d=""/>'+'<path class="hz-ref" d=""/>'+
       '<path class="hz-hoof" d="'+H_HOOF_NH+'"/><path class="hz-hoof" d="'+H_HOOF_NF+'"/>'+
       '<path class="hz-tail-edge" d=""/>'+
       '<path class="hz-mane" d=""/><g class="hz-manehair">'+pathsG(12,"hz-hair")+'</g>'+
@@ -2741,6 +2788,7 @@ textarea.field-in{min-height:130px;resize:vertical}
 
     var q=function(s){ return $$(s,svg) };
     HZ={ clip:$("#hzClip path",svg), body:$(".hz-body",svg), contour:$(".hz-contour",svg),
+         ref:$$(".hz-ref",svg),
          tail:$(".hz-tail",svg), tailEdge:$(".hz-tail-edge",svg), tailHair:q(".hz-tailhair path"),
          mane:q(".hz-mane"), maneHair:q(".hz-manehair path"),
          sha:q(".hz-sha path"), shb:q(".hz-shb ellipse"),
@@ -2759,6 +2807,9 @@ textarea.field-in{min-height:130px;resize:vertical}
     var out=h_outline(v), sh=h_shading(v), tn=h_tone(v),
         ho=h_hollowOpacity(v), ro=h_ribOpacity(v), bo=h_boneOpacity(v), hl=h_hollows(v);
     setD(HZ.clip,out); setD(HZ.body,out); setD(HZ.contour,out); setD(HZ.dim,out);
+    var rl=h_refline(5), ro2=Math.abs(v-5)<0.4 ? 0 : Math.min(1, Math.abs(v-5)/1.6)*0.7;
+    setD(HZ.ref[0],rl.top); setD(HZ.ref[1],rl.under);
+    HZ.ref[0].style.opacity=ro2; HZ.ref[1].style.opacity=ro2;
     setD(HZ.tail,h_tail(v)); setD(HZ.tailEdge,h_tail(v));
     h_tailHair(v).forEach(function(d,i){ setD(HZ.tailHair[i],d) });
     var mn=h_mane(v); setD(HZ.mane[0],mn); setD(HZ.mane[1],h_forelock(v));
@@ -2943,6 +2994,8 @@ textarea.field-in{min-height:130px;resize:vertical}
   function paintView(){
     var fig=$("#bcsFigure"); if(!fig)return;
     fig.classList.toggle("photo", bcsView==="photo");
+    fig.classList.toggle("flat",  bcsView!=="photo");
+    fig.classList.toggle("at5",   bcsScore===5);
     fig.classList.toggle("xray",  bcsView==="skel");
     $$(".bcs-view button").forEach(function(b){
       b.setAttribute("aria-pressed", String(b.dataset.view===bcsView));

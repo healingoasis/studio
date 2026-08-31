@@ -19,19 +19,16 @@ Every factual claim is sourced from namasteequinerescue.org, read page by page o
 The rescue's own words: *99% of our purpose was to educate horse owners.* Until now that was
 one paragraph. It is now a working tool, and it is the reason to send anyone to this site.
 
-**Score a horse in six places.** An interactive Henneke body condition scale with three views.
-**Photo** is the default and shows the six palpation sites marked on Captain — a real horse who
-came through this farm — measured off the photograph itself and cropped tight so the sites sit
-clear of each other. **Drawing** is a shaded anatomical horse in true lateral view: pick any
-score 1-9 and it changes shape, crest to tailhead, with the hollows of a starved horse opening
-up below a 4. **Skeleton** dims the coat and shows the bone underneath, which answers why those
-six places and not any other six. A detail plate magnifies whichever view you are in at the
-chosen site and says in words where exactly to put your hand; a cutaway shows what a hand
-presses through, with fat the only layer that moves; and a nine-horse row gives the whole scale
-at a glance, printable. The rescue's own foster agreement already requires a minimum of 4, so
-the tool makes that number mean something. Red's photograph sits below as the real case, with
-no markers on it. System: Don Henneke, Texas A&M, 1983. Descriptions are written here, not
-copied from the chart; the cutaway is labelled as relative depth, not measurement.
+**Score a horse in six places.** An interactive Henneke scale with three views. **Photo** is the
+default: the six sites marked on Captain, a real horse who came through this farm, measured off
+the photograph and cropped tight so they sit clear of each other. **Diagram** is a flat plate,
+deliberately not a painting — a photograph and a half-rendered illustration side by side make the
+illustration look cheap, so the diagram commits to being a diagram. Pick any score 1-9 and it
+changes shape, and a dashed line shows where an ideal 5 would sit, along the topline and the
+underline: the one thing a photograph cannot do. **Skeleton** ghosts the body back and shows the
+bone, which answers why those six places and not any other six. A detail plate magnifies whichever
+view you are in; a cutaway shows what a hand presses through; a nine-horse row gives the whole
+scale at a glance and prints. System: Don Henneke, Texas A&M, 1983. Descriptions written here.
 
 **The ones who made it out.** Red and Captain's files now carry a four-stage recovery track —
 intake, the ten dangerous days of refeeding, the long middle, and placement — with every stage

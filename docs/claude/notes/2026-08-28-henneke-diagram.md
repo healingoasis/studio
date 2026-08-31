@@ -163,3 +163,34 @@ no overflow anywhere, and the only elements past the right edge are the cart dra
 parked off-screen deliberately.
 
 **Do not trust a narrow `--window-size` screenshot as a mobile check.**
+
+
+## 2026-08-31, finally — stop painting, start diagramming
+
+Four rounds of "make the drawing better", each answered with a slightly better painting. The
+diagnosis I should have reached on round one:
+
+**The drawing looked cheap because it sat one button away from a photograph.** Too rendered to
+read as a diagram, not real enough to pass as a photo — the uncanny middle. Daniel never once
+complained about the nine flat silhouettes at the bottom of the same page, because those are
+confidently a diagram and are not pretending to be anything else.
+
+So the Diagram view is now flat: one tone, one contour, no gradients, no blurred shading, no
+coat grain, no surface-anatomy lines. All of that is switched off by a single `.flat` class on
+the figure rather than removed, so the painted version is still there in the file if it is ever
+wanted.
+
+And it gained the thing that justifies a diagram existing next to a photograph: `h_refline()`
+draws the topline and underline of an ideal 5 as a dashed overlay, so at a 2 you can see exactly
+how far the back has dropped and the belly tucked. Legs and head are left out of it — condition
+does not move them, and including them just doubled the outline.
+
+### Two bugs, one cause
+
+`setAttribute("opacity", …)` on an element whose class also sets `opacity` in CSS does nothing —
+**CSS beats presentation attributes.** It bit the reference outline (stuck at 0) and the rib
+marks (stuck at 1, so ribs showed on a fat horse). Use `el.style.opacity` when a class may also
+set it.
+
+Also: an overlay drawn *under* an opaque body is invisible wherever the body is larger. The
+reference had to move above the contour.
