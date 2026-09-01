@@ -641,11 +641,13 @@ p{margin:0}
 .hz-detail{transition:opacity .32s}
 
 /* the detail plate: the same drawing, magnified */
-.zoombox{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
-  gap:clamp(20px,2.8vw,40px);align-items:center;margin-top:clamp(26px,3.4vw,44px);
-  padding:clamp(18px,2.4vw,30px);border:1px solid var(--rule);border-radius:20px;
+.zoombox{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);
+  gap:clamp(14px,1.8vw,22px);align-items:center;margin-top:14px;
+  padding:clamp(14px,1.6vw,20px);border:1px solid var(--rule);border-radius:16px;
   background:var(--surface)}
-@media(max-width:860px){.zoombox{grid-template-columns:1fr}}
+@media(max-width:560px){.zoombox{grid-template-columns:1fr}}
+.zoombox .zm-where{margin-top:9px;font-size:15px;line-height:1.52}
+.zoombox .zm-feel{margin-top:9px;font-size:13.5px;line-height:1.5}
 #bcsZoom{width:100%;height:auto;display:block;border-radius:14px;
   background:var(--surface-2);border:1px solid var(--rule-soft)}
 .zm-ring{fill:none;stroke:var(--accent);stroke-width:4}
@@ -1380,25 +1382,36 @@ textarea.field-in{min-height:130px;resize:vertical}
     </div>
 
     <div class="bcs">
-      <div class="bcs-figure rv photo" id="bcsFigure">
-        <div class="bcs-photo" id="bcsPhoto">
-          <img src="data:image/jpeg;base64,{{BCSHORSE}}" alt="Captain, a black quarter horse standing side-on, with the six body-condition scoring sites marked on him">
-          <button class="pp" data-a="0" style="left:61.67%;top:29.17%" aria-pressed="false" aria-label="Site 1, Neck, along the crest"><span>1</span></button>
-          <button class="pp" data-a="1" style="left:56.25%;top:33.41%" aria-pressed="false" aria-label="Site 2, Withers, over the wither"><span>2</span></button>
-          <button class="pp" data-a="2" style="left:53.12%;top:50.38%" aria-pressed="false" aria-label="Site 3, Shoulder, behind the shoulder"><span>3</span></button>
-          <button class="pp" data-a="3" style="left:44.79%;top:47.95%" aria-pressed="false" aria-label="Site 4, Ribs, across the barrel"><span>4</span></button>
-          <button class="pp" data-a="4" style="left:34.38%;top:38.26%" aria-pressed="false" aria-label="Site 5, Loin, along the loin"><span>5</span></button>
-          <button class="pp" data-a="5" style="left:28.50%;top:41.00%" aria-pressed="false" aria-label="Site 6, Tailhead, beside the dock"><span>6</span></button>
-          <span class="bcs-cap" id="bcsCap">Captain &middot; the six places, on a real horse</span>
+      <div class="bcs-left">
+        <div class="bcs-figure rv photo" id="bcsFigure">
+          <div class="bcs-photo" id="bcsPhoto">
+            <img src="data:image/jpeg;base64,{{BCSHORSE}}" alt="Captain, a black quarter horse standing side-on, with the six body-condition scoring sites marked on him">
+            <button class="pp" data-a="0" style="left:61.67%;top:29.17%" aria-pressed="false" aria-label="Place 1, Neck, along the crest"><span>1</span></button>
+            <button class="pp" data-a="1" style="left:56.25%;top:33.41%" aria-pressed="false" aria-label="Place 2, Withers, over the wither"><span>2</span></button>
+            <button class="pp" data-a="2" style="left:53.12%;top:50.38%" aria-pressed="false" aria-label="Place 3, Shoulder, behind the shoulder"><span>3</span></button>
+            <button class="pp" data-a="3" style="left:44.79%;top:47.95%" aria-pressed="false" aria-label="Place 4, Ribs, across the barrel"><span>4</span></button>
+            <button class="pp" data-a="4" style="left:34.38%;top:38.26%" aria-pressed="false" aria-label="Place 5, Loin, along the loin"><span>5</span></button>
+            <button class="pp" data-a="5" style="left:28.50%;top:41.00%" aria-pressed="false" aria-label="Place 6, Tailhead, beside the dock"><span>6</span></button>
+            <span class="bcs-cap" id="bcsCap">Captain &middot; the six places, on a real horse</span>
+          </div>
+          <svg id="bcsHorse" viewBox="300 76 848 664" role="img" aria-labelledby="bcsHorseTitle">
+            <title id="bcsHorseTitle">A horse in side view, with the six body-condition scoring sites marked on the body</title>
+          </svg>
+          <div class="bcs-foot">
+            <span class="bcs-chip" id="bcsChip">5 · Moderate</span>
+            <span class="bcs-legend"><i></i>Dashed &middot; where an ideal 5 would sit</span>
+            <span class="bcs-foot-note">The six places, on a real horse</span>
+          </div>
         </div>
-        <svg id="bcsHorse" viewBox="300 76 848 664" role="img" aria-labelledby="bcsHorseTitle">
-          <title id="bcsHorseTitle">A horse in side view, with the six body-condition scoring sites marked on the body</title>
-        </svg>
-        <div class="bcs-foot">
-          <span class="bcs-chip" id="bcsChip">5 · Moderate</span>
-          <span class="bcs-legend"><i></i>Dashed &middot; where an ideal 5 would sit</span>
-          <span class="bcs-foot-note">Tap a number to open that place up</span>
+
+      <div class="zoombox rv">
+        <div class="zoomwrap">
+          <div id="bcsZoomPhoto" aria-hidden="true"><span class="zm-mark"></span></div>
+          <svg id="bcsZoom" viewBox="0 0 300 232" role="img"
+               aria-label="The chosen scoring site, magnified"></svg>
         </div>
+        <div id="bcsZoomRead"></div>
+      </div>
       </div>
 
       <div class="rv">
@@ -1417,15 +1430,6 @@ textarea.field-in{min-height:130px;resize:vertical}
         <p class="areas-head" id="bcsAreasHead"></p>
         <div class="areas" id="bcsAreas"></div>
       </div>
-    </div>
-
-    <div class="zoombox rv">
-      <div class="zoomwrap">
-        <div id="bcsZoomPhoto" aria-hidden="true"><span class="zm-mark"></span></div>
-        <svg id="bcsZoom" viewBox="0 0 300 232" role="img"
-             aria-label="The chosen scoring site, magnified"></svg>
-      </div>
-      <div id="bcsZoomRead"></div>
     </div>
 
     <div class="fatbox rv">
@@ -2995,7 +2999,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<circle class="zm-ring" cx="'+p.x+'" cy="'+p.y+'" r="46"/>'+
       '<circle class="zm-dot" cx="'+p.x+'" cy="'+p.y+'" r="9"/>';
     var s=BCS[bcsScore-1], t=$("#bcsZoomRead");
-    if(t) t.innerHTML='<span class="zm-eyebrow">Site '+(i+1)+' &middot; '+AREAS[i]+'</span>'+
+    if(t) t.innerHTML='<span class="zm-eyebrow">Place '+(i+1)+' &middot; '+AREAS[i]+'</span>'+
       '<p class="zm-where">'+SITE_WHERE[i]+'</p>'+
       '<p class="zm-feel"><b>At a '+s.n+':</b> '+s.a[i]+'.</p>';
   }
