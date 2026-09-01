@@ -53,7 +53,48 @@ can serve them, which is Firebase Storage — the same thing already sitting wit
 Until then it is fully usable by Daniel and demonstrable to the team, and the loader is
 the only piece that has to change.
 
+## Layer two: correcting a piece from the portal
+
+Daniel: "if there's a word or language that needs to be changed... the teammate would put
+that in the bot and then it would make the update, so they can download it and the next
+person gets the most recent version."
+
+Built the same day, because the artwork was never a flat picture. The words and the
+layout are **data** — that "226 Hours" slide is stored as
+`{ kind: 'hook', num: '226', big: 'hours of supervised education', sub: '...' }` — and the
+image is built from it. So a correction is a text change and a rebuild, which is
+repeatable and safe, rather than an image edit, which is not.
+
+The library now carries the campaign's own renderer beside the artwork, so a slide can be
+rebuilt without going back to the studio.
+
+- **Two ways to ask.** Plain words ("it should say hands-on, not supervised") which the
+  assistant turns into an exact field change; or edit the text directly, which needs no
+  API key and works today.
+- **Always previewed.** The slide is rebuilt and shown before it becomes the file the team
+  downloads. Text that fits in three words may not fit in six.
+- **Layout is a choice too.** The campaign's own nine layouts, swapped and re-rendered.
+  Verified: the same slide renders correctly as `hook`, `lead` and `stat`.
+- **Narrow on purpose.** Colours, photographs and positioning stay as the campaign made
+  them, and the assistant may only rewrite fields the slide already has. A typo fix must
+  not become a redesign nobody reviewed.
+- **Versions are kept.** The current file always has the plain name, so anybody
+  downloading gets the newest; what it replaced moves to `_history/`. Each change records
+  who asked, what they asked, and when.
+
+### What this does not cover
+
+- **Anything we did not generate.** A finished JPG or PDF from outside has no words behind
+  it; those can only be replaced, not corrected.
+- **Reels.** Same principle — they are built from source too — but re-rendering is video,
+  so minutes rather than seconds. Not wired up yet.
+- **"Make it pop."** Copy, prices, dates, names: fine. Judgement about design: not
+  something to hand to a bot unsupervised, which is why nothing saves unseen.
+
 ## Log
 
 - 2026-08-31: idea captured and built the same day. Layer one — the shelf, seeded with
   the three finished campaigns. Reaching the team needs the storage work with Dan.
+- 2026-08-31: layer two — corrections from inside the portal, with preview, versioning and
+  a layout picker. Portal commit `dc0d7bc`. The plain-words half needs the same Anthropic
+  key as the Ask assistant; editing the text by hand works without it.
