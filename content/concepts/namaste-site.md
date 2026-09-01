@@ -75,6 +75,14 @@ fundraising theory: a horse takes three to ten months to bring back, and Captain
 year, so a gift shaped the same way is worth more than the same money once. Nothing takes a
 payment here.
 
+**Score a horse.** The page stopped at teaching; now it lets someone actually do it. Six rows,
+one to nine on each, and it averages them and returns a verdict drawn only from what the rescue
+already publishes: below 3 is a veterinary call today and a call to the county sheriff if the
+horse is not yours; below 4 is under the minimum every Namaste foster horse is held at; 4 to 6
+is the healthy range. If one place scores three or more clear of the rest it says so, because a
+spread that wide is worth a second pass. Every place name is a link back up to that place on
+Captain. Labelled a teaching tool, not a diagnosis.
+
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
 refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding
