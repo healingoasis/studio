@@ -23,6 +23,9 @@ done
 for tool in node pnpm shopify gcloud; do
   if command -v "$tool" >/dev/null 2>&1; then
     echo "  installed: ${tool}"
+  elif [[ "$tool" == "gcloud" && -x "$HOME/.local/google-cloud-sdk/bin/gcloud" ]]; then
+    # Installed, but not on PATH in this shell yet. A new terminal window will find it.
+    echo "  installed: gcloud (open a new terminal window to use it by name)"
   else
     echo "  not installed: ${tool}"
   fi

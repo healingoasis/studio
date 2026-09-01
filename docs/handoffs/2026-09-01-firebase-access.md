@@ -1,5 +1,31 @@
 # Firebase access, and which project we actually mean
 
+> **RESOLVED THE SAME DAY — 1 September 2026. Nothing here needs Dan any more.**
+>
+> Daniel chose to authenticate through the Google Cloud CLI rather than wait for a
+> service account key, and did it himself. `gcloud` is installed at
+> `~/.local/google-cloud-sdk` (with a self-contained Python 3.12 at
+> `~/.local/gcloud-python`, because macOS ships 3.9 and gcloud will not run on it —
+> the SDK's own bundled Python is x86-only and this is an arm64 Mac). Daniel signed in
+> as `daniel@healingoasis.edu`. No key was issued and none is needed.
+>
+> **The project question is settled: `gcloud projects list` returns exactly one
+> project, `healing-oasis`. There is no `healing-io` and there never was.** The repo had
+> been carrying a project name that does not exist since it was set up, which is the
+> whole reason Firebase never connected. `.env.example`, `docs/tools.md` and `.env.local`
+> are corrected.
+>
+> **The student documents were never missing.** Firestore holds 76 order documents — 24
+> with a filled application, all 76 with a signature, 18 with documents attached — and
+> the Storage bucket holds 172 files (62 MB) of PDFs and license photographs. The
+> enrollments portal reported "Missing" because it was asking a project that does not
+> exist.
+>
+> Two things below are still real and still yours, unchanged by any of this:
+> **`read_draft_orders` on the Shopify app**, and **the durable-storage decision** —
+> where the office's own records get written, admin portal versus intake portal. Read
+> access to existing documents does not answer either one.
+
 Daniel asked for this directly on 1 September: he sent the Firebase console link and
 said he wants the studio to be able to reach it. This is the third time Firebase has
 come up — item 3 of `2026-08-25-portal-storage-and-scopes.md`, and again in
