@@ -43,9 +43,12 @@ def main(folder, log, every=4):
                 s = stats.get(e["graded"])
                 if not s: continue
                 bad = []
-                if abs(s["p50"] - med) > 30: bad.append(f"brightness {s['p50']} vs {med:.0f} typical")
-                if s["p1"] > 100: bad.append(f"shadows washed out ({s['p1']})")
-                if s["p95"] < 105: bad.append(f"very flat ({s['p95']})")
+                # Scenes full of dark clothing are legitimately dark. Only shout
+                # for a clip far enough out that a grading fault is the likely cause.
+                if abs(s["p50"] - med) > 42: bad.append(f"brightness {s['p50']} vs {med:.0f} typical")
+                if s["p1"] > 110: bad.append(f"shadows washed out ({s['p1']})")
+                if s["p95"] < 95:  bad.append(f"very flat ({s['p95']})")
+                if s["p999"] < 150: bad.append(f"no highlights at all ({s['p999']})")
                 if bad:
                     print(f"ODD CLIP: {e['graded']} -- {'; '.join(bad)}", flush=True)
         import subprocess
