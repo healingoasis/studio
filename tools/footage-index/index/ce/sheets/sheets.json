@@ -1,0 +1,5146 @@
+[
+ {
+  "sheet": 1,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_001.jpg",
+  "frames": [
+   {
+    "clip": "C6784",
+    "t": 2.0
+   },
+   {
+    "clip": "C6784",
+    "t": 6.0
+   },
+   {
+    "clip": "C6784",
+    "t": 10.0
+   },
+   {
+    "clip": "C6784",
+    "t": 14.0
+   },
+   {
+    "clip": "C6784",
+    "t": 26.0
+   },
+   {
+    "clip": "C6785",
+    "t": 2.0
+   },
+   {
+    "clip": "C6785",
+    "t": 6.0
+   },
+   {
+    "clip": "C6785",
+    "t": 10.0
+   },
+   {
+    "clip": "C6785",
+    "t": 14.0
+   },
+   {
+    "clip": "C6786",
+    "t": 2.0
+   },
+   {
+    "clip": "C6786",
+    "t": 6.0
+   },
+   {
+    "clip": "C6786",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 2,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_002.jpg",
+  "frames": [
+   {
+    "clip": "C6786",
+    "t": 14.0
+   },
+   {
+    "clip": "C6786",
+    "t": 18.0
+   },
+   {
+    "clip": "C6786",
+    "t": 22.0
+   },
+   {
+    "clip": "C6786",
+    "t": 26.0
+   },
+   {
+    "clip": "C6786",
+    "t": 30.0
+   },
+   {
+    "clip": "C6786",
+    "t": 42.0
+   },
+   {
+    "clip": "C6786",
+    "t": 46.0
+   },
+   {
+    "clip": "C6786",
+    "t": 50.0
+   },
+   {
+    "clip": "C6786",
+    "t": 54.0
+   },
+   {
+    "clip": "C6786",
+    "t": 58.0
+   },
+   {
+    "clip": "C6786",
+    "t": 62.0
+   },
+   {
+    "clip": "C6786",
+    "t": 66.0
+   }
+  ]
+ },
+ {
+  "sheet": 3,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_003.jpg",
+  "frames": [
+   {
+    "clip": "C6786",
+    "t": 70.0
+   },
+   {
+    "clip": "C6786",
+    "t": 74.0
+   },
+   {
+    "clip": "C6786",
+    "t": 78.0
+   },
+   {
+    "clip": "C6786",
+    "t": 82.0
+   },
+   {
+    "clip": "C6787",
+    "t": 2.0
+   },
+   {
+    "clip": "C6787",
+    "t": 6.0
+   },
+   {
+    "clip": "C6787",
+    "t": 10.0
+   },
+   {
+    "clip": "C6787",
+    "t": 14.0
+   },
+   {
+    "clip": "C6787",
+    "t": 18.0
+   },
+   {
+    "clip": "C6787",
+    "t": 22.0
+   },
+   {
+    "clip": "C6787",
+    "t": 26.0
+   },
+   {
+    "clip": "C6787",
+    "t": 34.0
+   }
+  ]
+ },
+ {
+  "sheet": 4,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_004.jpg",
+  "frames": [
+   {
+    "clip": "C6787",
+    "t": 38.0
+   },
+   {
+    "clip": "C6787",
+    "t": 42.0
+   },
+   {
+    "clip": "C6787",
+    "t": 46.0
+   },
+   {
+    "clip": "C6787",
+    "t": 50.0
+   },
+   {
+    "clip": "C6787",
+    "t": 54.0
+   },
+   {
+    "clip": "C6787",
+    "t": 58.0
+   },
+   {
+    "clip": "C6787",
+    "t": 62.0
+   },
+   {
+    "clip": "C6787",
+    "t": 66.0
+   },
+   {
+    "clip": "C6787",
+    "t": 70.0
+   },
+   {
+    "clip": "C6787",
+    "t": 74.0
+   },
+   {
+    "clip": "C6787",
+    "t": 78.0
+   },
+   {
+    "clip": "C6787",
+    "t": 82.0
+   }
+  ]
+ },
+ {
+  "sheet": 5,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_005.jpg",
+  "frames": [
+   {
+    "clip": "C6787",
+    "t": 86.0
+   },
+   {
+    "clip": "C6787",
+    "t": 90.0
+   },
+   {
+    "clip": "C6787",
+    "t": 94.0
+   },
+   {
+    "clip": "C6787",
+    "t": 98.0
+   },
+   {
+    "clip": "C6787",
+    "t": 102.0
+   },
+   {
+    "clip": "C6787",
+    "t": 106.0
+   },
+   {
+    "clip": "C6787",
+    "t": 110.0
+   },
+   {
+    "clip": "C6787",
+    "t": 114.0
+   },
+   {
+    "clip": "C6787",
+    "t": 118.0
+   },
+   {
+    "clip": "C6787",
+    "t": 122.0
+   },
+   {
+    "clip": "C6787",
+    "t": 126.0
+   },
+   {
+    "clip": "C6787",
+    "t": 130.0
+   }
+  ]
+ },
+ {
+  "sheet": 6,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_006.jpg",
+  "frames": [
+   {
+    "clip": "C6787",
+    "t": 134.0
+   },
+   {
+    "clip": "C6787",
+    "t": 138.0
+   },
+   {
+    "clip": "C6787",
+    "t": 142.0
+   },
+   {
+    "clip": "C6787",
+    "t": 146.0
+   },
+   {
+    "clip": "C6787",
+    "t": 150.0
+   },
+   {
+    "clip": "C6787",
+    "t": 154.0
+   },
+   {
+    "clip": "C6787",
+    "t": 158.0
+   },
+   {
+    "clip": "C6787",
+    "t": 162.0
+   },
+   {
+    "clip": "C6787",
+    "t": 166.0
+   },
+   {
+    "clip": "C6787",
+    "t": 170.0
+   },
+   {
+    "clip": "C6787",
+    "t": 174.0
+   },
+   {
+    "clip": "C6787",
+    "t": 178.0
+   }
+  ]
+ },
+ {
+  "sheet": 7,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_007.jpg",
+  "frames": [
+   {
+    "clip": "C6787",
+    "t": 182.0
+   },
+   {
+    "clip": "C6787",
+    "t": 186.0
+   },
+   {
+    "clip": "C6787",
+    "t": 190.0
+   },
+   {
+    "clip": "C6788",
+    "t": 2.0
+   },
+   {
+    "clip": "C6788",
+    "t": 6.0
+   },
+   {
+    "clip": "C6788",
+    "t": 10.0
+   },
+   {
+    "clip": "C6788",
+    "t": 14.0
+   },
+   {
+    "clip": "C6788",
+    "t": 22.0
+   },
+   {
+    "clip": "C6788",
+    "t": 26.0
+   },
+   {
+    "clip": "C6788",
+    "t": 30.0
+   },
+   {
+    "clip": "C6788",
+    "t": 34.0
+   },
+   {
+    "clip": "C6788",
+    "t": 38.0
+   }
+  ]
+ },
+ {
+  "sheet": 8,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_008.jpg",
+  "frames": [
+   {
+    "clip": "C6788",
+    "t": 42.0
+   },
+   {
+    "clip": "C6788",
+    "t": 46.0
+   },
+   {
+    "clip": "C6788",
+    "t": 50.0
+   },
+   {
+    "clip": "C6788",
+    "t": 54.0
+   },
+   {
+    "clip": "C6788",
+    "t": 58.0
+   },
+   {
+    "clip": "C6788",
+    "t": 62.0
+   },
+   {
+    "clip": "C6788",
+    "t": 66.0
+   },
+   {
+    "clip": "C6788",
+    "t": 70.0
+   },
+   {
+    "clip": "C6788",
+    "t": 74.0
+   },
+   {
+    "clip": "C6788",
+    "t": 78.0
+   },
+   {
+    "clip": "C6788",
+    "t": 82.0
+   },
+   {
+    "clip": "C6788",
+    "t": 86.0
+   }
+  ]
+ },
+ {
+  "sheet": 9,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_009.jpg",
+  "frames": [
+   {
+    "clip": "C6788",
+    "t": 90.0
+   },
+   {
+    "clip": "C6788",
+    "t": 94.0
+   },
+   {
+    "clip": "C6788",
+    "t": 106.0
+   },
+   {
+    "clip": "C6789",
+    "t": 2.0
+   },
+   {
+    "clip": "C6789",
+    "t": 6.0
+   },
+   {
+    "clip": "C6789",
+    "t": 10.0
+   },
+   {
+    "clip": "C6789",
+    "t": 14.0
+   },
+   {
+    "clip": "C6789",
+    "t": 18.0
+   },
+   {
+    "clip": "C6789",
+    "t": 22.0
+   },
+   {
+    "clip": "C6789",
+    "t": 26.0
+   },
+   {
+    "clip": "C6789",
+    "t": 30.0
+   },
+   {
+    "clip": "C6789",
+    "t": 34.0
+   }
+  ]
+ },
+ {
+  "sheet": 10,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_010.jpg",
+  "frames": [
+   {
+    "clip": "C6789",
+    "t": 42.0
+   },
+   {
+    "clip": "C6789",
+    "t": 46.0
+   },
+   {
+    "clip": "C6789",
+    "t": 50.0
+   },
+   {
+    "clip": "C6789",
+    "t": 62.0
+   },
+   {
+    "clip": "C6789",
+    "t": 66.0
+   },
+   {
+    "clip": "C6789",
+    "t": 70.0
+   },
+   {
+    "clip": "C6790",
+    "t": 2.0
+   },
+   {
+    "clip": "C6790",
+    "t": 6.0
+   },
+   {
+    "clip": "C6790",
+    "t": 10.0
+   },
+   {
+    "clip": "C6790",
+    "t": 14.0
+   },
+   {
+    "clip": "C6790",
+    "t": 18.0
+   },
+   {
+    "clip": "C6790",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 11,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_011.jpg",
+  "frames": [
+   {
+    "clip": "C6790",
+    "t": 26.0
+   },
+   {
+    "clip": "C6790",
+    "t": 30.0
+   },
+   {
+    "clip": "C6790",
+    "t": 34.0
+   },
+   {
+    "clip": "C6790",
+    "t": 38.0
+   },
+   {
+    "clip": "C6790",
+    "t": 42.0
+   },
+   {
+    "clip": "C6790",
+    "t": 46.0
+   },
+   {
+    "clip": "C6790",
+    "t": 50.0
+   },
+   {
+    "clip": "C6790",
+    "t": 58.0
+   },
+   {
+    "clip": "C6790",
+    "t": 62.0
+   },
+   {
+    "clip": "C6790",
+    "t": 66.0
+   },
+   {
+    "clip": "C6790",
+    "t": 70.0
+   },
+   {
+    "clip": "C6791",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 12,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_012.jpg",
+  "frames": [
+   {
+    "clip": "C6791",
+    "t": 10.0
+   },
+   {
+    "clip": "C6791",
+    "t": 18.0
+   },
+   {
+    "clip": "C6791",
+    "t": 22.0
+   },
+   {
+    "clip": "C6791",
+    "t": 26.0
+   },
+   {
+    "clip": "C6791",
+    "t": 30.0
+   },
+   {
+    "clip": "C6791",
+    "t": 42.0
+   },
+   {
+    "clip": "C6791",
+    "t": 46.0
+   },
+   {
+    "clip": "C6791",
+    "t": 50.0
+   },
+   {
+    "clip": "C6791",
+    "t": 54.0
+   },
+   {
+    "clip": "C6791",
+    "t": 58.0
+   },
+   {
+    "clip": "C6791",
+    "t": 62.0
+   },
+   {
+    "clip": "C6791",
+    "t": 66.0
+   }
+  ]
+ },
+ {
+  "sheet": 13,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_013.jpg",
+  "frames": [
+   {
+    "clip": "C6791",
+    "t": 70.0
+   },
+   {
+    "clip": "C6792",
+    "t": 2.0
+   },
+   {
+    "clip": "C6792",
+    "t": 6.0
+   },
+   {
+    "clip": "C6792",
+    "t": 10.0
+   },
+   {
+    "clip": "C6792",
+    "t": 14.0
+   },
+   {
+    "clip": "C6792",
+    "t": 18.0
+   },
+   {
+    "clip": "C6792",
+    "t": 22.0
+   },
+   {
+    "clip": "C6792",
+    "t": 26.0
+   },
+   {
+    "clip": "C6793",
+    "t": 2.0
+   },
+   {
+    "clip": "C6793",
+    "t": 10.0
+   },
+   {
+    "clip": "C6793",
+    "t": 14.0
+   },
+   {
+    "clip": "C6793",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 14,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_014.jpg",
+  "frames": [
+   {
+    "clip": "C6793",
+    "t": 26.0
+   },
+   {
+    "clip": "C6793",
+    "t": 34.0
+   },
+   {
+    "clip": "C6794",
+    "t": 2.0
+   },
+   {
+    "clip": "C6794",
+    "t": 6.0
+   },
+   {
+    "clip": "C6794",
+    "t": 10.0
+   },
+   {
+    "clip": "C6794",
+    "t": 14.0
+   },
+   {
+    "clip": "C6794",
+    "t": 18.0
+   },
+   {
+    "clip": "C6794",
+    "t": 22.0
+   },
+   {
+    "clip": "C6794",
+    "t": 34.0
+   },
+   {
+    "clip": "C6794",
+    "t": 38.0
+   },
+   {
+    "clip": "C6794",
+    "t": 42.0
+   },
+   {
+    "clip": "C6794",
+    "t": 46.0
+   }
+  ]
+ },
+ {
+  "sheet": 15,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_015.jpg",
+  "frames": [
+   {
+    "clip": "C6794",
+    "t": 50.0
+   },
+   {
+    "clip": "C6794",
+    "t": 54.0
+   },
+   {
+    "clip": "C6794",
+    "t": 58.0
+   },
+   {
+    "clip": "C6794",
+    "t": 62.0
+   },
+   {
+    "clip": "C6794",
+    "t": 66.0
+   },
+   {
+    "clip": "C6794",
+    "t": 70.0
+   },
+   {
+    "clip": "C6795",
+    "t": 2.0
+   },
+   {
+    "clip": "C6795",
+    "t": 6.0
+   },
+   {
+    "clip": "C6795",
+    "t": 10.0
+   },
+   {
+    "clip": "C6795",
+    "t": 14.0
+   },
+   {
+    "clip": "C6795",
+    "t": 18.0
+   },
+   {
+    "clip": "C6795",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 16,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_016.jpg",
+  "frames": [
+   {
+    "clip": "C6795",
+    "t": 26.0
+   },
+   {
+    "clip": "C6796",
+    "t": 2.0
+   },
+   {
+    "clip": "C6796",
+    "t": 6.0
+   },
+   {
+    "clip": "C6796",
+    "t": 10.0
+   },
+   {
+    "clip": "C6796",
+    "t": 14.0
+   },
+   {
+    "clip": "C6797",
+    "t": 2.0
+   },
+   {
+    "clip": "C6797",
+    "t": 6.0
+   },
+   {
+    "clip": "C6797",
+    "t": 10.0
+   },
+   {
+    "clip": "C6797",
+    "t": 14.0
+   },
+   {
+    "clip": "C6797",
+    "t": 18.0
+   },
+   {
+    "clip": "C6797",
+    "t": 22.0
+   },
+   {
+    "clip": "C6798",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 17,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_017.jpg",
+  "frames": [
+   {
+    "clip": "C6798",
+    "t": 6.0
+   },
+   {
+    "clip": "C6798",
+    "t": 10.0
+   },
+   {
+    "clip": "C6798",
+    "t": 14.0
+   },
+   {
+    "clip": "C6799",
+    "t": 2.0
+   },
+   {
+    "clip": "C6799",
+    "t": 6.0
+   },
+   {
+    "clip": "C6799",
+    "t": 10.0
+   },
+   {
+    "clip": "C6800",
+    "t": 2.0
+   },
+   {
+    "clip": "C6800",
+    "t": 6.0
+   },
+   {
+    "clip": "C6801",
+    "t": 2.0
+   },
+   {
+    "clip": "C6801",
+    "t": 6.0
+   },
+   {
+    "clip": "C6801",
+    "t": 10.0
+   },
+   {
+    "clip": "C6801",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 18,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_018.jpg",
+  "frames": [
+   {
+    "clip": "C6801",
+    "t": 18.0
+   },
+   {
+    "clip": "C6802",
+    "t": 2.0
+   },
+   {
+    "clip": "C6802",
+    "t": 6.0
+   },
+   {
+    "clip": "C6802",
+    "t": 10.0
+   },
+   {
+    "clip": "C6802",
+    "t": 14.0
+   },
+   {
+    "clip": "C6802",
+    "t": 18.0
+   },
+   {
+    "clip": "C6802",
+    "t": 22.0
+   },
+   {
+    "clip": "C6802",
+    "t": 26.0
+   },
+   {
+    "clip": "C6802",
+    "t": 30.0
+   },
+   {
+    "clip": "C6802",
+    "t": 34.0
+   },
+   {
+    "clip": "C6802",
+    "t": 38.0
+   },
+   {
+    "clip": "C6802",
+    "t": 42.0
+   }
+  ]
+ },
+ {
+  "sheet": 19,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_019.jpg",
+  "frames": [
+   {
+    "clip": "C6802",
+    "t": 46.0
+   },
+   {
+    "clip": "C6802",
+    "t": 50.0
+   },
+   {
+    "clip": "C6802",
+    "t": 54.0
+   },
+   {
+    "clip": "C6802",
+    "t": 58.0
+   },
+   {
+    "clip": "C6802",
+    "t": 62.0
+   },
+   {
+    "clip": "C6802",
+    "t": 66.0
+   },
+   {
+    "clip": "C6802",
+    "t": 70.0
+   },
+   {
+    "clip": "C6802",
+    "t": 74.0
+   },
+   {
+    "clip": "C6803",
+    "t": 2.0
+   },
+   {
+    "clip": "C6803",
+    "t": 6.0
+   },
+   {
+    "clip": "C6803",
+    "t": 10.0
+   },
+   {
+    "clip": "C6803",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 20,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_020.jpg",
+  "frames": [
+   {
+    "clip": "C6803",
+    "t": 18.0
+   },
+   {
+    "clip": "C6803",
+    "t": 22.0
+   },
+   {
+    "clip": "C6803",
+    "t": 26.0
+   },
+   {
+    "clip": "C6803",
+    "t": 30.0
+   },
+   {
+    "clip": "C6803",
+    "t": 34.0
+   },
+   {
+    "clip": "C6803",
+    "t": 38.0
+   },
+   {
+    "clip": "C6803",
+    "t": 42.0
+   },
+   {
+    "clip": "C6803",
+    "t": 46.0
+   },
+   {
+    "clip": "C6803",
+    "t": 50.0
+   },
+   {
+    "clip": "C6803",
+    "t": 54.0
+   },
+   {
+    "clip": "C6803",
+    "t": 58.0
+   },
+   {
+    "clip": "C6803",
+    "t": 62.0
+   }
+  ]
+ },
+ {
+  "sheet": 21,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_021.jpg",
+  "frames": [
+   {
+    "clip": "C6803",
+    "t": 66.0
+   },
+   {
+    "clip": "C6803",
+    "t": 70.0
+   },
+   {
+    "clip": "C6803",
+    "t": 74.0
+   },
+   {
+    "clip": "C6803",
+    "t": 78.0
+   },
+   {
+    "clip": "C6803",
+    "t": 82.0
+   },
+   {
+    "clip": "C6803",
+    "t": 86.0
+   },
+   {
+    "clip": "C6804",
+    "t": 2.0
+   },
+   {
+    "clip": "C6804",
+    "t": 6.0
+   },
+   {
+    "clip": "C6804",
+    "t": 10.0
+   },
+   {
+    "clip": "C6805",
+    "t": 2.0
+   },
+   {
+    "clip": "C6805",
+    "t": 6.0
+   },
+   {
+    "clip": "C6805",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 22,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_022.jpg",
+  "frames": [
+   {
+    "clip": "C6805",
+    "t": 14.0
+   },
+   {
+    "clip": "C6805",
+    "t": 18.0
+   },
+   {
+    "clip": "C6805",
+    "t": 22.0
+   },
+   {
+    "clip": "C6805",
+    "t": 26.0
+   },
+   {
+    "clip": "C6805",
+    "t": 30.0
+   },
+   {
+    "clip": "C6805",
+    "t": 34.0
+   },
+   {
+    "clip": "C6805",
+    "t": 38.0
+   },
+   {
+    "clip": "C6805",
+    "t": 42.0
+   },
+   {
+    "clip": "C6805",
+    "t": 46.0
+   },
+   {
+    "clip": "C6805",
+    "t": 50.0
+   },
+   {
+    "clip": "C6805",
+    "t": 54.0
+   },
+   {
+    "clip": "C6805",
+    "t": 58.0
+   }
+  ]
+ },
+ {
+  "sheet": 23,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_023.jpg",
+  "frames": [
+   {
+    "clip": "C6805",
+    "t": 62.0
+   },
+   {
+    "clip": "C6805",
+    "t": 66.0
+   },
+   {
+    "clip": "C6805",
+    "t": 70.0
+   },
+   {
+    "clip": "C6805",
+    "t": 74.0
+   },
+   {
+    "clip": "C6805",
+    "t": 78.0
+   },
+   {
+    "clip": "C6805",
+    "t": 82.0
+   },
+   {
+    "clip": "C6805",
+    "t": 86.0
+   },
+   {
+    "clip": "C6805",
+    "t": 90.0
+   },
+   {
+    "clip": "C6805",
+    "t": 94.0
+   },
+   {
+    "clip": "C6805",
+    "t": 98.0
+   },
+   {
+    "clip": "C6805",
+    "t": 102.0
+   },
+   {
+    "clip": "C6805",
+    "t": 106.0
+   }
+  ]
+ },
+ {
+  "sheet": 24,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_024.jpg",
+  "frames": [
+   {
+    "clip": "C6805",
+    "t": 110.0
+   },
+   {
+    "clip": "C6805",
+    "t": 114.0
+   },
+   {
+    "clip": "C6805",
+    "t": 118.0
+   },
+   {
+    "clip": "C6805",
+    "t": 122.0
+   },
+   {
+    "clip": "C6805",
+    "t": 126.0
+   },
+   {
+    "clip": "C6805",
+    "t": 130.0
+   },
+   {
+    "clip": "C6805",
+    "t": 134.0
+   },
+   {
+    "clip": "C6805",
+    "t": 138.0
+   },
+   {
+    "clip": "C6805",
+    "t": 142.0
+   },
+   {
+    "clip": "C6805",
+    "t": 146.0
+   },
+   {
+    "clip": "C6805",
+    "t": 150.0
+   },
+   {
+    "clip": "C6805",
+    "t": 154.0
+   }
+  ]
+ },
+ {
+  "sheet": 25,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_025.jpg",
+  "frames": [
+   {
+    "clip": "C6805",
+    "t": 158.0
+   },
+   {
+    "clip": "C6805",
+    "t": 162.0
+   },
+   {
+    "clip": "C6805",
+    "t": 166.0
+   },
+   {
+    "clip": "C6805",
+    "t": 170.0
+   },
+   {
+    "clip": "C6805",
+    "t": 174.0
+   },
+   {
+    "clip": "C6805",
+    "t": 178.0
+   },
+   {
+    "clip": "C6806",
+    "t": 2.0
+   },
+   {
+    "clip": "C6806",
+    "t": 6.0
+   },
+   {
+    "clip": "C6806",
+    "t": 10.0
+   },
+   {
+    "clip": "C6806",
+    "t": 14.0
+   },
+   {
+    "clip": "C6806",
+    "t": 18.0
+   },
+   {
+    "clip": "C6806",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 26,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_026.jpg",
+  "frames": [
+   {
+    "clip": "C6806",
+    "t": 26.0
+   },
+   {
+    "clip": "C6806",
+    "t": 30.0
+   },
+   {
+    "clip": "C6806",
+    "t": 34.0
+   },
+   {
+    "clip": "C6806",
+    "t": 38.0
+   },
+   {
+    "clip": "C6806",
+    "t": 42.0
+   },
+   {
+    "clip": "C6806",
+    "t": 46.0
+   },
+   {
+    "clip": "C6806",
+    "t": 50.0
+   },
+   {
+    "clip": "C6806",
+    "t": 54.0
+   },
+   {
+    "clip": "C6806",
+    "t": 58.0
+   },
+   {
+    "clip": "C6806",
+    "t": 62.0
+   },
+   {
+    "clip": "C6806",
+    "t": 66.0
+   },
+   {
+    "clip": "C6807",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 27,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_027.jpg",
+  "frames": [
+   {
+    "clip": "C6807",
+    "t": 6.0
+   },
+   {
+    "clip": "C6807",
+    "t": 10.0
+   },
+   {
+    "clip": "C6807",
+    "t": 14.0
+   },
+   {
+    "clip": "C6807",
+    "t": 18.0
+   },
+   {
+    "clip": "C6807",
+    "t": 22.0
+   },
+   {
+    "clip": "C6808",
+    "t": 2.0
+   },
+   {
+    "clip": "C6808",
+    "t": 6.0
+   },
+   {
+    "clip": "C6808",
+    "t": 10.0
+   },
+   {
+    "clip": "C6808",
+    "t": 14.0
+   },
+   {
+    "clip": "C6808",
+    "t": 18.0
+   },
+   {
+    "clip": "C6808",
+    "t": 22.0
+   },
+   {
+    "clip": "C6808",
+    "t": 26.0
+   }
+  ]
+ },
+ {
+  "sheet": 28,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_028.jpg",
+  "frames": [
+   {
+    "clip": "C6809",
+    "t": 2.0
+   },
+   {
+    "clip": "C6809",
+    "t": 6.0
+   },
+   {
+    "clip": "C6810",
+    "t": 2.0
+   },
+   {
+    "clip": "C6810",
+    "t": 6.0
+   },
+   {
+    "clip": "C6810",
+    "t": 10.0
+   },
+   {
+    "clip": "C6811",
+    "t": 2.0
+   },
+   {
+    "clip": "C6811",
+    "t": 6.0
+   },
+   {
+    "clip": "C6812",
+    "t": 2.0
+   },
+   {
+    "clip": "C6812",
+    "t": 6.0
+   },
+   {
+    "clip": "C6812",
+    "t": 10.0
+   },
+   {
+    "clip": "C6812",
+    "t": 14.0
+   },
+   {
+    "clip": "C6812",
+    "t": 18.0
+   }
+  ]
+ },
+ {
+  "sheet": 29,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_029.jpg",
+  "frames": [
+   {
+    "clip": "C6812",
+    "t": 22.0
+   },
+   {
+    "clip": "C6812",
+    "t": 26.0
+   },
+   {
+    "clip": "C6812",
+    "t": 30.0
+   },
+   {
+    "clip": "C6812",
+    "t": 34.0
+   },
+   {
+    "clip": "C6813",
+    "t": 2.0
+   },
+   {
+    "clip": "C6813",
+    "t": 6.0
+   },
+   {
+    "clip": "C6813",
+    "t": 10.0
+   },
+   {
+    "clip": "C6813",
+    "t": 14.0
+   },
+   {
+    "clip": "C6813",
+    "t": 18.0
+   },
+   {
+    "clip": "C6813",
+    "t": 22.0
+   },
+   {
+    "clip": "C6814",
+    "t": 2.0
+   },
+   {
+    "clip": "C6814",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 30,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_030.jpg",
+  "frames": [
+   {
+    "clip": "C6814",
+    "t": 10.0
+   },
+   {
+    "clip": "C6814",
+    "t": 14.0
+   },
+   {
+    "clip": "C6815",
+    "t": 2.0
+   },
+   {
+    "clip": "C6815",
+    "t": 6.0
+   },
+   {
+    "clip": "C6815",
+    "t": 10.0
+   },
+   {
+    "clip": "C6816",
+    "t": 2.0
+   },
+   {
+    "clip": "C6816",
+    "t": 6.0
+   },
+   {
+    "clip": "C6816",
+    "t": 10.0
+   },
+   {
+    "clip": "C6816",
+    "t": 14.0
+   },
+   {
+    "clip": "C6816",
+    "t": 18.0
+   },
+   {
+    "clip": "C6816",
+    "t": 22.0
+   },
+   {
+    "clip": "C6816",
+    "t": 26.0
+   }
+  ]
+ },
+ {
+  "sheet": 31,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_031.jpg",
+  "frames": [
+   {
+    "clip": "C6817",
+    "t": 2.0
+   },
+   {
+    "clip": "C6817",
+    "t": 6.0
+   },
+   {
+    "clip": "C6817",
+    "t": 10.0
+   },
+   {
+    "clip": "C6817",
+    "t": 14.0
+   },
+   {
+    "clip": "C6817",
+    "t": 18.0
+   },
+   {
+    "clip": "C6817",
+    "t": 22.0
+   },
+   {
+    "clip": "C6817",
+    "t": 26.0
+   },
+   {
+    "clip": "C6817",
+    "t": 30.0
+   },
+   {
+    "clip": "C6817",
+    "t": 34.0
+   },
+   {
+    "clip": "C6817",
+    "t": 38.0
+   },
+   {
+    "clip": "C6818",
+    "t": 2.0
+   },
+   {
+    "clip": "C6818",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 32,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_032.jpg",
+  "frames": [
+   {
+    "clip": "C6818",
+    "t": 10.0
+   },
+   {
+    "clip": "C6818",
+    "t": 14.0
+   },
+   {
+    "clip": "C6818",
+    "t": 18.0
+   },
+   {
+    "clip": "C6818",
+    "t": 22.0
+   },
+   {
+    "clip": "C6818",
+    "t": 26.0
+   },
+   {
+    "clip": "C6818",
+    "t": 30.0
+   },
+   {
+    "clip": "C6818",
+    "t": 34.0
+   },
+   {
+    "clip": "C6818",
+    "t": 38.0
+   },
+   {
+    "clip": "C6818",
+    "t": 42.0
+   },
+   {
+    "clip": "C6818",
+    "t": 46.0
+   },
+   {
+    "clip": "C6818",
+    "t": 50.0
+   },
+   {
+    "clip": "C6818",
+    "t": 54.0
+   }
+  ]
+ },
+ {
+  "sheet": 33,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_033.jpg",
+  "frames": [
+   {
+    "clip": "C6818",
+    "t": 58.0
+   },
+   {
+    "clip": "C6818",
+    "t": 62.0
+   },
+   {
+    "clip": "C6818",
+    "t": 66.0
+   },
+   {
+    "clip": "C6818",
+    "t": 70.0
+   },
+   {
+    "clip": "C6818",
+    "t": 74.0
+   },
+   {
+    "clip": "C6818",
+    "t": 78.0
+   },
+   {
+    "clip": "C6818",
+    "t": 82.0
+   },
+   {
+    "clip": "C6818",
+    "t": 86.0
+   },
+   {
+    "clip": "C6818",
+    "t": 90.0
+   },
+   {
+    "clip": "C6818",
+    "t": 94.0
+   },
+   {
+    "clip": "C6819",
+    "t": 2.0
+   },
+   {
+    "clip": "C6819",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 34,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_034.jpg",
+  "frames": [
+   {
+    "clip": "C6819",
+    "t": 10.0
+   },
+   {
+    "clip": "C6819",
+    "t": 14.0
+   },
+   {
+    "clip": "C6819",
+    "t": 18.0
+   },
+   {
+    "clip": "C6820",
+    "t": 2.0
+   },
+   {
+    "clip": "C6820",
+    "t": 6.0
+   },
+   {
+    "clip": "C6820",
+    "t": 10.0
+   },
+   {
+    "clip": "C6820",
+    "t": 14.0
+   },
+   {
+    "clip": "C6820",
+    "t": 18.0
+   },
+   {
+    "clip": "C6820",
+    "t": 22.0
+   },
+   {
+    "clip": "C6820",
+    "t": 26.0
+   },
+   {
+    "clip": "C6821",
+    "t": 2.0
+   },
+   {
+    "clip": "C6821",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 35,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_035.jpg",
+  "frames": [
+   {
+    "clip": "C6822",
+    "t": 2.0
+   },
+   {
+    "clip": "C6822",
+    "t": 6.0
+   },
+   {
+    "clip": "C6822",
+    "t": 10.0
+   },
+   {
+    "clip": "C6822",
+    "t": 14.0
+   },
+   {
+    "clip": "C6822",
+    "t": 18.0
+   },
+   {
+    "clip": "C6823",
+    "t": 2.0
+   },
+   {
+    "clip": "C6823",
+    "t": 6.0
+   },
+   {
+    "clip": "C6823",
+    "t": 10.0
+   },
+   {
+    "clip": "C6824",
+    "t": 2.0
+   },
+   {
+    "clip": "C6824",
+    "t": 6.0
+   },
+   {
+    "clip": "C6824",
+    "t": 10.0
+   },
+   {
+    "clip": "C6824",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 36,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_036.jpg",
+  "frames": [
+   {
+    "clip": "C6824",
+    "t": 18.0
+   },
+   {
+    "clip": "C6824",
+    "t": 22.0
+   },
+   {
+    "clip": "C6824",
+    "t": 26.0
+   },
+   {
+    "clip": "C6824",
+    "t": 30.0
+   },
+   {
+    "clip": "C6824",
+    "t": 34.0
+   },
+   {
+    "clip": "C6824",
+    "t": 38.0
+   },
+   {
+    "clip": "C6824",
+    "t": 42.0
+   },
+   {
+    "clip": "C6825",
+    "t": 2.0
+   },
+   {
+    "clip": "C6825",
+    "t": 6.0
+   },
+   {
+    "clip": "C6825",
+    "t": 10.0
+   },
+   {
+    "clip": "C6825",
+    "t": 14.0
+   },
+   {
+    "clip": "C6825",
+    "t": 18.0
+   }
+  ]
+ },
+ {
+  "sheet": 37,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_037.jpg",
+  "frames": [
+   {
+    "clip": "C6825",
+    "t": 22.0
+   },
+   {
+    "clip": "C6825",
+    "t": 26.0
+   },
+   {
+    "clip": "C6825",
+    "t": 30.0
+   },
+   {
+    "clip": "C6825",
+    "t": 34.0
+   },
+   {
+    "clip": "C6826",
+    "t": 2.0
+   },
+   {
+    "clip": "C6826",
+    "t": 6.0
+   },
+   {
+    "clip": "C6826",
+    "t": 10.0
+   },
+   {
+    "clip": "C6826",
+    "t": 14.0
+   },
+   {
+    "clip": "C6826",
+    "t": 18.0
+   },
+   {
+    "clip": "C6826",
+    "t": 22.0
+   },
+   {
+    "clip": "C6826",
+    "t": 26.0
+   },
+   {
+    "clip": "C6826",
+    "t": 30.0
+   }
+  ]
+ },
+ {
+  "sheet": 38,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_038.jpg",
+  "frames": [
+   {
+    "clip": "C6826",
+    "t": 34.0
+   },
+   {
+    "clip": "C6826",
+    "t": 38.0
+   },
+   {
+    "clip": "C6826",
+    "t": 42.0
+   },
+   {
+    "clip": "C6826",
+    "t": 46.0
+   },
+   {
+    "clip": "C6826",
+    "t": 50.0
+   },
+   {
+    "clip": "C6826",
+    "t": 54.0
+   },
+   {
+    "clip": "C6826",
+    "t": 58.0
+   },
+   {
+    "clip": "C6826",
+    "t": 62.0
+   },
+   {
+    "clip": "C6826",
+    "t": 66.0
+   },
+   {
+    "clip": "C6826",
+    "t": 70.0
+   },
+   {
+    "clip": "C6826",
+    "t": 74.0
+   },
+   {
+    "clip": "C6826",
+    "t": 78.0
+   }
+  ]
+ },
+ {
+  "sheet": 39,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_039.jpg",
+  "frames": [
+   {
+    "clip": "C6827",
+    "t": 2.0
+   },
+   {
+    "clip": "C6827",
+    "t": 6.0
+   },
+   {
+    "clip": "C6828",
+    "t": 2.0
+   },
+   {
+    "clip": "C6828",
+    "t": 6.0
+   },
+   {
+    "clip": "C6828",
+    "t": 10.0
+   },
+   {
+    "clip": "C6828",
+    "t": 14.0
+   },
+   {
+    "clip": "C6828",
+    "t": 18.0
+   },
+   {
+    "clip": "C6828",
+    "t": 22.0
+   },
+   {
+    "clip": "C6830",
+    "t": 2.0
+   },
+   {
+    "clip": "C6830",
+    "t": 6.0
+   },
+   {
+    "clip": "C6831",
+    "t": 2.0
+   },
+   {
+    "clip": "C6831",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 40,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_040.jpg",
+  "frames": [
+   {
+    "clip": "C6831",
+    "t": 10.0
+   },
+   {
+    "clip": "C6831",
+    "t": 14.0
+   },
+   {
+    "clip": "C6831",
+    "t": 18.0
+   },
+   {
+    "clip": "C6831",
+    "t": 22.0
+   },
+   {
+    "clip": "C6831",
+    "t": 26.0
+   },
+   {
+    "clip": "C6831",
+    "t": 30.0
+   },
+   {
+    "clip": "C6831",
+    "t": 34.0
+   },
+   {
+    "clip": "C6831",
+    "t": 38.0
+   },
+   {
+    "clip": "C6831",
+    "t": 42.0
+   },
+   {
+    "clip": "C6832",
+    "t": 2.0
+   },
+   {
+    "clip": "C6832",
+    "t": 6.0
+   },
+   {
+    "clip": "C6832",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 41,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_041.jpg",
+  "frames": [
+   {
+    "clip": "C6832",
+    "t": 14.0
+   },
+   {
+    "clip": "C6832",
+    "t": 18.0
+   },
+   {
+    "clip": "C6833",
+    "t": 2.0
+   },
+   {
+    "clip": "C6833",
+    "t": 6.0
+   },
+   {
+    "clip": "C6833",
+    "t": 10.0
+   },
+   {
+    "clip": "C6833",
+    "t": 14.0
+   },
+   {
+    "clip": "C6833",
+    "t": 18.0
+   },
+   {
+    "clip": "C6833",
+    "t": 22.0
+   },
+   {
+    "clip": "C6833",
+    "t": 26.0
+   },
+   {
+    "clip": "C6833",
+    "t": 34.0
+   },
+   {
+    "clip": "C6833",
+    "t": 38.0
+   },
+   {
+    "clip": "C6833",
+    "t": 42.0
+   }
+  ]
+ },
+ {
+  "sheet": 42,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_042.jpg",
+  "frames": [
+   {
+    "clip": "C6833",
+    "t": 50.0
+   },
+   {
+    "clip": "C6833",
+    "t": 58.0
+   },
+   {
+    "clip": "C6834",
+    "t": 2.0
+   },
+   {
+    "clip": "C6834",
+    "t": 6.0
+   },
+   {
+    "clip": "C6834",
+    "t": 10.0
+   },
+   {
+    "clip": "C6834",
+    "t": 14.0
+   },
+   {
+    "clip": "C6834",
+    "t": 18.0
+   },
+   {
+    "clip": "C6835",
+    "t": 2.0
+   },
+   {
+    "clip": "C6836",
+    "t": 2.0
+   },
+   {
+    "clip": "C6836",
+    "t": 6.0
+   },
+   {
+    "clip": "C6836",
+    "t": 10.0
+   },
+   {
+    "clip": "C6836",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 43,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_043.jpg",
+  "frames": [
+   {
+    "clip": "C6837",
+    "t": 2.0
+   },
+   {
+    "clip": "C6837",
+    "t": 6.0
+   },
+   {
+    "clip": "C6837",
+    "t": 10.0
+   },
+   {
+    "clip": "C6837",
+    "t": 14.0
+   },
+   {
+    "clip": "C6837",
+    "t": 18.0
+   },
+   {
+    "clip": "C6837",
+    "t": 22.0
+   },
+   {
+    "clip": "C6837",
+    "t": 26.0
+   },
+   {
+    "clip": "C6837",
+    "t": 30.0
+   },
+   {
+    "clip": "C6838",
+    "t": 2.0
+   },
+   {
+    "clip": "C6838",
+    "t": 6.0
+   },
+   {
+    "clip": "C6838",
+    "t": 10.0
+   },
+   {
+    "clip": "C6838",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 44,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_044.jpg",
+  "frames": [
+   {
+    "clip": "C6838",
+    "t": 18.0
+   },
+   {
+    "clip": "C6838",
+    "t": 22.0
+   },
+   {
+    "clip": "C6838",
+    "t": 26.0
+   },
+   {
+    "clip": "C6838",
+    "t": 30.0
+   },
+   {
+    "clip": "C6839",
+    "t": 2.0
+   },
+   {
+    "clip": "C6839",
+    "t": 6.0
+   },
+   {
+    "clip": "C6839",
+    "t": 10.0
+   },
+   {
+    "clip": "C6839",
+    "t": 14.0
+   },
+   {
+    "clip": "C6839",
+    "t": 18.0
+   },
+   {
+    "clip": "C6839",
+    "t": 22.0
+   },
+   {
+    "clip": "C6839",
+    "t": 26.0
+   },
+   {
+    "clip": "C6840",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 45,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_045.jpg",
+  "frames": [
+   {
+    "clip": "C6840",
+    "t": 6.0
+   },
+   {
+    "clip": "C6840",
+    "t": 10.0
+   },
+   {
+    "clip": "C6840",
+    "t": 14.0
+   },
+   {
+    "clip": "C6840",
+    "t": 18.0
+   },
+   {
+    "clip": "C6840",
+    "t": 22.0
+   },
+   {
+    "clip": "C6840",
+    "t": 26.0
+   },
+   {
+    "clip": "C6840",
+    "t": 30.0
+   },
+   {
+    "clip": "C6840",
+    "t": 34.0
+   },
+   {
+    "clip": "C6840",
+    "t": 38.0
+   },
+   {
+    "clip": "C6840",
+    "t": 42.0
+   },
+   {
+    "clip": "C6840",
+    "t": 46.0
+   },
+   {
+    "clip": "C6840",
+    "t": 50.0
+   }
+  ]
+ },
+ {
+  "sheet": 46,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_046.jpg",
+  "frames": [
+   {
+    "clip": "C6840",
+    "t": 54.0
+   },
+   {
+    "clip": "C6840",
+    "t": 58.0
+   },
+   {
+    "clip": "C6840",
+    "t": 62.0
+   },
+   {
+    "clip": "C6840",
+    "t": 66.0
+   },
+   {
+    "clip": "C6840",
+    "t": 74.0
+   },
+   {
+    "clip": "C6840",
+    "t": 78.0
+   },
+   {
+    "clip": "C6841",
+    "t": 2.0
+   },
+   {
+    "clip": "C6841",
+    "t": 6.0
+   },
+   {
+    "clip": "C6841",
+    "t": 10.0
+   },
+   {
+    "clip": "C6841",
+    "t": 14.0
+   },
+   {
+    "clip": "C6841",
+    "t": 18.0
+   },
+   {
+    "clip": "C6841",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 47,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_047.jpg",
+  "frames": [
+   {
+    "clip": "C6841",
+    "t": 26.0
+   },
+   {
+    "clip": "C6841",
+    "t": 30.0
+   },
+   {
+    "clip": "C6841",
+    "t": 34.0
+   },
+   {
+    "clip": "C6841",
+    "t": 38.0
+   },
+   {
+    "clip": "C6842",
+    "t": 2.0
+   },
+   {
+    "clip": "C6842",
+    "t": 6.0
+   },
+   {
+    "clip": "C6842",
+    "t": 10.0
+   },
+   {
+    "clip": "C6842",
+    "t": 14.0
+   },
+   {
+    "clip": "C6842",
+    "t": 18.0
+   },
+   {
+    "clip": "C6842",
+    "t": 22.0
+   },
+   {
+    "clip": "C6842",
+    "t": 26.0
+   },
+   {
+    "clip": "C6842",
+    "t": 30.0
+   }
+  ]
+ },
+ {
+  "sheet": 48,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_048.jpg",
+  "frames": [
+   {
+    "clip": "C6842",
+    "t": 34.0
+   },
+   {
+    "clip": "C6842",
+    "t": 38.0
+   },
+   {
+    "clip": "C6842",
+    "t": 42.0
+   },
+   {
+    "clip": "C6842",
+    "t": 46.0
+   },
+   {
+    "clip": "C6842",
+    "t": 50.0
+   },
+   {
+    "clip": "C6842",
+    "t": 54.0
+   },
+   {
+    "clip": "C6842",
+    "t": 58.0
+   },
+   {
+    "clip": "C6842",
+    "t": 62.0
+   },
+   {
+    "clip": "C6842",
+    "t": 66.0
+   },
+   {
+    "clip": "C6842",
+    "t": 70.0
+   },
+   {
+    "clip": "C6842",
+    "t": 74.0
+   },
+   {
+    "clip": "C6842",
+    "t": 78.0
+   }
+  ]
+ },
+ {
+  "sheet": 49,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_049.jpg",
+  "frames": [
+   {
+    "clip": "C6842",
+    "t": 82.0
+   },
+   {
+    "clip": "C6843",
+    "t": 2.0
+   },
+   {
+    "clip": "C6843",
+    "t": 6.0
+   },
+   {
+    "clip": "C6843",
+    "t": 10.0
+   },
+   {
+    "clip": "C6843",
+    "t": 14.0
+   },
+   {
+    "clip": "C6843",
+    "t": 18.0
+   },
+   {
+    "clip": "C6843",
+    "t": 22.0
+   },
+   {
+    "clip": "C6843",
+    "t": 26.0
+   },
+   {
+    "clip": "C6843",
+    "t": 30.0
+   },
+   {
+    "clip": "C6843",
+    "t": 34.0
+   },
+   {
+    "clip": "C6843",
+    "t": 38.0
+   },
+   {
+    "clip": "C6843",
+    "t": 42.0
+   }
+  ]
+ },
+ {
+  "sheet": 50,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_050.jpg",
+  "frames": [
+   {
+    "clip": "C6843",
+    "t": 46.0
+   },
+   {
+    "clip": "C6843",
+    "t": 50.0
+   },
+   {
+    "clip": "C6843",
+    "t": 54.0
+   },
+   {
+    "clip": "C6843",
+    "t": 58.0
+   },
+   {
+    "clip": "C6843",
+    "t": 70.0
+   },
+   {
+    "clip": "C6843",
+    "t": 74.0
+   },
+   {
+    "clip": "C6843",
+    "t": 78.0
+   },
+   {
+    "clip": "C6843",
+    "t": 82.0
+   },
+   {
+    "clip": "C6843",
+    "t": 86.0
+   },
+   {
+    "clip": "C6843",
+    "t": 90.0
+   },
+   {
+    "clip": "C6843",
+    "t": 94.0
+   },
+   {
+    "clip": "C6843",
+    "t": 98.0
+   }
+  ]
+ },
+ {
+  "sheet": 51,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_051.jpg",
+  "frames": [
+   {
+    "clip": "C6844",
+    "t": 2.0
+   },
+   {
+    "clip": "C6844",
+    "t": 6.0
+   },
+   {
+    "clip": "C6844",
+    "t": 10.0
+   },
+   {
+    "clip": "C6844",
+    "t": 14.0
+   },
+   {
+    "clip": "C6845",
+    "t": 2.0
+   },
+   {
+    "clip": "C6845",
+    "t": 6.0
+   },
+   {
+    "clip": "C6845",
+    "t": 10.0
+   },
+   {
+    "clip": "C6845",
+    "t": 14.0
+   },
+   {
+    "clip": "C6845",
+    "t": 22.0
+   },
+   {
+    "clip": "C6846",
+    "t": 2.0
+   },
+   {
+    "clip": "C6846",
+    "t": 6.0
+   },
+   {
+    "clip": "C6847",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 52,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_052.jpg",
+  "frames": [
+   {
+    "clip": "C6847",
+    "t": 6.0
+   },
+   {
+    "clip": "C6847",
+    "t": 10.0
+   },
+   {
+    "clip": "C6847",
+    "t": 14.0
+   },
+   {
+    "clip": "C6847",
+    "t": 18.0
+   },
+   {
+    "clip": "C6847",
+    "t": 22.0
+   },
+   {
+    "clip": "C6847",
+    "t": 26.0
+   },
+   {
+    "clip": "C6847",
+    "t": 30.0
+   },
+   {
+    "clip": "C6847",
+    "t": 34.0
+   },
+   {
+    "clip": "C6847",
+    "t": 38.0
+   },
+   {
+    "clip": "C6847",
+    "t": 42.0
+   },
+   {
+    "clip": "C6847",
+    "t": 50.0
+   },
+   {
+    "clip": "C6847",
+    "t": 58.0
+   }
+  ]
+ },
+ {
+  "sheet": 53,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_053.jpg",
+  "frames": [
+   {
+    "clip": "C6847",
+    "t": 62.0
+   },
+   {
+    "clip": "C6847",
+    "t": 66.0
+   },
+   {
+    "clip": "C6848",
+    "t": 2.0
+   },
+   {
+    "clip": "C6848",
+    "t": 6.0
+   },
+   {
+    "clip": "C6848",
+    "t": 10.0
+   },
+   {
+    "clip": "C6848",
+    "t": 14.0
+   },
+   {
+    "clip": "C6849",
+    "t": 2.0
+   },
+   {
+    "clip": "C6849",
+    "t": 6.0
+   },
+   {
+    "clip": "C6849",
+    "t": 10.0
+   },
+   {
+    "clip": "C6849",
+    "t": 14.0
+   },
+   {
+    "clip": "C6849",
+    "t": 18.0
+   },
+   {
+    "clip": "C6849",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 54,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_054.jpg",
+  "frames": [
+   {
+    "clip": "C6849",
+    "t": 26.0
+   },
+   {
+    "clip": "C6849",
+    "t": 30.0
+   },
+   {
+    "clip": "C6849",
+    "t": 34.0
+   },
+   {
+    "clip": "C6849",
+    "t": 38.0
+   },
+   {
+    "clip": "C6849",
+    "t": 42.0
+   },
+   {
+    "clip": "C6849",
+    "t": 50.0
+   },
+   {
+    "clip": "C6849",
+    "t": 54.0
+   },
+   {
+    "clip": "C6849",
+    "t": 58.0
+   },
+   {
+    "clip": "C6849",
+    "t": 62.0
+   },
+   {
+    "clip": "C6849",
+    "t": 66.0
+   },
+   {
+    "clip": "C6849",
+    "t": 70.0
+   },
+   {
+    "clip": "C6850",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 55,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_055.jpg",
+  "frames": [
+   {
+    "clip": "C6850",
+    "t": 6.0
+   },
+   {
+    "clip": "C6850",
+    "t": 10.0
+   },
+   {
+    "clip": "C6850",
+    "t": 14.0
+   },
+   {
+    "clip": "C6850",
+    "t": 18.0
+   },
+   {
+    "clip": "C6850",
+    "t": 22.0
+   },
+   {
+    "clip": "C6850",
+    "t": 26.0
+   },
+   {
+    "clip": "C6850",
+    "t": 30.0
+   },
+   {
+    "clip": "C6850",
+    "t": 38.0
+   },
+   {
+    "clip": "C6850",
+    "t": 42.0
+   },
+   {
+    "clip": "C6850",
+    "t": 46.0
+   },
+   {
+    "clip": "C6850",
+    "t": 50.0
+   },
+   {
+    "clip": "C6850",
+    "t": 54.0
+   }
+  ]
+ },
+ {
+  "sheet": 56,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_056.jpg",
+  "frames": [
+   {
+    "clip": "C6851",
+    "t": 2.0
+   },
+   {
+    "clip": "C6851",
+    "t": 6.0
+   },
+   {
+    "clip": "C6851",
+    "t": 10.0
+   },
+   {
+    "clip": "C6851",
+    "t": 14.0
+   },
+   {
+    "clip": "C6851",
+    "t": 18.0
+   },
+   {
+    "clip": "C6851",
+    "t": 22.0
+   },
+   {
+    "clip": "C6851",
+    "t": 26.0
+   },
+   {
+    "clip": "C6851",
+    "t": 30.0
+   },
+   {
+    "clip": "C6851",
+    "t": 34.0
+   },
+   {
+    "clip": "C6851",
+    "t": 38.0
+   },
+   {
+    "clip": "C6851",
+    "t": 42.0
+   },
+   {
+    "clip": "C6851",
+    "t": 46.0
+   }
+  ]
+ },
+ {
+  "sheet": 57,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_057.jpg",
+  "frames": [
+   {
+    "clip": "C6851",
+    "t": 50.0
+   },
+   {
+    "clip": "C6851",
+    "t": 54.0
+   },
+   {
+    "clip": "C6851",
+    "t": 58.0
+   },
+   {
+    "clip": "C6851",
+    "t": 62.0
+   },
+   {
+    "clip": "C6851",
+    "t": 66.0
+   },
+   {
+    "clip": "C6851",
+    "t": 74.0
+   },
+   {
+    "clip": "C6852",
+    "t": 2.0
+   },
+   {
+    "clip": "C6852",
+    "t": 6.0
+   },
+   {
+    "clip": "C6852",
+    "t": 14.0
+   },
+   {
+    "clip": "C6852",
+    "t": 18.0
+   },
+   {
+    "clip": "C6852",
+    "t": 22.0
+   },
+   {
+    "clip": "C6852",
+    "t": 26.0
+   }
+  ]
+ },
+ {
+  "sheet": 58,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_058.jpg",
+  "frames": [
+   {
+    "clip": "C6853",
+    "t": 2.0
+   },
+   {
+    "clip": "C6853",
+    "t": 6.0
+   },
+   {
+    "clip": "C6853",
+    "t": 10.0
+   },
+   {
+    "clip": "C6853",
+    "t": 14.0
+   },
+   {
+    "clip": "C6853",
+    "t": 18.0
+   },
+   {
+    "clip": "C6853",
+    "t": 22.0
+   },
+   {
+    "clip": "C6853",
+    "t": 26.0
+   },
+   {
+    "clip": "C6853",
+    "t": 30.0
+   },
+   {
+    "clip": "C6853",
+    "t": 34.0
+   },
+   {
+    "clip": "C6854",
+    "t": 2.0
+   },
+   {
+    "clip": "C6854",
+    "t": 6.0
+   },
+   {
+    "clip": "C6854",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 59,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_059.jpg",
+  "frames": [
+   {
+    "clip": "C6854",
+    "t": 14.0
+   },
+   {
+    "clip": "C6854",
+    "t": 18.0
+   },
+   {
+    "clip": "C6854",
+    "t": 22.0
+   },
+   {
+    "clip": "C6854",
+    "t": 26.0
+   },
+   {
+    "clip": "C6854",
+    "t": 30.0
+   },
+   {
+    "clip": "C6854",
+    "t": 34.0
+   },
+   {
+    "clip": "C6854",
+    "t": 38.0
+   },
+   {
+    "clip": "C6854",
+    "t": 46.0
+   },
+   {
+    "clip": "C6854",
+    "t": 50.0
+   },
+   {
+    "clip": "C6854",
+    "t": 54.0
+   },
+   {
+    "clip": "C6854",
+    "t": 58.0
+   },
+   {
+    "clip": "C6854",
+    "t": 62.0
+   }
+  ]
+ },
+ {
+  "sheet": 60,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_060.jpg",
+  "frames": [
+   {
+    "clip": "C6854",
+    "t": 66.0
+   },
+   {
+    "clip": "C6855",
+    "t": 2.0
+   },
+   {
+    "clip": "C6855",
+    "t": 6.0
+   },
+   {
+    "clip": "C6855",
+    "t": 10.0
+   },
+   {
+    "clip": "C6855",
+    "t": 14.0
+   },
+   {
+    "clip": "C6855",
+    "t": 18.0
+   },
+   {
+    "clip": "C6855",
+    "t": 22.0
+   },
+   {
+    "clip": "C6855",
+    "t": 26.0
+   },
+   {
+    "clip": "C6855",
+    "t": 30.0
+   },
+   {
+    "clip": "C6855",
+    "t": 34.0
+   },
+   {
+    "clip": "C6855",
+    "t": 38.0
+   },
+   {
+    "clip": "C6855",
+    "t": 42.0
+   }
+  ]
+ },
+ {
+  "sheet": 61,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_061.jpg",
+  "frames": [
+   {
+    "clip": "C6855",
+    "t": 46.0
+   },
+   {
+    "clip": "C6855",
+    "t": 50.0
+   },
+   {
+    "clip": "C6855",
+    "t": 54.0
+   },
+   {
+    "clip": "C6855",
+    "t": 58.0
+   },
+   {
+    "clip": "C6855",
+    "t": 62.0
+   },
+   {
+    "clip": "C6855",
+    "t": 66.0
+   },
+   {
+    "clip": "C6855",
+    "t": 70.0
+   },
+   {
+    "clip": "C6855",
+    "t": 74.0
+   },
+   {
+    "clip": "C6855",
+    "t": 78.0
+   },
+   {
+    "clip": "C6855",
+    "t": 82.0
+   },
+   {
+    "clip": "C6855",
+    "t": 86.0
+   },
+   {
+    "clip": "C6855",
+    "t": 90.0
+   }
+  ]
+ },
+ {
+  "sheet": 62,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_062.jpg",
+  "frames": [
+   {
+    "clip": "C6855",
+    "t": 94.0
+   },
+   {
+    "clip": "C6855",
+    "t": 98.0
+   },
+   {
+    "clip": "C6855",
+    "t": 102.0
+   },
+   {
+    "clip": "C6855",
+    "t": 106.0
+   },
+   {
+    "clip": "C6855",
+    "t": 110.0
+   },
+   {
+    "clip": "C6855",
+    "t": 114.0
+   },
+   {
+    "clip": "C6855",
+    "t": 118.0
+   },
+   {
+    "clip": "C6855",
+    "t": 122.0
+   },
+   {
+    "clip": "C6855",
+    "t": 126.0
+   },
+   {
+    "clip": "C6855",
+    "t": 130.0
+   },
+   {
+    "clip": "C6855",
+    "t": 134.0
+   },
+   {
+    "clip": "C6855",
+    "t": 138.0
+   }
+  ]
+ },
+ {
+  "sheet": 63,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_063.jpg",
+  "frames": [
+   {
+    "clip": "C6855",
+    "t": 142.0
+   },
+   {
+    "clip": "C6855",
+    "t": 146.0
+   },
+   {
+    "clip": "C6855",
+    "t": 150.0
+   },
+   {
+    "clip": "C6855",
+    "t": 154.0
+   },
+   {
+    "clip": "C6855",
+    "t": 158.0
+   },
+   {
+    "clip": "C6855",
+    "t": 162.0
+   },
+   {
+    "clip": "C6855",
+    "t": 166.0
+   },
+   {
+    "clip": "C6855",
+    "t": 170.0
+   },
+   {
+    "clip": "C6855",
+    "t": 174.0
+   },
+   {
+    "clip": "C6855",
+    "t": 178.0
+   },
+   {
+    "clip": "C6855",
+    "t": 182.0
+   },
+   {
+    "clip": "C6855",
+    "t": 186.0
+   }
+  ]
+ },
+ {
+  "sheet": 64,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_064.jpg",
+  "frames": [
+   {
+    "clip": "C6855",
+    "t": 190.0
+   },
+   {
+    "clip": "C6855",
+    "t": 194.0
+   },
+   {
+    "clip": "C6856",
+    "t": 2.0
+   },
+   {
+    "clip": "C6856",
+    "t": 6.0
+   },
+   {
+    "clip": "C6856",
+    "t": 10.0
+   },
+   {
+    "clip": "C6856",
+    "t": 14.0
+   },
+   {
+    "clip": "C6856",
+    "t": 22.0
+   },
+   {
+    "clip": "C6857",
+    "t": 2.0
+   },
+   {
+    "clip": "C6857",
+    "t": 6.0
+   },
+   {
+    "clip": "C6857",
+    "t": 10.0
+   },
+   {
+    "clip": "C6857",
+    "t": 14.0
+   },
+   {
+    "clip": "C6857",
+    "t": 18.0
+   }
+  ]
+ },
+ {
+  "sheet": 65,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_065.jpg",
+  "frames": [
+   {
+    "clip": "C6857",
+    "t": 22.0
+   },
+   {
+    "clip": "C6857",
+    "t": 26.0
+   },
+   {
+    "clip": "C6857",
+    "t": 30.0
+   },
+   {
+    "clip": "C6857",
+    "t": 34.0
+   },
+   {
+    "clip": "C6857",
+    "t": 38.0
+   },
+   {
+    "clip": "C6857",
+    "t": 42.0
+   },
+   {
+    "clip": "C6857",
+    "t": 46.0
+   },
+   {
+    "clip": "C6857",
+    "t": 50.0
+   },
+   {
+    "clip": "C6857",
+    "t": 54.0
+   },
+   {
+    "clip": "C6857",
+    "t": 58.0
+   },
+   {
+    "clip": "C6857",
+    "t": 62.0
+   },
+   {
+    "clip": "C6857",
+    "t": 66.0
+   }
+  ]
+ },
+ {
+  "sheet": 66,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_066.jpg",
+  "frames": [
+   {
+    "clip": "C6857",
+    "t": 70.0
+   },
+   {
+    "clip": "C6857",
+    "t": 74.0
+   },
+   {
+    "clip": "C6857",
+    "t": 78.0
+   },
+   {
+    "clip": "C6857",
+    "t": 82.0
+   },
+   {
+    "clip": "C6857",
+    "t": 90.0
+   },
+   {
+    "clip": "C6857",
+    "t": 102.0
+   },
+   {
+    "clip": "C6857",
+    "t": 110.0
+   },
+   {
+    "clip": "C6857",
+    "t": 114.0
+   },
+   {
+    "clip": "C6857",
+    "t": 118.0
+   },
+   {
+    "clip": "C6857",
+    "t": 122.0
+   },
+   {
+    "clip": "C6857",
+    "t": 130.0
+   },
+   {
+    "clip": "C6857",
+    "t": 134.0
+   }
+  ]
+ },
+ {
+  "sheet": 67,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_067.jpg",
+  "frames": [
+   {
+    "clip": "C6857",
+    "t": 138.0
+   },
+   {
+    "clip": "C6858",
+    "t": 2.0
+   },
+   {
+    "clip": "C6858",
+    "t": 6.0
+   },
+   {
+    "clip": "C6858",
+    "t": 10.0
+   },
+   {
+    "clip": "C6858",
+    "t": 14.0
+   },
+   {
+    "clip": "C6858",
+    "t": 18.0
+   },
+   {
+    "clip": "C6858",
+    "t": 22.0
+   },
+   {
+    "clip": "C6858",
+    "t": 30.0
+   },
+   {
+    "clip": "C6858",
+    "t": 38.0
+   },
+   {
+    "clip": "C6858",
+    "t": 46.0
+   },
+   {
+    "clip": "C6858",
+    "t": 50.0
+   },
+   {
+    "clip": "C6858",
+    "t": 58.0
+   }
+  ]
+ },
+ {
+  "sheet": 68,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_068.jpg",
+  "frames": [
+   {
+    "clip": "C6858",
+    "t": 62.0
+   },
+   {
+    "clip": "C6858",
+    "t": 66.0
+   },
+   {
+    "clip": "C6858",
+    "t": 70.0
+   },
+   {
+    "clip": "C6858",
+    "t": 74.0
+   },
+   {
+    "clip": "C6858",
+    "t": 78.0
+   },
+   {
+    "clip": "C6858",
+    "t": 86.0
+   },
+   {
+    "clip": "C6858",
+    "t": 90.0
+   },
+   {
+    "clip": "C6858",
+    "t": 94.0
+   },
+   {
+    "clip": "C6858",
+    "t": 98.0
+   },
+   {
+    "clip": "C6858",
+    "t": 102.0
+   },
+   {
+    "clip": "C6858",
+    "t": 106.0
+   },
+   {
+    "clip": "C6858",
+    "t": 122.0
+   }
+  ]
+ },
+ {
+  "sheet": 69,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_069.jpg",
+  "frames": [
+   {
+    "clip": "C6858",
+    "t": 126.0
+   },
+   {
+    "clip": "C6858",
+    "t": 130.0
+   },
+   {
+    "clip": "C6858",
+    "t": 134.0
+   },
+   {
+    "clip": "C6858",
+    "t": 138.0
+   },
+   {
+    "clip": "C6858",
+    "t": 142.0
+   },
+   {
+    "clip": "C6858",
+    "t": 146.0
+   },
+   {
+    "clip": "C6858",
+    "t": 150.0
+   },
+   {
+    "clip": "C6858",
+    "t": 154.0
+   },
+   {
+    "clip": "C6858",
+    "t": 158.0
+   },
+   {
+    "clip": "C6858",
+    "t": 162.0
+   },
+   {
+    "clip": "C6858",
+    "t": 174.0
+   },
+   {
+    "clip": "C6858",
+    "t": 178.0
+   }
+  ]
+ },
+ {
+  "sheet": 70,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_070.jpg",
+  "frames": [
+   {
+    "clip": "C6858",
+    "t": 182.0
+   },
+   {
+    "clip": "C6858",
+    "t": 186.0
+   },
+   {
+    "clip": "C6858",
+    "t": 190.0
+   },
+   {
+    "clip": "C6858",
+    "t": 194.0
+   },
+   {
+    "clip": "C6858",
+    "t": 198.0
+   },
+   {
+    "clip": "C6858",
+    "t": 202.0
+   },
+   {
+    "clip": "C6858",
+    "t": 206.0
+   },
+   {
+    "clip": "C6858",
+    "t": 210.0
+   },
+   {
+    "clip": "C6858",
+    "t": 214.0
+   },
+   {
+    "clip": "C6858",
+    "t": 218.0
+   },
+   {
+    "clip": "C6858",
+    "t": 226.0
+   },
+   {
+    "clip": "C6858",
+    "t": 230.0
+   }
+  ]
+ },
+ {
+  "sheet": 71,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_071.jpg",
+  "frames": [
+   {
+    "clip": "C6858",
+    "t": 238.0
+   },
+   {
+    "clip": "C6858",
+    "t": 242.0
+   },
+   {
+    "clip": "C6859",
+    "t": 2.0
+   },
+   {
+    "clip": "C6859",
+    "t": 6.0
+   },
+   {
+    "clip": "C6859",
+    "t": 10.0
+   },
+   {
+    "clip": "C6859",
+    "t": 18.0
+   },
+   {
+    "clip": "C6859",
+    "t": 30.0
+   },
+   {
+    "clip": "C6860",
+    "t": 2.0
+   },
+   {
+    "clip": "C6860",
+    "t": 6.0
+   },
+   {
+    "clip": "C6860",
+    "t": 10.0
+   },
+   {
+    "clip": "C6860",
+    "t": 14.0
+   },
+   {
+    "clip": "C6860",
+    "t": 26.0
+   }
+  ]
+ },
+ {
+  "sheet": 72,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_072.jpg",
+  "frames": [
+   {
+    "clip": "C6861",
+    "t": 2.0
+   },
+   {
+    "clip": "C6861",
+    "t": 6.0
+   },
+   {
+    "clip": "C6861",
+    "t": 10.0
+   },
+   {
+    "clip": "C6861",
+    "t": 14.0
+   },
+   {
+    "clip": "C6861",
+    "t": 18.0
+   },
+   {
+    "clip": "C6861",
+    "t": 22.0
+   },
+   {
+    "clip": "C6862",
+    "t": 2.0
+   },
+   {
+    "clip": "C6862",
+    "t": 6.0
+   },
+   {
+    "clip": "C6862",
+    "t": 10.0
+   },
+   {
+    "clip": "C6862",
+    "t": 14.0
+   },
+   {
+    "clip": "C6862",
+    "t": 18.0
+   },
+   {
+    "clip": "C6862",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 73,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_073.jpg",
+  "frames": [
+   {
+    "clip": "C6862",
+    "t": 26.0
+   },
+   {
+    "clip": "C6862",
+    "t": 30.0
+   },
+   {
+    "clip": "C6862",
+    "t": 34.0
+   },
+   {
+    "clip": "C6862",
+    "t": 38.0
+   },
+   {
+    "clip": "C7127",
+    "t": 2.0
+   },
+   {
+    "clip": "C7127",
+    "t": 6.0
+   },
+   {
+    "clip": "C7127",
+    "t": 10.0
+   },
+   {
+    "clip": "C7127",
+    "t": 14.0
+   },
+   {
+    "clip": "C7129",
+    "t": 2.0
+   },
+   {
+    "clip": "C7129",
+    "t": 6.0
+   },
+   {
+    "clip": "C7129",
+    "t": 10.0
+   },
+   {
+    "clip": "C7129",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 74,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_074.jpg",
+  "frames": [
+   {
+    "clip": "C7130",
+    "t": 2.0
+   },
+   {
+    "clip": "C7130",
+    "t": 6.0
+   },
+   {
+    "clip": "C7131",
+    "t": 2.0
+   },
+   {
+    "clip": "C7131",
+    "t": 6.0
+   },
+   {
+    "clip": "C7131",
+    "t": 10.0
+   },
+   {
+    "clip": "C7132",
+    "t": 2.0
+   },
+   {
+    "clip": "C7132",
+    "t": 6.0
+   },
+   {
+    "clip": "C7133",
+    "t": 2.0
+   },
+   {
+    "clip": "C7133",
+    "t": 6.0
+   },
+   {
+    "clip": "C7133",
+    "t": 10.0
+   },
+   {
+    "clip": "C7134",
+    "t": 2.0
+   },
+   {
+    "clip": "C7134",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 75,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_075.jpg",
+  "frames": [
+   {
+    "clip": "C7134",
+    "t": 10.0
+   },
+   {
+    "clip": "C7134",
+    "t": 14.0
+   },
+   {
+    "clip": "C7135",
+    "t": 2.0
+   },
+   {
+    "clip": "C7135",
+    "t": 6.0
+   },
+   {
+    "clip": "C7135",
+    "t": 10.0
+   },
+   {
+    "clip": "C7135",
+    "t": 14.0
+   },
+   {
+    "clip": "C7136",
+    "t": 2.0
+   },
+   {
+    "clip": "C7136",
+    "t": 6.0
+   },
+   {
+    "clip": "C7137",
+    "t": 2.0
+   },
+   {
+    "clip": "C7137",
+    "t": 6.0
+   },
+   {
+    "clip": "C7137",
+    "t": 10.0
+   },
+   {
+    "clip": "C7137",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 76,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_076.jpg",
+  "frames": [
+   {
+    "clip": "C7138",
+    "t": 2.0
+   },
+   {
+    "clip": "C7138",
+    "t": 6.0
+   },
+   {
+    "clip": "C7138",
+    "t": 10.0
+   },
+   {
+    "clip": "C7138",
+    "t": 14.0
+   },
+   {
+    "clip": "C7138",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D",
+    "t": 26.0
+   }
+  ]
+ },
+ {
+  "sheet": 77,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_077.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522062834_0072_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D_stabilized",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522062834_0072_D_stabilized",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D",
+    "t": 18.0
+   }
+  ]
+ },
+ {
+  "sheet": 78,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_078.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522064240_0076_D",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D",
+    "t": 30.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D_stabilized",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D_stabilized",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522064240_0076_D_stabilized",
+    "t": 30.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 79,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_079.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 30.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 34.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 38.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 42.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 46.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D",
+    "t": 50.0
+   }
+  ]
+ },
+ {
+  "sheet": 80,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_080.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 30.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 34.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 38.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 42.0
+   },
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 46.0
+   }
+  ]
+ },
+ {
+  "sheet": 81,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_081.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522064337_0077_D_stabilized",
+    "t": 50.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522064704_0080_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 82,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_082.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522064843_0081_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D",
+    "t": 30.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D_stabilized",
+    "t": 18.0
+   }
+  ]
+ },
+ {
+  "sheet": 83,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_083.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522064843_0081_D_stabilized",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D_stabilized",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522064843_0081_D_stabilized",
+    "t": 30.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 50.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 70.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 94.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 170.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 174.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 178.0
+   }
+  ]
+ },
+ {
+  "sheet": 84,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_084.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 182.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 186.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 190.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 194.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 198.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 202.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 206.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 210.0
+   },
+   {
+    "clip": "DJI_20260522064931_0082_D",
+    "t": 214.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 85,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_085.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522090945_0095_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D_stabilized",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522090945_0095_D_stabilized",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 86,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_086.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522091045_0097_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522091045_0097_D_stabilized",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 87,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_087.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522091045_0097_D_stabilized",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522091202_0100_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522091202_0100_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522091202_0100_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522091202_0100_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522091202_0100_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522091202_0100_D",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260522091427_0102_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522091427_0102_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522091427_0102_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522091427_0102_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522091427_0102_D",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 88,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_088.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522091427_0102_D",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260522091427_0102_D",
+    "t": 30.0
+   },
+   {
+    "clip": "DJI_20260522091427_0102_D",
+    "t": 34.0
+   },
+   {
+    "clip": "DJI_20260522091427_0102_D",
+    "t": 38.0
+   },
+   {
+    "clip": "DJI_20260522091520_0103_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522091520_0103_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522091520_0103_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260522091520_0103_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522091520_0103_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260522091520_0103_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260522091520_0103_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260522091520_0103_D_stabilized",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 89,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_089.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260522091520_0103_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260522091520_0103_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260612082008_0007_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612082008_0007_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260612082008_0007_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260612082008_0007_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260612082008_0007_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612082008_0007_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260612082008_0007_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260612082008_0007_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 90,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_090.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260612082815_0010_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260612082815_0010_D_stabilized",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260612091849_0011_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612091849_0011_D",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 91,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_091.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260612091849_0011_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260612091849_0011_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260612091849_0011_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260612091849_0011_D",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260612091849_0011_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612091849_0011_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 92,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_092.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260612092151_0013_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260612092151_0013_D_stabilized",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 93,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_093.jpg",
+  "frames": [
+   {
+    "clip": "DJI_20260612095353_0025_D",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D",
+    "t": 30.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D_stabilized",
+    "t": 22.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D_stabilized",
+    "t": 26.0
+   },
+   {
+    "clip": "DJI_20260612095353_0025_D_stabilized",
+    "t": 30.0
+   },
+   {
+    "clip": "through barn",
+    "t": 2.0
+   },
+   {
+    "clip": "through barn",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 94,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_094.jpg",
+  "frames": [
+   {
+    "clip": "through barn",
+    "t": 10.0
+   },
+   {
+    "clip": "through barn",
+    "t": 14.0
+   },
+   {
+    "clip": "through barn",
+    "t": 18.0
+   },
+   {
+    "clip": "through barn",
+    "t": 22.0
+   },
+   {
+    "clip": "through barn",
+    "t": 26.0
+   },
+   {
+    "clip": "through barn",
+    "t": 30.0
+   },
+   {
+    "clip": "through barn",
+    "t": 34.0
+   },
+   {
+    "clip": "through barn",
+    "t": 38.0
+   },
+   {
+    "clip": "through barn",
+    "t": 42.0
+   },
+   {
+    "clip": "through barn",
+    "t": 46.0
+   },
+   {
+    "clip": "through barn",
+    "t": 50.0
+   },
+   {
+    "clip": "through barn",
+    "t": 54.0
+   }
+  ]
+ },
+ {
+  "sheet": 95,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_095.jpg",
+  "frames": [
+   {
+    "clip": "through barn_stabilized",
+    "t": 2.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 6.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 10.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 14.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 18.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 22.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 26.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 30.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 34.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 38.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 42.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 46.0
+   }
+  ]
+ },
+ {
+  "sheet": 96,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/ce/sheets/sheet_096.jpg",
+  "frames": [
+   {
+    "clip": "through barn_stabilized",
+    "t": 50.0
+   },
+   {
+    "clip": "through barn_stabilized",
+    "t": 54.0
+   }
+  ]
+ }
+]

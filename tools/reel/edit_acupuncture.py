@@ -33,7 +33,8 @@ EDIT = [
      [text("So you learn", MED, TOPY, 0.1, 2.2),
       text("to find it.", MED, TOPY+86, 0.28, 2.2)]),
 
-    (shot("C8253", 5.2, 1.8, xoff=0.50), []),
+    # Equine needling, C8188 -- the second thing the first search missed.
+    (shot("C8188", 46.8, 2.2, xoff=0.56), []),
     (shot("C8225", 11.5, 2.0, xoff=0.55), []),
 
     # --- the programme, stated plainly -----------------------------------
@@ -44,7 +45,7 @@ EDIT = [
      [text("Hands-on practicums", MED, TOPY, 0.15, 2.4),
       text("with live patients.", MED, TOPY+86, 0.35, 2.2)]),
 
-    (shot("C8192", 229.0, 2.2, xoff=0.44), []),
+    (shot("C8188", 50.2, 2.0, xoff=0.56), []),
 
     (shot("C8225", 16.5, 2.4, xoff=0.55),
      [text("Taught by veterinarians", SMALL, TOPY, 0.1, 2.4),
