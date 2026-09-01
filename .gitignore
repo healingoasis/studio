@@ -49,3 +49,7 @@ apps/*/carousel/deliver/
 apps/*/review.html
 apps/*/carousel/review.html
 tools/ffmpeg
+
+# Generated review material: hundreds of MB of JPEGs, rebuildable
+# from the footage at any time with extract.py + sheets.py.
+tools/footage-index/index/
