@@ -85,9 +85,32 @@ needs the check lifecycle recorded somewhere, but whether that somewhere is the 
 or the intake portal is exactly the decision worth making with Dan rather than defaulting to
 whichever app is in front of us.
 
-**Also still open from 25 August:** the `read_draft_orders` scope. The workbook tracks
-**$20,788.80** of invoices sent and unpaid, and asking Shopify for them returns
-`ACCESS_DENIED`.
+### The draft-orders scope, with a live example
+
+Still open from 25 August, and now with a concrete case. Daniel has **sent three invoices for
+a clinic adjustment** that is still unpaid. The portal cannot see it, and until today was
+cheerfully reporting that line of business as "all paid".
+
+Confirmed against the live store on 1 September. The app's granted scopes are:
+
+```
+read_all_orders, read_analytics, read_apps, write_channels, write_checkouts,
+write_customers, write_discounts, write_files, write_locations, write_metaobjects,
+write_orders, write_products, write_shipping, write_themes, read_shopify_payments_payouts, …
+```
+
+There is **no `read_draft_orders`**, and the query returns:
+
+```
+Access denied for draftOrders field.
+```
+
+So every invoice sent from Shopify's drafts is invisible: the workbook's **$20,788.80** of
+sent-and-unpaid invoices, Daniel's chased clinic adjustment, exhibitor invoices, and any place
+held by agreement. Nothing in the portal can be read as the whole debt until this is granted.
+
+The dashboard now says so on its face rather than letting somebody discover it — but that is a
+label on a hole, not a fix.
 
 ---
 

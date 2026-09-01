@@ -31,7 +31,9 @@ def build(kf_dir, out_dir, cols=3, rows=3, tile_w=660):
             src = os.path.join(kf_dir, e["file"])
             dst = os.path.join(stage, f"{j:02d}.jpg")
             mins, secs = divmod(e["t"], 60)
-            label = f"{e['clip']} {int(mins)}:{secs:04.1f}"
+            # drawtext treats ':' as an option separator, so it must be escaped
+            # here -- an unescaped timecode silently produced zero sheets.
+            label = f"{e['clip']} {int(mins)}\\:{secs:04.1f}"
             subprocess.run([FF, "-nostdin", "-i", src, "-vf",
                 f"scale={tile_w}:-1,drawtext=fontfile='{FONT}':text='{label}':"
                 f"x=6:y=5:fontsize=20:fontcolor=yellow:box=1:boxcolor=black@0.85:"
