@@ -45,7 +45,10 @@ def grade_photo(v, k):
 def default_look(exposure=1.0, wb_r=1.0, wb_b=1.0):
     return {"exposure": exposure, "wb_r": wb_r, "wb_b": wb_b, "white": 9.0,
             "toe": 0.38, "lift": 0.05, "contrast": 1.12, "scurve": 0.30,
-            "split": 1.05, "saturation": 1.28}
+            # Softer than the video's 1.28/1.05. A RAW still carries far more
+            # colour than 4:2:2 video, so the same boost turns navy jackets
+            # electric. These match the footage without going neon.
+            "split": 0.55, "saturation": 1.12}
 
 def write_photo_cube(path, k, N=33):
     lines = [f'TITLE "photo"', f"LUT_3D_SIZE {N}",
