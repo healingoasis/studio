@@ -1,0 +1,3546 @@
+[
+ {
+  "sheet": 1,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_001.jpg",
+  "frames": [
+   {
+    "clip": "IMG_3965",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_3965",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_3971 2",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_3971",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_3972",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_3978 2",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_3978",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_3984",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_3984",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_3995",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_3995",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4006 2",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 2,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_002.jpg",
+  "frames": [
+   {
+    "clip": "IMG_4006",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4014",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4014",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4014",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4027",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4028",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4030",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4030",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4031",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4034",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4034",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4034",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 3,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_003.jpg",
+  "frames": [
+   {
+    "clip": "IMG_4782",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4782",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4782",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4782",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_4782",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_4782",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_4783",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4783",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4783",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4783",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_4783",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_4783",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 4,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_004.jpg",
+  "frames": [
+   {
+    "clip": "IMG_4784",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4784",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4784",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4785",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4785",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4785",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4785",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_4785",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_4785",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_4785",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_4785",
+    "t": 30.0
+   },
+   {
+    "clip": "IMG_4789",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 5,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_005.jpg",
+  "frames": [
+   {
+    "clip": "IMG_4789",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4789",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4789",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_4789",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_4789",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_4789",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_4790",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4790",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4790",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4790",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_4790",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 6,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_006.jpg",
+  "frames": [
+   {
+    "clip": "IMG_4791",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 30.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 34.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 38.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 42.0
+   },
+   {
+    "clip": "IMG_4791",
+    "t": 46.0
+   },
+   {
+    "clip": "IMG_4792",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 7,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_007.jpg",
+  "frames": [
+   {
+    "clip": "IMG_4792",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4792",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4792",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_4792",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_4792",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_4792",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_4792",
+    "t": 30.0
+   },
+   {
+    "clip": "IMG_4792",
+    "t": 34.0
+   },
+   {
+    "clip": "IMG_4793",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4793",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4793",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4793",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 8,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_008.jpg",
+  "frames": [
+   {
+    "clip": "IMG_4794",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4794",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4794",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4794",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_4794",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_4794",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_4795",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4795",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4795",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_4795",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_4806",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4806",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 9,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_009.jpg",
+  "frames": [
+   {
+    "clip": "IMG_4807",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_4807",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_4807",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5058",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5059",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5059",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5060",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5060",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5078",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5078",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5080",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5080",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 10,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_010.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5080",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5081",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5081",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5082",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5082",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5082",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5083",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5084",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5084",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5085",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5085",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5086",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 11,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_011.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5086",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5087",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5087",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5088",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5088",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5088",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5088",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_5089",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5089",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5090",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5090",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5091",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 12,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_012.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5091",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5092",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5092",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5093",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5093",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5094",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5094",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5095",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5095",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5096",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5097",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5097",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 13,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_013.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5098",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5098",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5100",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5100",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5101",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5101",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5102",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5102",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5102",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5103",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5103",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5104",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 14,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_014.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5104",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5105",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5105",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5107",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5108",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5108",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5110",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5110",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5110",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5111",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5111",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5112",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 15,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_015.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5112",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5113",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5113",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5114",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5114",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5115",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5115",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5115",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5123",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5124",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5124",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5125",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 16,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_016.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5125",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5126",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5126",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5126",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5126",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_5127",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5127",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5127",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5128",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5128",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5129",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5129",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 17,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_017.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5130",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5130",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5131",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5131",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5131",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5133",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5133",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5134",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5134",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5135",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5135",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5136",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 18,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_018.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5136",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5137",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5137",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5138",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5138",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5139",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5139",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5140",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5140",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5141",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5141",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5142",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 19,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_019.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5142",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5143",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5143",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5356",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5356",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5363",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5363",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5366",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5366",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5371",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5371",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5372",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 20,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_020.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5374",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5374",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5374",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_5783",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5784",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5784",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5785",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5785",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5786",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5788",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5788",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5789",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 21,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_021.jpg",
+  "frames": [
+   {
+    "clip": "IMG_5789",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5790",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5791",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5792",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5792",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5793",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5794",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5795",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5795",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_5796",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_5796",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_6993",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 22,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_022.jpg",
+  "frames": [
+   {
+    "clip": "IMG_6993",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_6994",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_6994",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_6995",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_6995",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_6995",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_6995",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_6995",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_6996",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_6996",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_6996",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_6997",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 23,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_023.jpg",
+  "frames": [
+   {
+    "clip": "IMG_6997",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_6997",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_6998",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_6999",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_6999",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7001",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7001",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7002",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7002",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7002",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_7003",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7003",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 24,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_024.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7003",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7004",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7004",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7005",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7005",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7006",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7006",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7006",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7006",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_7006",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_7007",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7007",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 25,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_025.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7008",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7008",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7008",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7009",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7009",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7009",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7009",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_7009",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_7010",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7010",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7010",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7010",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 26,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_026.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7010",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_7010",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_7010",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_7011",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7011",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7012",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7012",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7013",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7013",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7013",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7013",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_7013",
+    "t": 18.0
+   }
+  ]
+ },
+ {
+  "sheet": 27,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_027.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7013",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_7013",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_7014",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7014",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7060",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7061",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7062",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7062",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7063",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7063",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7064",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7064",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 28,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_028.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7064",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7065",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7065",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7065",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7072",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7073",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7073",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7077",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7078",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7079",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7079",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7086",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 29,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_029.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7086",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7087",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7087",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7087",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7087",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_7091",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7091",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7092",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7092",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7092",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7093",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7093",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 30,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_030.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7094",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7094",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7095",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7096",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7096",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7097",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7097",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7097",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7098",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7098",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7099",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7099",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 31,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_031.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7106",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7106",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7108",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7108",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7108",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7109",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7109",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7110",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7110",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7111",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7112",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7112",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 32,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_032.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7113",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7114",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7349",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7349",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7350",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7350",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7351",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7351",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7352",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7353",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7353",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7353",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 33,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_033.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7354",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7354",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7354",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7355",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7355",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7355",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7356",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7356",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7357",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7357",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7371",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7371",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 34,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_034.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7371",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7372",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7372",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7372",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7372",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_7496",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7496",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7497",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7498",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7498",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7499",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7499",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 35,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_035.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7499",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7499",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_7500",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7500",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7506",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7506",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7507",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7507",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7508",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7508",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7508",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7508",
+    "t": 14.0
+   }
+  ]
+ },
+ {
+  "sheet": 36,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_036.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7509",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7509",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7509",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7520",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7520",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7520",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7520",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_7521",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7521",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7522",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7522",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7523",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 37,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_037.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7523",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7523",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7524",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7524",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7526",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7526",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7527",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7527",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7527",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_7528",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7528",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7528",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 38,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_038.jpg",
+  "frames": [
+   {
+    "clip": "IMG_7528",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_7529",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_7529",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_7529",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8717",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8717",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8718",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8719",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8719",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8719",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8720",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8721",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 39,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_039.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8721",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8722",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8722",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8723",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8723",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8724",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8724",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8725",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8725",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8726",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8726",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8727",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 40,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_040.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8727",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8727",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8728",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8728",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8728",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8729",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8729",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8730",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8730",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8731",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8731",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8732",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 41,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_041.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8732",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8733",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8733",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8733",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8734",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8734",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8735",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8735",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8735",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8735",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_8735",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_8736",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 42,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_042.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8741",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8742",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8742",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8743",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8743",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8744",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8744",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8744",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8745",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8745",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8746",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8746",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 43,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_043.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8747",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8748",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8748",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8749",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8749",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8749",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8749",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_8749",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_8749",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_8749",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_8750",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8750",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 44,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_044.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8750",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8750",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_8751",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8751",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8752",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8753",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8753",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8754",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8754",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8754",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8759",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8759",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 45,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_045.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8760",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8760",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8763",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8763",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8763",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8766",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8776",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8776",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8777",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8777",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8778",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8779",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 46,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_046.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8779",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8779",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8781",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8781",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8785",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8785",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8786",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8786",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8786",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8787",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8788",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8789",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 47,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_047.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8790",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8790",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8794",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8795",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8795",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8796",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8796",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8796",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8797",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8797",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8798",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8798",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 48,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_048.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8800",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8800",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8800",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8800",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_8800",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_8801",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8801",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8801",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_8801",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_8801",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_8802",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8802",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 49,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_049.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8802",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8802",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_8802",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_8803",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8834",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8834",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8834",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8835",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8837",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8837",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8840",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_8843",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 50,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_050.jpg",
+  "frames": [
+   {
+    "clip": "IMG_8843",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_8843",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_8843",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9052",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9052",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9052",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9052",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9053",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9053",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9054",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9054",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9054",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 51,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_051.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9054",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9054",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9055",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9055",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9056",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9057",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9057",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9058",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9058",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9058",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9058",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9058",
+    "t": 18.0
+   }
+  ]
+ },
+ {
+  "sheet": 52,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_052.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9059",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9059",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9060",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9061",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9061",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9062",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9062",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9063",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9063",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9064",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9064",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9064",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 53,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_053.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9064",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9065",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9065",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9065",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9065",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9066",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9066",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9066",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9067",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9067",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9068",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9068",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 54,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_054.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9068",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9068",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9069",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9069",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9069",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9070",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9070",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9070",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9070",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9070",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9071",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9071",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 55,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_055.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9071",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9071",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9072",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9073",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9073",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9073",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9074",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9074",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9074",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9074",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9074",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9074",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 56,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_056.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9075",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9076",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9076",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9077",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9077",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9077",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9077",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9077",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9077",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_9077",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_9077",
+    "t": 30.0
+   },
+   {
+    "clip": "IMG_9077",
+    "t": 34.0
+   }
+  ]
+ },
+ {
+  "sheet": 57,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_057.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9425",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9425",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9426",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9426",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9428",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9428",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9428",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9428",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9428",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9429",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9429",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9436",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 58,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_058.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9437",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9437",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9437",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9437",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9438",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9438",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9438",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9439",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9439",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9439",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9440",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9440",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 59,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_059.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9440",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9440",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9441",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9441",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9441",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9442",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9442",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9443",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9444",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9444",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9444",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9445",
+    "t": 2.0
+   }
+  ]
+ },
+ {
+  "sheet": 60,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_060.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9445",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9473",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9473",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9473",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9474",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9474",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9474",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9475",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9475",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9475",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9476",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9476",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 61,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_061.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9476",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9476",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9476",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9476",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_9478",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9478",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9479",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9479",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9480",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9480",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9498",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9498",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 62,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_062.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9498",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9498",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9501",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9501",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9501",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9501",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9502",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9502",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9502",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9506",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9513",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9513",
+    "t": 6.0
+   }
+  ]
+ },
+ {
+  "sheet": 63,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_063.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9513",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9513",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9513",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9514",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9514",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9515",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9515",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9520",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9520",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9524",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9524",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9524",
+    "t": 10.0
+   }
+  ]
+ },
+ {
+  "sheet": 64,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_064.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9524",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9525",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9525",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9525",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9525",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9525",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9528",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9528",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9528",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9528",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9528",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9528",
+    "t": 22.0
+   }
+  ]
+ },
+ {
+  "sheet": 65,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_065.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9534",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9545",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9545",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9545",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9545",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9545",
+    "t": 18.0
+   },
+   {
+    "clip": "IMG_9545",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_9548",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9548",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9548",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9548",
+    "t": 14.0
+   },
+   {
+    "clip": "IMG_9548",
+    "t": 18.0
+   }
+  ]
+ },
+ {
+  "sheet": 66,
+  "file": "/Users/danielrivera/studio/tools/footage-index/index/vsmt/sheets/sheet_066.jpg",
+  "frames": [
+   {
+    "clip": "IMG_9548",
+    "t": 22.0
+   },
+   {
+    "clip": "IMG_9548",
+    "t": 26.0
+   },
+   {
+    "clip": "IMG_9548",
+    "t": 30.0
+   },
+   {
+    "clip": "IMG_9549",
+    "t": 2.0
+   },
+   {
+    "clip": "IMG_9549",
+    "t": 6.0
+   },
+   {
+    "clip": "IMG_9549",
+    "t": 10.0
+   },
+   {
+    "clip": "IMG_9549",
+    "t": 14.0
+   }
+  ]
+ }
+]
