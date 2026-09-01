@@ -20,18 +20,20 @@ TOPY  = 340          # headline sits high, clear of the caption UI
 MIDY  = H//2 - 60
 
 EDIT = [
-    # --- hook: the problem every vet already has -------------------------
-    (shot("C8253", 4.9, 2.4, xoff=0.50, speed=0.60),
-     [text("Your patient", BIG, TOPY, 0.15, 3.9),
-      text("can't tell you", BIG, TOPY+100, 0.45, 3.6),
-      text("where it hurts.", BIG, TOPY+200, 0.80, 3.2)]),
+    # --- hook: the thing itself, in the first second ---------------------
+    # Found via tools/footage-index. The first cut opened on palpation because
+    # a bad search concluded there was no needling in the folder; there is over
+    # two minutes of it in C8192, and it is a far stronger opening.
+    (shot("C8192", 203.4, 2.6, xoff=0.44, speed=0.60),
+     [text("Your patient", BIG, TOPY, 0.15, 4.2),
+      text("can't tell you", BIG, TOPY+100, 0.45, 3.9),
+      text("where it hurts.", BIG, TOPY+200, 0.80, 3.5)]),
 
-    # --- so you learn another way ----------------------------------------
-    (shot("C8219", 7.2, 2.0, xoff=0.50),
-     [text("So you learn", MED, TOPY, 0.1, 2),
-      text("to find it.", MED, TOPY+86, 0.3, 2)]),
+    (shot("C8192", 213.8, 2.2, xoff=0.44),
+     [text("So you learn", MED, TOPY, 0.1, 2.2),
+      text("to find it.", MED, TOPY+86, 0.28, 2.2)]),
 
-    (shot("C8217", 7.0, 1.8, xoff=0.50), []),
+    (shot("C8253", 5.2, 1.8, xoff=0.50), []),
     (shot("C8225", 11.5, 2.0, xoff=0.55), []),
 
     # --- the programme, stated plainly -----------------------------------
@@ -42,7 +44,7 @@ EDIT = [
      [text("Hands-on practicums", MED, TOPY, 0.15, 2.4),
       text("with live patients.", MED, TOPY+86, 0.35, 2.2)]),
 
-    (shot("C8253", 8.6, 2.0, xoff=0.52), []),
+    (shot("C8192", 229.0, 2.2, xoff=0.44), []),
 
     (shot("C8225", 16.5, 2.4, xoff=0.55),
      [text("Taught by veterinarians", SMALL, TOPY, 0.1, 2.4),
