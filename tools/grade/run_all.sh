@@ -11,8 +11,15 @@ B="/Users/danielrivera/Documents/Claude/Photos:videos/Acupuncture /New folder"
 G=/Users/danielrivera/studio/tools/grade
 MAX_TRIES=40
 
-remaining_video() { ls "$B"/*.MP4 2>/dev/null | grep -vc "_GRADED" || echo 0; }
-remaining_photos() { ls "$1"/*.ARW 2>/dev/null | wc -l | tr -d ' '; }
+# grep -c exits 1 when it counts zero, so `|| echo 0` fired ON TOP of the "0"
+# grep had already printed -- the variable became "0\n0", which is not -eq 0,
+# and the stage looped forever instead of finishing. Count with find instead.
+remaining_video() {
+  find "$B" -maxdepth 1 -iname "*.MP4" ! -name "*_GRADED*" 2>/dev/null | wc -l | tr -d ' '
+}
+remaining_photos() {
+  find "$1" -maxdepth 1 -iname "*.ARW" 2>/dev/null | wc -l | tr -d ' '
+}
 
 log() { echo "[$(date '+%H:%M:%S')] $*"; }
 

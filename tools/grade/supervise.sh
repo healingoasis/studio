@@ -5,10 +5,12 @@
 B="/Users/danielrivera/Documents/Claude/Photos:videos/Acupuncture /New folder"
 G=/Users/danielrivera/studio/tools/grade
 
+# Counted with find, not `ls | grep -c`: grep exits 1 on a zero count, which
+# made the old version emit "0" twice and never compare equal to zero.
 work_left() {
-  v=$(ls "$B"/*.MP4 2>/dev/null | grep -vc "_GRADED")
-  p=$(ls "$B"/*.ARW 2>/dev/null | wc -l | tr -d ' ')
-  s=$(ls "$B/save"/*.ARW 2>/dev/null | wc -l | tr -d ' ')
+  v=$(find "$B" -maxdepth 1 -iname "*.MP4" ! -name "*_GRADED*" 2>/dev/null | wc -l | tr -d ' ')
+  p=$(find "$B" -maxdepth 1 -iname "*.ARW" 2>/dev/null | wc -l | tr -d ' ')
+  s=$(find "$B/save" -maxdepth 1 -iname "*.ARW" 2>/dev/null | wc -l | tr -d ' ')
   echo $((v + p + s))
 }
 
