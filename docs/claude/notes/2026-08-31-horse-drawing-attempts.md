@@ -75,3 +75,25 @@ mask edge that is even slightly wrong looks worse than no effect at all.
 
 Product shots were left alone — they are studio frames on white and this pipeline is built for
 outdoor light.
+
+
+## The resolution: annotation, not anatomy
+
+The pattern across every failure is the same. What I can render to a professional standard is
+**precise geometric annotation** — numbered markers, smooth measured curves, filled bands,
+typography, tables. What I cannot render is **anatomy**: a horse, or a skeleton, drawn or
+overlaid, always comes out amateur.
+
+So the Learn page now contains no drawn horse anywhere:
+
+- the six places, marked on the photograph
+- Change: Captain's own topline and underline in white, the chosen score's projection over them,
+  the band between filled
+- the nine-score row: nine copies of the photograph, each with that score's projection
+- the comparison: two photographs, same treatment
+- the printable chart: nine photographs plus the description table, using `<img>` rather than a
+  CSS background so it survives printing with background graphics off
+
+The Diagram view is retired. The Skeleton view still uses the drawn horse; a photograph-based
+skeleton was attempted over four passes and the ribs kept reading as a comb, so it stays for now
+and should be the first thing replaced when real artwork arrives.

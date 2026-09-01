@@ -247,9 +247,14 @@ p{margin:0}
   #printsheet .ps-org{font-family:var(--mono);font-size:7pt;line-height:1.6;text-align:right;white-space:nowrap}
   #printsheet .ps-row{display:grid;grid-template-columns:repeat(9,1fr);gap:5px;margin-top:10px}
   #printsheet .ps-cell{text-align:center}
-  #printsheet .ps-cell svg{width:100%;height:auto;display:block}
-  #printsheet .ps-cell .st-body{fill:#111;opacity:.34} .ps-cell .st-tail{fill:#111;opacity:.5}
-  #printsheet .ps-cell .st-mark{fill:none;stroke:#fff;stroke-width:7;stroke-linecap:round}
+  #printsheet .ps-ph{position:relative;display:block;width:100%;aspect-ratio:640/440;
+    overflow:hidden;border-radius:3px}
+  #printsheet .ps-ph img{width:100%;height:100%;object-fit:cover;display:block}
+  #printsheet .ps-ph svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+  #printsheet .stbase{fill:none;stroke:rgba(255,255,255,.95);stroke-width:9;stroke-linecap:round}
+  #printsheet .stp{fill:none;stroke:#7A2FA8;stroke-width:11;stroke-linecap:round}
+  #printsheet .stb{stroke:none}
+  #printsheet .stb.lost{fill:#C7362A;opacity:.6} #printsheet .stb.gain{fill:#C98420;opacity:.6}
   #printsheet .ps-cell b{color:#111;display:block;font-family:var(--display);font-size:12pt;font-weight:400}
   #printsheet .ps-cell span{display:block;font-family:var(--mono);font-size:5.4pt;letter-spacing:.03em;
     text-transform:uppercase;color:#555}
@@ -695,10 +700,14 @@ p{margin:0}
   background:var(--surface-2);padding:12px 4px 9px;cursor:pointer;display:flex;
   flex-direction:column;align-items:center;gap:1px;transition:all .16s}
 .st:hover{border-color:var(--accent)}
-.st svg{width:100%;height:auto;display:block}
-.st-body{fill:var(--ink);opacity:.42;transition:opacity .16s}
-.st-tail{fill:var(--ink);opacity:.55}
-.st-mark{fill:none;stroke:var(--surface);stroke-width:7;stroke-linecap:round}
+.st-ph{position:relative;display:block;width:100%;aspect-ratio:640/440;border-radius:8px;
+  overflow:hidden;background-size:cover;background-position:center}
+.st-ph svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stbase{fill:none;stroke:rgba(255,255,255,.9);stroke-width:9;stroke-linecap:round}
+.stp{fill:none;stroke:#D79BF0;stroke-width:11;stroke-linecap:round}
+.st .stp{stroke-width:8} .st .stb{opacity:.62}
+.stb{stroke:none} .stb.lost{fill:#E2564A;opacity:.55} .stb.gain{fill:#E8A33C;opacity:.55}
+.cmp .st-ph{border-radius:11px}
 .st-n{font-family:var(--display);font-size:19px;line-height:1.1;margin-top:2px}
 .st-l{font-family:var(--mono);font-size:8px;letter-spacing:.05em;text-transform:uppercase;
   color:var(--faint);text-align:center;line-height:1.3}
@@ -707,7 +716,6 @@ p{margin:0}
 .st-band.band-over{background:var(--over)}
 .st[aria-pressed="true"]{border-color:var(--ink);background:var(--surface);
   box-shadow:0 0 0 1px var(--ink)}
-.st[aria-pressed="true"] .st-body{opacity:.72}
 
 .bcs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
   padding:11px 4px 13px;border-top:1px solid var(--rule-soft)}
@@ -1478,7 +1486,6 @@ textarea.field-in{min-height:130px;resize:vertical}
             <div class="bcs-view" role="group" aria-label="What to show">
               <button type="button" data-view="photo" aria-pressed="true">Places</button>
               <button type="button" data-view="change" aria-pressed="false">Change</button>
-              <button type="button" data-view="coat" aria-pressed="false">Diagram</button>
               <button type="button" data-view="skel" aria-pressed="false">Skeleton</button>
             </div>
           </div>
@@ -3053,38 +3060,34 @@ textarea.field-in{min-height:130px;resize:vertical}
     var host=$("#bcsStrip"); if(!host||host.dataset.on)return;
     host.dataset.on="1";
     host.innerHTML=BCS.map(function(b){
-      var ro=h_ribOpacity(b.n), bo=h_boneOpacity(b.n), g="";
-      g+='<path class="st-body" d="'+h_outline(b.n)+'"/>';
-      g+='<path class="st-tail" d="'+h_tail(b.n)+'"/>';
-      g+='<path class="st-tail" d="'+h_mane(b.n)+'"/>';
-      h_ribMarks(b.n).forEach(function(d){
-        g+='<path class="st-mark" d="'+d+'" style="opacity:'+(ro*.8)+'"/>' });
-      g+='<path class="st-mark" d="'+h_spineRidge(b.n)+'" style="opacity:'+(bo*.8)+'"/>';
-      g+='<path class="st-mark" d="'+h_hipMark(b.n)+'" style="opacity:'+(bo*.8)+'"/>';
       return '<button class="st" data-n="'+b.n+'" aria-pressed="false" '+
-        'aria-label="Score '+b.n+', '+b.label+'">'+
-        '<svg viewBox="300 76 848 664" aria-hidden="true">'+g+'</svg>'+
+        'aria-label="Score '+b.n+', '+b.label+'">'+ photoCell(b.n, false) +
         '<span class="st-n">'+b.n+'</span><span class="st-l">'+b.label+'</span>'+
         '<i class="st-band band-'+b.band+'"></i></button>';
     }).join("");
+    paintPhotoCells();
     host.addEventListener("click",function(e){
       var b=e.target.closest("button.st"); if(!b)return;
-      bcsScore=+b.dataset.n; paintBCS();
+      bcsStopPlay(); bcsScore=+b.dataset.n; paintBCS();
     });
   }
-  function flatHorse(n, withRef){
-    var ro=h_ribOpacity(n), bo=h_boneOpacity(n), g="";
-    g+='<path class="st-body" d="'+h_outline(n)+'"/>';
-    g+='<path class="st-tail" d="'+h_tail(n)+'"/>';
-    g+='<path class="st-tail" d="'+h_mane(n)+'"/>';
-    h_ribMarks(n).forEach(function(d){ g+='<path class="st-mark" d="'+d+'" style="opacity:'+(ro*.8)+'"/>' });
-    g+='<path class="st-mark" d="'+h_spineRidge(n)+'" style="opacity:'+(bo*.8)+'"/>';
-    g+='<path class="st-mark" d="'+h_hipMark(n)+'" style="opacity:'+(bo*.8)+'"/>';
-    if(withRef){
-      var rl=h_refline(5);
-      g+='<path class="cmp-ref" d="'+rl.top+'"/><path class="cmp-ref" d="'+rl.under+'"/>';
-    }
-    return '<svg viewBox="300 76 848 664" aria-hidden="true">'+g+'</svg>';
+
+  /* one photograph of Captain with the projection for a given score drawn on it */
+  function photoCell(n, withBase){
+    var t=(5-n)/4, cls = t>0 ? "stb lost" : "stb gain";
+    var g = Math.abs(t)<0.01 ? "" :
+      '<path class="'+cls+'" d="'+capBand(CAP_TOP,t,TOP_AMP, 1)+'"/>'+
+      '<path class="'+cls+'" d="'+capBand(CAP_UND,t,UND_AMP,-1)+'"/>'+
+      '<path class="stp" d="'+capPath(CAP_TOP,t,TOP_AMP, 1)+'"/>'+
+      '<path class="stp" d="'+capPath(CAP_UND,t,UND_AMP,-1)+'"/>';
+    return '<span class="st-ph"><svg viewBox="0 0 640 440" preserveAspectRatio="none" aria-hidden="true">'+
+      (withBase ? '<path class="stbase" d="'+capPath(CAP_TOP,0,0,1)+'"/>'+
+                  '<path class="stbase" d="'+capPath(CAP_UND,0,0,1)+'"/>' : '')+
+      g+'</svg></span>';
+  }
+  function paintPhotoCells(){
+    var src=($("#bcsPhoto img")||{}).src||"";
+    $$(".st-ph").forEach(function(e){ e.style.backgroundImage="url("+src+")" });
   }
 
   /* what actually moved, named plainly */
@@ -3107,10 +3110,11 @@ textarea.field-in{min-height:130px;resize:vertical}
     var A=$("#cmpA"), B=$("#cmpB"); if(!A||!B)return;
     var isIdeal = bcsScore===5;
     var left  = isIdeal ? 1 : bcsScore, right = isIdeal ? 9 : 5;
-    A.innerHTML = flatHorse(left, !isIdeal) +
+    A.innerHTML = photoCell(left, true) +
       '<figcaption><b>'+left+'</b>'+BCS[left-1].label+(isIdeal?"":" \u00b7 you picked this")+'</figcaption>';
-    B.innerHTML = flatHorse(right, false) +
+    B.innerHTML = photoCell(right, true) +
       '<figcaption><b>'+right+'</b>'+BCS[right-1].label+(isIdeal?"":" \u00b7 healthy")+'</figcaption>';
+    paintPhotoCells();
     var t=$("#cmpTitle"), L=$("#cmpList");
     if(isIdeal){
       if(t) t.textContent="A 1 and a 9, side by side.";
@@ -3194,15 +3198,18 @@ textarea.field-in{min-height:130px;resize:vertical}
   function buildPrintSheet(){
     if($("#printsheet"))return;
     var d=document.createElement("div"); d.id="printsheet";
+    var psrc=($("#bcsPhoto img")||{}).src||"";
     var cells=BCS.map(function(b){
-      var ro=h_ribOpacity(b.n), bo=h_boneOpacity(b.n), g="";
-      g+='<path class="st-body" d="'+h_outline(b.n)+'"/>';
-      g+='<path class="st-tail" d="'+h_tail(b.n)+'"/>';
-      g+='<path class="st-tail" d="'+h_mane(b.n)+'"/>';
-      h_ribMarks(b.n).forEach(function(x){ g+='<path class="st-mark" d="'+x+'" style="opacity:'+(ro*.8)+'"/>' });
-      g+='<path class="st-mark" d="'+h_spineRidge(b.n)+'" style="opacity:'+(bo*.8)+'"/>';
-      g+='<path class="st-mark" d="'+h_hipMark(b.n)+'" style="opacity:'+(bo*.8)+'"/>';
-      return '<div class="ps-cell"><svg viewBox="300 76 848 664">'+g+'</svg>'+
+      var t=(5-b.n)/4, cls = t>0 ? "stb lost" : "stb gain";
+      var g = Math.abs(t)<0.01 ? "" :
+        '<path class="'+cls+'" d="'+capBand(CAP_TOP,t,TOP_AMP, 1)+'"/>'+
+        '<path class="'+cls+'" d="'+capBand(CAP_UND,t,UND_AMP,-1)+'"/>'+
+        '<path class="stp" d="'+capPath(CAP_TOP,t,TOP_AMP, 1)+'"/>'+
+        '<path class="stp" d="'+capPath(CAP_UND,t,UND_AMP,-1)+'"/>';
+      return '<div class="ps-cell"><span class="ps-ph"><img src="'+psrc+'" alt="">'+
+             '<svg viewBox="0 0 640 440" preserveAspectRatio="none">'+
+             '<path class="stbase" d="'+capPath(CAP_TOP,0,0,1)+'"/>'+
+             '<path class="stbase" d="'+capPath(CAP_UND,0,0,1)+'"/>'+g+'</svg></span>'+
              '<b>'+b.n+'</b><span>'+b.label+'</span></div>';
     }).join("");
     var head='<tr><th class="ps-site">Where you put your hands</th>'+
