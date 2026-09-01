@@ -36,3 +36,9 @@ output runs roughly a third the size of the camera originals.
 The easystore drive was not connected when this was written, so the claim in
 `../color-grade/README.md` that it holds byte-identical originals is UNVERIFIED.
 Verify it before deleting anything.
+
+
+## Result, 2026-08-31
+
+All 454 files graded, zero failures. 105 GB -> 44 GB.
+Two casualties from settings corrected mid-run: C8185 too dark, C8181 oversized.
