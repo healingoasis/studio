@@ -769,6 +769,40 @@ p{margin:0}
 .rb-crit i{background:var(--crit)} .rb-ok i{background:var(--ok)} .rb-over i{background:var(--over)}
 @media(max-width:460px){.rail-bands>span{font-size:8.5px;letter-spacing:.05em}}
 
+.scorer{margin-top:clamp(30px,4vw,52px);padding:clamp(22px,3vw,38px);border:1px solid var(--rule);
+  border-radius:20px;background:var(--surface)}
+.sc-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+  gap:clamp(22px,3vw,44px);margin-top:26px;align-items:start}
+@media(max-width:860px){.sc-grid{grid-template-columns:1fr}}
+.sc-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center;
+  padding:11px 0;border-bottom:1px solid var(--rule-soft)}
+@media(max-width:620px){.sc-row{grid-template-columns:1fr;gap:8px}}
+.sc-name{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);background:none;border:none;padding:0;text-align:left;cursor:pointer}
+.sc-name:hover{color:var(--accent)}
+.sc-name u{display:block;margin-top:4px;font-size:10px;letter-spacing:0;text-transform:none;
+  text-decoration:none;color:var(--faint)}
+.sc-btns{display:grid;grid-template-columns:repeat(9,1fr);gap:4px}
+.sc-btns button{padding:9px 0;border:1px solid var(--rule);background:var(--surface);
+  border-radius:7px;font-family:var(--mono);font-size:13px;color:var(--ink-soft);cursor:pointer;
+  transition:all .14s}
+.sc-btns button:hover{border-color:var(--accent)}
+.sc-btns button[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.sc-out{border:1px solid var(--rule);border-radius:16px;overflow:hidden;position:sticky;top:120px}
+.sc-empty{padding:26px;color:var(--faint);font-size:14.5px;line-height:1.6}
+.sc-top{display:flex;gap:18px;align-items:center;padding:22px clamp(18px,2.2vw,24px)}
+.sc-num{font-family:var(--display);font-size:56px;line-height:.9;font-variant-numeric:tabular-nums}
+.sc-band{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  padding:4px 9px;border-radius:20px;display:inline-block;margin-top:6px}
+.sc-out p{padding:0 clamp(18px,2.2vw,24px) 20px;margin:0;color:var(--ink-soft);font-size:15px;
+  line-height:1.6}
+.sc-note{padding:14px clamp(18px,2.2vw,24px);border-top:1px solid var(--rule-soft);
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--faint);line-height:1.7}
+.sc-reset{margin-top:16px;border:1px solid var(--rule);background:none;border-radius:999px;
+  padding:7px 16px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);cursor:pointer}
+.sc-reset:hover{border-color:var(--accent);color:var(--accent)}
+
 .case{margin:0;border:1px solid var(--rule);border-radius:18px;overflow:hidden;
   background:var(--surface)}
 .case img{width:100%;display:block}
@@ -1535,6 +1569,18 @@ textarea.field-in{min-height:130px;resize:vertical}
              nothing is sent and no address is stored. On the live site this is the one thing on the
              website that turns a visitor into someone you can reach again.</p>
         </form>
+      </div>
+    </div>
+
+    <div class="scorer rv" id="scorer">
+      <p class="eyebrow">Now do it yourself</p>
+      <h2 style="margin-top:10px">Score a horse.</h2>
+      <p class="lede" style="margin-top:14px;max-width:64ch">Put a hand on all six places and give
+         each one a number from one to nine. Do not average as you go and do not let one bad patch
+         decide it &mdash; score each place on its own, then let the six of them settle it.</p>
+      <div class="sc-grid">
+        <div id="scRows"></div>
+        <div class="sc-out" id="scOut"></div>
       </div>
     </div>
 
@@ -3279,6 +3325,67 @@ textarea.field-in{min-height:130px;resize:vertical}
     paintBCS();
   }
 
+  var scVals=[null,null,null,null,null,null];
+  var SC_VERDICT=[
+    [0,   2.99, "crit", "A veterinary call today.",
+     "If this is your horse, a vet needs to see it today &mdash; and do not start feeding it up on your own, because refeeding a starved horse is done on a plan and the wrong feed at the wrong time does real harm. If it is not your horse, call your county sheriff. They are the ones with the power to act."],
+    [3,   3.99, "crit", "Thin, and under our floor.",
+     "This is below the minimum of 4 that every horse fostered for this rescue is held at. A vet should see this horse and a feeding plan should be written down before anything else changes."],
+    [4,   6.0,  "ok",   "In the healthy range.",
+     "Four is the floor we hold foster homes to and five is ideal for most horses. Keep scoring it, keep writing it down, and you will see a change long before it shows from across a paddock."],
+    [6.01,7.0,  "over", "Carrying more than it needs.",
+     "Not an emergency, but worth watching and worth looking at what it is being fed."],
+    [7.01,9,    "over", "Over-conditioned.",
+     "Far enough over to carry risks of its own &mdash; laminitis and metabolic disease. Worth a conversation with your vet about feed and work."]
+  ];
+
+  function paintScorer(){
+    var rows=$("#scRows"), out=$("#scOut"); if(!rows||!out)return;
+    if(!rows.dataset.on){
+      rows.dataset.on="1";
+      rows.innerHTML=AREAS.map(function(name,i){
+        return '<div class="sc-row"><button class="sc-name" data-open="'+i+'">'+(i+1)+' &middot; '+name+
+          '<u>'+h_HPTS[i].hint+'</u></button><div class="sc-btns" data-a="'+i+'">'+
+          BCS.map(function(b){ return '<button type="button" data-v="'+b.n+'" aria-pressed="false" '+
+            'aria-label="'+name+', score '+b.n+'">'+b.n+'</button>' }).join("")+'</div></div>';
+      }).join("");
+      rows.addEventListener("click",function(e){
+        var o=e.target.closest(".sc-name");
+        if(o){ bcsArea=+o.dataset.open; paintBCS();
+               var f=$("#bcsFigure"); if(f&&f.scrollIntoView)f.scrollIntoView({block:"center"}); return }
+        var b=e.target.closest(".sc-btns button"); if(!b)return;
+        scVals[+b.parentNode.dataset.a]=+b.dataset.v; paintScorer();
+      });
+    }
+    $$(".sc-btns",rows).forEach(function(g){
+      var v=scVals[+g.dataset.a];
+      $$("button",g).forEach(function(b){ b.setAttribute("aria-pressed", String(+b.dataset.v===v)) });
+    });
+    var done=scVals.filter(function(v){ return v!==null });
+    if(done.length<6){
+      out.innerHTML='<p class="sc-empty"><b>'+done.length+' of 6 places scored.</b><br><br>'+
+        'Score every one of them, even the ones that feel obvious. One thin patch is not a thin '+
+        'horse, and one well-covered patch is not a well-covered one either.</p>';
+      return;
+    }
+    var avg=done.reduce(function(a,b){return a+b},0)/6;
+    var v=SC_VERDICT.filter(function(r){ return avg>=r[0]&&avg<=r[1] })[0]||SC_VERDICT[2];
+    var lo=Math.min.apply(null,scVals), hi=Math.max.apply(null,scVals);
+    var loN=AREAS.filter(function(n,i){ return scVals[i]===lo }).join(", ");
+    var spread = hi-lo>=3
+      ? '<span class="sc-note">Widest gap: '+loN+' at '+lo+', against '+hi+' elsewhere. A spread that '+
+        'large is worth a second pass &mdash; and worth mentioning to a vet.</span>' : '';
+    out.innerHTML='<div class="sc-top"><div class="sc-num" style="color:var(--'+v[2]+')">'+
+      avg.toFixed(1)+'</div><div><div style="font-family:var(--display);font-size:22px;line-height:1.15">'+
+      v[3]+'</div><span class="sc-band band-'+v[2]+'">'+BANDNAME[v[2]]+'</span></div></div>'+
+      '<p>'+v[4]+'</p>'+spread+
+      '<span class="sc-note">Six places: '+AREAS.map(function(n,i){ return n+' '+scVals[i] }).join(' &middot; ')+
+      '<br>This is a teaching tool, not a diagnosis.</span>'+
+      '<div style="padding:0 clamp(18px,2.2vw,24px) 20px"><button class="sc-reset" id="scReset">Start again</button></div>';
+    var r=$("#scReset");
+    if(r) r.addEventListener("click",function(){ scVals=[null,null,null,null,null,null]; paintScorer() });
+  }
+
   function paintBCS(){
     var s=BCS[bcsScore-1];
     paintView();
@@ -3342,6 +3449,7 @@ textarea.field-in{min-height:130px;resize:vertical}
 
     buildHorse();
     buildStrip();
+    paintScorer();
     initGive();
     initCapture();
 

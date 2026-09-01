@@ -91,6 +91,27 @@ rebuilt without going back to the studio.
 - **"Make it pop."** Copy, prices, dates, names: fine. Judgement about design: not
   something to hand to a bot unsupervised, which is why nothing saves unseen.
 
+## CE: the folder is empty because there is nothing to advertise
+
+Checked properly on 31 August, against the live site and the live store rather than against
+the campaign folders.
+
+- The only Cranio/AK seminar the website has ever listed ran **31 July – 2 August 2026**.
+  It has passed. Nothing has replaced it on `/events`.
+- Everything else on that page is either the Acupuncture **certification programme** —
+  "Part I" through "Part V" are its modules, at $200 deposit and $7,900 balance, not short
+  CE — or the Homecoming Conference.
+- **Both CE seminars are still live and buyable at $682**: "Cranio-sacral Adjusting
+  Techniques with Applied Kinesiology" and "Applied Kinesiology for Veterinary Practice".
+
+So somebody can pay $682 today for a seminar with no date to attend. That is worth Daniel
+knowing separately from any of this.
+
+A campaign cannot honestly be made until there is a date to put on it — advertising a
+seminar that has already run is worse than advertising nothing. **The moment the next date
+exists, the campaign is a day's work**, and it will land on the shelf correctable, because
+it will be built the same way as the others.
+
 ## Log
 
 - 2026-08-31: idea captured and built the same day. Layer one — the shelf, seeded with
@@ -98,3 +119,9 @@ rebuilt without going back to the studio.
 - 2026-08-31: layer two — corrections from inside the portal, with preview, versioning and
   a layout picker. Portal commit `dc0d7bc`. The plain-words half needs the same Anthropic
   key as the Ask assistant; editing the text by hand works without it.
+- 2026-08-31: the conference shelf was empty only because nobody had rendered it — 55
+  pieces shelved (40 teaching cards, 12 Homecoming posts, 3 flyers). Corrections extended
+  to the teaching cards, so 76 of 91 pieces can now be fixed from the portal. The 15 that
+  cannot are hand-written HTML rather than words in a field.
+- 2026-08-31: CE looked into and left honestly empty — see above. It needs a date, not a
+  campaign.
