@@ -227,7 +227,7 @@ p{margin:0}
 .tk.is-file{border-top-color:var(--accent)}
 .tk-when{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--faint)}
-.tk h4{font-family:var(--display);font-weight:400;font-size:19px;margin-top:7px;line-height:1.2}
+.tk h3,.tk h4{font-family:var(--display);font-weight:400;font-size:19px;margin-top:7px;line-height:1.2}
 .tk-t{margin-top:9px;margin-bottom:14px;font-size:14.5px;line-height:1.6;color:var(--ink-soft)}
 .tk-tag{align-self:flex-start;margin-top:auto;font-family:var(--mono);font-size:8.5px;
   letter-spacing:.13em;text-transform:uppercase;padding:4px 9px;border-radius:20px}
@@ -340,7 +340,7 @@ p{margin:0}
 .wb-n{font-family:var(--mono);font-size:15px;text-align:right;font-variant-numeric:tabular-nums}
 
 .file-body{padding:clamp(26px,3.2vw,42px)}
-.file-body h3{font-size:clamp(26px,3.2vw,36px);margin-top:12px;line-height:1.08}
+.file-body h2,.file-body h3{font-size:clamp(26px,3.2vw,36px);margin-top:12px;line-height:1.08}
 .file-body .quote{margin-top:20px;font-family:var(--display);font-style:italic;font-size:19px;
   line-height:1.5;color:var(--ink-soft);border-left:2px solid var(--accent);padding-left:18px}
 .fields{margin-top:26px;border-top:1px solid var(--rule-soft)}
@@ -364,7 +364,7 @@ p{margin:0}
   grid-template-columns:52px 1fr;gap:20px;align-items:start}
 .step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--mono);
   font-size:12px;letter-spacing:.1em;color:var(--accent);padding-top:5px}
-.step h4{font-size:19px;font-family:var(--sans);font-weight:600;letter-spacing:0}
+.step h3,.step h4{font-size:19px;font-family:var(--sans);font-weight:600;letter-spacing:0}
 .step p{margin-top:8px;color:var(--ink-soft);font-size:15.5px}
 @media(max-width:600px){.step{grid-template-columns:1fr;gap:6px}}
 
@@ -377,7 +377,7 @@ p{margin:0}
 
 .panel{background:var(--surface);border:1px solid var(--rule);border-radius:16px;
   padding:clamp(26px,3.2vw,40px)}
-.panel h3{font-size:23px;margin-bottom:14px}
+.panel h2,.panel h3{font-size:23px;margin-bottom:14px}
 .panel-accent{background:var(--accent-wash);border-color:color-mix(in srgb,var(--accent) 26%,transparent)}
 .panel-dark{background:var(--invert-bg);color:var(--invert-fg);border-color:transparent}
 .panel-dark h3{color:var(--invert-fg)} .panel-dark p{color:var(--invert-soft)}
@@ -391,7 +391,7 @@ p{margin:0}
   gap:clamp(28px,4vw,52px);align-items:start}
 @media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
-.site-footer h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
+.site-footer h2,.site-footer h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
   color:var(--invert-fg);margin-bottom:16px;font-weight:400}
 .site-footer a{color:var(--invert-soft);text-decoration:none;display:block;padding:5px 0;font-size:15px}
 .site-footer a:hover{color:var(--invert-accent)}
@@ -411,7 +411,7 @@ p{margin:0}
   border-radius:16px;padding:clamp(24px,3vw,36px);display:grid;grid-template-columns:auto 1fr;
   gap:22px;align-items:center}
 .promise svg{width:44px;height:44px;color:var(--accent);flex:0 0 auto}
-.promise h3{font-size:clamp(21px,2.6vw,28px);line-height:1.2}
+.promise h2,.promise h3{font-size:clamp(21px,2.6vw,28px);line-height:1.2}
 .promise p{margin-top:8px;color:var(--ink-soft);font-size:15.5px}
 @media(max-width:560px){.promise{grid-template-columns:1fr}}
 
@@ -469,7 +469,7 @@ p{margin:0}
 .pdp-price{font-family:var(--mono);font-size:22px;margin-top:16px;font-variant-numeric:tabular-nums}
 .pdp-info .lede{margin-top:18px;font-size:17px}
 .pdp-block{margin-top:30px;padding-top:26px;border-top:1px solid var(--rule)}
-.pdp-block h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+.pdp-block h2,.pdp-block h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--faint);font-weight:400;margin-bottom:14px}
 .opt-row{display:flex;flex-wrap:wrap;gap:9px}
 .sw{width:34px;height:34px;border-radius:50%;border:1px solid var(--rule);cursor:pointer;padding:0;
@@ -876,7 +876,7 @@ p{margin:0}
 .feed dt{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
   color:var(--invert-accent);margin:0}
 .feed dd{margin:0}
-.feed h4{font-family:var(--sans);font-size:17.5px;font-weight:600;color:var(--invert-fg);letter-spacing:0}
+.feed h3,.feed h4{font-family:var(--sans);font-size:17.5px;font-weight:600;color:var(--invert-fg);letter-spacing:0}
 .feed p{margin-top:7px;color:var(--invert-soft);font-size:15px}
 @media(max-width:620px){.feed{grid-template-columns:1fr;gap:6px}}
 
@@ -949,7 +949,7 @@ p{margin:0}
 .cinfo{display:grid;gap:26px}
 .cinfo-item{display:grid;grid-template-columns:26px 1fr;gap:16px;align-items:start}
 .cinfo-item svg{width:22px;height:22px;color:var(--accent);margin-top:4px}
-.cinfo-item h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+.cinfo-item h2,.cinfo-item h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--faint);font-weight:400}
 .cinfo-item p,.cinfo-item a{font-size:17px;color:var(--ink);margin-top:5px;text-decoration:none;display:block}
 .cinfo-item a:hover{color:var(--accent)}
@@ -1095,19 +1095,19 @@ textarea.field-in{min-height:130px;resize:vertical}
     <div class="steps rv">
       <div class="step">
         <div>
-          <h4>Law enforcement calls</h4>
+          <h3>Law enforcement calls</h3>
           <p>A Wisconsin department seizes an equine and needs somewhere for it to go. We take the intake, open a file, and start a record that follows the horse for the rest of its life.</p>
         </div>
       </div>
       <div class="step">
         <div>
-          <h4>Weight, feet, and trust</h4>
+          <h3>Weight, feet, and trust</h3>
           <p>Shelter, food, vet and farrier care, and unconditional love and attention. Refeeding is done slowly and on purpose. Hooves that have gone years without a trim come back over many cycles. The mental side usually takes longest.</p>
         </div>
       </div>
       <div class="step">
         <div>
-          <h4>The home that keeps them</h4>
+          <h3>The home that keeps them</h3>
           <p>Adopters are visited before approval, and we stay in touch for the lifetime of the horse. Adopted equines cannot be sold on, leased, or loaned without our approval. That is the whole point of the file.</p>
         </div>
       </div>
@@ -1145,7 +1145,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         </div>
         <div class="file-body">
           <p class="eyebrow">Intake 2015 · Pleasant Prairie intervention</p>
-          <h3>Red</h3>
+          <h2>Red</h2>
           <p class="quote">Extremely dehydrated and 250 lb underweight.</p>
           <dl class="fields">
             <div class="field"><dt>Age at intake</dt><dd>7-year-old quarter horse</dd></div>
@@ -1161,7 +1161,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         </div>
         <div class="file-body">
           <p class="eyebrow">Intake November 2015 · Found loose</p>
-          <h3>Captain “Black” Sparrow</h3>
+          <h2>Captain “Black” Sparrow</h2>
           <p class="quote">Around 500 lbs underweight and covered in sores and rain rot.</p>
           <dl class="fields">
             <div class="field"><dt>Deficit</dt><dd><b>≈500 lb underweight</b></dd></div>
@@ -1368,7 +1368,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         </div>
         <div class="file-body">
           <p class="eyebrow">File 01 · Intake 2015</p>
-          <h3>Red</h3>
+          <h2>Red</h2>
           <p class="quote">Red came in as a Pleasant Prairie intervention rescue in 2015. This 7-year-old quarter horse was extremely dehydrated and 250 lb underweight!</p>
           <dl class="fields">
             <div class="field"><dt>Source</dt><dd>Pleasant Prairie intervention</dd></div>
@@ -1380,10 +1380,10 @@ textarea.field-in{min-height:130px;resize:vertical}
           </dl>
         </div>
         <ol class="file-track">
-          <li class="tk is-file"><p class="tk-when">Day 0</p><h4>Intake</h4><p class="tk-t">Extremely dehydrated and 250 pounds underweight, with serious hoof issues on top of it and what the file calls emotional challenges.</p><span class="tk-tag tag-file">From the file</span></li>
-          <li class="tk"><p class="tk-when">Days 1&ndash;10</p><h4>The dangerous part</h4><p class="tk-t">A pound of alfalfa every four hours, six feeds a day, no grain at all. Roughly one emaciated horse in five is lost in this stretch &mdash; right when everybody thinks the rescue is going well.</p><span class="tk-tag tag-proto">From the protocol</span></li>
-          <li class="tk"><p class="tk-when">Months</p><h4>Condition comes back</h4><p class="tk-t">Three to ten months to bring body condition back, in half&#8209;pound steps. Red's hooves had to be worked through across the same stretch.</p><span class="tk-tag tag-proto">From the protocol</span></li>
-          <li class="tk is-file"><p class="tk-when">Then</p><h4>Placed</h4><p class="tk-t">Recovered and placed. He cannot be sold on, leased or loaned without our approval, and a representative may check on him for the rest of his life.</p><span class="tk-tag tag-file">From the file</span></li>
+          <li class="tk is-file"><p class="tk-when">Day 0</p><h3>Intake</h3><p class="tk-t">Extremely dehydrated and 250 pounds underweight, with serious hoof issues on top of it and what the file calls emotional challenges.</p><span class="tk-tag tag-file">From the file</span></li>
+          <li class="tk"><p class="tk-when">Days 1&ndash;10</p><h3>The dangerous part</h3><p class="tk-t">A pound of alfalfa every four hours, six feeds a day, no grain at all. Roughly one emaciated horse in five is lost in this stretch &mdash; right when everybody thinks the rescue is going well.</p><span class="tk-tag tag-proto">From the protocol</span></li>
+          <li class="tk"><p class="tk-when">Months</p><h3>Condition comes back</h3><p class="tk-t">Three to ten months to bring body condition back, in half&#8209;pound steps. Red's hooves had to be worked through across the same stretch.</p><span class="tk-tag tag-proto">From the protocol</span></li>
+          <li class="tk is-file"><p class="tk-when">Then</p><h3>Placed</h3><p class="tk-t">Recovered and placed. He cannot be sold on, leased or loaned without our approval, and a representative may check on him for the rest of his life.</p><span class="tk-tag tag-file">From the file</span></li>
         </ol>
       </article>
 
@@ -1393,7 +1393,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         </div>
         <div class="file-body">
           <p class="eyebrow">File 02 · Intake November 2015</p>
-          <h3>Captain “Black” Sparrow</h3>
+          <h2>Captain “Black” Sparrow</h2>
           <p class="quote">Captain “Black” Sparrow was found loose in November 2015. He was around 500 lbs underweight and covered in sores and rain rot.</p>
           <dl class="fields">
             <div class="field"><dt>Source</dt><dd>Found loose</dd></div>
@@ -1404,10 +1404,10 @@ textarea.field-in{min-height:130px;resize:vertical}
           </dl>
         </div>
         <ol class="file-track">
-          <li class="tk is-file"><p class="tk-when">Day 0</p><h4>Intake</h4><p class="tk-t">Found loose in November 2015. Around 500 pounds underweight, and covered in sores and rain rot from end to end.</p><span class="tk-tag tag-file">From the file</span></li>
-          <li class="tk"><p class="tk-when">Days 1&ndash;10</p><h4>The dangerous part</h4><p class="tk-t">The same six small feeds a day, and the same risk. Nothing about being 500 pounds down lets you go faster; if anything it lets you go slower.</p><span class="tk-tag tag-proto">From the protocol</span></li>
-          <li class="tk is-file"><p class="tk-when">Over a year</p><h4>The long middle</h4><p class="tk-t">Well over a year of rehabilitation &mdash; longer than the three to ten months that bringing body condition back usually takes. The skin had to heal while the weight came back.</p><span class="tk-tag tag-file">From the file</span></li>
-          <li class="tk is-file"><p class="tk-when">Then</p><h4>Placed</h4><p class="tk-t">Recovered and placed, and checked on for the lifetime of the horse. The file never really closes.</p><span class="tk-tag tag-file">From the file</span></li>
+          <li class="tk is-file"><p class="tk-when">Day 0</p><h3>Intake</h3><p class="tk-t">Found loose in November 2015. Around 500 pounds underweight, and covered in sores and rain rot from end to end.</p><span class="tk-tag tag-file">From the file</span></li>
+          <li class="tk"><p class="tk-when">Days 1&ndash;10</p><h3>The dangerous part</h3><p class="tk-t">The same six small feeds a day, and the same risk. Nothing about being 500 pounds down lets you go faster; if anything it lets you go slower.</p><span class="tk-tag tag-proto">From the protocol</span></li>
+          <li class="tk is-file"><p class="tk-when">Over a year</p><h3>The long middle</h3><p class="tk-t">Well over a year of rehabilitation &mdash; longer than the three to ten months that bringing body condition back usually takes. The skin had to heal while the weight came back.</p><span class="tk-tag tag-file">From the file</span></li>
+          <li class="tk is-file"><p class="tk-when">Then</p><h3>Placed</h3><p class="tk-t">Recovered and placed, and checked on for the lifetime of the horse. The file never really closes.</p><span class="tk-tag tag-file">From the file</span></li>
         </ol>
       </article>
 
@@ -1420,7 +1420,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         </div>
         <div class="file-body">
           <p class="eyebrow">File 03 · Pleasant Prairie PD</p>
-          <h3>Kat</h3>
+          <h2>Kat</h2>
           <p class="quote">She came to us for the proper care and rehabilitation she so desperately deserved!</p>
           <dl class="fields">
             <div class="field"><dt>Source</dt><dd>Long-standing Pleasant Prairie Police Department case</dd></div>
@@ -1665,18 +1665,18 @@ textarea.field-in{min-height:130px;resize:vertical}
 
     <dl class="steps-feed rv">
       <div class="feed"><dt>Days 1–3</dt><dd>
-        <h4>One pound of alfalfa, every four hours</h4>
+        <h3>One pound of alfalfa, every four hours</h3>
         <p>Six small feeds a day, roughly half of what the horse actually needs. No grain at all.
            Good leafy alfalfa, because it produces a lower glucose and insulin response than grain
            or grass — which is precisely what you are trying to avoid.</p></dd></div>
       <div class="feed"><dt>Days 4–5</dt><dd>
-        <h4>Two to three pounds, every four hours</h4>
+        <h3>Two to three pounds, every four hours</h3>
         <p>Still six feeds. Still no grain. About three quarters of requirement.</p></dd></div>
       <div class="feed"><dt>Days 6–10</dt><dd>
-        <h4>Four to five pounds, every four hours</h4>
+        <h3>Four to five pounds, every four hours</h3>
         <p>Full requirement, and the feeds start consolidating toward three a day.</p></dd></div>
       <div class="feed"><dt>Day 10 onward</dt><dd>
-        <h4>Slowly, for months</h4>
+        <h3>Slowly, for months</h3>
         <p>Hay every eight to twelve hours, increasing gradually. Grain is not introduced until
            body condition has come up off the floor, and then in half-pound meals.</p></dd></div>
     </dl>
@@ -1766,19 +1766,19 @@ textarea.field-in{min-height:130px;resize:vertical}
     </div>
     <div class="steps rv">
       <div class="step"><div>
-        <h4>Print and submit the form</h4>
+        <h3>Print and submit the form</h3>
         <p>Print out the adoption form and submit it by mail, or email it to namasteequinerescue@gmail.com. You do not have to name a horse.</p>
       </div></div>
       <div class="step"><div>
-        <h4>We talk, and we visit</h4>
+        <h3>We talk, and we visit</h3>
         <p>A Namaste representative visits the premises before any approval. We look at fencing, shelter, water, and where the horse would actually stand on a bad February night.</p>
       </div></div>
       <div class="step"><div>
-        <h4>You receive the file</h4>
+        <h3>You receive the file</h3>
         <p>Approved adopters get a file on the animal: how it came to be on the farm, what veterinary care it received while it was here, and what the staff has personally noticed about it.</p>
       </div></div>
       <div class="step"><div>
-        <h4>We stay in touch, for good</h4>
+        <h3>We stay in touch, for good</h3>
         <p>Periodic checks may be made by a Namaste representative for the lifetime of the horse. Adopted animals cannot be moved on, leased, or loaned without our approval.</p>
       </div></div>
     </div>
@@ -1808,7 +1808,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     <div class="cols2">
       <div class="panel rv">
         <p class="eyebrow">You provide</p>
-        <h3 style="margin-top:12px">The home and the daily work</h3>
+        <h2 style="margin-top:12px">The home and the daily work</h2>
         <ul class="checks" style="margin-top:20px">
           <li><svg><use href="#i-check"/></svg><span>Housing, hay, grain and shavings</span></li>
           <li><svg><use href="#i-check"/></svg><span>Farrier work and routine vet checkups</span></li>
@@ -1818,7 +1818,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       </div>
       <div class="panel panel-accent rv">
         <p class="eyebrow">We cover</p>
-        <h3 style="margin-top:12px">The veterinary side</h3>
+        <h2 style="margin-top:12px">The veterinary side</h2>
         <p style="color:var(--ink-soft);margin-top:16px">All veterinary costs except for routine checkups are covered, if foster homes use a Namaste Equine Rescue approved vet. Non-emergency procedures need pre-approval from board members.</p>
         <div class="panel panel-dark" style="margin-top:22px;padding:22px">
           <p class="eyebrow">Emergency protocol</p>
@@ -1926,7 +1926,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       </div>
       <div class="panel rv">
         <p class="eyebrow">Where it goes · 02</p>
-        <h3 style="margin-top:12px">The veterinary side</h3>
+        <h2 style="margin-top:12px">The veterinary side</h2>
         <p style="color:var(--ink-soft);margin-top:14px">This farm covers all veterinary costs except
            routine checkups. A foster home may authorize up to <b>$350</b> of emergency care without
            asking us first. That is money promised before a horse ever arrives.</p>
@@ -2054,7 +2054,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     <div class="promise rv">
       <svg><use href="#i-shield"/></svg>
       <div>
-        <h3>100% of every order goes back to the horses.</h3>
+        <h2>100% of every order goes back to the horses.</h2>
         <p>Not "a portion of proceeds". After the cost of making the item, everything left
            goes to hay, farrier work, and veterinary bills for the next intake.</p>
       </div>
@@ -2065,9 +2065,9 @@ textarea.field-in{min-height:130px;resize:vertical}
     <div class="shop-grid" id="shopGrid"></div>
 
     <div class="cols3" style="margin-top:clamp(44px,6vw,72px)">
-      <div class="panel rv"><p class="eyebrow">Why merchandise</p><h3 style="margin-top:10px;font-size:20px">Steady money, not just appeal money</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Donations spike after a bad case and then go quiet. Hay does not. A shop gives supporters a reason to give in the months when nothing dramatic is happening.</p></div>
-      <div class="panel rv"><p class="eyebrow">Why these five</p><h3 style="margin-top:10px;font-size:20px">A $12 way in and a $58 way in</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Someone who will never drive to Union Grove can still put a sticker on a tack box. The range matters more than any single item.</p></div>
-      <div class="panel rv"><p class="eyebrow">Why the numbers</p><h3 style="margin-top:10px;font-size:20px">Real records, not slogans</h3><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Every graphic here is a fact from this rescue's own files. People ask what "+250" means, and then they get told about Red.</p></div>
+      <div class="panel rv"><p class="eyebrow">Why merchandise</p><h2 style="margin-top:10px;font-size:20px">Steady money, not just appeal money</h2><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Donations spike after a bad case and then go quiet. Hay does not. A shop gives supporters a reason to give in the months when nothing dramatic is happening.</p></div>
+      <div class="panel rv"><p class="eyebrow">Why these five</p><h2 style="margin-top:10px;font-size:20px">A $12 way in and a $58 way in</h2><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Someone who will never drive to Union Grove can still put a sticker on a tack box. The range matters more than any single item.</p></div>
+      <div class="panel rv"><p class="eyebrow">Why the numbers</p><h2 style="margin-top:10px;font-size:20px">Real records, not slogans</h2><p style="color:var(--ink-soft);margin-top:10px;font-size:15px">Every graphic here is a fact from this rescue's own files. People ask what "+250" means, and then they get told about Red.</p></div>
     </div>
 
     <p class="note rv" style="margin-top:38px;max-width:70ch">This shop is a proposal. Nothing on
@@ -2091,23 +2091,23 @@ textarea.field-in{min-height:130px;resize:vertical}
     <div class="contact-grid">
       <div class="cinfo rv">
         <div class="cinfo-item"><svg><use href="#i-pin"/></svg><div>
-          <h4>The farm</h4>
+          <h2>The farm</h2>
           <p>1904 51st Drive<br>Union Grove, WI 53182</p>
         </div></div>
         <div class="cinfo-item"><svg><use href="#i-phone"/></svg><div>
-          <h4>Telephone</h4>
+          <h2>Telephone</h2>
           <a href="tel:+12624920767">(262) 492-0767</a>
         </div></div>
         <div class="cinfo-item"><svg><use href="#i-mail"/></svg><div>
-          <h4>Email</h4>
+          <h2>Email</h2>
           <a href="mailto:namasteequinerescue@gmail.com">namasteequinerescue@gmail.com</a>
         </div></div>
         <div class="cinfo-item"><svg><use href="#i-badge"/></svg><div>
-          <h4>Law enforcement</h4>
+          <h2>Law enforcement</h2>
           <p>Departments with a seizure should call the farm directly. We will tell you straight away whether we have space.</p>
         </div></div>
         <div class="cinfo-item"><svg><use href="#i-heart"/></svg><div>
-          <h4>Visiting</h4>
+          <h2>Visiting</h2>
           <p>By arrangement only — this is a working farm and a rehabilitation facility, not a petting zoo.</p>
         </div></div>
       </div>
@@ -2152,7 +2152,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         </address>
       </div>
       <div>
-        <h4>The rescue</h4>
+        <h2>The rescue</h2>
         <a href="#/about" data-nav>About</a>
         <a href="#/horses" data-nav>Our Horses</a>
         <a href="#/alumni" data-nav>Alumni</a>
@@ -2160,14 +2160,14 @@ textarea.field-in{min-height:130px;resize:vertical}
         <a href="#/contact" data-nav>Contact</a>
       </div>
       <div>
-        <h4>Get involved</h4>
+        <h2>Get involved</h2>
         <a href="#/adopt" data-nav>Adopt</a>
         <a href="#/foster" data-nav>Foster</a>
         <a href="#/volunteer" data-nav>Volunteer</a>
         <a href="#/donate" data-nav>Donate</a>
       </div>
       <div>
-        <h4>Support</h4>
+        <h2>Support</h2>
         <a href="#/shop" data-nav>Shop</a>
         <a href="https://www.facebook.com/namasteequinerescue" target="_blank" rel="noopener">Facebook</a>
         <a href="https://namasteequinerescue.org/" target="_blank" rel="noopener">Official site</a>
@@ -2225,6 +2225,25 @@ textarea.field-in{min-height:130px;resize:vertical}
   var ROUTES={"/":"p-home","/about":"p-about","/learn":"p-learn","/horses":"p-horses","/alumni":"p-alumni",
     "/adopt":"p-adopt","/foster":"p-foster","/volunteer":"p-volunteer","/donate":"p-donate",
     "/shop":"p-shop","/contact":"p-contact"};
+  var DESCS={
+    "/":"A Wisconsin rescue that takes equines seized by law enforcement, puts the weight back on, and finds the home that keeps them.",
+    "/about":"Founded 2014 to help law enforcement with seized equines \u2014 and what fourteen years taught us about educating owners instead.",
+    "/learn":"How to tell whether a horse is too thin: the six places you put your hands, the nine scores, and why you cannot simply feed a starved horse.",
+    "/horses":"Who is currently in our care and looking for a home.",
+    "/alumni":"Red came in 250 pounds underweight. Captain around 500. Both went home, and stayed there.",
+    "/adopt":"What we need to see before a horse goes home with you, and the four steps to get there.",
+    "/foster":"Give a horse a room while it gets its life back. What we cover, and what we ask of every foster barn.",
+    "/volunteer":"Barn work, property work and fundraising \u2014 an extra set of hands is always needed.",
+    "/donate":"The fund has to be full before the phone rings. Where your money actually goes.",
+    "/shop":"Five pieces, designed here. 100% of every order goes back to the horses.",
+    "/contact":"Union Grove, Wisconsin. (262) 492-0767. Departments with a seizure should call the farm directly."
+  };
+  function setMeta(key, val, isProp){
+    var sel = isProp ? 'meta[property="'+key+'"]' : 'meta[name="'+key+'"]';
+    var m = document.head.querySelector(sel);
+    if(!m){ m=document.createElement("meta"); m.setAttribute(isProp?"property":"name", key); document.head.appendChild(m) }
+    m.setAttribute("content", val);
+  }
   var TITLES={"/":"","/about":"About","/learn":"Learn","/horses":"Our Horses","/alumni":"Alumni",
     "/adopt":"Adopt","/foster":"Foster","/volunteer":"Volunteer","/donate":"Donate",
     "/shop":"Shop","/contact":"Contact"};
@@ -2246,6 +2265,12 @@ textarea.field-in{min-height:130px;resize:vertical}
     reveal();
     var nm=prod?prod.name:(TITLES[h]||"");
     document.title=(nm?nm+" — ":"")+"Namaste Equine Rescue";
+    var d=prod?(prod.blurb||""):(DESCS[h]||DESCS["/"]);
+    setMeta("description", d);
+    setMeta("og:title", document.title, true);
+    setMeta("og:description", d, true);
+    setMeta("og:type", "website", true);
+    setMeta("twitter:card", "summary_large_image");
   }
   window.addEventListener("hashchange",route);
 
@@ -3599,11 +3624,11 @@ textarea.field-in{min-height:130px;resize:vertical}
           '<p class="eyebrow">'+p.tag+'</p><h1>'+p.name+'</h1>'+
           '<div class="pdp-price">$'+p.price+'</div>'+
           '<p class="lede">'+p.lede+'</p>'+
-          (p.colors.length>1?'<div class="pdp-block"><h4>Color</h4><div class="opt-row">'+
+          (p.colors.length>1?'<div class="pdp-block"><h2>Color</h4><div class="opt-row">'+
             p.colors.map(function(x,n){return '<button class="sw" data-ci="'+n+'" style="background:'+x.fab+
               '" aria-pressed="'+(n===s.ci)+'" aria-label="'+x.name+'"></button>'}).join("")+
             '</div><p class="chosen" id="chosen">'+c.name+'</p></div>':'')+
-          (p.sizes.length>1?'<div class="pdp-block"><h4>Size</h4><div class="opt-row">'+
+          (p.sizes.length>1?'<div class="pdp-block"><h2>Size</h4><div class="opt-row">'+
             p.sizes.map(function(z){return '<button class="pill" data-size="'+z+'" aria-pressed="'+
               (z===s.size)+'">'+z+'</button>'}).join("")+'</div></div>':'')+
           '<div class="pdp-block" style="border:0;padding-top:26px">'+
@@ -3611,10 +3636,10 @@ textarea.field-in{min-height:130px;resize:vertical}
             '<p class="added" id="addedMsg">Added to your bag</p>'+
             '<p class="note" style="margin-top:12px;font-size:11.5px">Nothing on this page is connected '+
             'to a payment system — no order can be placed.</p></div>'+
-          '<div class="pdp-block"><h4>Details</h4><dl style="margin:0">'+
+          '<div class="pdp-block"><h2>Details</h4><dl style="margin:0">'+
             p.specs.map(function(r){return '<div class="spec"><dt>'+r[0]+'</dt><dd>'+r[1]+'</dd></div>'}).join("")+
             '</dl></div>'+
-          (rows?'<div class="pdp-block"><h4>Size guide — inches, garment laid flat</h4>'+
+          (rows?'<div class="pdp-block"><h2>Size guide — inches, garment laid flat</h2>'+
             '<div class="table-wrap"><table class="sizetable"><thead><tr><th>Size</th><th>Chest</th>'+
             '<th>Length</th></tr></thead><tbody>'+rows.map(function(r){
               return '<tr><td>'+r[0]+'</td><td>'+r[1]+'″</td><td>'+r[2]+'″</td></tr>'}).join("")+
@@ -3678,7 +3703,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     body.innerHTML=cart.map(function(l,i){
       var opt=[l.color,l.size].filter(Boolean).join(" · ");
       return '<div class="line"><div class="line-thumb">'+thumb(l.id,l.ci)+'</div>'+
-        '<div><h4>'+l.name+'</h4>'+(opt?'<p class="line-opt">'+opt+'</p>':'')+
+        '<div><h4>'+l.name+'</h2>'+(opt?'<p class="line-opt">'+opt+'</p>':'')+
         '<div class="qty"><button data-d="-1" data-i="'+i+'" aria-label="One fewer">−</button>'+
         '<span>'+l.qty+'</span>'+
         '<button data-d="1" data-i="'+i+'" aria-label="One more">+</button></div></div>'+
@@ -3753,13 +3778,16 @@ textarea.field-in{min-height:130px;resize:vertical}
   if(teaser){
     teaser.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'+
       ["tee","crew","tote","beanie"].map(function(id){
-        return '<a href="#/shop/'+id+'" data-nav style="display:block;border:1px solid var(--rule);'+
+        var pr=byId(id);
+        return '<a href="#/shop/'+id+'" data-nav aria-label="'+(pr?pr.name:id)+'" '+
+          'style="display:block;border:1px solid var(--rule);'+
           'border-radius:14px;overflow:hidden;aspect-ratio:1;background:#EDEAF2">'+thumb(id,0)+'</a>';
       }).join("")+'</div>';
   }
 
   window.addEventListener("scroll",reveal,{passive:true});
   window.addEventListener("resize",reveal);
+  document.documentElement.lang="en";
   renderShop(); initBCS(); render(); route();
 })();
 </script>
