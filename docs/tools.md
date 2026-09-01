@@ -27,6 +27,10 @@ this machine (env vars in `.env.local`, CLIs installed). Check with
   Cloud CLI, not a service account key. Credentials live in `~/.config/gcloud/`, outside
   this repo. Re-do it any time with `gcloud auth login` and
   `gcloud auth application-default login`.
+- Both sign-ins were done on 1 September 2026 and **verified end to end**: a plain Node
+  program read the `orders` collection with no key file, no env var and nothing pasted
+  into the repo. Prototypes in `apps/` need no Firebase config beyond
+  `FIREBASE_PROJECT_ID` — the Admin SDK finds the credentials by itself.
 - Because it is Daniel's own account, the access carries **write** permission as well as
   read — same situation as the Shopify credentials. The "no changes without Daniel's yes"
   rule is convention here, not a locked door.
