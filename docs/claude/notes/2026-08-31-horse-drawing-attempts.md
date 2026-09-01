@@ -55,3 +55,23 @@ halter, plain background, flat overcast light, short coat — the trace should c
 the whole animated diagram can be built off a real animal's outline.
 
 Failing that, `docs/handoffs/2026-08-31-illustration-brief.md` commissions nine proper plates.
+
+
+## Postscript: the photographs themselves
+
+Measured before touching them: mean saturation 13 on both Captain frames (near monochrome),
+tones spanning only 17-218 instead of a full range. Flat, under-processed phone snapshots.
+
+`scripts/photo-grade.py` now grades them: levels from the luminance histogram, a gentle S-curve,
+a shadow-recovery term that opens up a black horse's coat without greying the blacks, a highlight
+knee so the overcast sky does not clip, a small warm shift, +14% saturation, a light vignette and
+an unsharp mask. Regenerates `web/` and the `bcs-captain-lateral.jpg` crop.
+
+First pass was set far too hot — saturation 1.30 and an S of 0.55 turned Red orange and blew the
+skies. Grading should be invisible. The shipped numbers are half that.
+
+Background separation was tried and thrown away: blurring behind the horse read as fake, and a
+mask edge that is even slightly wrong looks worse than no effect at all.
+
+Product shots were left alone — they are studio frames on white and this pipeline is built for
+outdoor light.
