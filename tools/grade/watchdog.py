@@ -43,9 +43,16 @@ def main(folder, log, every=4):
                 s = stats.get(e["graded"])
                 if not s: continue
                 bad = []
+                # The real fault signal: the grade did not land where it aimed.
+                # A scene full of dark clothing is legitimately dark and is not
+                # a defect -- comparing clips to each other kept flagging those.
+                aim = e.get("aim_p50")
+                if aim and abs(s["p50"] - aim) > 45:
+                    bad.append(f"aimed for {aim}, landed at {s['p50']}")
                 # Scenes full of dark clothing are legitimately dark. Only shout
                 # for a clip far enough out that a grading fault is the likely cause.
-                if abs(s["p50"] - med) > 42: bad.append(f"brightness {s['p50']} vs {med:.0f} typical")
+                if s["p50"] < 32 or s["p50"] > 200:
+                    bad.append(f"extreme brightness ({s['p50']})")
                 if s["p1"] > 110: bad.append(f"shadows washed out ({s['p1']})")
                 if s["p95"] < 95:  bad.append(f"very flat ({s['p95']})")
                 if s["p999"] < 150: bad.append(f"no highlights at all ({s['p999']})")

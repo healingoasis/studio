@@ -103,7 +103,7 @@ def run(folder, bitrate="auto", limit=None, dry_run=False):
         log({"file": name, "status": "done", "graded": os.path.basename(out),
              "src_mb": round(src_size/1e6), "out_mb": round(out_size/1e6),
              "seconds": round(el), "exposure": m.get("exposure"),
-             "bitrate": m.get("bitrate"),
+             "bitrate": m.get("bitrate"), "aim_p50": m.get("p50"),
              "wb": [m.get("wb_r"), m.get("wb_b")]})
     print(f"\nfreed {freed/1e9:.1f} GB this run", flush=True)
 
