@@ -83,6 +83,15 @@ is the healthy range. If one place scores three or more clear of the rest it say
 spread that wide is worth a second pass. Every place name is a link back up to that place on
 Captain. Labelled a teaching tool, not a diagnosis.
 
+**Start the file.** A new Apply page carries adopt, foster and volunteer through one flow.
+Pick which you are, then work down the rescue's own requirements as Yes / Not yet — prior
+experience, eighteen or over, no barbed wire, a visit before approval; for foster, within two
+hours of Union Grove, a minimum of 4 on the Henneke scale, capped t-posts, hay 24/7. The ones
+the rescue will not move on are marked *required*, and answering "not yet" to one of those opens
+a plain explanation rather than a dead end: barbed wire is fixable and plenty of adopters have
+changed fencing before approval. A running verdict tallies what is met and says, honestly, that
+a shortfall is a conversation and not a refusal — send it anyway. Nothing is connected.
+
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
 refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding

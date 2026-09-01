@@ -799,6 +799,47 @@ p{margin:0}
 .rb-crit i{background:var(--crit)} .rb-ok i{background:var(--ok)} .rb-over i{background:var(--over)}
 @media(max-width:460px){.rail-bands>span{font-size:8.5px;letter-spacing:.05em}}
 
+.ap-pick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px);
+  margin-top:26px}
+@media(max-width:760px){.ap-pick{grid-template-columns:1fr}}
+.ap-card{text-align:left;border:1px solid var(--rule);border-radius:18px;background:var(--surface);
+  padding:clamp(20px,2.4vw,28px);cursor:pointer;transition:all .18s;display:block}
+.ap-card:hover{border-color:var(--accent);box-shadow:var(--shadow-lift);transform:translateY(-2px)}
+.ap-card b{display:block;font-family:var(--display);font-size:23px;font-weight:400;color:var(--ink)}
+.ap-card span{display:block;margin-top:10px;color:var(--ink-soft);font-size:14.5px;line-height:1.55}
+.ap-card em{display:block;margin-top:16px;font-style:normal;font-family:var(--mono);font-size:10px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+.ap-head{position:relative}
+.ap-back{position:absolute;right:0;top:0;border:1px solid var(--rule);background:none;
+  border-radius:999px;padding:7px 15px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);cursor:pointer}
+.ap-back:hover{border-color:var(--accent);color:var(--accent)}
+.ap-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+  gap:clamp(24px,3.4vw,48px);margin-top:clamp(24px,3vw,36px);align-items:start}
+@media(max-width:860px){.ap-grid{grid-template-columns:1fr}}
+.ap-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;
+  padding:13px 0;border-bottom:1px solid var(--rule-soft)}
+.ap-item.flagged{background:var(--crit-wash);margin-inline:-12px;padding-inline:12px;border-radius:8px}
+.ap-t{font-size:15px;line-height:1.5;color:var(--ink)}
+.ap-req{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);font-weight:400;margin-left:6px;white-space:nowrap}
+.ap-yn{display:flex;gap:6px}
+.ap-yn button{border:1px solid var(--rule);background:var(--surface);border-radius:8px;
+  padding:8px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-soft);
+  cursor:pointer;transition:all .14s;white-space:nowrap}
+.ap-yn button:hover{border-color:var(--accent)}
+.ap-yn button[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.ap-why{grid-column:1/-1;margin:8px 0 0;font-size:13.5px;line-height:1.55;color:var(--crit)}
+.ap-side{border:1px solid var(--rule);border-radius:18px;background:var(--surface);
+  padding:clamp(20px,2.4vw,28px);position:sticky;top:120px}
+.ap-l{display:block;margin:14px 0 6px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint)}
+.ap-side .field-in{width:100%}
+.ap-sum{margin-top:20px;padding:15px 17px;border-radius:12px;font-size:14.5px;line-height:1.6}
+.ap-sum b{display:block;font-family:var(--display);font-weight:400;font-size:19px;margin-bottom:6px}
+.ap-sum.ok{background:var(--ok-wash);color:var(--ok)}
+.ap-sum.warn{background:var(--over-wash);color:var(--over)}
+
 .scorer{margin-top:clamp(30px,4vw,52px);padding:clamp(22px,3vw,38px);border:1px solid var(--rule);
   border-radius:20px;background:var(--surface)}
 .sc-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
@@ -1325,7 +1366,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         <p class="lede" style="margin-top:18px">The useful thing to do during a quiet spell is get approved <em>before</em> the phone rings.</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
           <a class="btn btn-solid btn-lg" href="#/foster" data-nav>Become a foster home</a>
-          <a class="btn btn-line btn-lg" href="#/adopt" data-nav>Start an adoption file</a>
+          <a class="btn btn-line btn-lg" href="#/apply/adopt" data-nav>Start an adoption file</a>
         </div>
       </div>
       <div class="rv">
@@ -1730,7 +1771,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     <h1>Do you have the perfect home for these animals?</h1>
     <p class="lede">Applying does not obligate you to adopt an equine, and you do not need to have a particular horse in mind. Start the file, and we will talk.</p>
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:30px">
-      <a class="btn btn-solid btn-lg" href="#/contact" data-nav>Request the adoption form</a>
+      <a class="btn btn-solid btn-lg" href="#/apply/adopt" data-nav>Start an adoption application</a>
       <a class="btn btn-line btn-lg" href="#/horses" data-nav>See who is available</a>
     </div>
   </div></div>
@@ -1801,7 +1842,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     <p class="eyebrow">Foster</p>
     <h1>Give a horse a room while it gets its life back.</h1>
     <p class="lede">Fostering is the difference between saying yes to a department and saying we have no space. You do not need to pick a horse first — apply, and we match the equine to your property, your abilities, and the care it needs.</p>
-    <a class="btn btn-solid btn-lg" style="margin-top:30px" href="#/contact" data-nav>Request the foster application</a>
+    <a class="btn btn-solid btn-lg" style="margin-top:30px" href="#/apply/foster" data-nav>Start a foster application</a>
   </div></div>
 
   <div class="sec wrap">
@@ -1854,7 +1895,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       </div>
       <div class="rv">
         <p style="color:var(--invert-soft);font-size:17.5px">You will need experience owning equines, and the time, means and adequate facilities to care for one properly. Distance matters because we need to be able to reach you, and you need to be able to reach our vet.</p>
-        <a class="btn btn-lg btn-invert" style="margin-top:26px" href="#/contact" data-nav>Start a foster application</a>
+        <a class="btn btn-lg btn-invert" style="margin-top:26px" href="#/apply/foster" data-nav>Start a foster application</a>
       </div>
     </div>
   </div></div>
@@ -1898,6 +1939,18 @@ textarea.field-in{min-height:130px;resize:vertical}
 </section>
 
 <!-- ══════════════════════════ DONATE ══════════════════════════ -->
+<!-- ══════════════════════════ APPLY ══════════════════════════ -->
+<section class="page" id="p-apply">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Apply</p>
+    <h1>Start the file.</h1>
+    <p class="lede">The useful thing to do while it is quiet is to get approved <em>before</em> the phone
+       rings. Applying commits you to nothing, and you do not need a horse in mind. Work through the
+       list honestly &mdash; a &ldquo;not yet&rdquo; is not a no, it just tells us what to talk about.</p>
+  </div></div>
+  <div class="sec wrap"><div id="applyBox"></div></div>
+</section>
+
 <section class="page" id="p-donate">
   <div class="phead"><div class="wrap narrow">
     <p class="eyebrow">Donate</p>
@@ -2224,7 +2277,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   /* ─────────── router ─────────── */
   var ROUTES={"/":"p-home","/about":"p-about","/learn":"p-learn","/horses":"p-horses","/alumni":"p-alumni",
     "/adopt":"p-adopt","/foster":"p-foster","/volunteer":"p-volunteer","/donate":"p-donate",
-    "/shop":"p-shop","/contact":"p-contact"};
+    "/shop":"p-shop","/contact":"p-contact","/apply":"p-apply"};
   var DESCS={
     "/":"A Wisconsin rescue that takes equines seized by law enforcement, puts the weight back on, and finds the home that keeps them.",
     "/about":"Founded 2014 to help law enforcement with seized equines \u2014 and what fourteen years taught us about educating owners instead.",
@@ -2236,7 +2289,8 @@ textarea.field-in{min-height:130px;resize:vertical}
     "/volunteer":"Barn work, property work and fundraising \u2014 an extra set of hands is always needed.",
     "/donate":"The fund has to be full before the phone rings. Where your money actually goes.",
     "/shop":"Five pieces, designed here. 100% of every order goes back to the horses.",
-    "/contact":"Union Grove, Wisconsin. (262) 492-0767. Departments with a seizure should call the farm directly."
+    "/contact":"Union Grove, Wisconsin. (262) 492-0767. Departments with a seizure should call the farm directly.",
+    "/apply":"Apply to adopt, foster or volunteer. Get approved before the next call comes in."
   };
   function setMeta(key, val, isProp){
     var sel = isProp ? 'meta[property="'+key+'"]' : 'meta[name="'+key+'"]';
@@ -2246,14 +2300,17 @@ textarea.field-in{min-height:130px;resize:vertical}
   }
   var TITLES={"/":"","/about":"About","/learn":"Learn","/horses":"Our Horses","/alumni":"Alumni",
     "/adopt":"Adopt","/foster":"Foster","/volunteer":"Volunteer","/donate":"Donate",
-    "/shop":"Shop","/contact":"Contact"};
+    "/shop":"Shop","/contact":"Contact","/apply":"Apply"};
   var nav=$("#nav"), burger=$("#burger");
 
   function route(){
     var h=(location.hash||"#/").replace(/^#/,"");
+    var ap=/^\/apply\/(adopt|foster|volunteer)$/.exec(h);
+    if(ap){ apKind=ap[1]; apStep=1; h="/apply"; }
     var m=/^\/shop\/([a-z]+)$/.exec(h), id, prod=null;
     if(m && byId(m[1])){ prod=byId(m[1]); id="p-product"; renderPDP(m[1]); }
     else { if(!ROUTES[h]){h="/"} id=ROUTES[h]; }
+    if(id==="p-apply") paintApply();
     var navKey = h.indexOf("/shop")===0 ? "/shop" : h;
     $$(".page").forEach(function(p){p.classList.toggle("live",p.id===id)});
     $$("#nav a,[data-nav]").forEach(function(a){
@@ -3482,6 +3539,114 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<div style="padding:0 clamp(18px,2.2vw,24px) 20px"><button class="sc-reset" id="scReset">Start again</button></div>';
     var r=$("#scReset");
     if(r) r.addEventListener("click",function(){ scVals=[null,null,null,null,null,null]; paintScorer() });
+  }
+
+  /* ══ apply: adopt, foster or volunteer, with the real requirements ══ */
+  var APPLY = {
+    adopt: { label:"Adopt a horse",
+      blurb:"Applying does not obligate you to adopt, and you do not need a particular horse in mind.",
+      items:[
+        ["I have owned or cared for equines before.",0,""],
+        ["I am at least 18 years old.",1,"Eighteen is our minimum for an adopter. An adult in the household can apply instead, and you can be part of it."],
+        ["I live in Wisconsin, or close enough to it.",0,"Out-of-state cases are looked at individually. Tell us where you are."],
+        ["The horse would live on my own property, or somewhere you can approve.",0,""],
+        ["There is a barn or a lean-to, and shelter from the weather.",0,""],
+        ["Fencing is board or wire mesh. There is no barbed wire.",1,"Barbed wire is the one we will not move on \u2014 it is what horses get taken away from. It is also fixable, and plenty of adopters have changed fencing before approval. Say so and we will talk about it."],
+        ["There is adequate water and feed available.",0,""],
+        ["I can give you my vet, farrier and caregiver.",0,""],
+        ["A representative can visit before approval.",1,"The visit is how we know the horse will be safe, so it is not optional. Nothing is judged on wealth \u2014 we look at fencing, shelter, water, and where the horse would stand on a bad February night."]
+      ],
+      extra:["Any horse in mind? Leave it blank if not.","e.g. no one in particular"] },
+    foster: { label:"Foster a horse",
+      blurb:"You do not pick a horse first. We match the equine to your property, your abilities, and the care it needs.",
+      items:[
+        ["I am within about two hours of Union Grove.",1,"Foster homes need to be close enough for us to reach quickly. Tell us where you are and we will say honestly whether it works."],
+        ["I can keep a horse at a minimum of 4 on the Henneke scale, monitored daily and written down.",1,"That number is on our foster agreement. If you are not sure what a 4 feels like, the Learn page shows you in about two minutes."],
+        ["Hay available 24/7, clean water at all times, shelter from extreme weather.",1,""],
+        ["Capped t-posts, and no barbed wire anywhere.",1,"Non-negotiable. It is the condition horses get taken away from somewhere else for lacking."],
+        ["Feet checked daily and trimmed every six to eight weeks.",0,""],
+        ["Worming every three months.",0,""],
+        ["Feeding two to three times daily, with health monitoring.",0,""],
+        ["I can cover housing, hay, grain, shavings, farrier work and routine vet checkups.",1,"Those are the foster home\u2019s side. We cover all other veterinary costs with an approved vet."],
+        ["I will use a Namaste-approved vet, and get pre-approval for non-emergency work.",0,""],
+        ["The horse can be available for adoption visits.",0,""]
+      ],
+      extra:["How much stabling and turnout do you have?","e.g. two stalls, three acres"] },
+    volunteer: { label:"Volunteer",
+      blurb:"Feeding and turnout, stalls and water, fencing and shelter repairs \u2014 and fundraising, which is worth just as much.",
+      items:[
+        ["I can commit time on a regular basis.",0,""],
+        ["Anyone under 18 coming with me will be supervised by an adult.",0,""],
+        ["Anyone under 14 will work alongside a parent or guardian at all times.",0,""],
+        ["I am up for barn work, property work or fundraising \u2014 whichever is needed.",0,""]
+      ],
+      extra:["Which days tend to suit you?","e.g. Saturday mornings"] }
+  };
+  var apKind=null, apStep=0, apAns=[], apFields={};
+
+  function apSet(k){ apKind=k; apAns=APPLY[k].items.map(function(){return null}); apStep=1; paintApply() }
+
+  function paintApply(){
+    var box=$("#applyBox"); if(!box)return;
+    if(!apKind || apStep===0){
+      box.innerHTML='<p class="eyebrow">First</p><h2 style="margin-top:10px">Which of these are you?</h2>'+
+        '<div class="ap-pick">'+["adopt","foster","volunteer"].map(function(k){
+          return '<button class="ap-card" data-k="'+k+'"><b>'+APPLY[k].label+'</b><span>'+APPLY[k].blurb+'</span>'+
+                 '<em>Start &rarr;</em></button>';
+        }).join("")+'</div>';
+      return;
+    }
+    var C=APPLY[apKind], done=apAns.filter(function(v){return v!==null}).length;
+    var met=apAns.filter(function(v){return v===true}).length;
+    var blockers=[];
+    C.items.forEach(function(it,i){ if(it[1] && apAns[i]===false) blockers.push([it[0],it[2]]) });
+
+    var rows=C.items.map(function(it,i){
+      return '<div class="ap-item'+(apAns[i]===false&&it[1]?" flagged":"")+'">'+
+        '<span class="ap-t">'+it[0]+(it[1]?' <b class="ap-req">required</b>':'')+'</span>'+
+        '<span class="ap-yn"><button data-i="'+i+'" data-v="1" aria-pressed="'+(apAns[i]===true)+'">Yes</button>'+
+        '<button data-i="'+i+'" data-v="0" aria-pressed="'+(apAns[i]===false)+'">Not yet</button></span>'+
+        (apAns[i]===false&&it[2]?'<p class="ap-why">'+it[2]+'</p>':'')+'</div>';
+    }).join("");
+
+    var summary="";
+    if(done===C.items.length){
+      summary = '<div class="ap-sum '+(blockers.length?"warn":"ok")+'">'+
+        '<b>'+met+' of '+C.items.length+' met.</b> '+
+        (blockers.length
+          ? 'There '+(blockers.length===1?'is one thing':'are '+blockers.length+' things')+' we would need to talk about first \u2014 and every one of them is a conversation, not a refusal. Send it anyway; we would rather hear from you.'
+          : 'That is everything we ask. Send it and we will be in touch to arrange the visit.')+'</div>';
+    }
+    box.innerHTML =
+      '<div class="ap-head"><button class="ap-back" id="apBack">&larr; Change</button>'+
+      '<p class="eyebrow">Applying to</p><h2 style="margin-top:6px">'+C.label+'</h2>'+
+      '<p style="color:var(--ink-soft);margin-top:10px;max-width:62ch">'+C.blurb+'</p></div>'+
+      '<div class="ap-grid"><div><p class="eyebrow" style="margin-bottom:12px">'+
+        'What we need to see &middot; '+done+' of '+C.items.length+' answered</p>'+rows+'</div>'+
+      '<div class="ap-side"><p class="eyebrow">Your details</p>'+
+        '<label class="ap-l" for="apName">Name</label><input class="field-in" id="apName" value="'+(apFields.name||"")+'">'+
+        '<label class="ap-l" for="apMail">Email</label><input class="field-in" id="apMail" type="email" value="'+(apFields.mail||"")+'">'+
+        '<label class="ap-l" for="apTel">Telephone</label><input class="field-in" id="apTel" value="'+(apFields.tel||"")+'">'+
+        '<label class="ap-l" for="apTown">Town and county</label><input class="field-in" id="apTown" value="'+(apFields.town||"")+'">'+
+        '<label class="ap-l" for="apX">'+C.extra[0]+'</label><input class="field-in" id="apX" placeholder="'+C.extra[1]+'" value="'+(apFields.x||"")+'">'+
+        summary+
+        '<button class="btn btn-solid btn-wide btn-lg" style="margin-top:18px" id="apSend" data-demo>Send this application</button>'+
+        '<p class="note" style="margin-top:14px;font-size:11.5px">Not connected in this concept &mdash; nothing is sent and nothing is stored. On the live site this is what turns a quiet week into a home that is ready.</p>'+
+      '</div></div>';
+
+    box.addEventListener("click", apClick);
+  }
+  function apClick(e){
+    var c=e.target.closest(".ap-card");
+    if(c){ apSet(c.dataset.k); return }
+    if(e.target.id==="apBack"){ apKind=null; apStep=0; paintApply(); return }
+    var b=e.target.closest(".ap-yn button");
+    if(b){
+      ["name","mail","tel","town","x"].forEach(function(k,i){
+        var el=$(["#apName","#apMail","#apTel","#apTown","#apX"][i]); if(el) apFields[k]=el.value;
+      });
+      apAns[+b.dataset.i] = b.dataset.v==="1"; paintApply();
+    }
   }
 
   function paintBCS(){
