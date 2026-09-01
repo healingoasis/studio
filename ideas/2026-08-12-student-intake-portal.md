@@ -82,3 +82,8 @@ who stops fielding those emails and chasing paperwork by hand before every modul
   and wait in a holding folder to be placed. A live test product was quietly adding a
   16th student to the Fall class; it is filtered out now. The diploma has a slot waiting
   for Daniel's file.
+- 2026-09-01: Daniel asked for Firebase access and sent the console link. It points at a
+  project named `healing-oasis`; this repo has always been set up against `healing-io`.
+  Written up in `docs/handoffs/2026-09-01-firebase-access.md` — the project name needs
+  settling before a key is issued. Status stays `prototyping`: the storage-and-login
+  question is with Dan, but the rest of this idea is not waiting on him.
