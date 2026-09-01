@@ -249,7 +249,7 @@ p{margin:0}
   #printsheet .ps-cell{text-align:center}
   #printsheet .ps-ph{position:relative;display:block;width:100%;aspect-ratio:640/440;
     overflow:hidden;border-radius:3px}
-  #printsheet .ps-ph img{width:100%;height:100%;object-fit:cover;display:block}
+  #printsheet .ps-ph canvas{width:100%;height:100%;display:block}
   #printsheet .ps-ph svg{position:absolute;inset:0;width:100%;height:100%;display:block}
   #printsheet .stbase{fill:none;stroke:rgba(255,255,255,.95);stroke-width:9;stroke-linecap:round}
   #printsheet .stp{fill:none;stroke:#7A2FA8;stroke-width:11;stroke-linecap:round}
@@ -560,6 +560,8 @@ p{margin:0}
 .bcs-photo.has-sel .pp:not([aria-pressed="true"]){opacity:.5}
 .bcs-figure .ovl{position:absolute;inset:0;width:100%;height:100%;display:none;
   pointer-events:none}
+.bcs-figure .warp{position:absolute;inset:0;width:100%;height:100%;display:none}
+.bcs-figure.change .warp{display:block}
 .bcs-figure.change .ovl{display:block}
 .bcs-figure.change .pp{display:none}
 .ovl-base{fill:none;stroke:rgba(255,255,255,.92);stroke-width:2.4;stroke-linecap:round}
@@ -702,7 +704,7 @@ p{margin:0}
 .st:hover{border-color:var(--accent)}
 .st-ph{position:relative;display:block;width:100%;aspect-ratio:640/440;border-radius:8px;
   overflow:hidden;background-size:cover;background-position:center}
-.st-ph svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.st-ph svg,.st-ph canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .stbase{fill:none;stroke:rgba(255,255,255,.9);stroke-width:9;stroke-linecap:round}
 .stp{fill:none;stroke:#D79BF0;stroke-width:11;stroke-linecap:round}
 .st .stp{stroke-width:8} .st .stb{opacity:.62}
@@ -726,6 +728,8 @@ p{margin:0}
 .figkey i{flex:none;display:block;width:26px;height:14px;border-radius:3px}
 .figkey i.ln{height:0;border-top:4px solid currentColor;border-radius:0}
 .figkey b{color:var(--ink);font-weight:600}
+.fk-warn{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--faint);
+  border-left:2px solid var(--rule);padding-left:10px}
 
 .bcs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
   padding:11px 4px 13px;border-top:1px solid var(--rule-soft)}
@@ -1478,7 +1482,8 @@ textarea.field-in{min-height:130px;resize:vertical}
             <button class="pp" data-a="3" style="left:44.79%;top:47.95%" aria-pressed="false" aria-label="Place 4, Ribs, across the barrel"><span>4</span></button>
             <button class="pp" data-a="4" style="left:34.38%;top:38.26%" aria-pressed="false" aria-label="Place 5, Loin, along the loin"><span>5</span></button>
             <button class="pp" data-a="5" style="left:28.50%;top:41.00%" aria-pressed="false" aria-label="Place 6, Tailhead, beside the dock"><span>6</span></button>
-            <svg class="ovl" id="bcsOvl" viewBox="0 0 640 440" preserveAspectRatio="none" aria-hidden="true">
+            <canvas class="warp" id="bcsWarp" width="640" height="440" aria-hidden="true"></canvas>
+          <svg class="ovl" id="bcsOvl" viewBox="0 0 640 440" preserveAspectRatio="none" aria-hidden="true">
             <path class="ovl-band" id="ovlBandT" d=""/><path class="ovl-band" id="ovlBandU" d=""/>
             <path class="ovl-base" id="ovlBaseT" d=""/><path class="ovl-base" id="ovlBaseU" d=""/>
             <path class="ovl-proj" id="ovlProjT" d=""/><path class="ovl-proj" id="ovlProjU" d=""/>
@@ -1550,9 +1555,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     <div class="stripbox rv">
       <p class="eyebrow">The whole scale on one line</p>
       <h3 style="margin-top:10px">Nine horses. One animal.</h3>
-      <p class="note-sm" style="max-width:70ch">This is the same horse at every score on the
-         scale, drawn to the same outline. Print this row, put it on the barn wall, and you have
-         the reference. Pick any one of them to open it up.</p>
+      <p class="note-sm" style="max-width:70ch">The very same photograph of Captain, nine times over, reshaped each time to show what that score looks like on a real horse. The one in the middle is his true photograph, untouched. Print this row for the barn wall, or tap any one of them.</p>
       <div class="strip" id="bcsStrip"></div>
 
       <div class="compare">
@@ -3088,22 +3091,17 @@ textarea.field-in{min-height:130px;resize:vertical}
     });
   }
 
-  /* one photograph of Captain with the projection for a given score drawn on it */
+  /* one photograph of Captain, reshaped to a given score */
   function photoCell(n, withBase){
-    var t=(5-n)/4, cls = t>0 ? "stb lost" : "stb gain";
-    var g = Math.abs(t)<0.01 ? "" :
-      '<path class="'+cls+'" d="'+capBand(CAP_TOP,t,TOP_AMP, 1)+'"/>'+
-      '<path class="'+cls+'" d="'+capBand(CAP_UND,t,UND_AMP,-1)+'"/>'+
-      '<path class="stp" d="'+capPath(CAP_TOP,t,TOP_AMP, 1)+'"/>'+
-      '<path class="stp" d="'+capPath(CAP_UND,t,UND_AMP,-1)+'"/>';
-    return '<span class="st-ph"><svg viewBox="0 0 640 440" preserveAspectRatio="none" aria-hidden="true">'+
-      (withBase ? '<path class="stbase" d="'+capPath(CAP_TOP,0,0,1)+'"/>'+
-                  '<path class="stbase" d="'+capPath(CAP_UND,0,0,1)+'"/>' : '')+
-      g+'</svg></span>';
+    return '<span class="st-ph"><canvas class="wcv" width="320" height="220" data-n="'+n+'"></canvas>'+
+      (withBase ? '<svg viewBox="0 0 640 440" preserveAspectRatio="none" aria-hidden="true">'+
+        '<path class="stbase" d="'+capPath(CAP_TOP,0,0,1)+'"/>'+
+        '<path class="stbase" d="'+capPath(CAP_UND,0,0,1)+'"/></svg>' : '')+'</span>';
   }
   function paintPhotoCells(){
-    var src=($("#bcsPhoto img")||{}).src||"";
-    $$(".st-ph").forEach(function(e){ e.style.backgroundImage="url("+src+")" });
+    var img=$("#bcsPhoto img"); if(!img)return;
+    var run=function(){ $$(".wcv").forEach(function(cv){ warpInto(cv, +cv.dataset.n) }) };
+    if(img.complete && img.naturalWidth) run(); else img.addEventListener("load", run, {once:true});
   }
 
   /* what actually moved, named plainly */
@@ -3205,12 +3203,13 @@ textarea.field-in{min-height:130px;resize:vertical}
     if(key){
       if(bcsView==="change"){
         var thin = bcsScore<5, same = bcsScore===5;
-        key.innerHTML =
-          '<span style="color:#9a9aa5"><i class="ln"></i>The white line is <b>Captain, exactly as he is now</b></span>'+
-          (same ? '<span>He is about a 5, so the lines sit on top of each other.</span>'
-                : '<span style="color:#B14FD8"><i class="ln"></i>The purple line is <b>where his body would be at a '+bcsScore+'</b></span>'+
-                  '<span style="color:'+(thin?'#E2564A':'#E8A33C')+'"><i style="background:currentColor;opacity:.6"></i>'+
-                  'The shaded part is <b>the body he would have '+(thin?'lost':'put on')+'</b></span>');
+        key.innerHTML = same
+          ? '<span><b>This is Captain\u2019s real photograph.</b> He is about a 5, so nothing is changed.</span>'+
+            '<span style="color:#9a9aa5"><i class="ln"></i>The white lines mark his back and his belly.</span>'
+          : '<span><b>The horse in this photograph has been reshaped</b> to what a '+bcsScore+' would look like '+
+            '\u2014 '+(thin?'thinner':'fatter')+' than he really is.</span>'+
+            '<span style="color:#9a9aa5"><i class="ln"></i>The white lines are <b>where his real body sits</b>, so you can see how far it moved.</span>'+
+            '<span class="fk-warn">Simulated from his own photograph. Captain was never in this condition.</span>';
       } else if(bcsView==="skel"){
         key.innerHTML='<span>These are <b>the bones under the six places</b> &mdash; what your hand is feeling for through the flesh.</span>';
       } else {
@@ -3230,18 +3229,9 @@ textarea.field-in{min-height:130px;resize:vertical}
   function buildPrintSheet(){
     if($("#printsheet"))return;
     var d=document.createElement("div"); d.id="printsheet";
-    var psrc=($("#bcsPhoto img")||{}).src||"";
     var cells=BCS.map(function(b){
-      var t=(5-b.n)/4, cls = t>0 ? "stb lost" : "stb gain";
-      var g = Math.abs(t)<0.01 ? "" :
-        '<path class="'+cls+'" d="'+capBand(CAP_TOP,t,TOP_AMP, 1)+'"/>'+
-        '<path class="'+cls+'" d="'+capBand(CAP_UND,t,UND_AMP,-1)+'"/>'+
-        '<path class="stp" d="'+capPath(CAP_TOP,t,TOP_AMP, 1)+'"/>'+
-        '<path class="stp" d="'+capPath(CAP_UND,t,UND_AMP,-1)+'"/>';
-      return '<div class="ps-cell"><span class="ps-ph"><img src="'+psrc+'" alt="">'+
-             '<svg viewBox="0 0 640 440" preserveAspectRatio="none">'+
-             '<path class="stbase" d="'+capPath(CAP_TOP,0,0,1)+'"/>'+
-             '<path class="stbase" d="'+capPath(CAP_UND,0,0,1)+'"/>'+g+'</svg></span>'+
+      return '<div class="ps-cell"><span class="ps-ph">'+
+             '<canvas class="wcv" width="420" height="289" data-n="'+b.n+'"></canvas></span>'+
              '<b>'+b.n+'</b><span>'+b.label+'</span></div>';
     }).join("");
     var head='<tr><th class="ps-site">Where you put your hands</th>'+
@@ -3259,9 +3249,10 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<div class="ps-row">'+cells+'</div>'+
       '<table class="ps-table"><thead>'+head+'</thead><tbody>'+rows+'</tbody></table>'+
       '<p class="ps-foot">Scale developed by Don Henneke, Texas A&amp;M University, first published 1983. '+
-      'Descriptions written by Namaste Equine Rescue. A horse scoring 3 or below is a veterinary call today. '+
+      'Descriptions written by Namaste Equine Rescue. The nine photographs are one horse of this rescue, '+'reshaped to each score; only the middle one is unaltered. A horse scoring 3 or below is a veterinary call today. '+
       'Every horse fostered for this rescue is held at a minimum of 4.</p>';
     document.body.appendChild(d);
+    paintPhotoCells();
   }
 
   function initGive(){
@@ -3329,20 +3320,52 @@ textarea.field-in{min-height:130px;resize:vertical}
     var proj = pts.map(function(a){ return { x:a[0], y:a[1] + sign*amp*t*a[2] } });
     return h_open(base) + " " + h_open(proj.slice().reverse()).replace(/^M/, "L") + " Z";
   }
+  /* Reshape the photograph itself. Each 2px column is redrawn in three pieces —
+     a band of background above, the body, a band below — so the horse changes
+     and the fence behind him does not. */
+  var WX0=168, WX1=414, W_UP=74, W_DN=52;
+  function wInterp(P, x){
+    if (x >= P[0][0]) return [P[0][1], P[0][2]];
+    if (x <= P[P.length-1][0]) return [P[P.length-1][1], P[P.length-1][2]];
+    for (var i=0;i<P.length-1;i++){
+      var a=P[i], b=P[i+1];
+      if (b[0] <= x && x <= a[0]){
+        var u=(a[0]-x)/(a[0]-b[0]);
+        return [a[1]+(b[1]-a[1])*u, a[2]+(b[2]-a[2])*u];
+      }
+    }
+    return [P[P.length-1][1], P[P.length-1][2]];
+  }
+  function warpInto(cv, v){
+    var img=$("#bcsPhoto img");
+    if(!cv||!img||!img.complete||!img.naturalWidth) return false;
+    var ctx=cv.getContext("2d"), W=640, H=440, sc=cv.width/W;
+    ctx.setTransform(sc,0,0,cv.height/H,0,0);
+    ctx.clearRect(0,0,W,H);
+    ctx.drawImage(img,0,0,W,H);
+    var t=(5-v)/4;
+    if(Math.abs(t)<0.005) return true;
+    for(var x=WX0; x<=WX1; x+=2){
+      var T=wInterp(CAP_TOP,x), U=wInterp(CAP_UND,x);
+      var ty=T[0], uy=U[0];
+      var tn=ty+TOP_AMP*t*T[1], un=uy-UND_AMP*t*U[1];
+      if(un-tn < 24) continue;
+      var a0=Math.max(0,ty-W_UP), b1=Math.min(H,uy+W_DN), w=2;
+      ctx.drawImage(img, x,a0,w,ty-a0,  x,a0,w,tn-a0);
+      ctx.drawImage(img, x,ty,w,uy-ty,  x,tn,w,un-tn);
+      ctx.drawImage(img, x,uy,w,b1-uy,  x,un,w,b1-un);
+    }
+    return true;
+  }
+
   function drawOverlay(v){
+    warpInto($("#bcsWarp"), v);
     var bt=$("#ovlBaseT"); if(!bt)return;
     var t=(5-v)/4;                                  /* + when thin, - when fat */
     setD(bt, capPath(CAP_TOP, 0, 0, 1));
     setD($("#ovlBaseU"), capPath(CAP_UND, 0, 0, 1));
-    setD($("#ovlProjT"), capPath(CAP_TOP, t, TOP_AMP,  1));
-    setD($("#ovlProjU"), capPath(CAP_UND, t, UND_AMP, -1));
-    var cls = t > 0 ? "ovl-band lost" : "ovl-band gain";
-    var bT=$("#ovlBandT"), bU=$("#ovlBandU");
-    setD(bT, capBand(CAP_TOP, t, TOP_AMP,  1)); bT.setAttribute("class", cls);
-    setD(bU, capBand(CAP_UND, t, UND_AMP, -1)); bU.setAttribute("class", cls);
-    var o = Math.min(1, Math.abs(t)*1.15);
-    bT.style.opacity = o*0.5; bU.style.opacity = o*0.5;
-    $("#ovlProjT").style.opacity = o; $("#ovlProjU").style.opacity = o;
+    setD($("#ovlProjT"), ""); setD($("#ovlProjU"), "");
+    setD($("#ovlBandT"), ""); setD($("#ovlBandU"), "");
   }
 
   var bcsPlayT=null, bcsDir=1;
@@ -3446,10 +3469,8 @@ textarea.field-in{min-height:130px;resize:vertical}
     var cap=$("#bcsCap");
     if(cap && bcsView==="change"){
       cap.innerHTML = bcsScore===5
-        ? "Captain is about a 5 &middot; the white line is his own outline"
-        : (bcsScore<5
-            ? "At a "+bcsScore+" &middot; the shaded band is flesh that would be gone"
-            : "At a "+bcsScore+" &middot; the shaded band is flesh he would have put on");
+        ? "Captain &middot; his real photograph, unaltered"
+        : "Simulated &middot; Captain reshaped to a "+bcsScore;
     } else if(cap) cap.innerHTML = bcsArea>=0
       ? 'Place '+(bcsArea+1)+' &middot; '+AREAS[bcsArea]+' &mdash; '+h_HPTS[bcsArea].hint
       : 'Captain &middot; tap a number to open that place up';

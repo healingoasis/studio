@@ -97,3 +97,32 @@ So the Learn page now contains no drawn horse anywhere:
 The Diagram view is retired. The Skeleton view still uses the drawn horse; a photograph-based
 skeleton was attempted over four passes and the ribs kept reading as a comb, so it stays for now
 and should be the first thing replaced when real artwork arrives.
+
+
+## Method 6, and the one that worked: reshape the photograph
+
+The reason it still did not feel real, after everything, is that Captain is a *healthy* horse.
+Drawn lines predicting where a thin horse's back would sit are not the same as seeing a thin
+horse.
+
+So the photograph itself is now reshaped, live, on a canvas. For each 2px column between
+x=168 and x=414 it is redrawn in three pieces:
+
+1. a band of background above the topline, stretched to meet the new topline
+2. the body, resampled from its old span to its new one
+3. a band below the belly, stretched back down to meet the untouched region
+
+Because only those three bands move, **the fence rails behind him stay straight** — which is what
+kills every naive warp. The displacement comes from the same measured topline and underline
+curves and their per-point weights, so it tapers to nothing at the withers and the dock.
+
+It drives the main view, the nine-score row, the comparison and the printable chart. One
+photograph, no extra file weight, and it animates under the Play control.
+
+### The honesty line
+
+This makes a simulated image of a real, identifiable rescue horse, so it is labelled everywhere
+it appears: *"The horse in this photograph has been reshaped… Simulated from his own photograph.
+Captain was never in this condition."* The caption reads "Simulated · Captain reshaped to a 2",
+the 5 is marked as his true photograph untouched, and the printed chart says so in its footer.
+Do not remove those labels.
