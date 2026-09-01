@@ -717,6 +717,16 @@ p{margin:0}
 .st[aria-pressed="true"]{border-color:var(--ink);background:var(--surface);
   box-shadow:0 0 0 1px var(--ink)}
 
+.plain{margin-bottom:16px;padding:15px 17px;border-radius:12px;background:var(--accent-wash);
+  font-size:15px;line-height:1.6;color:var(--ink)}
+.plain b{font-family:var(--display);font-weight:400}
+.figkey{display:flex;flex-wrap:wrap;gap:8px 20px;padding:12px 6px 4px;
+  border-top:1px solid var(--rule-soft);font-size:13.5px;color:var(--ink-soft);line-height:1.4}
+.figkey span{display:flex;align-items:center;gap:9px}
+.figkey i{flex:none;display:block;width:26px;height:14px;border-radius:3px}
+.figkey i.ln{height:0;border-top:4px solid currentColor;border-radius:0}
+.figkey b{color:var(--ink);font-weight:600}
+
 .bcs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
   padding:11px 4px 13px;border-top:1px solid var(--rule-soft)}
 .bcs-chip{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
@@ -1478,15 +1488,16 @@ textarea.field-in{min-height:130px;resize:vertical}
           <svg id="bcsHorse" viewBox="300 76 848 664" role="img" aria-labelledby="bcsHorseTitle">
             <title id="bcsHorseTitle">A horse in side view, with the six body-condition scoring sites marked on the body</title>
           </svg>
-          <div class="bcs-foot">
+          <div class="figkey" id="figKey"></div>
+        <div class="bcs-foot">
             <span class="bcs-chip" id="bcsChip">5 · Moderate</span>
             <span class="bcs-legend"><i></i>Dashed &middot; where an ideal 5 would sit</span>
             <div class="bcs-tools">
             <button class="bcs-play" id="bcsPlay" type="button" aria-pressed="false">Play the scale</button>
             <div class="bcs-view" role="group" aria-label="What to show">
-              <button type="button" data-view="photo" aria-pressed="true">Places</button>
-              <button type="button" data-view="change" aria-pressed="false">Change</button>
-              <button type="button" data-view="skel" aria-pressed="false">Skeleton</button>
+              <button type="button" data-view="photo" aria-pressed="true">Where to feel</button>
+              <button type="button" data-view="change" aria-pressed="false">See it change</button>
+              <button type="button" data-view="skel" aria-pressed="false">Bones underneath</button>
             </div>
           </div>
           </div>
@@ -1503,7 +1514,10 @@ textarea.field-in{min-height:130px;resize:vertical}
       </div>
 
       <div class="rv">
-        <p class="two-nums">There are two sets of numbers here, and they are not the same thing.
+        <p class="plain"><b>What this is.</b> A horse that is too thin cannot tell you. So you check
+         it with your hands, in six particular places, and give each place a number from 1 to 9.
+         Low numbers mean too thin. High numbers mean too fat. Around 5 is right.</p>
+      <p class="two-nums">There are two sets of numbers here, and they are not the same thing.
            <b>1&ndash;6 on Captain</b> are the six <em>places</em> you put your hands.
            <b>1&ndash;9 below</b> are the nine <em>scores</em> &mdash; how much cover you find when you get there.</p>
         <p class="eyebrow" style="margin-bottom:10px">Choose a score &middot; 1 to 9</p>
@@ -1549,6 +1563,8 @@ textarea.field-in{min-height:130px;resize:vertical}
         <div class="cmp-read">
           <p class="eyebrow">See the difference</p>
           <h3 style="margin-top:8px;font-size:21px" id="cmpTitle"></h3>
+          <p class="note-sm" style="margin-top:8px">Two photographs of the same horse. The
+             left one is the score you picked, the right one is a healthy horse.</p>
           <ul class="cmp-list" id="cmpList"></ul>
           <p class="note" style="margin-top:16px;font-size:12px">The dashed line on the left is
              where the healthy horse sits, laid over the one you picked. Same animal, same
@@ -3185,6 +3201,22 @@ textarea.field-in{min-height:130px;resize:vertical}
     });
     var zw=$(".zoombox");
     if(zw) zw.classList.add("zoom-photo");
+    var key=$("#figKey");
+    if(key){
+      if(bcsView==="change"){
+        var thin = bcsScore<5, same = bcsScore===5;
+        key.innerHTML =
+          '<span style="color:#9a9aa5"><i class="ln"></i>The white line is <b>Captain, exactly as he is now</b></span>'+
+          (same ? '<span>He is about a 5, so the lines sit on top of each other.</span>'
+                : '<span style="color:#B14FD8"><i class="ln"></i>The purple line is <b>where his body would be at a '+bcsScore+'</b></span>'+
+                  '<span style="color:'+(thin?'#E2564A':'#E8A33C')+'"><i style="background:currentColor;opacity:.6"></i>'+
+                  'The shaded part is <b>the body he would have '+(thin?'lost':'put on')+'</b></span>');
+      } else if(bcsView==="skel"){
+        key.innerHTML='<span>These are <b>the bones under the six places</b> &mdash; what your hand is feeling for through the flesh.</span>';
+      } else {
+        key.innerHTML='<span><b>1 to 6 are the six places you put your hands.</b> Tap any one to see exactly where it is and what it should feel like.</span>';
+      }
+    }
     var ph=$("#bcsPhoto");
     if(ph){
       ph.classList.toggle("has-sel", bcsArea>=0);
