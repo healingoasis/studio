@@ -45,16 +45,26 @@ def hamming(a, b):
     return bin(a ^ b).count("1")
 
 def extract(folder, out_dir, every=2.0, width=1100, pattern="_GRADED.mp4",
-            dedup_threshold=12):
+            dedup_threshold=12, any_video=False):
+    """any_video=True walks subfolders and takes every .mp4/.mov, which is what
+    the non-acupuncture folders need -- they have no _GRADED naming."""
     os.makedirs(out_dir, exist_ok=True)
-    clips = sorted(f for f in os.listdir(folder) if f.endswith(pattern))
+    if any_video:
+        clips = []
+        for root, _, files in os.walk(folder):
+            for fn in files:
+                if fn.lower().endswith((".mp4", ".mov")) and "_GRADED" not in fn:
+                    clips.append(os.path.relpath(os.path.join(root, fn), folder))
+        clips.sort()
+    else:
+        clips = sorted(f for f in os.listdir(folder) if f.endswith(pattern))
     manifest, kept, seen = [], 0, 0
     for ci, name in enumerate(clips, 1):
         path = os.path.join(folder, name)
         dur = duration(path)
         if dur <= 0:
             continue
-        label = name.replace(pattern, "")
+        label = os.path.splitext(os.path.basename(name))[0].replace(pattern.replace(".mp4",""), "")
         print(f"  [{ci}/{len(clips)}] {label} ({dur:.0f}s)  kept so far: {kept}", flush=True)
         # Seek-based extraction: `-ss` BEFORE `-i` jumps to the nearest keyframe
         # and decodes only from there, so cost is per-sample, not per-frame of
@@ -95,6 +105,8 @@ if __name__ == "__main__":
     a.add_argument("--every", type=float, default=2.0)
     a.add_argument("--width", type=int, default=1100)
     a.add_argument("--threshold", type=int, default=12)
+    a.add_argument("--pattern-any", action="store_true",
+                   help="index every .mp4/.mov including subfolders")
     n = a.parse_args()
     extract(n.folder, n.out, every=n.every, width=n.width,
-            dedup_threshold=n.threshold)
+            dedup_threshold=n.threshold, any_video=n.pattern_any)
