@@ -10,3 +10,6 @@
 {"file": "C8190.MP4", "status": "done", "graded": "C8190_GRADED.mp4", "src_mb": 269, "out_mb": 115, "seconds": 64, "exposure": 0.9306, "bitrate": "99M", "wb": [0.878, 1.031]}
 {"file": "C8191.MP4", "status": "done", "graded": "C8191_GRADED.mp4", "src_mb": 1410, "out_mb": 653, "seconds": 243, "exposure": 0.7, "bitrate": "99M", "wb": [1.0795, 1.0601]}
 {"file": "C8192.MP4", "status": "done", "graded": "C8192_GRADED.mp4", "src_mb": 10537, "out_mb": 5032, "seconds": 2068, "exposure": 1.6848, "bitrate": "99M", "wb": [0.9787, 1.0758]}
+{"file": "C8193.MP4", "status": "done", "graded": "C8193_GRADED.mp4", "src_mb": 6980, "out_mb": 3313, "seconds": 1401, "exposure": 1.2901, "bitrate": "99M", "wb": [1.0116, 1.0807]}
+{"file": "C8194.MP4", "status": "done", "graded": "C8194_GRADED.mp4", "src_mb": 1007, "out_mb": 480, "seconds": 213, "exposure": 1.0269, "bitrate": "99M", "wb": [0.9633, 1.074]}
+{"file": "C8195.MP4", "status": "done", "graded": "C8195_GRADED.mp4", "src_mb": 201, "out_mb": 89, "seconds": 55, "exposure": 2.064, "bitrate": "99M", "wb": [0.9829, 0.9753]}

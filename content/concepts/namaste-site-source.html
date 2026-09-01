@@ -708,6 +708,15 @@ p{margin:0}
 .hz-lbl{fill:var(--faint);font-family:var(--mono);font-size:13px;dominant-baseline:central}
 .hz-depth{fill:none;stroke:var(--accent);stroke-width:2}
 
+.two-nums{margin-bottom:20px;padding:14px 16px;border:1px solid var(--rule);border-radius:12px;
+  background:var(--surface-2);font-size:14px;line-height:1.6;color:var(--ink-soft)}
+.two-nums b{color:var(--ink);font-weight:600}
+.two-nums em{font-style:normal;color:var(--accent)}
+.areas-head{margin-top:26px;font-family:var(--mono);font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint)}
+.areas-head b{color:var(--ink);font-weight:400}
+.areas{margin-top:12px !important}
+
 .rail{display:flex;gap:5px;flex-wrap:wrap}
 .rail button{flex:1 1 0;min-width:42px;padding:13px 0;border:1px solid var(--rule);
   background:var(--surface);border-radius:9px;font-family:var(--mono);font-size:15px;
@@ -1380,7 +1389,7 @@ textarea.field-in{min-height:130px;resize:vertical}
           <button class="pp" data-a="3" style="left:44.79%;top:47.95%" aria-pressed="false" aria-label="Site 4, Ribs, across the barrel"><span>4</span></button>
           <button class="pp" data-a="4" style="left:34.38%;top:38.26%" aria-pressed="false" aria-label="Site 5, Loin, along the loin"><span>5</span></button>
           <button class="pp" data-a="5" style="left:28.50%;top:41.00%" aria-pressed="false" aria-label="Site 6, Tailhead, beside the dock"><span>6</span></button>
-          <span class="bcs-cap">Captain &middot; the six places, on a real horse</span>
+          <span class="bcs-cap" id="bcsCap">Captain &middot; the six places, on a real horse</span>
         </div>
         <svg id="bcsHorse" viewBox="300 76 848 664" role="img" aria-labelledby="bcsHorseTitle">
           <title id="bcsHorseTitle">A horse in side view, with the six body-condition scoring sites marked on the body</title>
@@ -1393,7 +1402,10 @@ textarea.field-in{min-height:130px;resize:vertical}
       </div>
 
       <div class="rv">
-        <p class="eyebrow" style="margin-bottom:10px">Choose a score</p>
+        <p class="two-nums">There are two sets of numbers here, and they are not the same thing.
+           <b>1&ndash;6 on Captain</b> are the six <em>places</em> you put your hands.
+           <b>1&ndash;9 below</b> are the nine <em>scores</em> &mdash; how much cover you find when you get there.</p>
+        <p class="eyebrow" style="margin-bottom:10px">Choose a score &middot; 1 to 9</p>
         <div class="rail" id="bcsRail"></div>
         <div class="rail-bands" aria-hidden="true">
           <span class="rb-crit"><i></i>1–3 · neglect range</span>
@@ -1402,6 +1414,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         </div>
 
         <div class="read" id="bcsRead"></div>
+        <p class="areas-head" id="bcsAreasHead"></p>
         <div class="areas" id="bcsAreas"></div>
       </div>
     </div>
@@ -3106,6 +3119,12 @@ textarea.field-in{min-height:130px;resize:vertical}
         '<span class="read-band band-'+s.band+'">'+BANDNAME[s.band]+'</span></div></div>'+
         '<p>'+s.desc+'</p>';
     }
+    var ah=$("#bcsAreasHead");
+    if(ah) ah.innerHTML='What a <b>'+s.n+'</b> feels like in each of the six places';
+    var cap=$("#bcsCap");
+    if(cap) cap.innerHTML = bcsArea>=0
+      ? 'Place '+(bcsArea+1)+' &middot; '+AREAS[bcsArea]+' &mdash; '+h_HPTS[bcsArea].hint
+      : 'Captain &middot; tap a number to open that place up';
     var areas=$("#bcsAreas");
     if(areas){
       areas.innerHTML=AREAS.map(function(name,i){
