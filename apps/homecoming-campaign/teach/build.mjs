@@ -1,6 +1,7 @@
 // Renders the forty teaching cards. Each is a single 1080x1350 post — the
 // format suits the job: one idea, screenshot-able, saveable. Nothing under 34px.
 import { writeFileSync, mkdirSync } from 'node:fs'
+import { pathToFileURL } from 'node:url'
 import { CARDS, SPEAKERS } from './cards.mjs'
 
 const FONTS = 'https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;0,900;1,700&family=Manrope:wght@500;600;700;800&display=swap'
@@ -85,11 +86,12 @@ const body = (c, p) => {
   return ''
 }
 
-mkdirSync(new URL('./out/', import.meta.url), { recursive: true })
-for (const c of CARDS) {
+// One card's page, on its own, so a single card can be rebuilt without running the set —
+// which is what the portal does when the office corrects a word.
+export const cardHtml = (c) => {
   const p = PAL[c.pal]
   const s = SPEAKERS[c.by]
-  writeFileSync(new URL(`./out/${c.id}_${c.by}.html`, import.meta.url), `<!doctype html>
+  return `<!doctype html>
 <html><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,6 +108,15 @@ ${body(c, p)}
 </div>
 ${foot(p, s, c.co)}
 </div></body></html>
-`)
+`
 }
-console.log(`${CARDS.length} teaching cards`)
+
+// Only when run directly. Importing this for `cardHtml` alone — which the portal does to rebuild
+// a single corrected card — must not rewrite all forty files or print anything.
+if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
+  mkdirSync(new URL('./out/', import.meta.url), { recursive: true })
+  for (const c of CARDS) {
+    writeFileSync(new URL(`./out/${c.id}_${c.by}.html`, import.meta.url), cardHtml(c))
+  }
+  console.log(`${CARDS.length} teaching cards`)
+}
