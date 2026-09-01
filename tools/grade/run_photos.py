@@ -105,6 +105,10 @@ def run(folder, log, limit=None):
     if limit: todo = todo[:limit]
     print(f"{len(arws)} photos, {len(skip)} done, {len(todo)} to go", flush=True)
     freed = 0
+    # This stage has not run at scale. If it starts failing consistently,
+    # stop rather than grind through hundreds of photos repeating a mistake.
+    consecutive_fail = 0
+    FAIL_LIMIT = 5
     for i, name in enumerate(todo, 1):
         src = os.path.join(folder, name)
         out = os.path.join(folder, os.path.splitext(name)[0] + "_GRADED.jpg")
@@ -121,14 +125,23 @@ def run(folder, log, limit=None):
             print(f"FAILED ({err})", flush=True)
             if os.path.exists(out): os.remove(out)
             with open(log,"a") as f: f.write(json.dumps({"file":name,"status":"failed","detail":str(err)[:200]})+"\n")
+            consecutive_fail += 1
+            if consecutive_fail >= FAIL_LIMIT:
+                print(f"STOPPING: {FAIL_LIMIT} failures in a row - something is wrong", flush=True)
+                break
             continue
         ok, detail = verify(src, out)
         if not ok:
             print(f"CHECK FAILED ({detail}) - original kept", flush=True)
             with open(log,"a") as f: f.write(json.dumps({"file":name,"status":"kept_failed_check","detail":detail})+"\n")
+            consecutive_fail += 1
+            if consecutive_fail >= FAIL_LIMIT:
+                print(f"STOPPING: {FAIL_LIMIT} checks failed in a row - something is wrong", flush=True)
+                break
             continue
         out_size = os.path.getsize(out)
         os.remove(src)
+        consecutive_fail = 0
         freed += src_size - out_size
         print(f"ok {detail} exp {exp}x ({time.time()-t0:.0f}s)", flush=True)
         with open(log,"a") as f:
