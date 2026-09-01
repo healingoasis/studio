@@ -553,6 +553,14 @@ p{margin:0}
 .pp[aria-pressed="true"]{background:var(--accent);transform:scale(1.16);
   box-shadow:0 0 0 7px rgba(110,42,147,.26)}
 .bcs-photo.has-sel .pp:not([aria-pressed="true"]){opacity:.5}
+.ovl{position:absolute;inset:0;width:100%;height:100%;display:none;pointer-events:none}
+.bcs-figure.change .ovl{display:block}
+.bcs-figure.change .pp{display:none}
+.ovl-base{fill:none;stroke:rgba(255,255,255,.92);stroke-width:2.4;stroke-linecap:round}
+.ovl-proj{fill:none;stroke:var(--accent-bright);stroke-width:3.4;stroke-linecap:round}
+.ovl-band{stroke:none}
+.ovl-band.lost{fill:#E2564A;opacity:.5}
+.ovl-band.gain{fill:#E8A33C;opacity:.5}
 .bcs-cap{position:absolute;left:12px;bottom:11px;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.82);
   background:rgba(12,10,17,.55);padding:6px 10px;border-radius:6px;backdrop-filter:blur(3px)}
@@ -1417,7 +1425,12 @@ textarea.field-in{min-height:130px;resize:vertical}
             <button class="pp" data-a="3" style="left:44.79%;top:47.95%" aria-pressed="false" aria-label="Place 4, Ribs, across the barrel"><span>4</span></button>
             <button class="pp" data-a="4" style="left:34.38%;top:38.26%" aria-pressed="false" aria-label="Place 5, Loin, along the loin"><span>5</span></button>
             <button class="pp" data-a="5" style="left:28.50%;top:41.00%" aria-pressed="false" aria-label="Place 6, Tailhead, beside the dock"><span>6</span></button>
-            <span class="bcs-cap" id="bcsCap">Captain &middot; the six places, on a real horse</span>
+            <svg class="ovl" id="bcsOvl" viewBox="0 0 640 440" preserveAspectRatio="none" aria-hidden="true">
+            <path class="ovl-band" id="ovlBandT" d=""/><path class="ovl-band" id="ovlBandU" d=""/>
+            <path class="ovl-base" id="ovlBaseT" d=""/><path class="ovl-base" id="ovlBaseU" d=""/>
+            <path class="ovl-proj" id="ovlProjT" d=""/><path class="ovl-proj" id="ovlProjU" d=""/>
+          </svg>
+          <span class="bcs-cap" id="bcsCap">Captain &middot; the six places, on a real horse</span>
           </div>
           <svg id="bcsHorse" viewBox="300 76 848 664" role="img" aria-labelledby="bcsHorseTitle">
             <title id="bcsHorseTitle">A horse in side view, with the six body-condition scoring sites marked on the body</title>
@@ -1428,8 +1441,8 @@ textarea.field-in{min-height:130px;resize:vertical}
             <div class="bcs-tools">
             <button class="bcs-play" id="bcsPlay" type="button" aria-pressed="false">Play the scale</button>
             <div class="bcs-view" role="group" aria-label="What to show">
-              <button type="button" data-view="photo" aria-pressed="true">Photo</button>
-              <button type="button" data-view="coat" aria-pressed="false">Diagram</button>
+              <button type="button" data-view="photo" aria-pressed="true">Places</button>
+              <button type="button" data-view="change" aria-pressed="false">Change</button>
               <button type="button" data-view="skel" aria-pressed="false">Skeleton</button>
             </div>
           </div>
@@ -2866,6 +2879,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     if(!HZ)return;
     var out=h_outline(v), sh=h_shading(v), tn=h_tone(v),
         ho=h_hollowOpacity(v), ro=h_ribOpacity(v), bo=h_boneOpacity(v), hl=h_hollows(v);
+    drawOverlay(v);
     setD(HZ.clip,out); setD(HZ.body,out); setD(HZ.contour,out); setD(HZ.dim,out);
     var rl=h_refline(5), ro2=Math.abs(v-5)<0.4 ? 0 : Math.min(1, Math.abs(v-5)/1.6)*0.7;
     setD(HZ.ref[0],rl.top); setD(HZ.ref[1],rl.under);
@@ -3108,8 +3122,10 @@ textarea.field-in{min-height:130px;resize:vertical}
 
   function paintView(){
     var fig=$("#bcsFigure"); if(!fig)return;
-    fig.classList.toggle("photo", bcsView==="photo");
-    fig.classList.toggle("flat",  bcsView!=="photo");
+    var onPhoto = (bcsView==="photo" || bcsView==="change");
+    fig.classList.toggle("photo",  onPhoto);
+    fig.classList.toggle("change", bcsView==="change");
+    fig.classList.toggle("flat",   !onPhoto);
     fig.classList.toggle("at5",   bcsScore===5);
     fig.classList.toggle("xray",  bcsView==="skel");
     $$(".bcs-view button").forEach(function(b){
@@ -3210,6 +3226,38 @@ textarea.field-in{min-height:130px;resize:vertical}
     if(pb) pb.addEventListener("click",function(){ buildPrintSheet(); window.print() });
   }
 
+  /* Captain's own topline and underline, read off the photograph. At a 5 the
+     drawn line sits on him; away from a 5 it is a projection, and the band
+     between the two is the flesh that would have gone or come. */
+  var CAP_TOP=[[410,145,.35],[380,136,.8],[340,133,1],[300,132,1],[258,134,1],[220,138,.85],[190,145,.55],[168,162,.25]];
+  var CAP_UND=[[414,291,.45],[382,302,.9],[340,308,1],[300,310,1],[258,307,1],[226,297,.8],[206,280,.5]];
+  var TOP_AMP=21, UND_AMP=28;
+
+  function capPath(pts, t, amp, sign){
+    var q = pts.map(function(a){ return { x:a[0], y:a[1] + sign*amp*t*a[2] } });
+    return h_open(q);
+  }
+  function capBand(pts, t, amp, sign){
+    var base = pts.map(function(a){ return { x:a[0], y:a[1] } });
+    var proj = pts.map(function(a){ return { x:a[0], y:a[1] + sign*amp*t*a[2] } });
+    return h_open(base) + " " + h_open(proj.slice().reverse()).replace(/^M/, "L") + " Z";
+  }
+  function drawOverlay(v){
+    var bt=$("#ovlBaseT"); if(!bt)return;
+    var t=(5-v)/4;                                  /* + when thin, - when fat */
+    setD(bt, capPath(CAP_TOP, 0, 0, 1));
+    setD($("#ovlBaseU"), capPath(CAP_UND, 0, 0, 1));
+    setD($("#ovlProjT"), capPath(CAP_TOP, t, TOP_AMP,  1));
+    setD($("#ovlProjU"), capPath(CAP_UND, t, UND_AMP, -1));
+    var cls = t > 0 ? "ovl-band lost" : "ovl-band gain";
+    var bT=$("#ovlBandT"), bU=$("#ovlBandU");
+    setD(bT, capBand(CAP_TOP, t, TOP_AMP,  1)); bT.setAttribute("class", cls);
+    setD(bU, capBand(CAP_UND, t, UND_AMP, -1)); bU.setAttribute("class", cls);
+    var o = Math.min(1, Math.abs(t)*1.15);
+    bT.style.opacity = o*0.5; bU.style.opacity = o*0.5;
+    $("#ovlProjT").style.opacity = o; $("#ovlProjU").style.opacity = o;
+  }
+
   var bcsPlayT=null, bcsDir=1;
   function bcsStopPlay(){
     if(bcsPlayT){ clearInterval(bcsPlayT); bcsPlayT=null }
@@ -3217,7 +3265,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     if(b){ b.setAttribute("aria-pressed","false"); b.textContent="Play the scale" }
   }
   function bcsStartPlay(){
-    if(bcsView==="photo") bcsView="coat";
+    if(bcsView==="photo") bcsView="change";
     var b=$("#bcsPlay");
     if(b){ b.setAttribute("aria-pressed","true"); b.textContent="Stop" }
     bcsDir = bcsScore>=9 ? -1 : 1;
@@ -3248,7 +3296,13 @@ textarea.field-in{min-height:130px;resize:vertical}
     var ah=$("#bcsAreasHead");
     if(ah) ah.innerHTML='What a <b>'+s.n+'</b> feels like in each of the six places';
     var cap=$("#bcsCap");
-    if(cap) cap.innerHTML = bcsArea>=0
+    if(cap && bcsView==="change"){
+      cap.innerHTML = bcsScore===5
+        ? "Captain is about a 5 &middot; the white line is his own outline"
+        : (bcsScore<5
+            ? "At a "+bcsScore+" &middot; the shaded band is flesh that would be gone"
+            : "At a "+bcsScore+" &middot; the shaded band is flesh he would have put on");
+    } else if(cap) cap.innerHTML = bcsArea>=0
       ? 'Place '+(bcsArea+1)+' &middot; '+AREAS[bcsArea]+' &mdash; '+h_HPTS[bcsArea].hint
       : 'Captain &middot; tap a number to open that place up';
     var areas=$("#bcsAreas");
