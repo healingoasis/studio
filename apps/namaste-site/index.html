@@ -569,6 +569,13 @@ p{margin:0}
 .ovl-band{stroke:none}
 .ovl-band.lost{fill:#E2564A;opacity:.5}
 .ovl-band.gain{fill:#E8A33C;opacity:.5}
+.shot-badge{position:absolute;left:12px;top:12px;display:none;align-items:baseline;gap:9px;
+  padding:9px 15px 10px;border-radius:12px;background:rgba(14,11,18,.62);
+  backdrop-filter:blur(4px);color:#fff;line-height:1}
+.bcs-figure.change .shot-badge{display:flex}
+.shot-badge b{font-family:var(--display);font-size:34px;font-weight:400;line-height:.9}
+.shot-badge span{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.8)}
 .bcs-cap{position:absolute;left:12px;bottom:11px;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.82);
   background:rgba(12,10,17,.55);padding:6px 10px;border-radius:6px;backdrop-filter:blur(3px)}
@@ -1488,6 +1495,7 @@ textarea.field-in{min-height:130px;resize:vertical}
             <path class="ovl-base" id="ovlBaseT" d=""/><path class="ovl-base" id="ovlBaseU" d=""/>
             <path class="ovl-proj" id="ovlProjT" d=""/><path class="ovl-proj" id="ovlProjU" d=""/>
           </svg>
+          <span class="shot-badge" id="bcsBadge" aria-hidden="true"></span>
           <span class="bcs-cap" id="bcsCap">Captain &middot; the six places, on a real horse</span>
           </div>
           <svg id="bcsHorse" viewBox="300 76 848 664" role="img" aria-labelledby="bcsHorseTitle">
@@ -3022,7 +3030,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   function tweenHorse(target){
     if(bcsRAF)cancelAnimationFrame(bcsRAF);
     if(bcsStill||Math.abs(target-bcsShown)<0.01){ bcsShown=target; drawHorse(target); return }
-    var from=bcsShown, t0=(window.performance||Date).now(), dur=620;
+    var from=bcsShown, t0=(window.performance||Date).now(), dur=720;
     bcsRAF=requestAnimationFrame(function step(now){
       var k=Math.min(1,(now-t0)/dur), e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
       bcsShown=from+(target-from)*e; drawHorse(bcsShown);
@@ -3216,6 +3224,8 @@ textarea.field-in{min-height:130px;resize:vertical}
         key.innerHTML='<span><b>1 to 6 are the six places you put your hands.</b> Tap any one to see exactly where it is and what it should feel like.</span>';
       }
     }
+    var bg=$("#bcsBadge");
+    if(bg) bg.innerHTML='<b>'+BCS[bcsScore-1].n+'</b><span>'+BCS[bcsScore-1].label+'</span>';
     var ph=$("#bcsPhoto");
     if(ph){
       ph.classList.toggle("has-sel", bcsArea>=0);
@@ -3309,7 +3319,7 @@ textarea.field-in{min-height:130px;resize:vertical}
      between the two is the flesh that would have gone or come. */
   var CAP_TOP=[[410,145,.35],[380,136,.8],[340,133,1],[300,132,1],[258,134,1],[220,138,.85],[190,145,.55],[168,162,.25]];
   var CAP_UND=[[414,291,.45],[382,302,.9],[340,308,1],[300,310,1],[258,307,1],[226,297,.8],[206,280,.5]];
-  var TOP_AMP=21, UND_AMP=28;
+  var TOP_AMP=38, UND_AMP=40;
 
   function capPath(pts, t, amp, sign){
     var q = pts.map(function(a){ return { x:a[0], y:a[1] + sign*amp*t*a[2] } });
@@ -3323,7 +3333,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   /* Reshape the photograph itself. Each 2px column is redrawn in three pieces —
      a band of background above, the body, a band below — so the horse changes
      and the fence behind him does not. */
-  var WX0=168, WX1=414, W_UP=74, W_DN=52;
+  var WX0=168, WX1=414, W_UP=108, W_DN=86;
   function wInterp(P, x){
     if (x >= P[0][0]) return [P[0][1], P[0][2]];
     if (x <= P[P.length-1][0]) return [P[P.length-1][1], P[P.length-1][2]];

@@ -40,6 +40,30 @@ portal ignores it now, but it can still be bought.
 
 ---
 
+## Read this second: where Daniel actually wants this to end up
+
+Worth settling before anything is built, because it changes what to build.
+
+Daniel's intended shape, in his words on 31 August:
+
+1. **Shopify and the website are the main thing**, and what he is pushing to have everything
+   go through.
+2. **Future changes happen in the Student Intake Portal** — his separate project, in the
+   studio repo at `apps/student-intake-portal`. Not this admin portal; a different thing.
+3. **The two get connected later**, and the admin portal then shows *select* information,
+   released when management or the director of a programme allows it. So a per-programme
+   permissions model is coming, not one all-seeing office view.
+4. **The Drive master sheets are a stopgap**, not the destination.
+
+**What that means for the ask below.** "Somewhere durable to write" is real and still
+blocking, but the admin portal is not meant to become the school's system of record. The
+write path is meant to become the intake portal, with admin reading from it under permission.
+Anything built as a permanent write surface inside admin is likely to be thrown away — so the
+storage decision should be made with the intake portal in mind, not just this app.
+
+Daniel was clear that he is "not there yet". This is the direction, not a request to build it
+tomorrow.
+
 ## The one thing that unblocks the most: somewhere durable to write
 
 This is the same ask as 25 August. What has changed is how much is now stacked behind it.
@@ -55,6 +79,11 @@ This is the same ask as 25 August. What has changed is how much is now stacked b
 
 That last one matters more than its line suggests. The whole point of the shelf is that
 the team downloads from it, and today they cannot reach it.
+
+Note the framing above: several of these are *reads* that only look like writes — the office
+needs the check lifecycle recorded somewhere, but whether that somewhere is the admin portal
+or the intake portal is exactly the decision worth making with Dan rather than defaulting to
+whichever app is in front of us.
 
 **Also still open from 25 August:** the `read_draft_orders` scope. The workbook tracks
 **$20,788.80** of invoices sent and unpaid, and asking Shopify for them returns
@@ -118,3 +147,23 @@ If Dan lands the storage and the key, in one pass the school gets: check trackin
 survives a restart, withdrawals that stick, an assistant that can be told things as well
 as asked, and a marketing shelf the team can actually reach. Everything else above is
 already written and waiting behind those two.
+
+---
+
+## Since this was written
+
+All five master sheets were read from Drive on 31 August and loaded into the portal:
+VSMT Fall 2026, Spring 2026, Spring 2027; VMRT Spring 2026; and **Acupuncture Fall 2026,
+which had never been loaded at all** — that programme was showing three students when the
+sheet has five, because two paid entirely by check and so had no Shopify order.
+
+Three things came out of it worth Dan's attention:
+
+- **Two auditing students** (VSMT Spring 2026) had never reached the portal.
+- **Eight check payments** are recorded in the sheets that Shopify cannot see. That is the
+  check-tracking workflow, in the wild, right now.
+- **The admissions sheets have a broken formula.** "Approved Progress" reads `0 / 9 Approved`
+  for students who plainly have items approved. The portal stores the real counts; the sheets
+  themselves under-report. Daniel's to fix — nothing writes to Drive.
+
+Drive is read-only from here and always will be: read out, convert in, never write back.
