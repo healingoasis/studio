@@ -42,3 +42,5 @@
 {"file": "C8224.MP4", "status": "done", "graded": "C8224_GRADED.mp4", "src_mb": 671, "out_mb": 291, "seconds": 174, "exposure": 2.2, "bitrate": "99M", "aim_p50": 63, "wb": [0.9942, 1.0344]}
 {"file": "C8225.MP4", "status": "done", "graded": "C8225_GRADED.mp4", "src_mb": 805, "out_mb": 355, "seconds": 194, "exposure": 2.2, "bitrate": "99M", "aim_p50": 72, "wb": [0.9238, 0.9821]}
 {"file": "C8226.MP4", "status": "done", "graded": "C8226_GRADED.mp4", "src_mb": 940, "out_mb": 443, "seconds": 234, "exposure": 2.2, "bitrate": "99M", "aim_p50": 70, "wb": [1.0093, 1.0027]}
+{"file": "C8227.MP4", "status": "done", "graded": "C8227_GRADED.mp4", "src_mb": 604, "out_mb": 280, "seconds": 148, "exposure": 2.2, "bitrate": "99M", "aim_p50": 63, "wb": [1.0222, 0.9801]}
+{"file": "C8228.MP4", "status": "done", "graded": "C8228_GRADED.mp4", "src_mb": 470, "out_mb": 210, "seconds": 113, "exposure": 1.1124, "bitrate": "99M", "aim_p50": 105, "wb": [0.9856, 1.0061]}
