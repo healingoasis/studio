@@ -30,6 +30,14 @@ bone, which answers why those six places and not any other six. A detail plate m
 view you are in; a cutaway shows what a hand presses through; a nine-horse row gives the whole
 scale at a glance and prints. System: Don Henneke, Texas A&M, 1983. Descriptions written here.
 
+**See the difference.** Under the nine-horse row, the score you have picked is set beside a
+healthy 5 with the ideal's topline and underline laid over it as a dashed line, and a numbered
+list names exactly what moved — the back drops, the belly tucks up, the crest flattens, the ribs
+come through, the hip and dock sharpen. Sitting on a 5 shows a 1 against a 9 instead. The
+figures are deliberately at chart scale: the silhouettes read as a technical figure at that
+size and stop reading as one the moment they are blown up, which is why the large drawn horse
+was retired.
+
 **The ones who made it out.** Red and Captain's files now carry a four-stage recovery track —
 intake, the ten dangerous days of refeeding, the long middle, and placement — with every stage
 tagged either *from the file* or *from the protocol*, so a reader can see which parts are the

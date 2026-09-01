@@ -264,6 +264,24 @@ p{margin:0}
   #printsheet .ps-foot{margin-top:9px;font-size:6.8pt;color:#555;line-height:1.5}
 }
 
+.compare{margin-top:clamp(26px,3.2vw,40px);padding-top:clamp(24px,3vw,32px);
+  border-top:1px solid var(--rule);display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(22px,3vw,40px);align-items:center}
+@media(max-width:820px){.compare{grid-template-columns:1fr}}
+.cmp-figs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,20px)}
+.cmp{margin:0;border:1px solid var(--rule);border-radius:14px;background:var(--surface-2);
+  padding:10px 8px 8px;text-align:center}
+.cmp svg{width:100%;height:auto;display:block}
+.cmp figcaption{margin-top:6px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint)}
+.cmp figcaption b{display:block;font-family:var(--display);font-size:17px;letter-spacing:0;
+  text-transform:none;color:var(--ink);font-weight:400}
+.cmp-list{list-style:none;margin:14px 0 0;padding:0}
+.cmp-list li{padding:9px 0;border-bottom:1px solid var(--rule-soft);font-size:14.5px;
+  color:var(--ink-soft);display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:baseline}
+.cmp-list li i{font-style:normal;color:var(--accent);font-size:13px}
+.cmp-ref{fill:none;stroke:var(--accent);stroke-width:7;stroke-dasharray:22 16;stroke-linecap:round}
+
 .takeit{margin-top:clamp(26px,3.2vw,40px);padding-top:clamp(24px,3vw,34px);
   border-top:1px solid var(--rule);display:grid;
   grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,3vw,44px);align-items:start}
@@ -1452,6 +1470,21 @@ textarea.field-in{min-height:130px;resize:vertical}
          scale, drawn to the same outline. Print this row, put it on the barn wall, and you have
          the reference. Pick any one of them to open it up.</p>
       <div class="strip" id="bcsStrip"></div>
+
+      <div class="compare">
+        <div class="cmp-figs">
+          <figure class="cmp" id="cmpA"></figure>
+          <figure class="cmp" id="cmpB"></figure>
+        </div>
+        <div class="cmp-read">
+          <p class="eyebrow">See the difference</p>
+          <h3 style="margin-top:8px;font-size:21px" id="cmpTitle"></h3>
+          <ul class="cmp-list" id="cmpList"></ul>
+          <p class="note" style="margin-top:16px;font-size:12px">The dashed line on the left is
+             where the healthy horse sits, laid over the one you picked. Same animal, same
+             outline &mdash; only condition moved.</p>
+        </div>
+      </div>
 
       <div class="takeit">
         <div>
@@ -2963,6 +2996,61 @@ textarea.field-in{min-height:130px;resize:vertical}
       bcsScore=+b.dataset.n; paintBCS();
     });
   }
+  function flatHorse(n, withRef){
+    var ro=h_ribOpacity(n), bo=h_boneOpacity(n), g="";
+    g+='<path class="st-body" d="'+h_outline(n)+'"/>';
+    g+='<path class="st-tail" d="'+h_tail(n)+'"/>';
+    g+='<path class="st-tail" d="'+h_mane(n)+'"/>';
+    h_ribMarks(n).forEach(function(d){ g+='<path class="st-mark" d="'+d+'" style="opacity:'+(ro*.8)+'"/>' });
+    g+='<path class="st-mark" d="'+h_spineRidge(n)+'" style="opacity:'+(bo*.8)+'"/>';
+    g+='<path class="st-mark" d="'+h_hipMark(n)+'" style="opacity:'+(bo*.8)+'"/>';
+    if(withRef){
+      var rl=h_refline(5);
+      g+='<path class="cmp-ref" d="'+rl.top+'"/><path class="cmp-ref" d="'+rl.under+'"/>';
+    }
+    return '<svg viewBox="300 76 848 664" aria-hidden="true">'+g+'</svg>';
+  }
+
+  /* what actually moved, named plainly */
+  var CMP_THIN=[
+    ["The back drops", "The topline sinks away from the ideal and the spine starts to show along it."],
+    ["The belly tucks up", "The underline lifts and runs up toward the flank instead of staying level."],
+    ["The crest flattens", "The top of the neck loses its curve and reads as a straight line."],
+    ["The ribs come through", "First you feel them, then you see them."],
+    ["The hip and dock sharpen", "The point of hip and the bones either side of the tail begin to stand out."]
+  ];
+  var CMP_FAT=[
+    ["The back flattens and fills", "The topline rises above the ideal and a crease begins down the middle."],
+    ["The belly drops", "The underline hangs below where a healthy horse carries it."],
+    ["The crest thickens", "Fat builds along the top of the neck and it stops being a clean line."],
+    ["The ribs disappear", "You have to press hard to find them, then not at all."],
+    ["The dock fills", "The hollows either side of the tail pack out and go soft."]
+  ];
+
+  function paintCompare(){
+    var A=$("#cmpA"), B=$("#cmpB"); if(!A||!B)return;
+    var isIdeal = bcsScore===5;
+    var left  = isIdeal ? 1 : bcsScore, right = isIdeal ? 9 : 5;
+    A.innerHTML = flatHorse(left, !isIdeal) +
+      '<figcaption><b>'+left+'</b>'+BCS[left-1].label+(isIdeal?"":" \u00b7 you picked this")+'</figcaption>';
+    B.innerHTML = flatHorse(right, false) +
+      '<figcaption><b>'+right+'</b>'+BCS[right-1].label+(isIdeal?"":" \u00b7 healthy")+'</figcaption>';
+    var t=$("#cmpTitle"), L=$("#cmpList");
+    if(isIdeal){
+      if(t) t.textContent="A 1 and a 9, side by side.";
+      if(L) L.innerHTML='<li><i>&mdash;</i>You are on the ideal. These two are the ends of the scale, '+
+        'so you can see how far it runs in each direction. Pick any other score to lay it over a healthy 5.</li>';
+      return;
+    }
+    var thin = bcsScore < 5, set = thin ? CMP_THIN : CMP_FAT;
+    var far  = Math.abs(bcsScore-5);
+    var n    = far >= 3 ? 5 : far >= 2 ? 4 : 3;
+    if(t) t.textContent = thin ? "What a "+bcsScore+" has lost." : "What a "+bcsScore+" has put on.";
+    if(L) L.innerHTML = set.slice(0,n).map(function(x,i){
+      return '<li><i>'+(i+1)+'</i><span><b style="color:var(--ink);font-weight:600">'+x[0]+'.</b> '+x[1]+'</span></li>';
+    }).join("");
+  }
+
   function paintStrip(){
     $$("#bcsStrip .st").forEach(function(b){
       b.setAttribute("aria-pressed", String(+b.dataset.n===bcsScore));
@@ -3143,7 +3231,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       });
     }
     drawFat(bcsScore, bcsArea>=0 ? AREAS[bcsArea] : null);
-    paintStrip(); tweenHorse(bcsScore); drawZoom();
+    paintStrip(); paintCompare(); tweenHorse(bcsScore); drawZoom();
   }
 
   function initBCS(){
