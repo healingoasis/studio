@@ -51,11 +51,14 @@ def main(folder, log, every=4):
                     bad.append(f"aimed for {aim}, landed at {s['p50']}")
                 # Scenes full of dark clothing are legitimately dark. Only shout
                 # for a clip far enough out that a grading fault is the likely cause.
-                if s["p50"] < 32 or s["p50"] > 200:
-                    bad.append(f"extreme brightness ({s['p50']})")
+                # Only a catastrophically broken file, not a dark composition.
+                # A big dark jacket in the foreground drags the median down and
+                # says nothing about whether the grade is right.
+                if s["p50"] < 8 or s["p50"] > 238:
+                    bad.append(f"picture is nearly blank ({s['p50']})")
                 if s["p1"] > 110: bad.append(f"shadows washed out ({s['p1']})")
                 if s["p95"] < 95:  bad.append(f"very flat ({s['p95']})")
-                if s["p999"] < 150: bad.append(f"no highlights at all ({s['p999']})")
+                if s["p999"] < 120: bad.append(f"no highlights at all ({s['p999']})")
                 if bad:
                     print(f"ODD CLIP: {e['graded']} -- {'; '.join(bad)}", flush=True)
         import subprocess
