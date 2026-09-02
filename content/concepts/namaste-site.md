@@ -112,6 +112,15 @@ follows the horse — what the rescue cannot do (seize, take an animal without a
 space), and trailer access. This is the channel that actually brings horses in, and it is the sort
 of page one department forwards to another.
 
+**Can you tell if a horse is hungry?** The site was becoming a library, so the front door is now
+a thing to do rather than a thing to read. Five horses, one guess each — each one Captain reshaped
+to a hidden score, so every round is a real animal. Guess, and it reveals: spot on, within one
+(which counts, because even veterinarians differ by a point), or out by three. Then what that
+score actually is, and the tell you missed at the ribs, the loin and the dock. It ends with a
+score out of five, a per-round recap, and the two doors worth walking through afterwards — learn
+the six places, or report one you have seen for real. Always includes a healthy 5, so nobody
+learns that every horse on this site is starving.
+
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
 refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding

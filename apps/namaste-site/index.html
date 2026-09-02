@@ -799,6 +799,45 @@ p{margin:0}
 .rb-crit i{background:var(--crit)} .rb-ok i{background:var(--ok)} .rb-over i{background:var(--over)}
 @media(max-width:460px){.rail-bands>span{font-size:8.5px;letter-spacing:.05em}}
 
+.qz-wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+  gap:clamp(22px,3vw,42px);align-items:start}
+@media(max-width:880px){.qz-wrap{grid-template-columns:1fr}}
+.qz-fig{position:relative;border:1px solid var(--rule);border-radius:20px;overflow:hidden;
+  background:var(--surface-2)}
+.qz-cv{width:100%;height:auto;display:block}
+.qz-count{position:absolute;left:14px;top:14px;z-index:2;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(14,11,18,.6);
+  padding:7px 12px;border-radius:20px;backdrop-filter:blur(4px)}
+.qz-tag{position:absolute;left:14px;bottom:14px;font-family:var(--display);font-size:20px;
+  color:#fff;background:rgba(14,11,18,.66);padding:9px 16px;border-radius:12px;
+  backdrop-filter:blur(4px)}
+.qz-side{border:1px solid var(--rule);border-radius:20px;background:var(--surface);
+  padding:clamp(20px,2.4vw,30px)}
+.qz-rail{margin-top:20px;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px}
+.qz-rail button{padding:16px 0;font-size:17px}
+.qz-verd{padding:16px 18px;border-radius:14px;margin-bottom:16px}
+.qz-verd b{display:block;font-family:var(--display);font-weight:400;font-size:24px;line-height:1.15}
+.qz-verd span{display:block;margin-top:6px;font-size:14px;opacity:.85}
+.qz-verd.spot-on{background:var(--ok-wash);color:var(--ok)}
+.qz-verd.close{background:var(--ok-wash);color:var(--ok)}
+.qz-verd.off{background:var(--crit-wash);color:var(--crit)}
+.qz-desc{color:var(--ink-soft);font-size:15.5px;line-height:1.6}
+.qz-tell{margin-top:8px;font-size:14.5px;line-height:1.75;color:var(--ink-soft)}
+.qz-tell b{color:var(--ink);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:400}
+.qz-done{text-align:center;border:1px solid var(--rule);border-radius:22px;background:var(--surface);
+  padding:clamp(30px,4vw,56px)}
+.qz-big{font-family:var(--display);font-size:clamp(64px,11vw,120px);line-height:.9;color:var(--accent)}
+.qz-big small{font-size:.32em;color:var(--faint)}
+.qz-done h2{font-size:clamp(26px,3.4vw,40px)}
+.qz-done p{margin-inline:auto}
+.qz-recap{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}
+.qz-chip{font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:8px 13px;
+  border-radius:20px;background:var(--crit-wash);color:var(--crit)}
+.qz-chip.ok{background:var(--ok-wash);color:var(--ok)}
+.qz-chip b{font-weight:600}
+.qz-acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+
 .dept-call{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
   gap:clamp(24px,3.4vw,48px);background:var(--invert-bg);color:var(--invert-fg);
   border-radius:22px;padding:clamp(26px,3.6vw,46px);margin-top:clamp(20px,2.6vw,34px)}
@@ -1112,6 +1151,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#/about" data-nav>About</a>
       <a href="#/learn" data-nav>Learn</a>
+        <a href="#/test" data-nav>Take the test</a>
         <a href="#/report" data-nav>Report a concern</a>
         <a href="#/departments" data-nav>For law enforcement</a>
       <a href="#/horses" data-nav>Our Horses</a>
@@ -1989,6 +2029,18 @@ textarea.field-in{min-height:130px;resize:vertical}
 </section>
 
 <!-- ══════════════════════════ DONATE ══════════════════════════ -->
+<!-- ══════════════════════════ TEST ══════════════════════════ -->
+<section class="page" id="p-test">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">Five horses</p>
+    <h1>Can you tell if a horse is hungry?</h1>
+    <p class="lede">Most people cannot, and that is the whole problem &mdash; neglect usually is not
+       cruelty, it is an owner who never learned what a healthy horse looks like. Five horses, one
+       guess each. It takes about a minute and you will not forget it afterwards.</p>
+  </div></div>
+  <div class="sec wrap"><div id="quiz"></div></div>
+</section>
+
 <!-- ══════════════════════════ DEPARTMENTS ══════════════════════════ -->
 <section class="page" id="p-depts">
   <div class="phead"><div class="wrap narrow">
@@ -2427,6 +2479,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         <a href="#/horses" data-nav>Our Horses</a>
         <a href="#/alumni" data-nav>Alumni</a>
         <a href="#/learn" data-nav>Learn</a>
+        <a href="#/test" data-nav>Take the test</a>
         <a href="#/report" data-nav>Report a concern</a>
         <a href="#/departments" data-nav>For law enforcement</a>
         <a href="#/contact" data-nav>Contact</a>
@@ -2496,7 +2549,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   /* ─────────── router ─────────── */
   var ROUTES={"/":"p-home","/about":"p-about","/learn":"p-learn","/horses":"p-horses","/alumni":"p-alumni",
     "/adopt":"p-adopt","/foster":"p-foster","/volunteer":"p-volunteer","/donate":"p-donate",
-    "/shop":"p-shop","/contact":"p-contact","/apply":"p-apply","/report":"p-report","/departments":"p-depts"};
+    "/shop":"p-shop","/contact":"p-contact","/apply":"p-apply","/report":"p-report","/departments":"p-depts","/test":"p-test"};
   var DESCS={
     "/":"A Wisconsin rescue that takes equines seized by law enforcement, puts the weight back on, and finds the home that keeps them.",
     "/about":"Founded 2014 to help law enforcement with seized equines \u2014 and what fourteen years taught us about educating owners instead.",
@@ -2511,7 +2564,8 @@ textarea.field-in{min-height:130px;resize:vertical}
     "/contact":"Union Grove, Wisconsin. (262) 492-0767. Departments with a seizure should call the farm directly.",
     "/apply":"Apply to adopt, foster or volunteer. Get approved before the next call comes in.",
     "/report":"Worried about a horse? Check what you are seeing, write down the date and the facts, and ring your county sheriff. This page writes the report for you.",
-    "/departments":"For Wisconsin departments with a seized equine: what we need to know, what happens at intake, and why you must not feed a starved horse up before we arrive."
+    "/departments":"For Wisconsin departments with a seized equine: what we need to know, what happens at intake, and why you must not feed a starved horse up before we arrive.",
+    "/test":"Five horses, one guess each. Can you tell which ones are hungry? Takes a minute, and you will not forget it afterwards."
   };
   function setMeta(key, val, isProp){
     var sel = isProp ? 'meta[property="'+key+'"]' : 'meta[name="'+key+'"]';
@@ -2521,7 +2575,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   }
   var TITLES={"/":"","/about":"About","/learn":"Learn","/horses":"Our Horses","/alumni":"Alumni",
     "/adopt":"Adopt","/foster":"Foster","/volunteer":"Volunteer","/donate":"Donate",
-    "/shop":"Shop","/contact":"Contact","/apply":"Apply","/report":"Report a concern","/departments":"For law enforcement"};
+    "/shop":"Shop","/contact":"Contact","/apply":"Apply","/report":"Report a concern","/departments":"For law enforcement","/test":"Can you read a horse?"};
   var nav=$("#nav"), burger=$("#burger");
 
   function route(){
@@ -2533,6 +2587,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     else { if(!ROUTES[h]){h="/"} id=ROUTES[h]; }
     if(id==="p-apply") paintApply();
     if(id==="p-report") rpInit();
+    if(id==="p-test") quizInit();
     var navKey = h.indexOf("/shop")===0 ? "/shop" : h;
     $$(".page").forEach(function(p){p.classList.toggle("live",p.id===id)});
     $$("#nav a,[data-nav]").forEach(function(a){
@@ -3761,6 +3816,91 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<div style="padding:0 clamp(18px,2.2vw,24px) 20px"><button class="sc-reset" id="scReset">Start again</button></div>';
     var r=$("#scReset");
     if(r) r.addEventListener("click",function(){ scVals=[null,null,null,null,null,null]; paintScorer() });
+  }
+
+  /* ══ the test: five horses, one guess each ══ */
+  var qz = { rounds:[], i:0, answers:[], phase:"guess", started:false };
+  function quizPick(){
+    var pool=[1,2,3,4,6,7,8,9];
+    for(var i=pool.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=pool[i]; pool[i]=pool[j]; pool[j]=t }
+    var pick=pool.slice(0,4);
+    if(!pick.filter(function(v){return v<=3}).length) pick[0]=[1,2,3][Math.floor(Math.random()*3)];
+    pick.push(5);                                   /* always one healthy horse */
+    for(var i=pick.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=pick[i]; pick[i]=pick[j]; pick[j]=t }
+    return pick;
+  }
+  function quizInit(){ if(!qz.started){ qz.rounds=quizPick(); qz.started=true } paintQuiz() }
+  function quizReset(){ qz={rounds:quizPick(), i:0, answers:[], phase:"guess", started:true}; paintQuiz() }
+
+  function quizVerdict(g,t){
+    var d=Math.abs(g-t);
+    if(d===0) return ["spot-on","Spot on."];
+    if(d===1) return ["close","Within one. That counts \u2014 even vets differ by a point."];
+    if(d<=2)  return ["off","Out by two."];
+    return ["off","Out by "+d+"."];
+  }
+  function quizScore(){
+    return qz.answers.filter(function(a,i){ return Math.abs(a-qz.rounds[i])<=1 }).length;
+  }
+  function paintQuiz(){
+    var box=$("#quiz"); if(!box)return;
+    if(qz.i >= qz.rounds.length){
+      var n=quizScore(), msg = n===5 ? "You can read a horse."
+        : n===4 ? "Close to it." : n===3 ? "Getting there." : "Worth another go.";
+      box.innerHTML =
+        '<div class="qz-done"><p class="eyebrow">Result</p>'+
+        '<div class="qz-big">'+n+'<small> of 5</small></div>'+
+        '<h2 style="margin-top:6px">'+msg+'</h2>'+
+        '<p style="color:var(--ink-soft);margin-top:14px;max-width:60ch">Within one point counts, '+
+        'because even veterinarians differ by a point. What matters is not the number \u2014 it is '+
+        'knowing there are six places to put your hands, and that a horse below a 3 needs a vet today.</p>'+
+        '<div class="qz-recap">'+qz.rounds.map(function(t,i){
+          var a=qz.answers[i], ok=Math.abs(a-t)<=1;
+          return '<span class="qz-chip'+(ok?" ok":"")+'">Round '+(i+1)+' &middot; you said '+a+', it was <b>'+t+'</b></span>';
+        }).join("")+'</div>'+
+        '<div class="qz-acts">'+
+          '<button class="btn btn-solid btn-lg" id="qzAgain">Try five more</button>'+
+          '<a class="btn btn-line btn-lg" href="#/learn" data-nav>Learn the six places</a>'+
+          '<a class="btn btn-line btn-lg" href="#/report" data-nav>If you have seen one for real</a>'+
+        '</div></div>';
+      var ag=$("#qzAgain"); if(ag) ag.addEventListener("click", quizReset);
+      return;
+    }
+    var t=qz.rounds[qz.i], guessed = qz.phase==="reveal", g=qz.answers[qz.i];
+    var v = guessed ? quizVerdict(g,t) : null, B = BCS[t-1];
+    box.innerHTML =
+      '<div class="qz-wrap"><div class="qz-fig">'+
+        '<div class="qz-count">Horse '+(qz.i+1)+' of '+qz.rounds.length+'</div>'+
+        '<canvas class="wcv qz-cv" width="640" height="440" data-n="'+t+'"></canvas>'+
+        (guessed?'<span class="qz-tag">It was a '+t+' &middot; '+B.label+'</span>':'')+
+      '</div><div class="qz-side">'+
+      (guessed
+        ? '<div class="qz-verd '+v[0]+'"><b>'+v[1]+'</b><span>You said '+g+'. It was a '+t+'.</span></div>'+
+          '<p class="qz-desc">'+B.desc+'</p>'+
+          '<p class="eyebrow" style="margin-top:20px">The tell</p>'+
+          '<p class="qz-tell"><b>Ribs:</b> '+B.a[3]+'.<br><b>Along the loin:</b> '+B.a[4]+'.<br>'+
+          '<b>Beside the dock:</b> '+B.a[5]+'.</p>'+
+          '<button class="btn btn-solid btn-wide btn-lg" style="margin-top:22px" id="qzNext">'+
+            (qz.i===qz.rounds.length-1?"See how you did":"Next horse")+'</button>'
+        : '<p class="eyebrow">Your call</p><h2 style="margin-top:8px;font-size:23px">'+
+          'What would you score this horse?</h2>'+
+          '<p style="color:var(--ink-soft);margin-top:10px;font-size:15px">1 is emaciated. 5 is ideal. '+
+          '9 is obese. Look at the topline, the ribs and the belly.</p>'+
+          '<div class="rail qz-rail">'+BCS.map(function(b){
+            return '<button data-g="'+b.n+'">'+b.n+'</button>' }).join("")+'</div>'+
+          '<div class="rail-bands" aria-hidden="true">'+
+            '<span class="rb-crit"><i></i>1\u20133 &middot; too thin</span>'+
+            '<span class="rb-ok"><i></i>4\u20136 &middot; healthy</span>'+
+            '<span class="rb-over"><i></i>7\u20139 &middot; too fat</span></div>')+
+      '</div></div>';
+    paintPhotoCells();
+    var r=$(".qz-rail");
+    if(r) r.addEventListener("click",function(e){
+      var b=e.target.closest("button"); if(!b)return;
+      qz.answers[qz.i]=+b.dataset.g; qz.phase="reveal"; paintQuiz();
+    });
+    var nx=$("#qzNext");
+    if(nx) nx.addEventListener("click",function(){ qz.i++; qz.phase="guess"; paintQuiz() });
   }
 
   /* ══ report: turns what someone saw into a note a department can act on ══ */
