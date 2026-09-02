@@ -23,7 +23,7 @@ def esc(t):
     return t.replace("\\", "\\\\").replace(":", "\\:").replace("'", "’").replace("%", "\\%")
 
 def shot(clip, start, dur, xoff=0.5, speed=1.0, zoom=None, darken=0.0,
-         push=0.05, tight=1.0, yoff=0.5, denoise=None):
+         push=0.05, tight=1.0, yoff=0.5, denoise=None, sharpen=0.55):
     """tight: <1 crops in further (1.0 = full height). Used to frame out
     background clutter -- there is a fly on the wall behind the dog in the
     202s take, and cropping past it is cleaner than trying to paint it out.
@@ -31,7 +31,8 @@ def shot(clip, start, dur, xoff=0.5, speed=1.0, zoom=None, darken=0.0,
     denoise: override strength for the grainier, darker takes."""
     return {"clip": clip, "start": start, "dur": dur, "xoff": xoff,
             "speed": speed, "zoom": zoom, "darken": darken, "push": push,
-            "tight": tight, "yoff": yoff, "denoise": denoise}
+            "tight": tight, "yoff": yoff, "denoise": denoise,
+            "sharpen": sharpen}
 
 ACCENT = "0x4AD2FF"   # bright cyan: reads as clinical, not corporate beige
 
@@ -56,7 +57,7 @@ def build_shot(s, texts, out, idx):
     vf = [f"crop={cw}:2160:{cx}:0",
           "hqdn3d=4:3:6:4.5",
           f"scale={W}:{H}:flags=lanczos",
-          "unsharp=5:5:0.55:5:5:0.0"]
+          f"unsharp=5:5:{s.get('sharpen', 0.55)}:5:5:0.0"]
     if s["speed"] != 1.0:
         vf.append(f"setpts={1.0/s['speed']}*PTS")
     push = s.get("push", 0.05)

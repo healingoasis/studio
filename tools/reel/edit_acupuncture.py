@@ -50,40 +50,53 @@ MIDY  = H//2 - 60
 DARK = "6:4:8:6"     # for the shadowed takes
 LITE = "3:2:4:3"     # bright takes need barely any
 
+# All acupuncture, three patients: the French bulldog (C8192), the paint horse
+# (C8188) and the Shar Pei (C8190).
+#
+# Shots chosen on measured sharpness, not just content. The horse session's
+# wider frames measure 15-18 on edge energy against 24-33 for the dog takes --
+# they are genuinely soft, so only its sharpest window (39-42s, 66s) is used,
+# with extra sharpening. The 200-230s dog take is in shadow and gets heavier
+# noise reduction; 255-275s is the same session in daylight and needs little.
+
+DARK = "6:4:8:6"
+LITE = "3:2:4:3"
+
 EDIT = [
-    # --- 0-2.2s  the needle going in, cropped past the fly ----------------
+    # --- hook: needle going in, cropped past the fly on the wall ----------
     (shot("C8192", 202.7, 2.2, xoff=0.42, speed=0.55, push=0.07,
-          tight=0.70, yoff=0.72, denoise=DARK),
+          tight=0.70, yoff=0.72, denoise=DARK, sharpen=0.7),
      [text("YOUR PATIENT", BIG, TOPY, 0.15, 3.8),
       text("CAN'T TELL YOU", BIG, TOPY+112, 0.45, 3.5),
       text("WHERE IT HURTS.", BIG, TOPY+224, 0.80, 3.2, accent=True)]),
 
-    # --- bright take: they are already in ---------------------------------
     (shot("C8192", 258.6, 1.9, xoff=0.42, push=0.06, denoise=LITE),
      [text("SO YOU LEARN", MED, TOPY, 0.08, 1.9),
       text("TO FIND IT.", MED, TOPY+92, 0.26, 1.9, accent=True)]),
 
-    (shot("C8188", 39.2, 1.6, xoff=0.55, push=0.06, denoise=LITE), []),
+    # --- horse, from its sharpest window only ------------------------------
+    (shot("C8188", 39.4, 1.8, xoff=0.55, push=0.06, denoise=LITE,
+          sharpen=0.85), []),
 
-    (shot("C8188", 46.6, 1.9, xoff=0.52, push=0.06, denoise=LITE),
-     [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.9),
-      text("NOT MODELS.", MED, TOPY+92, 0.28, 1.9, accent=True)]),
+    # --- third patient: the Shar Pei, needles in, entirely relaxed --------
+    (shot("C8190", 3.2, 2.0, xoff=0.46, push=0.05, denoise=LITE, sharpen=0.7),
+     [text("REAL PATIENTS.", MED, TOPY, 0.1, 2.0),
+      text("NOT MODELS.", MED, TOPY+92, 0.28, 2.0, accent=True)]),
 
     (shot("C8192", 261.6, 1.7, xoff=0.44, push=0.07, denoise=LITE), []),
 
-    (shot("C8188", 70.5, 1.9, xoff=0.46, push=0.06, denoise=LITE),
+    (shot("C8188", 65.4, 1.9, xoff=0.48, push=0.06, denoise=LITE,
+          sharpen=0.85),
      [text("FIVE MODULES.", MED, TOPY, 0.1, 1.9),
       text("HANDS-ON.", MED, TOPY+92, 0.28, 1.9, accent=True)]),
 
-    # --- a face, and a smile ----------------------------------------------
+    (shot("C8190", 6.6, 1.8, xoff=0.46, push=0.06, denoise=LITE, sharpen=0.7), []),
+
     (shot("C8192", 267.2, 2.0, xoff=0.46, push=0.05, denoise=LITE),
      [text("TAUGHT BY DVMs", SMALL, TOPY, 0.1, 2.0),
       text("AND LICENSED", SMALL, TOPY+72, 0.1, 2.0),
       text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 2.0, accent=True)]),
 
-    (shot("C8188", 76.8, 1.8, xoff=0.50, push=0.06, denoise=LITE), []),
-
-    # --- payoff: needles in, dog unbothered, practitioner smiling ---------
     (shot("C8192", 270.0, 2.8, xoff=0.48, speed=0.60, push=0.05, denoise=LITE),
      [text("MEDICINE YOU CAN", 72, TOPY, 0.35, 4.5),
       text("USE MONDAY", 72, TOPY+86, 0.5, 4.3),
