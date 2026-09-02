@@ -92,6 +92,15 @@ a plain explanation rather than a dead end: barbed wire is fixable and plenty of
 changed fencing before approval. A running verdict tallies what is met and says, honestly, that
 a shortfall is a conversation and not a refusal — send it anyway. Nothing is connected.
 
+**Write it down, then make the call.** A page for the person who is worried about a horse down
+the road — the audience the Learn tool creates and the site previously had nowhere to send. Three
+steps: be sure what you are seeing (score it first, 3 or below is the line), write down what you
+saw, ring your county sheriff. The middle step is a tool: a plain form that turns ticked
+observations into a formatted report — date, location, county, number of animals, only what the
+person saw themselves, photographs yes or no, named or anonymous — which they copy into an email
+or read down the phone. The rescue's own page already says *report it in writing if you can, with
+the date and what you saw*; nobody helps anyone actually do that. Nothing leaves the browser.
+
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
 refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding

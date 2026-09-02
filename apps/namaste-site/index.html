@@ -799,6 +799,32 @@ p{margin:0}
 .rb-crit i{background:var(--crit)} .rb-ok i{background:var(--ok)} .rb-over i{background:var(--over)}
 @media(max-width:460px){.rail-bands>span{font-size:8.5px;letter-spacing:.05em}}
 
+.rp-step{border-top:2px solid var(--accent);padding-top:18px}
+.rp-step span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--accent)}
+.rp-step h2{font-size:21px;margin-top:8px;line-height:1.2}
+.rp-step p{color:var(--ink-soft);margin-top:10px;font-size:15px;line-height:1.6}
+.rp-step .btn{margin-top:16px}
+.rp-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:clamp(24px,3.4vw,48px);margin-top:30px;align-items:start}
+@media(max-width:900px){.rp-grid{grid-template-columns:1fr}}
+.rp-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.rp-row{grid-template-columns:1fr}}
+#rpForm .field-in{width:100%}
+#rpForm textarea.field-in{resize:vertical;font-family:var(--sans);line-height:1.5}
+.rp-checks{display:grid;gap:2px;margin-top:6px}
+.rp-chk{display:flex;gap:11px;align-items:flex-start;padding:9px 10px;border-radius:9px;
+  cursor:pointer;font-size:14.5px;line-height:1.45;color:var(--ink-soft);transition:background .14s}
+.rp-chk:hover{background:var(--surface-2)}
+.rp-chk input{margin:2px 0 0;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.rp-out{border:1px solid var(--rule);border-radius:18px;background:var(--surface);
+  padding:clamp(20px,2.4vw,26px);position:sticky;top:120px}
+#rpText{margin:14px 0 0;padding:16px;border-radius:12px;background:var(--surface-2);
+  border:1px solid var(--rule-soft);font-family:var(--mono);font-size:12px;line-height:1.72;
+  color:var(--ink);white-space:pre-wrap;word-break:break-word;max-height:46vh;overflow:auto}
+.rp-acts{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+@media print{ #printsheet .ps-report{white-space:pre-wrap;font-family:var(--mono);font-size:10pt;
+  line-height:1.7;color:#111;margin-top:14px} }
+
 .ap-pick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px);
   margin-top:26px}
 @media(max-width:760px){.ap-pick{grid-template-columns:1fr}}
@@ -1065,6 +1091,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#/about" data-nav>About</a>
       <a href="#/learn" data-nav>Learn</a>
+        <a href="#/report" data-nav>Report a concern</a>
       <a href="#/horses" data-nav>Our Horses</a>
       <a href="#/alumni" data-nav>Alumni</a>
       <a href="#/adopt" data-nav>Adopt</a>
@@ -1750,7 +1777,7 @@ textarea.field-in{min-height:130px;resize:vertical}
            neither can you — only law enforcement has that authority. Report it to them, in writing
            if you can, with the date and what you saw. Once a department has taken the animal, that
            is the point where this farm can step in.</p>
-        <a class="btn btn-line" style="margin-top:20px" href="#/contact" data-nav>Then tell us</a>
+        <a class="btn btn-solid" style="margin-top:20px" href="#/report" data-nav>Write the report</a>
       </div>
       <div class="lane rv">
         <p class="eyebrow">For law enforcement</p>
@@ -1939,6 +1966,75 @@ textarea.field-in{min-height:130px;resize:vertical}
 </section>
 
 <!-- ══════════════════════════ DONATE ══════════════════════════ -->
+<!-- ══════════════════════════ REPORT ══════════════════════════ -->
+<section class="page" id="p-report">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">If you are worried about a horse</p>
+    <h1>Write it down, then make the call.</h1>
+    <p class="lede">Most neglect goes unreported because people are not sure, or they are not sure who
+       to tell. Here is the whole of it: check what you are looking at, write down what you saw, and
+       ring your county sheriff. You do not have to be certain, and you do not have to give your name.</p>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="cols3 rv">
+      <div class="rp-step"><span>01</span><h2>Be sure what you are seeing</h2>
+        <p>A horse can look rough in February and be perfectly well. The six places tell you the
+           difference in about two minutes. <b>A score of 3 or below is the line.</b></p>
+        <a class="btn btn-line" href="#/learn" data-nav>Score the horse first</a></div>
+      <div class="rp-step"><span>02</span><h2>Write down what you saw</h2>
+        <p>Dates, places and plain observations are what let a department act. Guesses and opinions
+           are not. Fill the note below and it writes the report for you.</p></div>
+      <div class="rp-step"><span>03</span><h2>Ring your county sheriff</h2>
+        <p>Not us first. We cannot seize a horse and neither can you &mdash; only law enforcement has
+           that authority. Once a department has taken the animal, that is the point where this farm
+           can step in.</p></div>
+    </div>
+  </div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">The note</p>
+      <h2>What you saw, in the form a department can use.</h2>
+      <p class="lede">Nothing here leaves your browser. Fill in what you know, leave the rest blank,
+         and copy the result into an email or read it down the phone.</p>
+    </div>
+    <div class="rp-grid">
+      <div id="rpForm"></div>
+      <div class="rp-out">
+        <p class="eyebrow">Your report</p>
+        <pre id="rpText"></pre>
+        <div class="rp-acts">
+          <button class="btn btn-solid" id="rpCopy">Copy the report</button>
+          <button class="btn btn-line" id="rpPrint">Print it</button>
+        </div>
+        <p class="note" style="margin-top:14px;font-size:11.5px">Written and held in this page only.
+           Nothing is sent anywhere and nothing is stored.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="band"><div class="wrap sec">
+    <div class="cols2" style="align-items:center">
+      <div class="rv">
+        <p class="eyebrow">After you have called</p>
+        <h2 style="font-size:clamp(26px,3.4vw,38px);margin-top:14px">Then tell us.</h2>
+        <p style="color:var(--invert-soft);margin-top:16px;max-width:56ch">If a department ends up
+           seizing the animal, it needs somewhere to go that same day. Knowing a case is coming lets
+           us have a stall, a vet and a farrier ready instead of scrambling.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:26px">
+          <a class="btn btn-lg btn-invert" href="#/contact" data-nav>Tell the farm</a>
+          <a class="btn btn-lg btn-invert-line" href="tel:+12624920767">(262) 492-0767</a>
+        </div>
+      </div>
+      <div class="rv"><p class="note" style="border-left-color:var(--invert-rule);color:var(--invert-soft)">
+        You will not be wasting anybody's time. A department would far rather look at a horse that
+        turns out to be fine than miss one that is not, and the file you write today is what makes
+        the second visit possible if nothing changes.</p></div>
+    </div>
+  </div></div>
+</section>
+
 <!-- ══════════════════════════ APPLY ══════════════════════════ -->
 <section class="page" id="p-apply">
   <div class="phead"><div class="wrap narrow">
@@ -2210,6 +2306,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         <a href="#/horses" data-nav>Our Horses</a>
         <a href="#/alumni" data-nav>Alumni</a>
         <a href="#/learn" data-nav>Learn</a>
+        <a href="#/report" data-nav>Report a concern</a>
         <a href="#/contact" data-nav>Contact</a>
       </div>
       <div>
@@ -2277,7 +2374,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   /* ─────────── router ─────────── */
   var ROUTES={"/":"p-home","/about":"p-about","/learn":"p-learn","/horses":"p-horses","/alumni":"p-alumni",
     "/adopt":"p-adopt","/foster":"p-foster","/volunteer":"p-volunteer","/donate":"p-donate",
-    "/shop":"p-shop","/contact":"p-contact","/apply":"p-apply"};
+    "/shop":"p-shop","/contact":"p-contact","/apply":"p-apply","/report":"p-report"};
   var DESCS={
     "/":"A Wisconsin rescue that takes equines seized by law enforcement, puts the weight back on, and finds the home that keeps them.",
     "/about":"Founded 2014 to help law enforcement with seized equines \u2014 and what fourteen years taught us about educating owners instead.",
@@ -2290,7 +2387,8 @@ textarea.field-in{min-height:130px;resize:vertical}
     "/donate":"The fund has to be full before the phone rings. Where your money actually goes.",
     "/shop":"Five pieces, designed here. 100% of every order goes back to the horses.",
     "/contact":"Union Grove, Wisconsin. (262) 492-0767. Departments with a seizure should call the farm directly.",
-    "/apply":"Apply to adopt, foster or volunteer. Get approved before the next call comes in."
+    "/apply":"Apply to adopt, foster or volunteer. Get approved before the next call comes in.",
+    "/report":"Worried about a horse? Check what you are seeing, write down the date and the facts, and ring your county sheriff. This page writes the report for you."
   };
   function setMeta(key, val, isProp){
     var sel = isProp ? 'meta[property="'+key+'"]' : 'meta[name="'+key+'"]';
@@ -2300,7 +2398,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   }
   var TITLES={"/":"","/about":"About","/learn":"Learn","/horses":"Our Horses","/alumni":"Alumni",
     "/adopt":"Adopt","/foster":"Foster","/volunteer":"Volunteer","/donate":"Donate",
-    "/shop":"Shop","/contact":"Contact","/apply":"Apply"};
+    "/shop":"Shop","/contact":"Contact","/apply":"Apply","/report":"Report a concern"};
   var nav=$("#nav"), burger=$("#burger");
 
   function route(){
@@ -2311,6 +2409,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     if(m && byId(m[1])){ prod=byId(m[1]); id="p-product"; renderPDP(m[1]); }
     else { if(!ROUTES[h]){h="/"} id=ROUTES[h]; }
     if(id==="p-apply") paintApply();
+    if(id==="p-report") rpInit();
     var navKey = h.indexOf("/shop")===0 ? "/shop" : h;
     $$(".page").forEach(function(p){p.classList.toggle("live",p.id===id)});
     $$("#nav a,[data-nav]").forEach(function(a){
@@ -3539,6 +3638,109 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<div style="padding:0 clamp(18px,2.2vw,24px) 20px"><button class="sc-reset" id="scReset">Start again</button></div>';
     var r=$("#scReset");
     if(r) r.addEventListener("click",function(){ scVals=[null,null,null,null,null,null]; paintScorer() });
+  }
+
+  /* ══ report: turns what someone saw into a note a department can act on ══ */
+  var RP_SEEN = [
+    "Ribs, hip bones or backbone visible from a distance",
+    "Hooves long, cracked, or curling upward",
+    "No water visible, or the water is fouled",
+    "No hay or feed anywhere on the property",
+    "No shelter from wind, rain or sun",
+    "Standing in deep mud or waste",
+    "Open sores, wounds, or patches of missing hair",
+    "Lame, or having difficulty standing",
+    "Fencing down, or barbed wire in use",
+    "Left alone with nobody attending to it",
+    "Another animal on the property already dead"
+  ];
+  var rp = { date:"", place:"", county:"", count:"", seen:[], notes:"", photos:false,
+             name:"", phone:"", anon:false };
+
+  function rpBuild(){
+    var f=$("#rpForm"); if(!f||f.dataset.on)return;
+    f.dataset.on="1";
+    f.innerHTML =
+      '<div class="rp-row"><div><label class="ap-l" for="rpDate">When did you see it?</label>'+
+      '<input class="field-in" id="rpDate" type="date"></div>'+
+      '<div><label class="ap-l" for="rpCount">How many animals?</label>'+
+      '<input class="field-in" id="rpCount" placeholder="e.g. two horses, one pony"></div></div>'+
+      '<label class="ap-l" for="rpPlace">Where? A road, a landmark, an address &mdash; whatever you have.</label>'+
+      '<input class="field-in" id="rpPlace" placeholder="e.g. north side of County Road K, past the grain bins">'+
+      '<label class="ap-l" for="rpCounty">Which county?</label>'+
+      '<input class="field-in" id="rpCounty" placeholder="e.g. Racine County">'+
+      '<p class="ap-l" style="margin-top:22px">What did you actually see? Tick only what you saw yourself.</p>'+
+      '<div class="rp-checks">'+RP_SEEN.map(function(t,i){
+        return '<label class="rp-chk"><input type="checkbox" data-s="'+i+'"><span>'+t+'</span></label>';
+      }).join("")+'</div>'+
+      '<label class="ap-l" for="rpNotes">Anything else worth writing down</label>'+
+      '<textarea class="field-in" id="rpNotes" rows="3" placeholder="Plain description. What you saw, not what you concluded."></textarea>'+
+      '<div class="rp-row" style="margin-top:18px">'+
+      '<label class="rp-chk"><input type="checkbox" id="rpPhotos"><span>I took photographs</span></label>'+
+      '<label class="rp-chk"><input type="checkbox" id="rpAnon"><span>I would rather stay anonymous</span></label></div>'+
+      '<div class="rp-row"><div><label class="ap-l" for="rpName">Your name</label>'+
+      '<input class="field-in" id="rpName"></div>'+
+      '<div><label class="ap-l" for="rpPhone">Your telephone</label>'+
+      '<input class="field-in" id="rpPhone"></div></div>';
+    f.addEventListener("input", rpRead);
+    f.addEventListener("change", rpRead);
+    rpRead();
+  }
+  function rpRead(){
+    var g=function(id){ var e=$(id); return e?e.value.trim():"" };
+    rp.date=g("#rpDate"); rp.place=g("#rpPlace"); rp.county=g("#rpCounty"); rp.count=g("#rpCount");
+    rp.notes=g("#rpNotes"); rp.name=g("#rpName"); rp.phone=g("#rpPhone");
+    var pc=$("#rpPhotos"), an=$("#rpAnon");
+    rp.photos = !!(pc&&pc.checked); rp.anon = !!(an&&an.checked);
+    rp.seen = $$("#rpForm input[data-s]").filter(function(c){return c.checked})
+                 .map(function(c){ return RP_SEEN[+c.dataset.s] });
+    var nm=$("#rpName"), ph=$("#rpPhone");
+    if(nm) nm.disabled = rp.anon; if(ph) ph.disabled = rp.anon;
+    rpPaint();
+  }
+  function rpText(){
+    var L=[], d=rp.date ? new Date(rp.date+"T00:00").toLocaleDateString(undefined,
+             {year:"numeric",month:"long",day:"numeric"}) : "[date not given]";
+    L.push("CONCERN ABOUT AN EQUINE");
+    L.push("Seen on: "+d);
+    L.push("Location: "+(rp.place||"[not given]"));
+    L.push("County: "+(rp.county||"[not given]"));
+    L.push("Animals involved: "+(rp.count||"[not given]"));
+    L.push("");
+    L.push("What I saw myself:");
+    if(rp.seen.length) rp.seen.forEach(function(t){ L.push("  - "+t) });
+    else L.push("  [nothing ticked yet]");
+    if(rp.notes){ L.push(""); L.push("Further detail:"); L.push("  "+rp.notes.replace(/\n/g,"\n  ")) }
+    L.push("");
+    L.push("Photographs taken: "+(rp.photos?"yes, available on request":"no"));
+    L.push(rp.anon ? "Reported by: wishes to remain anonymous"
+                   : "Reported by: "+(rp.name||"[name not given]")+(rp.phone?", "+rp.phone:""));
+    L.push("");
+    L.push("Body condition assessed using the Henneke scale (Don Henneke, Texas A&M, 1983).");
+    L.push("Note prepared with the guide at namasteequinerescue.org");
+    return L.join("\n");
+  }
+  function rpPaint(){ var t=$("#rpText"); if(t) t.textContent = rpText() }
+  function rpInit(){
+    rpBuild();
+    var c=$("#rpCopy");
+    if(c && !c.dataset.on){ c.dataset.on="1"; c.addEventListener("click",function(){
+      var s=rpText();
+      if(navigator.clipboard) navigator.clipboard.writeText(s);
+      else { var a=document.createElement("textarea"); a.value=s; document.body.appendChild(a);
+             a.select(); try{document.execCommand("copy")}catch(e){}; a.remove() }
+      c.textContent="Copied"; setTimeout(function(){ c.textContent="Copy the report" },1600);
+    })}
+    var pr=$("#rpPrint");
+    if(pr && !pr.dataset.on){ pr.dataset.on="1"; pr.addEventListener("click",function(){
+      var old=$("#printsheet"); if(old) old.remove();
+      var d=document.createElement("div"); d.id="printsheet";
+      d.innerHTML='<div class="ps-head"><div><h1>Concern about an equine</h1></div>'+
+        '<div class="ps-org">Namaste Equine Rescue<br>Union Grove, Wisconsin<br>(262) 492-0767</div></div>'+
+        '<pre class="ps-report"></pre>';
+      d.querySelector(".ps-report").textContent = rpText();
+      document.body.appendChild(d); window.print();
+    })}
   }
 
   /* ══ apply: adopt, foster or volunteer, with the real requirements ══ */
