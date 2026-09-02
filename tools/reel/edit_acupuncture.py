@@ -62,56 +62,82 @@ LITE = "3:2:4:3"     # bright takes need barely any
 DARK = "6:4:8:6"
 LITE = "3:2:4:3"
 
+# Built from measured scores (shot_scores.json), not from what looked good on
+# a contact sheet.
+#
+# The scan overturned an assumption: the 205-222s window -- which I had been
+# avoiding as "the grainy shadowed part" -- is the BEST footage in the folder.
+# It measures shake 0.9-2.9 and noise 2.6-3.1, where the daylight section I had
+# been favouring measures shake 3-4.3. It is steadier, sharper and cleaner.
+#
+# Since that window is one continuous framing, variety comes from varying the
+# CROP -- tight on the hand, medium on the needles, wide on the dog -- rather
+# than from cutting to worse footage. The horse appears once, briefly, from its
+# single best frame (score 72.9); everything else scores 80+.
+
+DARK = "5:3:7:5"
+LITE = "3:2:4:3"
+
 EDIT = [
-    # --- hook: needle going in, cropped past the fly on the wall ----------
-    (shot("C8192", 202.7, 2.2, xoff=0.42, speed=0.55, push=0.07,
-          tight=0.70, yoff=0.72, denoise=DARK, sharpen=0.7),
-     [text("YOUR PATIENT", BIG, TOPY, 0.15, 3.8),
-      text("CAN'T TELL YOU", BIG, TOPY+112, 0.45, 3.5),
-      text("WHERE IT HURTS.", BIG, TOPY+224, 0.80, 3.2, accent=True)]),
+    # 205.5 -- score 91.4. Tight on the needle going in. Hook has to land in
+    # the first second; the research is blunt that losing half the audience in
+    # three seconds is unrecoverable.
+    (shot("C8192", 205.0, 2.0, xoff=0.40, speed=0.55, push=0.08,
+          tight=0.52, yoff=0.52, denoise=DARK, sharpen=0.75),
+     [text("THEY CAN'T TELL YOU", 78, TOPY, 0.12, 3.4),
+      text("WHERE IT HURTS.", 78, TOPY+96, 0.42, 3.1, accent=True)]),
 
-    (shot("C8192", 258.6, 1.9, xoff=0.42, push=0.06, denoise=LITE),
-     [text("SO YOU LEARN", MED, TOPY, 0.08, 1.9),
-      text("TO FIND IT.", MED, TOPY+92, 0.26, 1.9, accent=True)]),
+    # 219.0 -- score 92.3, the highest in the folder. A row of needles.
+    (shot("C8192", 218.6, 1.8, xoff=0.42, push=0.06, tight=0.86,
+          denoise=DARK, sharpen=0.65),
+     [text("SO YOU LEARN", MED, TOPY, 0.08, 1.8),
+      text("TO FIND IT.", MED, TOPY+92, 0.26, 1.8, accent=True)]),
 
-    # --- horse, from its sharpest window only ------------------------------
-    (shot("C8188", 39.4, 1.8, xoff=0.55, push=0.06, denoise=LITE,
-          sharpen=0.85), []),
+    # the horse, once, from its best measured frame
+    (shot("C8188", 39.6, 1.5, xoff=0.54, push=0.06, denoise=LITE,
+          sharpen=0.9), []),
 
-    # --- third patient: the Shar Pei, needles in, entirely relaxed --------
-    (shot("C8190", 3.2, 2.0, xoff=0.46, push=0.05, denoise=LITE, sharpen=0.7),
-     [text("REAL PATIENTS.", MED, TOPY, 0.1, 2.0),
-      text("NOT MODELS.", MED, TOPY+92, 0.28, 2.0, accent=True)]),
+    # 213.0 -- score 88.9. Tight, different height in frame.
+    (shot("C8192", 212.6, 1.8, xoff=0.44, push=0.07, tight=0.62, yoff=0.44,
+          denoise=DARK, sharpen=0.75),
+     [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.8),
+      text("NOT MODELS.", MED, TOPY+92, 0.28, 1.8, accent=True)]),
 
-    (shot("C8192", 261.6, 1.7, xoff=0.44, push=0.07, denoise=LITE), []),
+    # 210.0 -- score 87.9, wider
+    (shot("C8192", 209.6, 1.6, xoff=0.38, push=0.06, tight=1.0,
+          denoise=DARK, sharpen=0.6), []),
 
-    (shot("C8188", 65.4, 1.9, xoff=0.48, push=0.06, denoise=LITE,
-          sharpen=0.85),
-     [text("FIVE MODULES.", MED, TOPY, 0.1, 1.9),
-      text("HANDS-ON.", MED, TOPY+92, 0.28, 1.9, accent=True)]),
+    # 217.5 -- score 88.9, tight on the hand placing
+    (shot("C8192", 217.1, 1.8, xoff=0.46, push=0.07, tight=0.56, yoff=0.48,
+          denoise=DARK, sharpen=0.75),
+     [text("FIVE MODULES.", MED, TOPY, 0.1, 1.8),
+      text("HANDS-ON.", MED, TOPY+92, 0.28, 1.8, accent=True)]),
 
-    (shot("C8190", 6.6, 1.8, xoff=0.46, push=0.06, denoise=LITE, sharpen=0.7), []),
-
-    (shot("C8192", 267.2, 2.0, xoff=0.46, push=0.05, denoise=LITE),
+    # 275.0 -- score 80.1, daylight, the practitioner with the patient
+    (shot("C8192", 274.4, 2.0, xoff=0.50, push=0.05, denoise=LITE),
      [text("TAUGHT BY DVMs", SMALL, TOPY, 0.1, 2.0),
       text("AND LICENSED", SMALL, TOPY+72, 0.1, 2.0),
       text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 2.0, accent=True)]),
 
-    (shot("C8192", 270.0, 2.8, xoff=0.48, speed=0.60, push=0.05, denoise=LITE),
-     [text("MEDICINE YOU CAN", 72, TOPY, 0.35, 4.5),
-      text("USE MONDAY", 72, TOPY+86, 0.5, 4.3),
-      text("MORNING.", 72, TOPY+172, 0.65, 4.1, accent=True)]),
+    # payoff
+    (shot("C8192", 273.2, 2.6, xoff=0.50, speed=0.62, push=0.05,
+          denoise=LITE),
+     [text("MEDICINE YOU CAN", 72, TOPY, 0.3, 4.2),
+      text("USE MONDAY", 72, TOPY+86, 0.45, 4.0),
+      text("MORNING.", 72, TOPY+172, 0.6, 3.8, accent=True)]),
 
-    (shot("C8192", 231.4, 1.8, xoff=0.52, push=0.06, denoise=DARK),
-     [text("VETERINARY", 96, TOPY, 0.1, 1.8),
-      text("ACUPUNCTURE", 96, TOPY+124, 0.1, 1.8, accent=True)]),
+    # title and end card move to the daylight section: the shadowed frames
+    # are too dark to sit type over once darkened further
+    (shot("C8192", 276.4, 1.6, xoff=0.50, push=0.06, denoise=LITE),
+     [text("VETERINARY", 96, TOPY, 0.08, 1.6),
+      text("ACUPUNCTURE", 96, TOPY+124, 0.08, 1.6, accent=True)]),
 
-    (shot("C8192", 232.4, 3.3, xoff=0.52, darken=0.32, push=0.04,
-          denoise=DARK),
-     [text("PART I BEGINS", BIG, 420, 0.15, 3.1),
-      text("SEPTEMBER 16", BIG, 540, 0.30, 3.0, accent=True),
-      text("healingoasis.edu", 62, 690, 0.6, 2.7, font=FONT),
-      text("Healing Oasis Wellness Center", 36, 776, 0.6, 2.7, font=FONT,
+    (shot("C8192", 277.6, 3.0, xoff=0.50, darken=0.30, push=0.04,
+          denoise=LITE),
+     [text("PART I BEGINS", BIG, 420, 0.12, 2.8),
+      text("SEPTEMBER 16", BIG, 540, 0.26, 2.7, accent=True),
+      text("healingoasis.edu", 62, 690, 0.5, 2.4, font=FONT),
+      text("Healing Oasis Wellness Center", 36, 776, 0.5, 2.4, font=FONT,
            color="white@0.72")]),
 ]
 
