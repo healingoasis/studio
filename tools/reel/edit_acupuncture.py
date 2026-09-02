@@ -13,9 +13,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_reel import (build_shot, concat, shot, text, FF, W, H,
                         FONT, FONT_BLACK, SAFE_BOT)
 
-BIG   = 84
-MED   = 68
-SMALL = 52
+BIG   = 96
+MED   = 78
+SMALL = 60
+HUGE  = 112
 TOPY  = 340          # headline sits high, clear of the caption UI
 MIDY  = H//2 - 60
 
@@ -33,54 +34,55 @@ MIDY  = H//2 - 60
 # deliberately alternates scale and subject: extreme close, human face, animal,
 # then the patient standing calm.
 
+# All acupuncture. Two sessions: the French bulldog (C8192, needles 190-240s)
+# and the paint horse (C8188, 30-85s).
+#
+# Cut for energy rather than calm: shorter shots up front, a slow push on every
+# frame so nothing sits still, type that rises into place with a key line in
+# cyan, and the two slow-motion beats saved for the open and the payoff.
+
 EDIT = [
-    # --- hook: a needle going in, big enough to read instantly ------------
-    (shot("C8192", 202.6, 2.4, xoff=0.38, speed=0.55),
-     [text("Your patient", BIG, TOPY, 0.2, 4.0),
-      text("can't tell you", BIG, TOPY+100, 0.5, 3.7),
-      text("where it hurts.", BIG, TOPY+200, 0.85, 3.3)]),
+    (shot("C8192", 202.6, 2.2, xoff=0.38, speed=0.55, push=0.07),
+     [text("YOUR PATIENT", BIG, TOPY, 0.15, 3.8),
+      text("CAN'T TELL YOU", BIG, TOPY+112, 0.45, 3.5),
+      text("WHERE IT HURTS.", BIG, TOPY+224, 0.80, 3.2, accent=True)]),
 
-    # --- pull back: they are already in ----------------------------------
-    (shot("C8192", 218.6, 2.1, xoff=0.36),
-     [text("So you learn", MED, TOPY, 0.1, 2.1),
-      text("to find it.", MED, TOPY+86, 0.28, 2.1)]),
+    (shot("C8192", 218.6, 1.9, xoff=0.36, push=0.06),
+     [text("SO YOU LEARN", MED, TOPY, 0.08, 1.9),
+      text("TO FIND IT.", MED, TOPY+92, 0.26, 1.9, accent=True)]),
 
-    # --- a person, so it is not just hands and animals --------------------
-    (shot("C8188", 39.2, 2.2, xoff=0.55), []),
+    (shot("C8188", 39.2, 1.7, xoff=0.55, push=0.06), []),
 
-    # --- same medicine, 500kg patient ------------------------------------
-    (shot("C8188", 46.6, 2.1, xoff=0.52),
-     [text("Five modules.", MED, TOPY, 0.15, 2.1)]),
+    (shot("C8188", 46.6, 1.9, xoff=0.52, push=0.06),
+     [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.9),
+      text("NOT MODELS.", MED, TOPY+92, 0.28, 1.9, accent=True)]),
 
-    (shot("C8192", 225.4, 2.0, xoff=0.34), []),
+    (shot("C8192", 225.4, 1.7, xoff=0.34, push=0.07), []),
 
-    (shot("C8188", 70.5, 2.3, xoff=0.46),
-     [text("Hands-on practicums", MED, TOPY, 0.15, 2.3),
-      text("with live patients.", MED, TOPY+86, 0.35, 2.1)]),
+    (shot("C8188", 70.5, 2.0, xoff=0.46, push=0.06),
+     [text("FIVE MODULES.", MED, TOPY, 0.1, 2.0),
+      text("HANDS-ON.", MED, TOPY+92, 0.28, 2.0, accent=True)]),
 
-    (shot("C8188", 76.8, 2.3, xoff=0.50),
-     [text("Taught by veterinarians", SMALL, TOPY, 0.1, 2.3),
-      text("and licensed acupuncturists.", SMALL, TOPY+68, 0.1, 2.3)]),
+    (shot("C8188", 76.8, 2.1, xoff=0.50, push=0.06),
+     [text("TAUGHT BY DVMs", SMALL, TOPY, 0.1, 2.1),
+      text("AND LICENSED", SMALL, TOPY+72, 0.1, 2.1),
+      text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 2.1, accent=True)]),
 
-    # --- the payoff: the patient, standing calm, entirely unbothered ------
-    # The hero frame: dog in profile, needles visible along the back, and the
-    # practitioner's face looking down at it. Cute, clinical and warm at once.
-    (shot("C8192", 229.3, 3.0, xoff=0.52, speed=0.60),
-     [text("Medicine you can use", MED, TOPY, 0.4, 4.8),
-      text("Monday morning.", MED, TOPY+86, 0.68, 4.5)]),
+    (shot("C8192", 229.3, 2.9, xoff=0.52, speed=0.60, push=0.05),
+     [text("MEDICINE YOU CAN", 72, TOPY, 0.35, 4.6),
+      text("USE MONDAY", 72, TOPY+86, 0.5, 4.4),
+      text("MORNING.", 72, TOPY+172, 0.65, 4.2, accent=True)]),
 
-    (shot("C8192", 231.4, 2.1, xoff=0.52),
-     [text("VETERINARY", 62, TOPY, 0.15, 2.1, font=FONT_BLACK),
-      text("ACUPUNCTURE", 62, TOPY+76, 0.15, 2.1, font=FONT_BLACK)]),
+    (shot("C8192", 231.4, 1.9, xoff=0.52, push=0.06),
+     [text("VETERINARY", 96, TOPY, 0.1, 1.9),
+      text("ACUPUNCTURE", 96, TOPY+124, 0.1, 1.9, accent=True)]),
 
-    (shot("C8192", 232.4, 3.4, xoff=0.52, darken=0.32),
-     # Text sits high, clear of the practitioner's shirt logo -- it was
-     # reading through the type and making the card look busy.
-     [text("Part I begins", BIG, 430, 0.2, 3.2, font=FONT_BLACK),
-      text("September 16", BIG, 530, 0.2, 3.2, font=FONT_BLACK),
-      text("healingoasis.edu", 58, 680, 0.6, 2.8),
-      text("Healing Oasis Wellness Center", 36, 760, 0.6, 2.8,
-           color="white@0.70")]),
+    (shot("C8192", 232.4, 3.3, xoff=0.52, darken=0.32, push=0.04),
+     [text("PART I BEGINS", BIG, 420, 0.15, 3.1),
+      text("SEPTEMBER 16", BIG, 540, 0.30, 3.0, accent=True),
+      text("healingoasis.edu", 62, 690, 0.6, 2.7, font=FONT),
+      text("Healing Oasis Wellness Center", 36, 776, 0.6, 2.7, font=FONT,
+           color="white@0.72")]),
 ]
 
 def main():

@@ -22,13 +22,19 @@ SAFE_TOP, SAFE_BOT = 300, 560
 def esc(t):
     return t.replace("\\", "\\\\").replace(":", "\\:").replace("'", "’").replace("%", "\\%")
 
-def shot(clip, start, dur, xoff=0.5, speed=1.0, zoom=None, darken=0.0):
+def shot(clip, start, dur, xoff=0.5, speed=1.0, zoom=None, darken=0.0,
+         push=0.05):
     return {"clip": clip, "start": start, "dur": dur, "xoff": xoff,
-            "speed": speed, "zoom": zoom, "darken": darken}
+            "speed": speed, "zoom": zoom, "darken": darken, "push": push}
 
-def text(t, size=76, y=None, start=0.0, dur=99, font=FONT, color="white", weight=1.0):
+ACCENT = "0x4AD2FF"   # bright cyan: reads as clinical, not corporate beige
+
+def text(t, size=76, y=None, start=0.0, dur=99, font=FONT_BLACK, color="white",
+         accent=False, slide=34):
+    """slide: pixels the line rises as it fades in. Static type reads dead;
+    a short rise plus a fast fade is what makes a line land."""
     return {"t": t, "size": size, "y": y, "start": start, "dur": dur,
-            "font": font, "color": color}
+            "font": font, "color": ACCENT if accent else color, "slide": slide}
 
 SCRIM = "/private/tmp/claude-501/-Users-danielrivera-studio/a0549ff3-9881-42f6-a35a-e0a37f3a61c8/scratchpad/scrim.png"
 
@@ -38,13 +44,21 @@ def build_shot(s, texts, out, idx):
     # a 3840x2160 frame gives a 1215-wide vertical slice; xoff picks where
     cw = 1215
     cx = f"(iw-{cw})*{s['xoff']}"
-    vf = [f"crop={cw}:2160:{cx}:0", f"scale={W}:{H}:flags=lanczos"]
+    # The barn footage is high-ISO and shows sensor noise once cropped to a
+    # third of the frame and viewed near 1:1. Denoise first, then restore
+    # micro-contrast, or it reads as grain on a phone screen.
+    vf = [f"crop={cw}:2160:{cx}:0",
+          "hqdn3d=4:3:6:4.5",
+          f"scale={W}:{H}:flags=lanczos",
+          "unsharp=5:5:0.55:5:5:0.0"]
     if s["speed"] != 1.0:
         vf.append(f"setpts={1.0/s['speed']}*PTS")
-    if s.get("zoom"):
-        z0, z1 = s["zoom"]
-        n = max(1, int(s["dur"] * 30))
-        vf.append(f"zoompan=z='{z0}+({z1}-{z0})*on/{n}':d=1:x='iw/2-(iw/zoom/2)':"
+    push = s.get("push", 0.05)
+    if push:
+        eff = s["dur"] / s["speed"] if s["speed"] != 1.0 else s["dur"]
+        n = max(2, int(eff * 30))
+        d = "in" if s.get("push_dir") == "in" else "in"
+        vf.append(f"zoompan=z='1+{push}*on/{n}':d=1:x='iw/2-(iw/zoom/2)':"
                   f"y='ih/2-(ih/zoom/2)':s={W}x{H}:fps=30")
     if s.get("darken"):
         vf.append(f"eq=brightness=-{s['darken']}:saturation=0.9")
@@ -54,19 +68,25 @@ def build_shot(s, texts, out, idx):
     post = []
     for tx in texts:
         y = tx["y"] if tx["y"] is not None else H - SAFE_BOT
+        st, sl = tx["start"], tx.get("slide", 34)
+        # fade up over 0.18s and rise into place; then hold
+        alpha = f"if(lt(t-{st},0.18),(t-{st})/0.18,1)"
+        ypos  = f"{y}+{sl}*max(0,1-(t-{st})/0.22)"
         post.append(
             f"drawtext=fontfile='{tx['font']}':text='{esc(tx['t'])}':"
             f"fontsize={tx['size']}:fontcolor={tx['color']}:"
-            f"x=(w-text_w)/2:y={y}:line_spacing=14:"
-            f"shadowcolor=black@0.9:shadowx=0:shadowy=5:"
-            f"enable='between(t,{tx['start']},{tx['start']+tx['dur']})'"
+            f"x=(w-text_w)/2:y='{ypos}':line_spacing=12:"
+            f"alpha='{alpha}':"
+            f"shadowcolor=black@0.92:shadowx=0:shadowy=6:"
+            f"borderw=3:bordercolor=black@0.55:"
+            f"enable='between(t,{st},{st+tx['dur']})'"
         )
     chain += ",".join(post) if post else "null"
     cmd = [FF, "-nostdin", "-ss", str(s["start"]), "-i", src,
            "-i", SCRIM,
            "-t", str(s["dur"]), "-filter_complex", chain,
            "-an", "-r", "30", "-c:v", "libx264", "-preset", "medium",
-           "-crf", "17", "-pix_fmt", "yuv420p", "-y", out]
+           "-crf", "15", "-pix_fmt", "yuv420p", "-y", out]
     r = subprocess.run(cmd, capture_output=True, text=True)
     if not os.path.exists(out):
         print(f"  shot {idx} FAILED: {r.stderr[-400:]}")
@@ -79,7 +99,7 @@ def concat(parts, out):
             f.write(f"file '{p}'\n")
         lst = f.name
     subprocess.run([FF, "-nostdin", "-f", "concat", "-safe", "0", "-i", lst,
-                    "-c:v", "libx264", "-preset", "slow", "-crf", "18",
+                    "-c:v", "libx264", "-preset", "slow", "-crf", "16",
                     "-pix_fmt", "yuv420p", "-movflags", "+faststart",
                     "-r", "30", "-y", out], capture_output=True)
     os.unlink(lst)
