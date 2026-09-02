@@ -10,7 +10,7 @@
    ============================================================ */
 :root{
   --ground:#EFEDF2; --ground-deep:#E4E1EA; --surface:#FFFFFF; --surface-2:#F7F5FA;
-  --ink:#16131B; --ink-soft:#3A3444; --muted:#6A6474; --faint:#8D8799;
+  --ink:#16131B; --ink-soft:#3A3444; --muted:#6A6474; --faint:#6E687C;
   --rule:#D2CCDC; --rule-soft:#E3DFEA;
   --accent:#6E2A93; --accent-bright:#B14FD8; --accent-wash:#F3EAF8; --on-accent:#FFFFFF;
   --invert-bg:#16131B; --invert-fg:#F3F1F6; --invert-soft:rgba(243,241,246,.72);
@@ -155,6 +155,7 @@ p{margin:0}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 42%}
 .hero-veil{position:absolute;inset:0;background:
   linear-gradient(100deg,rgba(12,10,17,.90) 0%,rgba(12,10,17,.72) 42%,rgba(12,10,17,.28) 76%,rgba(12,10,17,.42) 100%)}
+.hero-in .eyebrow{color:rgba(255,255,255,.86)}
 .hero-in{position:relative;padding-block:clamp(56px,10vw,110px);max-width:900px}
 .hero h1{color:#fff;font-size:clamp(40px,7.4vw,86px);line-height:1.02;margin:20px 0 0;letter-spacing:-.025em}
 .hero h1 em{font-style:italic;color:var(--accent-bright)}
@@ -2549,8 +2550,8 @@ textarea.field-in{min-height:130px;resize:vertical}
     else { if(!ROUTES[h]){h="/"} id=ROUTES[h]; }
     if(id==="p-apply") paintApply();
     if(id==="p-report") rpInit();
-    if(id==="p-test") quizInit();
-    if(id==="p-home") homeQuiz();
+    if(id==="p-test"){ if(qz.i>=qz.rounds.length) quizReset(); else quizInit(); }
+    if(id==="p-home") homeQuiz(true);
     var navKey = h.indexOf("/shop")===0 ? "/shop" : h;
     $$(".page").forEach(function(p){p.classList.toggle("live",p.id===id)});
     $$("#nav a,[data-nav]").forEach(function(a){
@@ -3783,8 +3784,9 @@ textarea.field-in{min-height:130px;resize:vertical}
 
   /* ══ one horse on the home page, as a way in ══ */
   var hq={score:null, guess:null};
-  function homeQuiz(){
+  function homeQuiz(reset){
     var box=$("#homeQuiz"); if(!box)return;
+    if(reset){ hq.score=null; hq.guess=null }
     if(hq.score===null){ var pool=[1,2,3,4,6,7,8,9]; hq.score=pool[Math.floor(Math.random()*pool.length)] }
     var t=hq.score, g=hq.guess, B=BCS[t-1];
     if(g===null){
@@ -3809,6 +3811,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         '<div class="hq-side"><p class="eyebrow">You said '+g+'</p><h2>'+head+'</h2>'+
         '<p>'+B.desc+'</p>'+
         '<div class="hq-acts"><a class="btn btn-solid btn-lg" href="#/test" data-nav>Take the other four</a>'+
+        '<button class="btn btn-line btn-lg" id="hqAgain" type="button">Try another horse</button>'+
         '<a class="btn btn-line btn-lg" href="#/learn" data-nav>Where to put your hands</a></div>'+
         '</div></div>';
     }
@@ -3818,6 +3821,8 @@ textarea.field-in{min-height:130px;resize:vertical}
       var b=e.target.closest("button"); if(!b)return;
       hq.guess=+b.dataset.g; homeQuiz();
     });
+    var ag=$("#hqAgain");
+    if(ag) ag.addEventListener("click",function(){ homeQuiz(true) });
   }
 
   /* ══ the test: five horses, one guess each ══ */
@@ -4055,6 +4060,7 @@ textarea.field-in{min-height:130px;resize:vertical}
 
   function paintApply(){
     var box=$("#applyBox"); if(!box)return;
+    if(!box.dataset.on){ box.dataset.on="1"; box.addEventListener("click", apClick) }
     if(!apKind || apStep===0){
       box.innerHTML='<p class="eyebrow">First</p><h2 style="margin-top:10px">Which of these are you?</h2>'+
         '<div class="ap-pick">'+["adopt","foster","volunteer"].map(function(k){
@@ -4100,8 +4106,6 @@ textarea.field-in{min-height:130px;resize:vertical}
         '<button class="btn btn-solid btn-wide btn-lg" style="margin-top:18px" id="apSend" data-demo>Send this application</button>'+
         '<p class="note" style="margin-top:14px;font-size:11.5px">Not connected in this concept &mdash; nothing is sent and nothing is stored. On the live site this is what turns a quiet week into a home that is ready.</p>'+
       '</div></div>';
-
-    box.addEventListener("click", apClick);
   }
   function apClick(e){
     var c=e.target.closest(".ap-card");
