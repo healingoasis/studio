@@ -41,43 +41,60 @@ MIDY  = H//2 - 60
 # frame so nothing sits still, type that rises into place with a key line in
 # cyan, and the two slow-motion beats saved for the open and the payoff.
 
+# All acupuncture. Shots chosen for LIGHT as much as content: the 200-230s
+# take is in shadow and shows sensor noise, while 255-275s is the same session
+# in the bright barn aisle and is markedly cleaner. Grainy takes get stronger
+# noise reduction; the opening is cropped tighter to frame out a fly on the
+# wall behind the dog.
+
+DARK = "6:4:8:6"     # for the shadowed takes
+LITE = "3:2:4:3"     # bright takes need barely any
+
 EDIT = [
-    (shot("C8192", 202.6, 2.2, xoff=0.38, speed=0.55, push=0.07),
+    # --- 0-2.2s  the needle going in, cropped past the fly ----------------
+    (shot("C8192", 202.7, 2.2, xoff=0.42, speed=0.55, push=0.07,
+          tight=0.70, yoff=0.72, denoise=DARK),
      [text("YOUR PATIENT", BIG, TOPY, 0.15, 3.8),
       text("CAN'T TELL YOU", BIG, TOPY+112, 0.45, 3.5),
       text("WHERE IT HURTS.", BIG, TOPY+224, 0.80, 3.2, accent=True)]),
 
-    (shot("C8192", 218.6, 1.9, xoff=0.36, push=0.06),
+    # --- bright take: they are already in ---------------------------------
+    (shot("C8192", 258.6, 1.9, xoff=0.42, push=0.06, denoise=LITE),
      [text("SO YOU LEARN", MED, TOPY, 0.08, 1.9),
       text("TO FIND IT.", MED, TOPY+92, 0.26, 1.9, accent=True)]),
 
-    (shot("C8188", 39.2, 1.7, xoff=0.55, push=0.06), []),
+    (shot("C8188", 39.2, 1.6, xoff=0.55, push=0.06, denoise=LITE), []),
 
-    (shot("C8188", 46.6, 1.9, xoff=0.52, push=0.06),
+    (shot("C8188", 46.6, 1.9, xoff=0.52, push=0.06, denoise=LITE),
      [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.9),
       text("NOT MODELS.", MED, TOPY+92, 0.28, 1.9, accent=True)]),
 
-    (shot("C8192", 225.4, 1.7, xoff=0.34, push=0.07), []),
+    (shot("C8192", 261.6, 1.7, xoff=0.44, push=0.07, denoise=LITE), []),
 
-    (shot("C8188", 70.5, 2.0, xoff=0.46, push=0.06),
-     [text("FIVE MODULES.", MED, TOPY, 0.1, 2.0),
-      text("HANDS-ON.", MED, TOPY+92, 0.28, 2.0, accent=True)]),
+    (shot("C8188", 70.5, 1.9, xoff=0.46, push=0.06, denoise=LITE),
+     [text("FIVE MODULES.", MED, TOPY, 0.1, 1.9),
+      text("HANDS-ON.", MED, TOPY+92, 0.28, 1.9, accent=True)]),
 
-    (shot("C8188", 76.8, 2.1, xoff=0.50, push=0.06),
-     [text("TAUGHT BY DVMs", SMALL, TOPY, 0.1, 2.1),
-      text("AND LICENSED", SMALL, TOPY+72, 0.1, 2.1),
-      text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 2.1, accent=True)]),
+    # --- a face, and a smile ----------------------------------------------
+    (shot("C8192", 267.2, 2.0, xoff=0.46, push=0.05, denoise=LITE),
+     [text("TAUGHT BY DVMs", SMALL, TOPY, 0.1, 2.0),
+      text("AND LICENSED", SMALL, TOPY+72, 0.1, 2.0),
+      text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 2.0, accent=True)]),
 
-    (shot("C8192", 229.3, 2.9, xoff=0.52, speed=0.60, push=0.05),
-     [text("MEDICINE YOU CAN", 72, TOPY, 0.35, 4.6),
-      text("USE MONDAY", 72, TOPY+86, 0.5, 4.4),
-      text("MORNING.", 72, TOPY+172, 0.65, 4.2, accent=True)]),
+    (shot("C8188", 76.8, 1.8, xoff=0.50, push=0.06, denoise=LITE), []),
 
-    (shot("C8192", 231.4, 1.9, xoff=0.52, push=0.06),
-     [text("VETERINARY", 96, TOPY, 0.1, 1.9),
-      text("ACUPUNCTURE", 96, TOPY+124, 0.1, 1.9, accent=True)]),
+    # --- payoff: needles in, dog unbothered, practitioner smiling ---------
+    (shot("C8192", 270.0, 2.8, xoff=0.48, speed=0.60, push=0.05, denoise=LITE),
+     [text("MEDICINE YOU CAN", 72, TOPY, 0.35, 4.5),
+      text("USE MONDAY", 72, TOPY+86, 0.5, 4.3),
+      text("MORNING.", 72, TOPY+172, 0.65, 4.1, accent=True)]),
 
-    (shot("C8192", 232.4, 3.3, xoff=0.52, darken=0.32, push=0.04),
+    (shot("C8192", 231.4, 1.8, xoff=0.52, push=0.06, denoise=DARK),
+     [text("VETERINARY", 96, TOPY, 0.1, 1.8),
+      text("ACUPUNCTURE", 96, TOPY+124, 0.1, 1.8, accent=True)]),
+
+    (shot("C8192", 232.4, 3.3, xoff=0.52, darken=0.32, push=0.04,
+          denoise=DARK),
      [text("PART I BEGINS", BIG, 420, 0.15, 3.1),
       text("SEPTEMBER 16", BIG, 540, 0.30, 3.0, accent=True),
       text("healingoasis.edu", 62, 690, 0.6, 2.7, font=FONT),

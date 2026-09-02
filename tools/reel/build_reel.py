@@ -23,9 +23,15 @@ def esc(t):
     return t.replace("\\", "\\\\").replace(":", "\\:").replace("'", "’").replace("%", "\\%")
 
 def shot(clip, start, dur, xoff=0.5, speed=1.0, zoom=None, darken=0.0,
-         push=0.05):
+         push=0.05, tight=1.0, yoff=0.5, denoise=None):
+    """tight: <1 crops in further (1.0 = full height). Used to frame out
+    background clutter -- there is a fly on the wall behind the dog in the
+    202s take, and cropping past it is cleaner than trying to paint it out.
+    yoff: where the tighter crop sits vertically (0 = top).
+    denoise: override strength for the grainier, darker takes."""
     return {"clip": clip, "start": start, "dur": dur, "xoff": xoff,
-            "speed": speed, "zoom": zoom, "darken": darken, "push": push}
+            "speed": speed, "zoom": zoom, "darken": darken, "push": push,
+            "tight": tight, "yoff": yoff, "denoise": denoise}
 
 ACCENT = "0x4AD2FF"   # bright cyan: reads as clinical, not corporate beige
 
