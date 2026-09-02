@@ -799,7 +799,28 @@ p{margin:0}
 .rb-crit i{background:var(--crit)} .rb-ok i{background:var(--ok)} .rb-over i{background:var(--over)}
 @media(max-width:460px){.rail-bands>span{font-size:8.5px;letter-spacing:.05em}}
 
+.dept-call{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:clamp(24px,3.4vw,48px);background:var(--invert-bg);color:var(--invert-fg);
+  border-radius:22px;padding:clamp(26px,3.6vw,46px);margin-top:clamp(20px,2.6vw,34px)}
+@media(max-width:820px){.dept-call{grid-template-columns:1fr}}
+.dept-num{display:inline-block;margin-top:10px;font-family:var(--display);font-weight:400;
+  font-size:clamp(38px,6vw,68px);line-height:1;color:var(--invert-fg);text-decoration:none;
+  letter-spacing:-.02em}
+.dept-num:hover{color:var(--invert-accent)}
+.dept-need ol{margin:12px 0 0;padding-left:20px;color:var(--invert-soft);font-size:15.5px;
+  line-height:1.6}
+.dept-need li{padding:7px 0;border-bottom:1px solid var(--invert-rule)}
+.dept-need li:last-child{border-bottom:none}
+.dept-need b{color:var(--invert-fg);font-weight:600}
+.dept-cant{list-style:none;margin:18px 0 0;padding:0}
+.dept-cant li{padding:14px 0;border-bottom:1px solid var(--invert-rule);color:var(--invert-soft);
+  font-size:15.5px;line-height:1.6}
+.dept-cant b{display:block;color:var(--invert-fg);font-weight:600;margin-bottom:4px}
+.dept-addr{margin-top:16px;font-family:var(--mono);font-size:15px;line-height:1.8;
+  color:var(--invert-fg);font-style:normal}
+
 .rp-step{border-top:2px solid var(--accent);padding-top:18px}
+.rp-step h3{font-size:20px;margin-top:8px;line-height:1.2}
 .rp-step span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--accent)}
 .rp-step h2{font-size:21px;margin-top:8px;line-height:1.2}
 .rp-step p{color:var(--ink-soft);margin-top:10px;font-size:15px;line-height:1.6}
@@ -1092,6 +1113,7 @@ textarea.field-in{min-height:130px;resize:vertical}
       <a href="#/about" data-nav>About</a>
       <a href="#/learn" data-nav>Learn</a>
         <a href="#/report" data-nav>Report a concern</a>
+        <a href="#/departments" data-nav>For law enforcement</a>
       <a href="#/horses" data-nav>Our Horses</a>
       <a href="#/alumni" data-nav>Alumni</a>
       <a href="#/adopt" data-nav>Adopt</a>
@@ -1786,6 +1808,7 @@ textarea.field-in{min-height:130px;resize:vertical}
            We will tell you straight away whether we have space, and we will open a file the moment
            the trailer arrives — the same file that follows the horse to its adopter.</p>
         <a class="lane-num" href="tel:+12624920767">(262) 492-0767</a>
+        <a class="btn btn-invert-line" style="margin-top:18px" href="#/departments" data-nav>What we need from you</a>
       </div>
     </div>
   </div>
@@ -1966,6 +1989,104 @@ textarea.field-in{min-height:130px;resize:vertical}
 </section>
 
 <!-- ══════════════════════════ DONATE ══════════════════════════ -->
+<!-- ══════════════════════════ DEPARTMENTS ══════════════════════════ -->
+<section class="page" id="p-depts">
+  <div class="phead"><div class="wrap narrow">
+    <p class="eyebrow">For law enforcement</p>
+    <h1>You have a seized equine and nowhere to put it tonight.</h1>
+    <p class="lede">That is the call this rescue was created to take. This page is written for the
+       officer standing in the field, not for donors. It is short on purpose.</p>
+  </div></div>
+
+  <div class="wrap"><div class="dept-call rv">
+    <div>
+      <p class="eyebrow" style="color:var(--invert-accent)">Call the farm, any hour</p>
+      <a class="dept-num" href="tel:+12624920767">(262) 492-0767</a>
+      <p style="color:var(--invert-soft);margin-top:14px;max-width:46ch">We will tell you straight
+         away whether we have space. If we do not, say so and we will start ringing the barns we
+         know.</p>
+    </div>
+    <div class="dept-need">
+      <p class="eyebrow" style="color:var(--invert-accent)">Have these four ready</p>
+      <ol>
+        <li><b>Which county</b>, and the nearest town.</li>
+        <li><b>How many animals</b>, and roughly what size &mdash; pony, horse, draft.</li>
+        <li><b>What condition</b> they are in. A guess is fine. &ldquo;Ribs showing&rdquo; is enough.</li>
+        <li><b>Whether they are safe where they stand right now</b>, or need moving tonight.</li>
+      </ol>
+    </div>
+  </div></div>
+
+  <div class="sec wrap">
+    <div class="panel panel-accent rv" style="border-width:2px">
+      <p class="eyebrow">Before anything else</p>
+      <h2 style="margin-top:10px;font-size:clamp(24px,3vw,34px)">Do not feed it up.</h2>
+      <p style="color:var(--ink-soft);margin-top:14px;max-width:70ch;font-size:17px;line-height:1.6">
+         This is the one thing worth knowing before we arrive. A starved horse given free access to
+         feed can die of it. Reintroducing food too fast triggers refeeding syndrome: insulin drives
+         minerals out of the bloodstream and the animal can go down with edema, diarrhea,
+         neurological signs or heart failure. It builds over the first days to a week &mdash; right
+         when everyone thinks it is going well. Roughly one emaciated horse in five is lost this way.</p>
+      <p style="color:var(--ink);margin-top:16px;max-width:70ch"><b>Water, yes. A small amount of
+         grass hay, yes. A full hay net or any grain, no.</b> If the animal is staying put overnight,
+         ring us and we will talk whoever is feeding it through the first three days.</p>
+      <a class="btn btn-line" style="margin-top:20px" href="#/learn" data-nav>The refeeding protocol in full</a>
+    </div>
+  </div>
+
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">What happens next</p>
+      <h2>The moment the trailer arrives, a file opens.</h2>
+    </div>
+    <div class="cols3">
+      <div class="rp-step rv"><span>At intake</span><h3>Condition, recorded</h3>
+        <p>Body condition scored on the Henneke scale in six places, photographed, and written down
+           with the date. Weight deficit, hydration, feet, skin, and anything else the animal
+           arrived with.</p></div>
+      <div class="rp-step rv"><span>Through recovery</span><h3>A written record</h3>
+        <p>Veterinary and farrier work, the refeeding plan and how it was followed, and condition
+           re-scored as it comes back. Red went from 250&nbsp;lb underweight to placed; Captain took
+           well over a year.</p></div>
+      <div class="rp-step rv"><span>Afterwards</span><h3>It follows the horse</h3>
+        <p>The file goes to the adopter, and a representative may check on the animal for the rest of
+           its life. Adopted equines cannot be sold on, leased or loaned without our approval.</p></div>
+    </div>
+    <p class="note rv" style="margin-top:28px;max-width:76ch">Departments needing that record for a
+       case should say so when they call. What the rescue can commit to providing, and in what form,
+       is a question for the board rather than something this concept should invent.</p>
+  </div>
+
+  <div class="band"><div class="wrap sec">
+    <div class="cols2">
+      <div class="rv">
+        <p class="eyebrow">Straight answers</p>
+        <h2 style="font-size:clamp(24px,3vw,34px);margin-top:14px">What we cannot do.</h2>
+        <ul class="dept-cant">
+          <li><b>We cannot seize an animal.</b> Only your department can. We have no authority on
+              anyone's property and we will not attend as though we do.</li>
+          <li><b>We cannot take an animal without a department involved.</b> That is what separates
+              this from a private surrender, and it is what protects the horse's status.</li>
+          <li><b>We cannot promise space.</b> We can promise a straight answer within the length of
+              a phone call, which is usually what you actually need.</li>
+        </ul>
+      </div>
+      <div class="rv">
+        <p class="eyebrow">The farm</p>
+        <h2 style="font-size:clamp(24px,3vw,34px);margin-top:14px">Union Grove, Wisconsin.</h2>
+        <address class="dept-addr">1904 51st Drive<br>Union Grove, WI 53182</address>
+        <p style="color:var(--invert-soft);margin-top:18px;max-width:48ch">Trailer access to the
+           barn. Ring before you set off &mdash; we will meet you and take the animal straight in
+           rather than leaving it standing in a yard.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
+          <a class="btn btn-lg btn-invert" href="tel:+12624920767">(262) 492-0767</a>
+          <a class="btn btn-lg btn-invert-line" href="mailto:namasteequinerescue@gmail.com">Email the farm</a>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
 <!-- ══════════════════════════ REPORT ══════════════════════════ -->
 <section class="page" id="p-report">
   <div class="phead"><div class="wrap narrow">
@@ -2253,7 +2374,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         </div></div>
         <div class="cinfo-item"><svg><use href="#i-badge"/></svg><div>
           <h2>Law enforcement</h2>
-          <p>Departments with a seizure should call the farm directly. We will tell you straight away whether we have space.</p>
+          <p>Departments with a seizure should call the farm directly. We will tell you straight away whether we have space. <a href="#/departments" data-nav>What we need from you &rarr;</a></p>
         </div></div>
         <div class="cinfo-item"><svg><use href="#i-heart"/></svg><div>
           <h2>Visiting</h2>
@@ -2307,6 +2428,7 @@ textarea.field-in{min-height:130px;resize:vertical}
         <a href="#/alumni" data-nav>Alumni</a>
         <a href="#/learn" data-nav>Learn</a>
         <a href="#/report" data-nav>Report a concern</a>
+        <a href="#/departments" data-nav>For law enforcement</a>
         <a href="#/contact" data-nav>Contact</a>
       </div>
       <div>
@@ -2374,7 +2496,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   /* ─────────── router ─────────── */
   var ROUTES={"/":"p-home","/about":"p-about","/learn":"p-learn","/horses":"p-horses","/alumni":"p-alumni",
     "/adopt":"p-adopt","/foster":"p-foster","/volunteer":"p-volunteer","/donate":"p-donate",
-    "/shop":"p-shop","/contact":"p-contact","/apply":"p-apply","/report":"p-report"};
+    "/shop":"p-shop","/contact":"p-contact","/apply":"p-apply","/report":"p-report","/departments":"p-depts"};
   var DESCS={
     "/":"A Wisconsin rescue that takes equines seized by law enforcement, puts the weight back on, and finds the home that keeps them.",
     "/about":"Founded 2014 to help law enforcement with seized equines \u2014 and what fourteen years taught us about educating owners instead.",
@@ -2388,7 +2510,8 @@ textarea.field-in{min-height:130px;resize:vertical}
     "/shop":"Five pieces, designed here. 100% of every order goes back to the horses.",
     "/contact":"Union Grove, Wisconsin. (262) 492-0767. Departments with a seizure should call the farm directly.",
     "/apply":"Apply to adopt, foster or volunteer. Get approved before the next call comes in.",
-    "/report":"Worried about a horse? Check what you are seeing, write down the date and the facts, and ring your county sheriff. This page writes the report for you."
+    "/report":"Worried about a horse? Check what you are seeing, write down the date and the facts, and ring your county sheriff. This page writes the report for you.",
+    "/departments":"For Wisconsin departments with a seized equine: what we need to know, what happens at intake, and why you must not feed a starved horse up before we arrive."
   };
   function setMeta(key, val, isProp){
     var sel = isProp ? 'meta[property="'+key+'"]' : 'meta[name="'+key+'"]';
@@ -2398,7 +2521,7 @@ textarea.field-in{min-height:130px;resize:vertical}
   }
   var TITLES={"/":"","/about":"About","/learn":"Learn","/horses":"Our Horses","/alumni":"Alumni",
     "/adopt":"Adopt","/foster":"Foster","/volunteer":"Volunteer","/donate":"Donate",
-    "/shop":"Shop","/contact":"Contact","/apply":"Apply","/report":"Report a concern"};
+    "/shop":"Shop","/contact":"Contact","/apply":"Apply","/report":"Report a concern","/departments":"For law enforcement"};
   var nav=$("#nav"), burger=$("#burger");
 
   function route(){

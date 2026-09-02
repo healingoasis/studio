@@ -101,6 +101,17 @@ person saw themselves, photographs yes or no, named or anonymous — which they 
 or read down the phone. The rescue's own page already says *report it in writing if you can, with
 the date and what you saw*; nobody helps anyone actually do that. Nothing leaves the browser.
 
+**For law enforcement.** A page written for the officer in the field rather than for donors, and
+short on purpose. The phone number at display size, then the four things to have ready on the call
+— county, how many, what condition, whether they are safe where they stand. Then the one piece of
+knowledge that changes an outcome: **do not feed it up.** A well-meaning officer or impound yard
+putting a full hay net in front of a starved horse can kill it, and roughly one emaciated horse in
+five is lost that way. Water and a small amount of grass hay, yes; a full net or any grain, no.
+Then what happens at intake — condition scored, photographed, written down, and a record that
+follows the horse — what the rescue cannot do (seize, take an animal without a department, promise
+space), and trailer access. This is the channel that actually brings horses in, and it is the sort
+of page one department forwards to another.
+
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
 refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding
