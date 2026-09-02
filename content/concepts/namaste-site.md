@@ -121,6 +121,15 @@ score out of five, a per-round recap, and the two doors worth walking through af
 the six places, or report one you have seen for real. Always includes a healthy 5, so nobody
 learns that every horse on this site is starving.
 
+**The home page, halved.** The complaint was that the site reads like a book, so the front page
+was cut from 666 words to 293 and from 6,617 pixels to 4,649. Nothing was invented and nothing
+important was lost — the mission paragraph and the three-stage explainer both live on About and
+Learn already, and the two full case files live on Alumni. What is left is the hero, one horse to
+guess at, the reason a rescue teaches at all, the zero, two case numbers, four ways in, and the
+shop. Straight under the hero there is now a single horse and nine buttons: guess its score, and
+it tells you what it was and offers the other four. The page stopped being something to read and
+became something to do.
+
 **You cannot just feed a starved horse.** The refeeding protocol, day by day, and why the
 obvious instinct kills: refeeding syndrome, roughly one in five emaciated horses lost during
 refeeding, three to ten months to bring condition back. Sourced from the UC Davis refeeding

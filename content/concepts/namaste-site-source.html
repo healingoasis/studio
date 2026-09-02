@@ -799,6 +799,41 @@ p{margin:0}
 .rb-crit i{background:var(--crit)} .rb-ok i{background:var(--ok)} .rb-over i{background:var(--over)}
 @media(max-width:460px){.rail-bands>span{font-size:8.5px;letter-spacing:.05em}}
 
+.hq{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  gap:clamp(22px,3vw,44px);align-items:center;border:1px solid var(--rule);border-radius:20px;
+  background:var(--surface);padding:clamp(16px,2vw,22px)}
+@media(max-width:880px){.hq{grid-template-columns:1fr}}
+.hq-fig{position:relative;border-radius:14px;overflow:hidden;background:var(--surface-2)}
+.hq-fig canvas{width:100%;height:auto;display:block}
+.hq-tag{position:absolute;left:12px;bottom:12px;font-family:var(--display);font-size:18px;
+  color:#fff;background:rgba(14,11,18,.66);padding:8px 14px;border-radius:11px;
+  backdrop-filter:blur(4px)}
+.hq-side h2{font-size:clamp(22px,2.8vw,30px);margin-top:8px;line-height:1.15}
+.hq-side p{margin-top:12px;color:var(--ink-soft);font-size:15.5px;line-height:1.6}
+.hq-rail{margin-top:20px;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px}
+.hq-rail button{padding:14px 0;font-size:16px}
+.hq-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+
+.hcase{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:20px;
+  align-items:center;border:1px solid var(--rule);border-radius:18px;background:var(--surface);
+  padding:16px;overflow:hidden}
+@media(max-width:560px){.hcase{grid-template-columns:1fr}}
+.hcase img{width:100%;height:100%;min-height:150px;object-fit:cover;border-radius:12px;display:block}
+.hcase p{margin:0;color:var(--ink-soft);font-size:14.5px;line-height:1.55}
+.hcase-n{font-family:var(--display);font-size:clamp(30px,4vw,42px);color:var(--ink);
+  line-height:1;margin:8px 0 10px !important}
+.hcase-n small{font-family:var(--sans);font-size:13px;color:var(--faint);letter-spacing:0}
+
+.ways{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);
+  margin-top:24px}
+@media(max-width:860px){.ways{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.ways{grid-template-columns:1fr}}
+.way{display:block;border:1px solid var(--rule);border-radius:16px;background:var(--surface);
+  padding:22px;text-decoration:none;transition:all .18s}
+.way:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+.way b{display:block;font-family:var(--display);font-weight:400;font-size:22px;color:var(--ink)}
+.way span{display:block;margin-top:8px;color:var(--ink-soft);font-size:14.5px;line-height:1.5}
+
 .qz-wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
   gap:clamp(22px,3vw,42px);align-items:start}
 @media(max-width:880px){.qz-wrap{grid-template-columns:1fr}}
@@ -1187,66 +1222,33 @@ textarea.field-in{min-height:130px;resize:vertical}
     <img class="hero-img" src="data:image/jpeg;base64,{{HERO}}" alt="Captain, a black quarter horse, walking in a paddock on a gray Wisconsin day">
     <div class="hero-veil"></div>
     <div class="wrap hero-in">
-      <p class="eyebrow">Equine rescue · Wisconsin · Since 2014</p>
+      <p class="eyebrow">Equine rescue &middot; Wisconsin &middot; Since 2014</p>
       <h1>When the law takes a horse away, <em>we take him next.</em></h1>
-      <p>Namaste Equine Rescue receives equines seized by law enforcement across Wisconsin.
-         We put the weight back on, sort out the feet, rebuild the trust — and only then
-         do we look for the home that keeps them.</p>
+      <p>We take equines seized by law enforcement across Wisconsin, put the weight back on, and
+         find the home that keeps them.</p>
       <div class="hero-cta">
-        <a class="btn btn-lg hero-solid" href="#/donate" data-nav>Fund a recovery</a>
-        <a class="btn btn-lg btn-line" href="#/about" data-nav>See how it works</a>
+        <a class="btn btn-lg hero-solid" href="#/test" data-nav>Can you tell if a horse is hungry?</a>
+        <a class="btn btn-lg btn-line" href="#/donate" data-nav>Fund a recovery</a>
       </div>
     </div>
-    <span class="credit">Captain — after</span>
+    <span class="credit">Captain &mdash; after</span>
   </div>
 
-  <div class="sec wrap">
-    <div class="cols2">
-      <div class="rv">
-        <p class="eyebrow">The mission</p>
-        <p class="pull" style="margin-top:18px">To procure equines seized by law enforcement, rehabilitate them mentally and physically, and re-home them in a <span class="mark">safe, forever environment.</span></p>
-      </div>
-      <div class="rv">
-        <p class="lede">Thousands of equines every year are mentally and physically neglected. When a Wisconsin department steps in, the horse still needs somewhere to go that same day — a barn, a vet, a farrier, and someone with the time to sit with an animal that has learned not to trust people.</p>
-        <p class="lede" style="margin-top:20px">That is what this farm is for.</p>
-        <a class="btn btn-line" style="margin-top:28px" href="#/about" data-nav>Read our story</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap"><hr class="rule"></div>
+  <div class="sec wrap"><div id="homeQuiz" class="rv"></div></div>
 
   <div class="sec wrap">
-    <div class="sec-head rv">
-      <p class="eyebrow">How it works</p>
-      <h2>Three stages, and none of them are quick.</h2>
-      <p class="lede">A seizure is the beginning of the paperwork and the beginning of the horse's real problems. Recovery is measured in seasons, not weeks.</p>
-    </div>
-    <div class="steps rv">
-      <div class="step">
-        <div>
-          <h3>Law enforcement calls</h3>
-          <p>A Wisconsin department seizes an equine and needs somewhere for it to go. We take the intake, open a file, and start a record that follows the horse for the rest of its life.</p>
-        </div>
+    <div class="cols2" style="align-items:center">
+      <div class="rv">
+        <p class="eyebrow">Why a rescue teaches</p>
+        <p class="pull" style="margin-top:16px">Most neglect is not cruelty. It is an owner who never
+           learned what a healthy horse <span class="mark">feels like under the hand.</span></p>
       </div>
-      <div class="step">
-        <div>
-          <h3>Weight, feet, and trust</h3>
-          <p>Shelter, food, vet and farrier care, and unconditional love and attention. Refeeding is done slowly and on purpose. Hooves that have gone years without a trim come back over many cycles. The mental side usually takes longest.</p>
-        </div>
+      <div class="rv">
+        <p class="lede">We were set up in 2014 to help law enforcement with seized equines. What we
+           found was that <b>99% of our purpose was to educate horse owners</b> &mdash; so that the
+           next horse never has to be seized at all.</p>
+        <a class="btn btn-solid btn-lg" style="margin-top:24px" href="#/learn" data-nav>Learn to read a horse</a>
       </div>
-      <div class="step">
-        <div>
-          <h3>The home that keeps them</h3>
-          <p>Adopters are visited before approval, and we stay in touch for the lifetime of the horse. Adopted equines cannot be sold on, leased, or loaned without our approval. That is the whole point of the file.</p>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-accent rv" style="margin-top:32px">
-      <h3>The part nobody expects</h3>
-      <p style="color:var(--ink-soft)">The rescue was created in 2014 to help law enforcement with seized equines. What we learned was that <b>99% of our purpose was to educate horse owners</b> — turning a seizure into a more positive experience of education and knowledge, so that the next horse never has to be seized at all.</p>
-      <p style="color:var(--ink-soft);margin-top:14px">So we built the lesson into this website: the six places you put your hands on a horse, and why you must never simply feed a starved one.</p>
-      <a class="btn btn-solid btn-lg" style="margin-top:22px" href="#/learn" data-nav>Learn to read a horse</a>
     </div>
   </div>
 
@@ -1256,8 +1258,9 @@ textarea.field-in{min-height:130px;resize:vertical}
         <p class="eyebrow">Currently up for adoption</p>
         <div class="zero-num">0</div>
         <h2>Isn't it wonderful.</h2>
-        <p>Not one horse on this farm is waiting for a home right now. Every animal that came through is placed. We are using the quiet to update the facility — so that the next time a department calls, the answer is still yes.</p>
-        <a class="btn btn-lg btn-invert" style="margin-top:34px" href="#/horses" data-nav>What that means</a>
+        <p>Not one horse here is waiting for a home. Every animal that came through is placed &mdash;
+           and we are using the quiet so that the next time a department calls, the answer is still yes.</p>
+        <a class="btn btn-lg btn-invert" style="margin-top:30px" href="#/apply" data-nav>Get approved before the phone rings</a>
       </div>
     </div>
   </div>
@@ -1266,71 +1269,38 @@ textarea.field-in{min-height:130px;resize:vertical}
     <div class="sec-head rv">
       <p class="eyebrow">Case records</p>
       <h2>What recovery actually looks like.</h2>
-      <p class="lede">Three horses, three intakes, real numbers. These are our alumni — every one of them placed.</p>
     </div>
-    <div class="files">
-      <article class="file rv">
-        <div class="file-media">
-          <img src="data:image/jpeg;base64,{{RED}}" alt="Red, a chestnut quarter horse with a white blaze, standing in snow after his recovery">
-        </div>
-        <div class="file-body">
-          <p class="eyebrow">Intake 2015 · Pleasant Prairie intervention</p>
-          <h2>Red</h2>
-          <p class="quote">Extremely dehydrated and 250 lb underweight.</p>
-          <dl class="fields">
-            <div class="field"><dt>Age at intake</dt><dd>7-year-old quarter horse</dd></div>
-            <div class="field"><dt>Deficit</dt><dd><b>250 lb underweight</b></dd></div>
-            <div class="field"><dt>Also presented</dt><dd>Serious hoof and emotional challenges</dd></div>
-            <div class="field"><dt>Outcome</dt><dd><b>Rehabilitated and placed</b></dd></div>
-          </dl>
+    <div class="cols2">
+      <article class="hcase rv">
+        <img src="data:image/jpeg;base64,{{RED}}" alt="Red, a chestnut quarter horse with a white blaze, standing in snow after his recovery">
+        <div>
+          <p class="eyebrow">Red &middot; intake 2015</p>
+          <p class="hcase-n">250 lb<small> underweight</small></p>
+          <p>Extremely dehydrated, with serious hoof issues. Recovered and placed.</p>
         </div>
       </article>
-      <article class="file flip rv">
-        <div class="file-media">
-          <img src="data:image/jpeg;base64,{{CAPTAIN}}" alt="Captain, a black horse, walking sound and in good weight in the paddock">
-        </div>
-        <div class="file-body">
-          <p class="eyebrow">Intake November 2015 · Found loose</p>
-          <h2>Captain “Black” Sparrow</h2>
-          <p class="quote">Around 500 lbs underweight and covered in sores and rain rot.</p>
-          <dl class="fields">
-            <div class="field"><dt>Deficit</dt><dd><b>≈500 lb underweight</b></dd></div>
-            <div class="field"><dt>Condition</dt><dd>Sores, rain rot</dd></div>
-            <div class="field"><dt>Time to health</dt><dd><b>Well over a year</b></dd></div>
-            <div class="field"><dt>Outcome</dt><dd>Sound, in good weight, placed</dd></div>
-          </dl>
+      <article class="hcase rv">
+        <img src="data:image/jpeg;base64,{{CAPTAIN}}" alt="Captain, a black horse, walking sound and in good weight in the paddock">
+        <div>
+          <p class="eyebrow">Captain &middot; intake November 2015</p>
+          <p class="hcase-n">&asymp;500 lb<small> underweight</small></p>
+          <p>Covered in sores and rain rot. Well over a year to bring back. Placed.</p>
         </div>
       </article>
     </div>
-    <div style="text-align:center;margin-top:40px" class="rv">
-      <a class="btn btn-lg btn-line" href="#/alumni" data-nav>All three case records</a>
-    </div>
+    <p style="margin-top:26px"><a class="btn btn-line" href="#/alumni" data-nav>Read the full files</a></p>
   </div>
 
-  <div class="band">
-    <div class="wrap sec">
-      <div class="sec-head rv">
-        <p class="eyebrow">Ways to help</p>
-        <h2>Four ways in. All of them needed.</h2>
-      </div>
-      <div class="cols2 rv" style="gap:2px;background:var(--invert-rule);border-radius:16px;overflow:hidden">
-        <a href="#/adopt" data-nav style="text-decoration:none;background:var(--invert-bg);padding:clamp(26px,3vw,38px);display:block">
-          <h3 style="color:var(--invert-fg);font-size:26px">Adopt</h3>
-          <p style="color:var(--invert-soft);margin-top:12px;font-size:15.5px">A barn or lean-to, safe fencing, and the experience to read a horse that has been let down before.</p>
-        </a>
-        <a href="#/foster" data-nav style="text-decoration:none;background:var(--invert-bg);padding:clamp(26px,3vw,38px);display:block">
-          <h3 style="color:var(--invert-fg);font-size:26px">Foster</h3>
-          <p style="color:var(--invert-soft);margin-top:12px;font-size:15.5px">Within two hours of Union Grove, with room and time. We cover the veterinary side beyond routine care.</p>
-        </a>
-        <a href="#/volunteer" data-nav style="text-decoration:none;background:var(--invert-bg);padding:clamp(26px,3vw,38px);display:block">
-          <h3 style="color:var(--invert-fg);font-size:26px">Volunteer</h3>
-          <p style="color:var(--invert-soft);margin-top:12px;font-size:15.5px">An extra set of hands is always needed. Families welcome, with the supervision rules below.</p>
-        </a>
-        <a href="#/donate" data-nav style="text-decoration:none;background:var(--invert-bg);padding:clamp(26px,3vw,38px);display:block">
-          <h3 style="color:var(--invert-fg);font-size:26px">Donate</h3>
-          <p style="color:var(--invert-soft);margin-top:12px;font-size:15.5px">Money, or the blankets, halters, buckets and grooming kit that go straight into daily use.</p>
-        </a>
-      </div>
+  <div class="sec wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Ways in</p>
+      <h2>Four ways in. All of them needed.</h2>
+    </div>
+    <div class="ways rv">
+      <a class="way" href="#/apply/adopt" data-nav><b>Adopt</b><span>A forever home. No horse in mind needed.</span></a>
+      <a class="way" href="#/apply/foster" data-nav><b>Foster</b><span>A room while it gets its life back.</span></a>
+      <a class="way" href="#/apply/volunteer" data-nav><b>Volunteer</b><span>Barn work, property work, fundraising.</span></a>
+      <a class="way" href="#/donate" data-nav><b>Donate</b><span>The fund has to be full before the phone rings.</span></a>
     </div>
   </div>
 
@@ -1338,16 +1308,16 @@ textarea.field-in{min-height:130px;resize:vertical}
     <div class="cols2" style="align-items:center">
       <div class="rv">
         <p class="eyebrow">The shop</p>
-        <h2 style="font-size:clamp(28px,4.2vw,46px);line-height:1.1;margin-top:14px">If you can't be here in person, wear it.</h2>
-        <p class="lede" style="margin-top:20px">Five things, made for actual barn use, carrying the records of horses this rescue brought back. Every order sends 100% of its proceeds to the horses.</p>
-        <a class="btn btn-lg btn-solid" style="margin-top:28px" href="#/shop" data-nav>Visit the shop</a>
+        <h2 style="font-size:clamp(24px,3vw,34px);margin-top:12px">If you can't be here in person, wear it.</h2>
+        <p class="lede" style="margin-top:14px">Five pieces, designed here. 100% of every order goes
+           back to the horses.</p>
+        <a class="btn btn-line btn-lg" style="margin-top:22px" href="#/shop" data-nav>See the five</a>
       </div>
       <div class="rv" id="shopTeaser"></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ ABOUT ══════════════════════════ -->
 <section class="page" id="p-about">
   <div class="phead"><div class="wrap narrow">
     <p class="eyebrow">About</p>
@@ -2588,6 +2558,7 @@ textarea.field-in{min-height:130px;resize:vertical}
     if(id==="p-apply") paintApply();
     if(id==="p-report") rpInit();
     if(id==="p-test") quizInit();
+    if(id==="p-home") homeQuiz();
     var navKey = h.indexOf("/shop")===0 ? "/shop" : h;
     $$(".page").forEach(function(p){p.classList.toggle("live",p.id===id)});
     $$("#nav a,[data-nav]").forEach(function(a){
@@ -3816,6 +3787,45 @@ textarea.field-in{min-height:130px;resize:vertical}
       '<div style="padding:0 clamp(18px,2.2vw,24px) 20px"><button class="sc-reset" id="scReset">Start again</button></div>';
     var r=$("#scReset");
     if(r) r.addEventListener("click",function(){ scVals=[null,null,null,null,null,null]; paintScorer() });
+  }
+
+  /* ══ one horse on the home page, as a way in ══ */
+  var hq={score:null, guess:null};
+  function homeQuiz(){
+    var box=$("#homeQuiz"); if(!box)return;
+    if(hq.score===null){ var pool=[1,2,3,4,6,7,8,9]; hq.score=pool[Math.floor(Math.random()*pool.length)] }
+    var t=hq.score, g=hq.guess, B=BCS[t-1];
+    if(g===null){
+      box.innerHTML='<div class="hq"><div class="hq-fig">'+
+        '<canvas class="wcv" width="640" height="440" data-n="'+t+'"></canvas></div>'+
+        '<div class="hq-side"><p class="eyebrow">Ten seconds</p>'+
+        '<h2>Can you tell if this horse is hungry?</h2>'+
+        '<p>Give it a number. 1 is emaciated, 5 is ideal, 9 is obese. Most people cannot do this, '+
+        'and that is exactly why horses end up here.</p>'+
+        '<div class="rail hq-rail">'+BCS.map(function(b){
+          return '<button data-g="'+b.n+'">'+b.n+'</button>' }).join("")+'</div>'+
+        '<div class="rail-bands" aria-hidden="true"><span class="rb-crit"><i></i>Too thin</span>'+
+        '<span class="rb-ok"><i></i>Healthy</span><span class="rb-over"><i></i>Too fat</span></div>'+
+        '</div></div>';
+    } else {
+      var d=Math.abs(g-t);
+      var head = d===0 ? "Spot on." : d===1 ? "Within one. That counts."
+               : "Out by "+d+". Most people are.";
+      box.innerHTML='<div class="hq"><div class="hq-fig">'+
+        '<canvas class="wcv" width="640" height="440" data-n="'+t+'"></canvas>'+
+        '<span class="hq-tag">It was a '+t+' &middot; '+B.label+'</span></div>'+
+        '<div class="hq-side"><p class="eyebrow">You said '+g+'</p><h2>'+head+'</h2>'+
+        '<p>'+B.desc+'</p>'+
+        '<div class="hq-acts"><a class="btn btn-solid btn-lg" href="#/test" data-nav>Take the other four</a>'+
+        '<a class="btn btn-line btn-lg" href="#/learn" data-nav>Where to put your hands</a></div>'+
+        '</div></div>';
+    }
+    paintPhotoCells();
+    var r=$(".hq-rail");
+    if(r) r.addEventListener("click",function(e){
+      var b=e.target.closest("button"); if(!b)return;
+      hq.guess=+b.dataset.g; homeQuiz();
+    });
   }
 
   /* ══ the test: five horses, one guess each ══ */
