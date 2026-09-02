@@ -97,15 +97,17 @@ EDIT = [
     (shot("C8188", 39.6, 1.5, xoff=0.54, push=0.06, denoise=LITE,
           sharpen=0.9), []),
 
-    # 213.0 -- score 88.9. Tight, different height in frame.
-    (shot("C8192", 212.6, 1.8, xoff=0.44, push=0.07, tight=0.62, yoff=0.44,
-          denoise=DARK, sharpen=0.75),
+    # 133.0 -- score 75.0. The dog LYING DOWN, needles in: a genuinely
+    # different camera position. The rest of that window measures shake 12-15
+    # and is unusable, so this is the single frame worth taking from it.
+    (shot("C8192", 132.4, 1.8, xoff=0.44, push=0.05, denoise=DARK,
+          sharpen=0.8),
      [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.8),
       text("NOT MODELS.", MED, TOPY+92, 0.28, 1.8, accent=True)]),
 
-    # 210.0 -- score 87.9, wider
-    (shot("C8192", 209.6, 1.6, xoff=0.38, push=0.06, tight=1.0,
-          denoise=DARK, sharpen=0.6), []),
+    # 213.0 -- score 88.9, tight and lower in frame
+    (shot("C8192", 212.6, 1.6, xoff=0.44, push=0.07, tight=0.62, yoff=0.44,
+          denoise=DARK, sharpen=0.75), []),
 
     # 217.5 -- score 88.9, tight on the hand placing
     (shot("C8192", 217.1, 1.8, xoff=0.46, push=0.07, tight=0.56, yoff=0.48,
