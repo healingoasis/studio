@@ -19,56 +19,54 @@ SMALL = 52
 TOPY  = 340          # headline sits high, clear of the caption UI
 MIDY  = H//2 - 60
 
-EDIT = [
-    # --- hook: the thing itself, in the first second ---------------------
-    # Found via tools/footage-index. The first cut opened on palpation because
-    # a bad search concluded there was no needling in the folder; there is over
-    # two minutes of it in C8192, and it is a far stronger opening.
-    (shot("C8192", 203.4, 2.6, xoff=0.44, speed=0.60),
-     [text("Your patient", BIG, TOPY, 0.15, 4.2),
-      text("can't tell you", BIG, TOPY+100, 0.45, 3.9),
-      text("where it hurts.", BIG, TOPY+200, 0.80, 3.5)]),
+# Every shot is acupuncture. The earlier cut mixed in palpation and manual
+# therapy, which is a different modality and does not belong in a film selling
+# this programme. Two sessions carry the whole thing: the French bulldog
+# (C8192, needles visible 190-232s) and the paint horse (C8188, 30-85s).
 
-    (shot("C8192", 213.8, 2.2, xoff=0.44),
+EDIT = [
+    # --- hook: a needle going in, held long enough to register -----------
+    (shot("C8192", 202.6, 2.5, xoff=0.38, speed=0.55),
+     [text("Your patient", BIG, TOPY, 0.2, 4.2),
+      text("can't tell you", BIG, TOPY+100, 0.5, 3.9),
+      text("where it hurts.", BIG, TOPY+200, 0.85, 3.5)]),
+
+    # --- the answer: needles already standing -----------------------------
+    (shot("C8192", 214.5, 2.2, xoff=0.38),
      [text("So you learn", MED, TOPY, 0.1, 2.2),
       text("to find it.", MED, TOPY+86, 0.28, 2.2)]),
 
-    # Equine needling, C8188 -- the second thing the first search missed.
-    (shot("C8188", 46.8, 2.2, xoff=0.56), []),
-    (shot("C8225", 11.5, 2.0, xoff=0.55), []),
+    # --- same medicine, 500kg patient ------------------------------------
+    (shot("C8188", 46.6, 2.2, xoff=0.52), []),
 
-    # --- the programme, stated plainly -----------------------------------
-    (shot("C8194", 12.0, 2.0, xoff=0.55),
-     [text("Five modules.", MED, TOPY, 0.15, 2)]),
+    (shot("C8192", 220.4, 2.2, xoff=0.36),
+     [text("Five modules.", MED, TOPY, 0.15, 2.2)]),
 
-    (shot("C8262", 22.0, 2.4, xoff=0.50),
+    (shot("C8188", 70.5, 2.4, xoff=0.46),
      [text("Hands-on practicums", MED, TOPY, 0.15, 2.4),
       text("with live patients.", MED, TOPY+86, 0.35, 2.2)]),
 
-    (shot("C8188", 50.2, 2.0, xoff=0.56), []),
+    (shot("C8192", 208.6, 2.0, xoff=0.38), []),
 
-    (shot("C8225", 16.5, 2.4, xoff=0.55),
+    (shot("C8188", 76.8, 2.4, xoff=0.50),
      [text("Taught by veterinarians", SMALL, TOPY, 0.1, 2.4),
       text("and licensed acupuncturists.", SMALL, TOPY+68, 0.1, 2.4)]),
 
-    (shot("C8276", 6.0, 1.8, xoff=0.50), []),
+    # --- payoff: the patient, needles in, entirely unbothered -------------
+    (shot("C8192", 305.0, 3.0, xoff=0.44, speed=0.60),
+     [text("Medicine you can use", MED, TOPY, 0.4, 4.8),
+      text("Monday morning.", MED, TOPY+86, 0.68, 4.5)]),
 
-    # --- the payoff: the animal, settled ---------------------------------
-    (shot("C8191", 30.2, 2.7, xoff=0.58, speed=0.60),
-     [text("Medicine you can use", MED, TOPY, 0.35, 4.4),
-      text("Monday morning.", MED, TOPY+86, 0.62, 4.1)]),
+    (shot("C8192", 264.5, 2.2, xoff=0.40),
+     [text("VETERINARY", 62, TOPY, 0.15, 2.2, font=FONT_BLACK),
+      text("ACUPUNCTURE", 62, TOPY+76, 0.15, 2.2, font=FONT_BLACK)]),
 
-    (shot("C8266", 8.0, 2.2, xoff=0.50),
-     [text("VETERINARY", 62, TOPY, 0.1, 2.2, font=FONT_BLACK),
-      text("ACUPUNCTURE", 62, TOPY+76, 0.1, 2.2, font=FONT_BLACK)]),
-
-    # --- one call to action, with a date ---------------------------------
-    (shot("C8280", 1.2, 3.4, xoff=0.50, darken=0.42),
-     [text("VETERINARY ACUPUNCTURE", 44, MIDY-250, 0.1, 3.4, font=FONT_BLACK),
-      text("Part I begins", BIG, MIDY-120, 0.25, 3.2, font=FONT_BLACK),
-      text("September 16", BIG, MIDY-20, 0.25, 3.2, font=FONT_BLACK),
-      text("healingoasis.edu", 60, MIDY+130, 0.7, 2.7),
-      text("Healing Oasis Wellness Center", 38, MIDY+215, 0.7, 2.7,
+    # --- one call to action, on the dog rather than a random pasture ------
+    (shot("C8192", 310.5, 3.4, xoff=0.44, darken=0.40),
+     [text("Part I begins", BIG, MIDY-110, 0.2, 3.2, font=FONT_BLACK),
+      text("September 16", BIG, MIDY-10, 0.2, 3.2, font=FONT_BLACK),
+      text("healingoasis.edu", 60, MIDY+140, 0.6, 2.8),
+      text("Healing Oasis Wellness Center", 38, MIDY+225, 0.6, 2.8,
            color="white@0.72")]),
 ]
 
