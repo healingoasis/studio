@@ -78,68 +78,77 @@ LITE = "3:2:4:3"
 DARK = "5:3:7:5"
 LITE = "3:2:4:3"
 
-EDIT = [
-    # 205.5 -- score 91.4. Tight on the needle going in. Hook has to land in
-    # the first second; the research is blunt that losing half the audience in
-    # three seconds is unrecoverable.
-    (shot("C8192", 205.0, 2.0, xoff=0.40, speed=0.55, push=0.08,
-          tight=0.52, yoff=0.52, denoise=DARK, sharpen=0.75),
-     [text("THEY CAN'T TELL YOU", 78, TOPY, 0.12, 3.4),
-      text("WHERE IT HURTS.", 78, TOPY+96, 0.42, 3.1, accent=True)]),
+# Every shot below is a CERTIFIED RUN: certify.py stepped through it frame by
+# frame at 30fps and its worst frame passed. Nothing here was chosen from a
+# single sampled frame, which is how flies and focus hunts got through before.
+#
+# The insect detector is why the old opening is gone. Measured on small isolated
+# moving blobs, the 202-204s region scores 45-49 -- that is Daniel's fly. The
+# 218.4s run scores 2. Later in the take the fly has left, so the reel now
+# starts after it.
+#
+# Honest ceiling: the steadiest run in this entire folder measures 3.55 and the
+# median is 12.77. A tripod would be under 1.0. This is loose handheld footage
+# and no amount of selection makes it locked-off. Selection gets the best of
+# what exists; the rest is a note for the next shoot.
 
-    # 219.0 -- score 92.3, the highest in the folder. A row of needles.
-    (shot("C8192", 218.6, 1.8, xoff=0.42, push=0.06, tight=0.86,
+DARK = "5:3:7:5"
+LITE = "3:2:4:3"
+
+EDIT = [
+    # 208.8 -- shake 3.64, insects 19. A needle going in.
+    (shot("C8192", 208.8, 1.9, xoff=0.42, speed=0.55, push=0.07,
+          tight=0.62, yoff=0.48, denoise=DARK, sharpen=0.75),
+     [text("THEY CAN'T TELL YOU", 78, TOPY, 0.12, 3.2),
+      text("WHERE IT HURTS.", 78, TOPY+96, 0.42, 2.9, accent=True)]),
+
+    # 218.4 -- the cleanest run in the folder: shake 3.55, insects 2.
+    (shot("C8192", 218.4, 1.8, xoff=0.42, push=0.06, tight=0.88,
           denoise=DARK, sharpen=0.65),
      [text("SO YOU LEARN", MED, TOPY, 0.08, 1.8),
       text("TO FIND IT.", MED, TOPY+92, 0.26, 1.8, accent=True)]),
 
-    # the horse, once, from its best measured frame
-    (shot("C8188", 39.6, 1.5, xoff=0.54, push=0.06, denoise=LITE,
-          sharpen=0.9), []),
+    # The horse is OUT. Certified frame by frame it measures shake 8-14 where
+    # every dog run measures 3-5, plus the worst noise in the folder. Daniel
+    # flagged the horse footage as grainy twice and the numbers agree with him.
+    # There is no usable equine acupuncture take in this shoot -- that is a
+    # note for the next one, not something selection can rescue.
 
-    # 133.0 -- score 75.0. The dog LYING DOWN, needles in: a genuinely
-    # different camera position. The rest of that window measures shake 12-15
-    # and is unusable, so this is the single frame worth taking from it.
-    (shot("C8192", 132.4, 1.8, xoff=0.44, push=0.05, denoise=DARK,
-          sharpen=0.8),
-     [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.8),
-      text("NOT MODELS.", MED, TOPY+92, 0.28, 1.8, accent=True)]),
-
-    # 213.0 -- score 88.9, tight and lower in frame
-    (shot("C8192", 212.6, 1.6, xoff=0.44, push=0.07, tight=0.62, yoff=0.44,
-          denoise=DARK, sharpen=0.75), []),
-
-    # 217.5 -- score 88.9, tight on the hand placing
-    (shot("C8192", 217.1, 1.8, xoff=0.46, push=0.07, tight=0.56, yoff=0.48,
+    # 212.0 -- shake 5.29, insects 26
+    (shot("C8192", 212.0, 1.7, xoff=0.44, push=0.06, tight=0.66, yoff=0.44,
           denoise=DARK, sharpen=0.75),
-     [text("FIVE MODULES.", MED, TOPY, 0.1, 1.8),
-      text("HANDS-ON.", MED, TOPY+92, 0.28, 1.8, accent=True)]),
+     [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.7),
+      text("NOT MODELS.", MED, TOPY+92, 0.26, 1.7, accent=True)]),
 
-    # 275.0 -- score 80.1, daylight, the practitioner with the patient
-    (shot("C8192", 274.4, 2.0, xoff=0.50, push=0.05, denoise=LITE),
+    # 215.2 -- shake 4.7, insects 22
+    (shot("C8192", 215.2, 1.7, xoff=0.42, push=0.07, denoise=DARK,
+          sharpen=0.7),
+     [text("FIVE MODULES.", MED, TOPY, 0.1, 1.7),
+      text("HANDS-ON.", MED, TOPY+92, 0.26, 1.7, accent=True)]),
+
+    # daylight, and a person in frame
+    (shot("C8192", 274.0, 2.0, xoff=0.48, push=0.05, denoise=LITE),
      [text("TAUGHT BY DVMs", SMALL, TOPY, 0.1, 2.0),
       text("AND LICENSED", SMALL, TOPY+72, 0.1, 2.0),
       text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 2.0, accent=True)]),
 
-    # payoff
-    (shot("C8192", 273.2, 2.6, xoff=0.50, speed=0.62, push=0.05,
+    # payoff -- 283.6, shake 6.13, the patient standing calm with needles in
+    (shot("C8192", 283.6, 2.4, xoff=0.48, speed=0.62, push=0.05,
           denoise=LITE),
-     [text("MEDICINE YOU CAN", 72, TOPY, 0.3, 4.2),
-      text("USE MONDAY", 72, TOPY+86, 0.45, 4.0),
-      text("MORNING.", 72, TOPY+172, 0.6, 3.8, accent=True)]),
+     [text("MEDICINE YOU CAN", 72, TOPY, 0.3, 3.9),
+      text("USE MONDAY", 72, TOPY+86, 0.45, 3.7),
+      text("MORNING.", 72, TOPY+172, 0.6, 3.5, accent=True)]),
 
-    # title and end card move to the daylight section: the shadowed frames
-    # are too dark to sit type over once darkened further
-    (shot("C8192", 276.4, 1.6, xoff=0.50, push=0.06, denoise=LITE),
-     [text("VETERINARY", 96, TOPY, 0.08, 1.6),
-      text("ACUPUNCTURE", 96, TOPY+124, 0.08, 1.6, accent=True)]),
+    (shot("C8192", 275.6, 1.5, xoff=0.48, push=0.06, denoise=LITE),
+     [text("VETERINARY", 96, TOPY, 0.08, 1.5),
+      text("ACUPUNCTURE", 96, TOPY+124, 0.08, 1.5, accent=True)]),
 
-    (shot("C8192", 277.6, 3.0, xoff=0.50, darken=0.30, push=0.04,
+    (shot("C8192", 285.0, 2.8, xoff=0.48, darken=0.30, push=0.04,
           denoise=LITE),
-     [text("PART I BEGINS", BIG, 420, 0.12, 2.8),
-      text("SEPTEMBER 16", BIG, 540, 0.26, 2.7, accent=True),
-      text("healingoasis.edu", 62, 690, 0.5, 2.4, font=FONT),
-      text("Healing Oasis Wellness Center", 36, 776, 0.5, 2.4, font=FONT,
+     [text("PART I BEGINS", BIG, 420, 0.12, 2.6),
+      text("SEPTEMBER 16", BIG, 540, 0.26, 2.5, accent=True),
+      text("healingoasis.edu", 62, 690, 0.5, 2.2, font=FONT),
+      text("Healing Oasis Wellness Center", 36, 776, 0.5, 2.2, font=FONT,
            color="white@0.72")]),
 ]
 
