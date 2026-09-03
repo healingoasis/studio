@@ -110,26 +110,50 @@ LITE = "3:2:4:3"
 DARK = "5:3:7:5"
 LITE = "3:2:4:3"
 
+# Rebuilt from scratch as a REVEAL rather than a statement.
+#
+# Previous versions opened on a hand placing a needle with a line of copy over
+# it -- explaining before earning attention, which the platform guidance says
+# kills distribution. This opens tight on the dog's face, calm and alert, and
+# tells you he is having acupuncture RIGHT NOW. The viewer then looks for the
+# needles, and the next shot pays that off. Curiosity first, claim second.
+#
+# Framing stays tight on the patient throughout: it keeps the background (and
+# anything in it) out of shot, and it measured steadier than the wide framing.
+
+DARK = "5:3:7:5"
+LITE = "3:2:4:3"
+
 EDIT = [
-    (shot("C8192", 208.8, 1.9, xoff=0.44, yoff=0.56, tight=0.74, speed=0.55,
-          push=0.06, denoise=DARK, sharpen=0.8),
-     [text("THEY CAN'T TELL YOU", 78, TOPY, 0.12, 3.2),
-      text("WHERE IT HURTS.", 78, TOPY+96, 0.42, 2.9, accent=True)]),
+    # --- the question: a calm face, no context -----------------------------
+    (shot("C8192", 271.6, 2.0, xoff=0.26, yoff=0.52, tight=0.52, speed=0.60,
+          push=0.05, denoise=LITE, sharpen=0.8),
+     [text("THIS DOG IS HAVING", 70, TOPY, 0.15, 3.4),
+      text("ACUPUNCTURE.", 82, TOPY+92, 0.5, 3.0, accent=True)]),
 
-    (shot("C8192", 218.4, 1.8, xoff=0.44, yoff=0.56, tight=0.72,
-          push=0.06, denoise=DARK, sharpen=0.8),
-     [text("SO YOU LEARN", MED, TOPY, 0.08, 1.8),
-      text("TO FIND IT.", MED, TOPY+92, 0.26, 1.8, accent=True)]),
+    # --- the payoff: needles, right there ----------------------------------
+    (shot("C8192", 269.4, 1.7, xoff=0.40, yoff=0.58, tight=0.78,
+          push=0.06, denoise=LITE, sharpen=0.75),
+     [text("RIGHT NOW.", 86, TOPY, 0.1, 1.7, accent=True)]),
 
-    (shot("C8192", 212.0, 1.7, xoff=0.46, yoff=0.54, tight=0.76,
+    # --- the proof: he has not moved ---------------------------------------
+    (shot("C8192", 277.2, 1.9, xoff=0.42, yoff=0.60, tight=0.80,
+          push=0.05, denoise=LITE, sharpen=0.7),
+     [text("HE HASN'T MOVED.", 74, TOPY, 0.1, 1.9)]),
+
+    # --- how it is done ----------------------------------------------------
+    (shot("C8192", 218.4, 1.7, xoff=0.44, yoff=0.56, tight=0.72,
+          push=0.06, denoise=DARK, sharpen=0.8), []),
+
+    (shot("C8192", 208.8, 1.8, xoff=0.44, yoff=0.56, tight=0.74,
           push=0.06, denoise=DARK, sharpen=0.8),
-     [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.7),
-      text("NOT MODELS.", MED, TOPY+92, 0.26, 1.7, accent=True)]),
+     [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.8),
+      text("NOT MODELS.", MED, TOPY+92, 0.28, 1.8, accent=True)]),
 
     (shot("C8192", 215.2, 1.7, xoff=0.44, yoff=0.56, tight=0.74,
           push=0.07, denoise=DARK, sharpen=0.8),
      [text("FIVE MODULES.", MED, TOPY, 0.1, 1.7),
-      text("HANDS-ON.", MED, TOPY+92, 0.26, 1.7, accent=True)]),
+      text("HANDS-ON.", MED, TOPY+92, 0.28, 1.7, accent=True)]),
 
     (shot("C8192", 274.2, 2.0, xoff=0.44, yoff=0.60, tight=0.80,
           push=0.05, denoise=LITE, sharpen=0.7),
@@ -137,16 +161,10 @@ EDIT = [
       text("AND LICENSED", SMALL, TOPY+72, 0.1, 2.0),
       text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 2.0, accent=True)]),
 
-    (shot("C8192", 283.6, 2.4, xoff=0.44, yoff=0.60, tight=0.80, speed=0.62,
+    (shot("C8192", 283.6, 2.2, xoff=0.44, yoff=0.60, tight=0.80, speed=0.62,
           push=0.05, denoise=LITE, sharpen=0.7),
-     [text("MEDICINE YOU CAN", 72, TOPY, 0.3, 3.9),
-      text("USE MONDAY", 72, TOPY+86, 0.45, 3.7),
-      text("MORNING.", 72, TOPY+172, 0.6, 3.5, accent=True)]),
-
-    (shot("C8192", 275.8, 1.5, xoff=0.44, yoff=0.60, tight=0.80,
-          push=0.06, denoise=LITE, sharpen=0.7),
-     [text("VETERINARY", 96, TOPY, 0.08, 1.5),
-      text("ACUPUNCTURE", 96, TOPY+124, 0.08, 1.5, accent=True)]),
+     [text("VETERINARY", 96, TOPY, 0.25, 3.3),
+      text("ACUPUNCTURE", 96, TOPY+124, 0.25, 3.3, accent=True)]),
 
     (shot("C8192", 285.2, 2.8, xoff=0.44, yoff=0.60, tight=0.80, darken=0.30,
           push=0.04, denoise=LITE, sharpen=0.7),
