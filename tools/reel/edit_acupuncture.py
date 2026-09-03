@@ -95,56 +95,61 @@ LITE = "3:2:4:3"
 DARK = "5:3:7:5"
 LITE = "3:2:4:3"
 
+# Framed tight on the patient and the hands, deliberately.
+#
+# Daniel keeps seeing a fly. Three detection methods failed -- frame differencing,
+# blob tracking and a dark-trail composite -- all defeated by the camera moving,
+# which makes every edge register as motion. Rather than keep guessing at where
+# the insect is, the fix is to remove the space it can be seen in: crop past the
+# background so the frame holds the animal, the needles and the hands, and
+# nothing else. It is also simply a better-looking film.
+#
+# Crops stay at 0.72-0.80 of frame height. Tighter than that upscales the 4K
+# source enough to visibly soften it, which trades one problem for another.
+
+DARK = "5:3:7:5"
+LITE = "3:2:4:3"
+
 EDIT = [
-    # 208.8 -- shake 3.64, insects 19. A needle going in.
-    (shot("C8192", 208.8, 1.9, xoff=0.42, speed=0.55, push=0.07,
-          tight=0.62, yoff=0.48, denoise=DARK, sharpen=0.75),
+    (shot("C8192", 208.8, 1.9, xoff=0.44, yoff=0.56, tight=0.74, speed=0.55,
+          push=0.06, denoise=DARK, sharpen=0.8),
      [text("THEY CAN'T TELL YOU", 78, TOPY, 0.12, 3.2),
       text("WHERE IT HURTS.", 78, TOPY+96, 0.42, 2.9, accent=True)]),
 
-    # 218.4 -- the cleanest run in the folder: shake 3.55, insects 2.
-    (shot("C8192", 218.4, 1.8, xoff=0.42, push=0.06, tight=0.88,
-          denoise=DARK, sharpen=0.65),
+    (shot("C8192", 218.4, 1.8, xoff=0.44, yoff=0.56, tight=0.72,
+          push=0.06, denoise=DARK, sharpen=0.8),
      [text("SO YOU LEARN", MED, TOPY, 0.08, 1.8),
       text("TO FIND IT.", MED, TOPY+92, 0.26, 1.8, accent=True)]),
 
-    # The horse is OUT. Certified frame by frame it measures shake 8-14 where
-    # every dog run measures 3-5, plus the worst noise in the folder. Daniel
-    # flagged the horse footage as grainy twice and the numbers agree with him.
-    # There is no usable equine acupuncture take in this shoot -- that is a
-    # note for the next one, not something selection can rescue.
-
-    # 212.0 -- shake 5.29, insects 26
-    (shot("C8192", 212.0, 1.7, xoff=0.44, push=0.06, tight=0.66, yoff=0.44,
-          denoise=DARK, sharpen=0.75),
+    (shot("C8192", 212.0, 1.7, xoff=0.46, yoff=0.54, tight=0.76,
+          push=0.06, denoise=DARK, sharpen=0.8),
      [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.7),
       text("NOT MODELS.", MED, TOPY+92, 0.26, 1.7, accent=True)]),
 
-    # 215.2 -- shake 4.7, insects 22
-    (shot("C8192", 215.2, 1.7, xoff=0.42, push=0.07, denoise=DARK,
-          sharpen=0.7),
+    (shot("C8192", 215.2, 1.7, xoff=0.44, yoff=0.56, tight=0.74,
+          push=0.07, denoise=DARK, sharpen=0.8),
      [text("FIVE MODULES.", MED, TOPY, 0.1, 1.7),
       text("HANDS-ON.", MED, TOPY+92, 0.26, 1.7, accent=True)]),
 
-    # daylight, and a person in frame
-    (shot("C8192", 274.0, 2.0, xoff=0.48, push=0.05, denoise=LITE),
+    (shot("C8192", 274.2, 2.0, xoff=0.44, yoff=0.60, tight=0.80,
+          push=0.05, denoise=LITE, sharpen=0.7),
      [text("TAUGHT BY DVMs", SMALL, TOPY, 0.1, 2.0),
       text("AND LICENSED", SMALL, TOPY+72, 0.1, 2.0),
       text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 2.0, accent=True)]),
 
-    # payoff -- 283.6, shake 6.13, the patient standing calm with needles in
-    (shot("C8192", 283.6, 2.4, xoff=0.48, speed=0.62, push=0.05,
-          denoise=LITE),
+    (shot("C8192", 283.6, 2.4, xoff=0.44, yoff=0.60, tight=0.80, speed=0.62,
+          push=0.05, denoise=LITE, sharpen=0.7),
      [text("MEDICINE YOU CAN", 72, TOPY, 0.3, 3.9),
       text("USE MONDAY", 72, TOPY+86, 0.45, 3.7),
       text("MORNING.", 72, TOPY+172, 0.6, 3.5, accent=True)]),
 
-    (shot("C8192", 275.6, 1.5, xoff=0.48, push=0.06, denoise=LITE),
+    (shot("C8192", 275.8, 1.5, xoff=0.44, yoff=0.60, tight=0.80,
+          push=0.06, denoise=LITE, sharpen=0.7),
      [text("VETERINARY", 96, TOPY, 0.08, 1.5),
       text("ACUPUNCTURE", 96, TOPY+124, 0.08, 1.5, accent=True)]),
 
-    (shot("C8192", 285.0, 2.8, xoff=0.48, darken=0.30, push=0.04,
-          denoise=LITE),
+    (shot("C8192", 285.2, 2.8, xoff=0.44, yoff=0.60, tight=0.80, darken=0.30,
+          push=0.04, denoise=LITE, sharpen=0.7),
      [text("PART I BEGINS", BIG, 420, 0.12, 2.6),
       text("SEPTEMBER 16", BIG, 540, 0.26, 2.5, accent=True),
       text("healingoasis.edu", 62, 690, 0.5, 2.2, font=FONT),
