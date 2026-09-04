@@ -1,24 +1,36 @@
 import { merge_documents, type DocumentState } from "@/lib/documents";
 import { SetupError } from "@/lib/env";
 import { load_students } from "@/lib/students";
-import { load_shelves } from "@/lib/shop";
+import { local_gallery, local_photo_alt } from "@/lib/local_photos";
+import {
+  class_term_of,
+  load_product,
+  load_shelves,
+  type ProgramGroup,
+  type ShopItem,
+} from "@/lib/shop";
 import { load_records, student_key } from "@/lib/uploads";
-import Portal from "./portal";
+import StudentFile from "./student-file";
+
+export type ProgramNote = {
+  /** The store's own description of the class this student is on. */
+  description_html: string;
+  handle: string;
+};
 
 // Always read the store fresh. Nothing about real students is cached or written down.
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: Promise<{ view?: string }>;
-}) {
-  // ?view=office opens straight onto the office side, which is where every link back
-  // from a class or a document folder points.
-  const { view } = await searchParams;
-  const initial_view = view === "office" ? "office" : "student";
-
+/**
+ * The student file, which is the whole product now.
+ *
+ * It reads as an academic file rather than a dashboard: the programme's photograph
+ * across the top, the student's name set like a certificate, and each requirement as a
+ * card. The money is pinned to one side so it is always answerable without being the
+ * first thing seen. Daniel chose this over the dashboard on 2026-09-04.
+ */
+export default async function Page() {
   let students;
 
   try {
@@ -72,26 +84,57 @@ export default async function Page({
     );
   }
 
-  // Anything really uploaded or actioned overrides the invented paperwork statuses.
   const [records, shelves] = await Promise.all([load_records(), load_shelves()]);
-  const docs: Record<string, Record<string, DocumentState>> = {};
 
-  for (const student of students) {
-    docs[student.student_id] = merge_documents(
-      student.student_id,
-      student.program.key,
-      student.standing,
-      records[student_key(student.student_id)],
-      student.application
+  const docs: Record<string, Record<string, DocumentState>> = {};
+  const photos: Record<string, { images: string[]; alt: string }> = {};
+
+  for (const s of students) {
+    docs[s.student_id] = merge_documents(
+      s.student_id,
+      s.program.key,
+      s.standing,
+      records[student_key(s.student_id)],
+      s.application
     );
+    photos[s.student_id] = {
+      images: local_gallery(s.program.key),
+      alt: local_photo_alt(s.program.key, s.program.full_name),
+    };
   }
 
+  // The class each student is actually on, so their own schedule can be shown rather
+  // than a generic blurb. Loaded once per programme rather than once per student.
+  const wanted = new Map<string, string>();
+  for (const s of students) {
+    const group = shelves.programs.find((g) => g.key === s.program.key);
+    if (!group) continue;
+    const cohort =
+      group.cohorts.find(
+        (c) => class_term_of(c.handle).label === (s.class_term ?? "")
+      ) ?? group.cohorts[0];
+    if (cohort) wanted.set(`${s.program.key}::${s.class_term ?? ""}`, cohort.handle);
+  }
+
+  const notes: Record<string, ProgramNote> = {};
+  await Promise.all(
+    [...wanted.entries()].map(async ([key, handle]) => {
+      const product = await load_product(handle);
+      if (product?.description_html) {
+        notes[key] = { description_html: product.description_html, handle };
+      }
+    })
+  );
+
   return (
-    <Portal
+    <StudentFile
       students={students}
       docs={docs}
-      shelves={shelves}
-      initial_view={initial_view}
+      photos={photos}
+      notes={notes}
+      programs={shelves.programs satisfies ProgramGroup[]}
+      seminars={shelves.seminars satisfies ShopItem[]}
+      merchandise={shelves.merchandise satisfies ShopItem[]}
     />
   );
 }

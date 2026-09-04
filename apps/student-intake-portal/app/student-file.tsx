@@ -23,9 +23,8 @@ import {
   document_href,
   UPLOAD_ACCEPT,
   useDocumentActions,
-} from "../use-document-actions";
-import { VersionSwitch } from "../version-switch";
-import HeroCarousel from "../hero-carousel";
+} from "./use-document-actions";
+import HeroCarousel from "./hero-carousel";
 import type { ProgramNote } from "./page";
 
 const money = (n: number) =>
@@ -153,7 +152,9 @@ export default function RecordView({
             <a href={document_href(person.student_id, d.doc_id)} target="_blank" rel="noopener noreferrer">
               {entry.file.file_name}
             </a>
-            <span className="file-card-size">{file_size(entry.file.size)}</span>
+            {entry.file.size > 0 ? (
+              <span className="file-card-size">{file_size(entry.file.size)}</span>
+            ) : null}
           </p>
         ) : (
           <p className="file-card-empty">
@@ -225,7 +226,9 @@ export default function RecordView({
             <a href={document_href(person.student_id, d.doc_id)} target="_blank" rel="noopener noreferrer">
               {file.file_name}
             </a>
-            <span className="file-card-size">{file_size(file.size)}</span>
+            {file.size > 0 ? (
+              <span className="file-card-size">{file_size(file.size)}</span>
+            ) : null}
           </p>
         ) : (
           <p className="file-card-empty">Nothing sent yet</p>
@@ -292,7 +295,6 @@ export default function RecordView({
 
       <div className="file-bar">
         <div className="file-bar-left">
-          <VersionSwitch current="/record" />
           <button
             type="button"
             className="toggle"

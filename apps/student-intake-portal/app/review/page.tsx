@@ -3,7 +3,7 @@ import { load_students } from "@/lib/students";
 import { local_gallery, local_photo_alt } from "@/lib/local_photos";
 import { class_term_of, load_product, load_shelves } from "@/lib/shop";
 import { load_records, student_key } from "@/lib/uploads";
-import type { ProgramNote } from "../record/page";
+import type { ProgramNote } from "../page";
 import ReviewShell from "./review-shell";
 
 export const dynamic = "force-dynamic";
@@ -12,9 +12,9 @@ export const revalidate = 0;
 export const metadata = { title: "Student Intake Portal — review copy" };
 
 /**
- * One page carrying both versions, for the link Daniel can open and share.
+ * The student file as one self-contained page, for the link Daniel can open and share.
  *
- * It loads exactly what the two real pages load, so what is reviewed is the real thing.
+ * It loads exactly what the real page loads, so what is reviewed is the real thing.
  * Built with PORTAL_DEMO=1, which swaps invented students in for the store's, because
  * this is the one page that is meant to leave the building.
  */
@@ -64,7 +64,6 @@ export default async function ReviewPage() {
 
   return (
     <ReviewShell
-      portal={{ students, docs, shelves }}
       record={{
         students,
         docs,

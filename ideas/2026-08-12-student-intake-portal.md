@@ -104,3 +104,8 @@ who stops fielding those emails and chasing paperwork by hand before every modul
   "we have it" when checking a class before a module. Real students now start at
   "nothing yet" and only move when something is genuinely uploaded or actioned. The
   invented statuses remain in the PORTAL_DEMO build, where the students are invented too.
+- 2026-09-04: Daniel picked the student file over the portal. The dashboard version, the
+  version switch, and the office/roster routes are gone — the office side is handled by
+  the live admin portal the school already runs, not by this. The student file is now the
+  whole product and opens at the front door. The old version is in git history if it is
+  ever wanted back.
