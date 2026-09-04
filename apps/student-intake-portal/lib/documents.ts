@@ -270,6 +270,17 @@ function fake_date(seed: number): string {
   return d.toISOString().slice(0, 10);
 }
 
+/**
+ * Invented statuses are for the demo build only, where the students are invented too.
+ *
+ * Against a real person they are dangerous: a fabricated green reads as "we have her
+ * licence" to whoever is checking a class before a module, when nothing was ever sent
+ * in. Real students start at "nothing yet", which is the truth, and only move when a
+ * document is actually uploaded or someone actually changes it.
+ */
+const INVENT_STATUSES =
+  process.env.PORTAL_DEMO === "1" || process.env.NEXT_PUBLIC_PORTAL_DEMO === "1";
+
 export function documents_for(
   student_id: string,
   program: ProgramKey,
@@ -281,6 +292,15 @@ export function documents_for(
   // genuinely empty — nothing has been sent to anyone yet, and pretending otherwise
   // would put fake results and certificates against real students' names.
   for (const doc of documents_for_program(program)) {
+    if (!INVENT_STATUSES) {
+      out[doc.doc_id] = {
+        status: "not_started",
+        updated_on: null,
+        note: STATUS_NOTE.not_started,
+      };
+      continue;
+    }
+
     const seed = hash(student_id + ":" + doc.doc_id);
     const status = pick(seed, standing, doc);
     out[doc.doc_id] = {

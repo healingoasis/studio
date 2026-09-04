@@ -97,3 +97,10 @@ who stops fielding those emails and chasing paperwork by hand before every modul
 - 2026-09-04: added a "Start Student Portal" launcher to the Desktop. Servers started from
   a Claude tool call die when the call ends; one started from Terminal belongs to Daniel
   and stays up.
+- 2026-09-04: real students no longer get invented paperwork colours. Daniel spotted three
+  admission documents showing green for Noelani Reinker, who has never sent anything in.
+  The statuses were generated from a hash of the customer id, with fabricated dates —
+  harmless in a mockup, dangerous against real names, since the office reads green as
+  "we have it" when checking a class before a module. Real students now start at
+  "nothing yet" and only move when something is genuinely uploaded or actioned. The
+  invented statuses remain in the PORTAL_DEMO build, where the students are invented too.
