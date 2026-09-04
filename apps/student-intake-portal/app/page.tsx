@@ -81,7 +81,8 @@ export default async function Page({
       student.student_id,
       student.program.key,
       student.standing,
-      records[student_key(student.student_id)]
+      records[student_key(student.student_id)],
+      student.application
     );
   }
 

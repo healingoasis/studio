@@ -378,7 +378,9 @@ export default function Portal({
                         >
                           {file.file_name}
                         </a>{" "}
-                        <span className="muted">· {file_size(file.size)}</span>
+                        {file.size > 0 ? (
+                          <span className="muted">· {file_size(file.size)}</span>
+                        ) : null}
                       </span>
                     ) : (
                       <span className="note">
@@ -470,7 +472,10 @@ export default function Portal({
                         {entry.file.file_name}
                       </a>{" "}
                       <span className="muted">
-                        · {file_size(entry.file.size)} · sent{" "}
+                        {entry.file.size > 0
+                          ? ` · ${file_size(entry.file.size)}`
+                          : ""}{" "}
+                        · sent{" "}
                         {short_date(entry.file.uploaded_at.slice(0, 10))}
                       </span>
                     </span>

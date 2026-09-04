@@ -91,6 +91,12 @@ export type RawLineItem = {
   title: string;
   quantity: number;
   original_total: number;
+  /**
+   * The enrollment form's answers, which the store carries on the line item as custom
+   * attributes. Keys arrive both with and without a leading underscore depending on
+   * which version of the form was used, so read them through `form_value` below.
+   */
+  properties: Record<string, string>;
 };
 
 export type RawOrder = {
@@ -134,6 +140,7 @@ type OrdersResponse = {
               title: string;
               quantity: number;
               originalTotalSet: { shopMoney: { amount: string } };
+              customAttributes: { key: string; value: string | null }[];
             };
           }[];
         };
@@ -163,6 +170,7 @@ const ORDERS_QUERY = `
           title
           quantity
           originalTotalSet { shopMoney { amount } }
+          customAttributes { key value }
         } } }
       } }
     }
@@ -209,6 +217,11 @@ export async function fetch_recent_orders(max_pages = 4): Promise<RawOrder[]> {
           title: l.node.title,
           quantity: l.node.quantity,
           original_total: Number(l.node.originalTotalSet.shopMoney.amount),
+          properties: Object.fromEntries(
+            (l.node.customAttributes ?? [])
+              .filter((a) => a.value != null && a.value.trim() !== "")
+              .map((a) => [a.key, a.value as string])
+          ),
         })),
       });
     }
@@ -219,4 +232,40 @@ export async function fetch_recent_orders(max_pages = 4): Promise<RawOrder[]> {
   }
 
   return orders;
+}
+
+/**
+ * Reads one answer out of the enrollment form.
+ *
+ * The store has carried these under two conventions — `_Degree` on the current form and
+ * `Degree` on the older seminar one — so both are tried before giving up.
+ */
+export function form_value(
+  line_items: RawLineItem[],
+  key: string
+): string | null {
+  for (const li of line_items) {
+    const hit = li.properties["_" + key] ?? li.properties[key];
+    if (hit && hit.trim()) return hit.trim();
+  }
+  return null;
+}
+
+export type SubmittedFile = { file_name: string; path: string };
+
+/** The files a student attached to their application, as the form recorded them. */
+export function submitted_files(line_items: RawLineItem[]): SubmittedFile[] {
+  const raw = form_value(line_items, "Documents");
+  if (!raw) return [];
+
+  try {
+    const parsed = JSON.parse(raw) as { name?: string; path?: string }[];
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter((f) => f && typeof f === "object" && f.name)
+      .map((f) => ({ file_name: String(f.name), path: String(f.path ?? "") }));
+  } catch {
+    // Older rows recorded a bare filename rather than JSON.
+    return [{ file_name: raw, path: "" }];
+  }
 }

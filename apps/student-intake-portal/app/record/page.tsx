@@ -64,7 +64,8 @@ export default async function RecordPage() {
       s.student_id,
       s.program.key,
       s.standing,
-      records[student_key(s.student_id)]
+      records[student_key(s.student_id)],
+      s.application
     );
     photos[s.student_id] = {
       images: local_gallery(s.program.key),

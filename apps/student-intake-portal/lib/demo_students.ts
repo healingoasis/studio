@@ -1,4 +1,4 @@
-import type { RawOrder } from "./shopify";
+import type { RawLineItem, RawOrder } from "./shopify";
 
 /**
  * Invented orders, for the shareable review link only.
@@ -20,12 +20,15 @@ const fee = (amount: number) => ({
   title: "Admin Fee",
   quantity: 1,
   original_total: amount,
+  properties: {},
 });
 
 const line = (title: string, original_total: number) => ({
   title,
   quantity: 1,
   original_total,
+  // The demo keeps its statuses invented rather than carrying a fake application.
+  properties: {},
 });
 
 /** A fee-inclusive price: the whole-dollar base with the card rate added back on. */
@@ -35,7 +38,7 @@ let n = 1040;
 const order = (
   customer: { id: string; name: string; email: string; state?: string },
   created_at: string,
-  lines: { title: string; quantity: number; original_total: number }[],
+  lines: RawLineItem[],
   paid: number,
   status: string = "PAID"
 ): RawOrder => {

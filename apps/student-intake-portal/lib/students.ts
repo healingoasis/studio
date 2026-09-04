@@ -1,5 +1,11 @@
 import { CARD_FEE_RATE } from "./shop";
-import { fetch_recent_orders, type RawOrder } from "./shopify";
+import {
+  fetch_recent_orders,
+  form_value,
+  submitted_files,
+  type RawOrder,
+  type SubmittedFile,
+} from "./shopify";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -149,6 +155,18 @@ export type PaymentStanding =
   | "partly_paid"
   | "paid_in_full";
 
+/** The parts of the enrollment form the portal actually uses. */
+export type Application = {
+  /** DVM, DC, LMT and so on. Decides which conditional requirements apply. */
+  credential: string | null;
+  /** Files attached to the application, as the form recorded them. */
+  files: SubmittedFile[];
+  /** When the application was submitted, which is when those files arrived. */
+  submitted_on: string;
+  signed: boolean;
+  waiver_acknowledged: boolean;
+};
+
 export type Student = {
   student_id: string;
   name: string;
@@ -157,6 +175,12 @@ export type Student = {
   state: string | null;
   program: Program;
   class_term: string | null;
+  /**
+   * What the student told the enrollment form, which is the only place the school
+   * currently holds any of this. Null throughout for anyone who enrolled before the
+   * form existed, or by phone.
+   */
+  application: Application | null;
   tuition: number;
   /** The 3.4% the card processor takes, shown beside tuition rather than hidden in it. */
   card_fee: number;
@@ -224,6 +248,26 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
     const card_fee = Math.round((program.tuition - tuition) * 100) / 100;
     const total_with_card = program.tuition;
 
+    // The enrollment form rides on the line items. Read the newest order that carries
+    // one, so someone who applied and later paid a balance keeps their application.
+    let application: Application | null = null;
+    for (const order of [...sorted].reverse()) {
+      const files = submitted_files(order.line_items);
+      const credential = form_value(order.line_items, "Degree");
+      const signature = form_value(order.line_items, "Signature");
+      const waiver = form_value(order.line_items, "Waiver Acknowledged");
+      if (!files.length && !credential && !signature) continue;
+
+      application = {
+        credential,
+        files,
+        submitted_on: order.created_at.slice(0, 10),
+        signed: Boolean(signature),
+        waiver_acknowledged: /^y(es)?$/i.test(waiver ?? ""),
+      };
+      break;
+    }
+
     const payments: Payment[] = [];
     let paid = 0;
 
@@ -285,6 +329,7 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
           o.line_items.map((li) => li.title).filter((t) => !is_test_line(t))
         )
       ),
+      application,
       tuition,
       card_fee,
       total_with_card,

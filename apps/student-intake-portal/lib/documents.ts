@@ -1,4 +1,5 @@
-import type { PaymentStanding, ProgramKey } from "./students";
+import type { Application, PaymentStanding, ProgramKey } from "./students";
+import type { SubmittedFile } from "./shopify";
 
 /**
  * The document LIST is real — taken from the three programme application forms plus the
@@ -281,10 +282,50 @@ function fake_date(seed: number): string {
 const INVENT_STATUSES =
   process.env.PORTAL_DEMO === "1" || process.env.NEXT_PUBLIC_PORTAL_DEMO === "1";
 
+/**
+ * Which requirement a file the student attached most likely satisfies.
+ *
+ * This is a guess from the filename, so it only ever sets "in progress" — a file has
+ * arrived and nobody has checked it. Deciding it is the right document, and still in
+ * date, stays with whoever reviews it. A guess that lands on the wrong requirement
+ * costs someone a re-file; it never tells the office a student is cleared.
+ */
+function requirement_for_file(file_name: string): string | null {
+  const n = file_name.toLowerCase();
+  if (/waiver|disclaimer/.test(n)) return "non_vet_waiver";
+  if (/licen[sc]e|\blic\b|dc\d|chiro/.test(n)) return "license";
+  if (/diploma|degree|transcript/.test(n)) return "diploma";
+  if (/passport|photo|headshot/.test(n)) return "photos";
+  if (/reference|recommend/.test(n)) return "reference_letters";
+  if (/nbce|score/.test(n)) return "nbce_acupuncture_score";
+  return null;
+}
+
+/** Credentials that mean the applicant is a licensed veterinarian. */
+const VET_CREDENTIAL = /\b(dvm|vmd|bvsc|bvms|mrcvs)\b/i;
+
+/**
+ * Conditional requirements the credential on the application settles outright.
+ * Anything not listed here stays unknown, and unknown is left alone rather than guessed.
+ */
+function ruled_out_by_credential(
+  doc_id: string,
+  credential: string | null
+): boolean {
+  if (!credential) return false;
+  const is_vet = VET_CREDENTIAL.test(credential);
+  // A licensed vet does not sign the waiver written for non-veterinarians.
+  if (doc_id === "non_vet_waiver" && is_vet) return true;
+  // The NBCE score is asked of chiropractors only.
+  if (doc_id === "nbce_acupuncture_score" && !/\bdc\b/i.test(credential)) return true;
+  return false;
+}
+
 export function documents_for(
   student_id: string,
   program: ProgramKey,
-  standing: PaymentStanding
+  standing: PaymentStanding,
+  application?: Application | null
 ): Record<string, DocumentState> {
   const out: Record<string, DocumentState> = {};
 
@@ -293,11 +334,7 @@ export function documents_for(
   // would put fake results and certificates against real students' names.
   for (const doc of documents_for_program(program)) {
     if (!INVENT_STATUSES) {
-      out[doc.doc_id] = {
-        status: "not_started",
-        updated_on: null,
-        note: STATUS_NOTE.not_started,
-      };
+      out[doc.doc_id] = from_application(doc, application ?? null);
       continue;
     }
 
@@ -315,6 +352,73 @@ export function documents_for(
 }
 
 /**
+ * The honest state of one requirement, given only what the enrollment form actually
+ * captured. Everything here is a fact the student supplied; nothing is invented.
+ */
+function from_application(
+  doc: DocumentDef,
+  application: Application | null
+): DocumentState {
+  const nothing: DocumentState = {
+    status: "not_started",
+    updated_on: null,
+    note: STATUS_NOTE.not_started,
+  };
+  if (!application) return nothing;
+
+  const on = application.submitted_on;
+
+  // They completed and signed the form, so the form itself is genuinely in hand.
+  if (doc.doc_id === "signed_application" && application.signed) {
+    return {
+      status: "approved",
+      updated_on: on,
+      note: null,
+      real: true,
+    };
+  }
+
+  // A credential on file settles some conditional requirements outright.
+  if (ruled_out_by_credential(doc.doc_id, application.credential)) {
+    return {
+      status: "not_required",
+      updated_on: null,
+      note: `Not needed for ${application.credential}`,
+      real: true,
+    };
+  }
+
+  // A file arrived against this requirement, but nobody has checked it yet.
+  const match = application.files.find(
+    (f) => requirement_for_file(f.file_name) === doc.doc_id
+  );
+  if (match) {
+    return {
+      status: "in_progress",
+      updated_on: on,
+      note: "Sent with the application — not yet reviewed",
+      real: true,
+      file: { file_name: match.file_name, size: 0, uploaded_at: on },
+    };
+  }
+
+  return nothing;
+}
+
+/**
+ * Files the student sent that no requirement claimed. They are real and they are on
+ * file, so they are shown rather than dropped — someone has to decide what they are.
+ */
+export function unmatched_files(
+  application: Application | null | undefined
+): SubmittedFile[] {
+  if (!application) return [];
+  return application.files.filter(
+    (f) => requirement_for_file(f.file_name) === null
+  );
+}
+
+/**
  * Anything really sent in or really actioned wins over the invented status. So the more
  * Daniel and the office actually use this, the less of it is pretend.
  */
@@ -322,9 +426,10 @@ export function merge_documents(
   student_id: string,
   program: ProgramKey,
   standing: PaymentStanding,
-  stored: Record<string, StoredDocRecord> | undefined
+  stored: Record<string, StoredDocRecord> | undefined,
+  application?: Application | null
 ): Record<string, DocumentState> {
-  const generated = documents_for(student_id, program, standing);
+  const generated = documents_for(student_id, program, standing, application);
   if (!stored) return generated;
 
   const merged: Record<string, DocumentState> = { ...generated };
