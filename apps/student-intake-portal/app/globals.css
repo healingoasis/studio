@@ -389,6 +389,50 @@ select {
   margin: 3px 0 0;
 }
 
+/* Tuition, the card fee, and the total, so the checkout number is never a surprise. */
+.fee-split {
+  width: 100%;
+  margin: 11px 0 0;
+  padding: 9px 0 0;
+  border-top: 1px solid var(--line-soft);
+  font-size: 12px;
+}
+
+.fee-split > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 4px;
+}
+
+.fee-split > div.total {
+  margin: 6px 0 0;
+  padding: 6px 0 0;
+  border-top: 1px solid var(--line-soft);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.fee-split dt {
+  color: var(--ink-faint);
+}
+
+.fee-split dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+
+.fee-split > div.total dd {
+  color: var(--ink);
+}
+
+.tile .note.fee-aside {
+  margin-top: 8px;
+  font-style: italic;
+}
+
 .tile.owed .v {
   color: var(--st-renew);
 }

@@ -158,6 +158,10 @@ export type Student = {
   program: Program;
   class_term: string | null;
   tuition: number;
+  /** The 3.4% the card processor takes, shown beside tuition rather than hidden in it. */
+  card_fee: number;
+  /** What a card is actually charged: tuition plus the fee. The store's own price. */
+  total_with_card: number;
   paid: number;
   remaining: number;
   standing: PaymentStanding;
@@ -214,9 +218,11 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
     const program = PROGRAMS[program_key];
 
     // The store lists tuition with the card fee already in it. The profile shows what
-    // the school charges — VSMT reads $8,389, not $8,674 — and the fee appears at
-    // checkout, where paying by card or cheque is actually chosen.
+    // the school charges — VSMT reads $8,389, not $8,674 — with the fee broken out
+    // beside it, so the higher number at checkout is never a surprise.
     const tuition = Math.round(program.tuition / (1 + CARD_FEE_RATE));
+    const card_fee = Math.round((program.tuition - tuition) * 100) / 100;
+    const total_with_card = program.tuition;
 
     const payments: Payment[] = [];
     let paid = 0;
@@ -280,6 +286,8 @@ export function students_from_orders(orders: RawOrder[]): Student[] {
         )
       ),
       tuition,
+      card_fee,
+      total_with_card,
       paid,
       remaining,
       standing,

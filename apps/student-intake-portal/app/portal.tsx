@@ -675,6 +675,19 @@ export default function Portal({
                 <p className="k">Tuition</p>
                 <p className="v">{money(current.tuition)}</p>
                 <p className="note">{current.program.short_name} program</p>
+                <dl className="fee-split">
+                  <div>
+                    <dt>Card processing (3.4%)</dt>
+                    <dd>{money(current.card_fee)}</dd>
+                  </div>
+                  <div className="total">
+                    <dt>Total if paying by card</dt>
+                    <dd>{money(current.total_with_card)}</dd>
+                  </div>
+                </dl>
+                <p className="note fee-aside">
+                  Paying by cheque? The tuition above is the whole cost.
+                </p>
               </div>
               <div className="tile clear">
                 <p className="k">Paid so far</p>

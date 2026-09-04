@@ -87,3 +87,13 @@ who stops fielding those emails and chasing paperwork by hand before every modul
   Written up in `docs/handoffs/2026-09-01-firebase-access.md` — the project name needs
   settling before a key is issued. Status stays `prototyping`: the storage-and-login
   question is with Dan, but the rest of this idea is not waiting on him.
+- 2026-09-04: tuition now shows the card fee broken out. Daniel spotted that the portal's
+  figure did not match the store: the store's prices are all tagged `cc-fee-included`, so
+  $6,399 for VMRT is $6,189 of tuition plus 3.4%. The tile now reads tuition, the fee, and
+  the card total, which reconciles to the store exactly for all four programs. VMRT and
+  VSMT match the tuition published on healingoasis.edu; Acupuncture ($8,100) and
+  Cranio/Sacral ($660) are worked back out of the store price because the site does not
+  publish them — worth Daniel confirming.
+- 2026-09-04: added a "Start Student Portal" launcher to the Desktop. Servers started from
+  a Claude tool call die when the call ends; one started from Terminal belongs to Daniel
+  and stays up.
