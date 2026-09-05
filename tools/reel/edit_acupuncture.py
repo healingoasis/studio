@@ -124,49 +124,66 @@ LITE = "3:2:4:3"
 DARK = "5:3:7:5"
 LITE = "3:2:4:3"
 
+# Built ENTIRELY from the daylight section (263-290s). The fly lives in the
+# shadowed 205-220s take -- magnified frame by frame, small dark specks appear
+# and move against the stall wall there, and the same magnification of the
+# daylight background shows nothing. So the shadowed footage is out, fly and all.
+#
+# The cost is honest: the daylight take is shakier (6.5-16 against 3.5-5.5).
+# It is managed rather than hidden -- the steadiest moments (273.0, 283.0,
+# 288.0 measure 6.5-6.9) carry the longer shots, and the looser ones are cut
+# short, because shake reads far less over 1.2 seconds than over 2.5.
+#
+# Module facts are only what healingoasis.edu actually states: five sections,
+# Part I is ONLINE-LIVE. The format of II-V is not published on the page and
+# is NOT claimed here.
+
+LITE = "3:2:4:3"
+
 EDIT = [
-    # --- the question: a calm face, no context -----------------------------
-    (shot("C8192", 271.6, 2.0, xoff=0.26, yoff=0.52, tight=0.52, speed=0.60,
+    # steadiest run: the patient, calm, needles in
+    (shot("C8192", 272.8, 2.0, xoff=0.30, yoff=0.54, tight=0.56, speed=0.60,
           push=0.05, denoise=LITE, sharpen=0.8),
      [text("THIS DOG IS HAVING", 70, TOPY, 0.15, 3.4),
       text("ACUPUNCTURE.", 82, TOPY+92, 0.5, 3.0, accent=True)]),
 
-    # --- the payoff: needles, right there ----------------------------------
-    (shot("C8192", 269.4, 1.7, xoff=0.40, yoff=0.58, tight=0.78,
-          push=0.06, denoise=LITE, sharpen=0.75),
-     [text("RIGHT NOW.", 86, TOPY, 0.1, 1.7, accent=True)]),
+    (shot("C8192", 283.0, 1.8, xoff=0.44, yoff=0.58, tight=0.72,
+          push=0.06, denoise=LITE, sharpen=0.8),
+     [text("RIGHT NOW.", 86, TOPY, 0.1, 1.8, accent=True)]),
 
-    # --- the proof: he has not moved ---------------------------------------
-    (shot("C8192", 277.2, 1.9, xoff=0.42, yoff=0.60, tight=0.80,
-          push=0.05, denoise=LITE, sharpen=0.7),
-     [text("HE HASN'T MOVED.", 74, TOPY, 0.1, 1.9)]),
+    (shot("C8192", 288.0, 1.8, xoff=0.44, yoff=0.58, tight=0.74,
+          push=0.05, denoise=LITE, sharpen=0.8),
+     [text("HE HASN'T MOVED.", 74, TOPY, 0.1, 1.8)]),
 
-    # --- how it is done ----------------------------------------------------
-    (shot("C8192", 218.4, 1.7, xoff=0.44, yoff=0.56, tight=0.72,
-          push=0.06, denoise=DARK, sharpen=0.8), []),
+    # looser runs, cut short so the movement does not register
+    (shot("C8192", 278.2, 1.2, xoff=0.44, yoff=0.58, tight=0.70,
+          push=0.04, denoise=LITE, sharpen=0.8), []),
 
-    (shot("C8192", 208.8, 1.8, xoff=0.44, yoff=0.56, tight=0.74,
-          push=0.06, denoise=DARK, sharpen=0.8),
-     [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.8),
-      text("NOT MODELS.", MED, TOPY+92, 0.28, 1.8, accent=True)]),
+    (shot("C8192", 285.4, 1.5, xoff=0.44, yoff=0.58, tight=0.72,
+          push=0.05, denoise=LITE, sharpen=0.8),
+     [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.5),
+      text("NOT MODELS.", MED, TOPY+92, 0.24, 1.5, accent=True)]),
 
-    (shot("C8192", 215.2, 1.7, xoff=0.44, yoff=0.56, tight=0.74,
-          push=0.07, denoise=DARK, sharpen=0.8),
-     [text("FIVE MODULES.", MED, TOPY, 0.1, 1.7),
-      text("HANDS-ON.", MED, TOPY+92, 0.28, 1.7, accent=True)]),
+    (shot("C8192", 280.6, 1.3, xoff=0.44, yoff=0.58, tight=0.70,
+          push=0.04, denoise=LITE, sharpen=0.8), []),
 
-    (shot("C8192", 274.2, 2.0, xoff=0.44, yoff=0.60, tight=0.80,
-          push=0.05, denoise=LITE, sharpen=0.7),
-     [text("TAUGHT BY DVMs", SMALL, TOPY, 0.1, 2.0),
-      text("AND LICENSED", SMALL, TOPY+72, 0.1, 2.0),
-      text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 2.0, accent=True)]),
+    (shot("C8192", 273.6, 2.0, xoff=0.44, yoff=0.58, tight=0.76,
+          push=0.05, denoise=LITE, sharpen=0.75),
+     [text("FIVE MODULES.", MED, TOPY, 0.1, 2.0),
+      text("PART I IS ONLINE-LIVE.", 56, TOPY+92, 0.28, 2.0, accent=True)]),
 
-    (shot("C8192", 283.6, 2.2, xoff=0.44, yoff=0.60, tight=0.80, speed=0.62,
-          push=0.05, denoise=LITE, sharpen=0.7),
-     [text("VETERINARY", 96, TOPY, 0.25, 3.3),
-      text("ACUPUNCTURE", 96, TOPY+124, 0.25, 3.3, accent=True)]),
+    (shot("C8192", 288.6, 1.9, xoff=0.44, yoff=0.58, tight=0.76,
+          push=0.05, denoise=LITE, sharpen=0.75),
+     [text("TAUGHT BY DVMs", SMALL, TOPY, 0.1, 1.9),
+      text("AND LICENSED", SMALL, TOPY+72, 0.1, 1.9),
+      text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 1.9, accent=True)]),
 
-    (shot("C8192", 285.2, 2.8, xoff=0.44, yoff=0.60, tight=0.80, darken=0.30,
+    (shot("C8192", 283.6, 2.0, xoff=0.44, yoff=0.58, tight=0.74, speed=0.62,
+          push=0.05, denoise=LITE, sharpen=0.75),
+     [text("VETERINARY", 96, TOPY, 0.25, 3.0),
+      text("ACUPUNCTURE", 96, TOPY+124, 0.25, 3.0, accent=True)]),
+
+    (shot("C8192", 286.0, 2.8, xoff=0.44, yoff=0.58, tight=0.74, darken=0.30,
           push=0.04, denoise=LITE, sharpen=0.7),
      [text("PART I BEGINS", BIG, 420, 0.12, 2.6),
       text("SEPTEMBER 16", BIG, 540, 0.26, 2.5, accent=True),
