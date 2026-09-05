@@ -56,3 +56,54 @@ There is now an hourly system check (`/api/health`) that verifies the store answ
 are readable, every document actually opens, the database refuses anonymous reads and writes, files
 are not public, and backups exist. Run against the live school it found exactly one fault — the
 missing licence above — which is how this was traced.
+
+---
+
+## Added 5 Sep — it is worse than student self-uploads
+
+Daniel has told me that the old portal has a feature you built for him: a place to **drop documents
+onto each student by hand**. Students email their licence, diploma and reference letters to the
+office, and he has been filing them that way — in his words, "a shit ton" of them.
+
+Every one of those went into `healing-io`, not `healing-oasis`. So the missing paperwork is not only
+the self-uploads since 29 August; it is months of documents the office filed deliberately, one at a
+time, believing they were being kept.
+
+I cannot see any of it. `daniel@healingoasis.edu` has no access to `healing-io` at all —
+`gcloud projects list` returns only `healing-oasis`, and listing that project's buckets is refused
+outright. Only you can do this.
+
+### What is needed, precisely
+
+1. **Copy the whole storage bucket across**, preserving object paths exactly — the portal looks
+   files up by path, so a renamed object is still a lost one:
+
+       gcloud storage rsync -r gs://<healing-io bucket> gs://healing-oasis.firebasestorage.app
+
+   The paths that matter are `intake/**` and anything the manual drop feature wrote.
+
+2. **Copy the Firestore records that point at them.** The file bytes alone are not enough: the new
+   portal reads a per-order paperwork record (collection `orders`, and whatever the drop feature
+   wrote in `healing-io`). If those records only exist over there, the files will land in storage
+   with nothing referring to them. Please send me the shape of what that feature wrote and I will
+   map it in — I do not need access, only the field names.
+
+3. **Retire `admin--healing-io`** once both are copied, so nothing can be filed into it again.
+
+### How we will know it worked
+
+The portal now runs its own checks every hour, and one of them fetches every document it believes
+in. It currently reports:
+
+    Every document opens — 1 of 66 are recorded but not in storage: Noelani Reinker: vet license.JPG
+
+When the copy is done that check goes green, and the count of documents will rise well above 66.
+Daniel can see this himself on the **Checks** screen in the portal.
+
+### What is already fixed on this side
+
+Two students in VSMT Fall 2026 — Brenna Wetherbee and Erica Nelson — appeared to have no documents
+at all. Their fifteen files were in `healing-oasis` the whole time, attached to a second order that
+names no class, so the class folder never showed them. That is fixed: paperwork now follows the
+student rather than the order. It is not related to the `healing-io` problem, and it does not reduce
+what still has to be copied.
