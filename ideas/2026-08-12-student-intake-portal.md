@@ -118,3 +118,16 @@ who stops fielding those emails and chasing paperwork by hand before every modul
   VMRT's classes carry no on/off-campus marker in the store or on the website, so those
   rows show dates with no location rather than an assumed one — Daniel to confirm whether
   VMRT is entirely at the school.
+- 2026-09-04: verification pass over everything so far. Production build, types and lint
+  clean; every route exercised; the removed portal/office addresses correctly 404. Proved
+  no invented statuses reach real students (44 non-red statuses, 44 backed by real data)
+  and that the shareable review copy still contains no real person. Four real faults found
+  and fixed: Cranio students had no schedule at all (the store sells it as a seminar, so
+  it never reached the programme shelves); the parser missed Acupuncture's trailing
+  "(Virtual-Live)" markers; eleven of the twenty-one files students actually sent were
+  invisible because their filenames say nothing (IMG_0208.png and the like) and are now
+  listed as "sent, not yet filed"; and the banner still claimed the paperwork colours were
+  invented, which stopped being true earlier today.
+  Still outstanding: Acupuncture has no schedule because the store product has no
+  description — its dates live only on the website. Adding them to the store is a change
+  to the live store, so it needs Daniel's yes.

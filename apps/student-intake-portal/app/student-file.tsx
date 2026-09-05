@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   count_statuses,
   documents_for_program,
+  unmatched_files,
   STATUS_LABEL,
   student_documents,
   type DocStatus,
@@ -112,6 +113,7 @@ export default function RecordView({
   const enrolled = student.remaining === 0 && student.paid > 0;
 
   const admission = documents_for_program(student.program.key);
+  const stray = unmatched_files(student.application);
 
   // An enrolled record opens closed. Nothing is expanded until a section is chosen, so
   // the page stays short and only the one area below the tabs ever changes.
@@ -332,9 +334,10 @@ export default function RecordView({
           </>
         ) : (
           <>
-            <b>Prototype.</b> People, programs and payments are your actual students, read
-            live from the store. Uploads are real and stay on this Mac. Starting paperwork
-            colours are invented; anything changed from here on is real.
+            <b>Prototype.</b> Everything here is real: the people, programs and payments
+            are your actual students read live from the store, and the paperwork shows
+            only what was genuinely sent in with their application. Uploads stay on this
+            Mac. Nothing on this page is invented.
           </>
         )}
       </p>
@@ -388,6 +391,30 @@ export default function RecordView({
                   active === "student" ? issued_card(d) : admission_card(d)
                 )}
               </div>
+
+              {/* Files sent with the application that no requirement claimed — usually a
+                  licence photographed on a phone, where the filename says nothing. They
+                  are on file, so they are shown rather than left invisible. */}
+              {active === "admission" && stray.length ? (
+                <div className="file-stray">
+                  <p className="file-stray-head">
+                    Also sent with the application, not yet filed
+                  </p>
+                  <ul>
+                    {stray.map((f) => (
+                      <li key={f.path || f.file_name}>
+                        <span className="stray-name">{f.file_name}</span>
+                        <span className="stray-when">
+                          sent {short_date(student.application?.submitted_on ?? null)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="file-stray-note">
+                    The office decides which requirement each of these belongs to.
+                  </p>
+                </div>
+              ) : null}
 
               <p className="file-hint">
                 {active === "student"

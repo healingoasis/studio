@@ -23,7 +23,15 @@ PORTAL_DEMO=1 NEXT_PUBLIC_PORTAL_DEMO=1 npx next build >/dev/null
 
 PORTAL_DEMO=1 NEXT_PUBLIC_PORTAL_DEMO=1 npx next start -H 127.0.0.1 -p "$PORT" >"$WORK/server.log" 2>&1 &
 SERVER=$!
-trap 'kill $SERVER 2>/dev/null || true' EXIT
+
+# One EXIT trap only — bash keeps the last one set, so both jobs live here. Besides
+# stopping the server, the review build writes its own distDir into next-env.d.ts, and
+# left alone the next ordinary build or typecheck points at .next-review.
+cleanup() {
+  kill $SERVER 2>/dev/null || true
+  git checkout -- next-env.d.ts 2>/dev/null || true
+}
+trap cleanup EXIT
 
 for _ in $(seq 1 60); do
   curl -sf -o /dev/null "http://127.0.0.1:$PORT/review" && break

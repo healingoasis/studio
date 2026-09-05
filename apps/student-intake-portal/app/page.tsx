@@ -7,6 +7,7 @@ import {
   load_product,
   load_shelves,
   parse_schedule,
+  program_of_handle,
   type ProgramGroup,
   type ScheduleEntry,
   type ShopItem,
@@ -110,12 +111,23 @@ export default async function Page() {
   const wanted = new Map<string, string>();
   for (const s of students) {
     const group = shelves.programs.find((g) => g.key === s.program.key);
-    if (!group) continue;
-    const cohort =
-      group.cohorts.find(
-        (c) => class_term_of(c.handle).label === (s.class_term ?? "")
-      ) ?? group.cohorts[0];
-    if (cohort) wanted.set(`${s.program.key}::${s.class_term ?? ""}`, cohort.handle);
+
+    if (group) {
+      const cohort =
+        group.cohorts.find(
+          (c) => class_term_of(c.handle).label === (s.class_term ?? "")
+        ) ?? group.cohorts[0];
+      if (cohort) wanted.set(`${s.program.key}::${s.class_term ?? ""}`, cohort.handle);
+      continue;
+    }
+
+    // Cranio/Sacral is a fourth programme here, but the store sells it as a seminar
+    // ticket, so it is not in the programme shelves at all. Its dates are on the
+    // seminar product, and a student on it was seeing no schedule whatsoever.
+    const seminar = shelves.seminars.find(
+      (i) => program_of_handle(i.handle) === s.program.key
+    );
+    if (seminar) wanted.set(`${s.program.key}::${s.class_term ?? ""}`, seminar.handle);
   }
 
   const notes: Record<string, ProgramNote> = {};

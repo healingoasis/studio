@@ -561,17 +561,27 @@ export function parse_schedule(description_html: string): ScheduleEntry[] {
     const line = raw.trim();
     if (!line) continue;
 
+    // The marker sits before the colon on VSMT ("Module I (Off-Campus): ...") and after
+    // the dates on Acupuncture ("Module I: ... (Virtual-Live)"), so both are read.
     const module = line.match(
       /^Module\s+([IVX]+)\s*(?:\(([^)]*)\))?\s*:\s*(.+)$/i
     );
     if (module) {
       const numeral = module[1] ?? "";
-      const dates = (module[3] ?? "").trim().replace(/\.$/, "");
+      let dates = (module[3] ?? "").trim().replace(/\.$/, "");
+      let marker = module[2] ?? "";
+
+      const trailing = dates.match(/^(.*?)\s*\(([^)]*)\)\s*$/);
+      if (trailing?.[1] && trailing[2]) {
+        dates = trailing[1].trim();
+        if (!marker) marker = trailing[2];
+      }
+
       if (!numeral || !dates) continue;
       out.push({
         label: `Module ${numeral.toUpperCase()}`,
-        dates,
-        place: place_of(module[2] ?? ""),
+        dates: tidy_dates(dates),
+        place: place_of(marker),
       });
       continue;
     }
@@ -595,7 +605,26 @@ function place_of(marker: string): ModulePlace | null {
   return null;
 }
 
+/** "Sept 16th – 20th, 2026" reads better on a file as "Sept 16 – 20, 2026". */
+function tidy_dates(dates: string): string {
+  return dates.replace(/(\d)(st|nd|rd|th)\b/gi, "$1");
+}
+
 export const PLACE_LABEL: Record<ModulePlace, string> = {
   school: "At the school",
   virtual: "Online",
 };
+
+/**
+ * Which programme a store handle belongs to, for the seminars that are also programmes
+ * here. Cranio/Sacral is sold as an event ticket rather than a class, so it never
+ * reaches the programme shelves and has to be found among the seminars instead.
+ */
+export function program_of_handle(handle: string): string | null {
+  const h = handle.toLowerCase();
+  if (/cranio|sacral/.test(h)) return "cranio";
+  if (/vsmt|spinal/.test(h)) return "vsmt";
+  if (/vmrt|massage|rehab/.test(h)) return "vmrt";
+  if (/acupuncture/.test(h)) return "acupuncture";
+  return null;
+}
