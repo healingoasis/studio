@@ -1,7 +1,12 @@
 import { merge_documents, type DocumentState } from "@/lib/documents";
 import { load_students } from "@/lib/students";
 import { local_gallery, local_photo_alt } from "@/lib/local_photos";
-import { class_term_of, load_product, load_shelves } from "@/lib/shop";
+import {
+  class_term_of,
+  load_product,
+  load_shelves,
+  parse_schedule,
+} from "@/lib/shop";
 import { load_records, student_key } from "@/lib/uploads";
 import type { ProgramNote } from "../page";
 import ReviewShell from "./review-shell";
@@ -56,9 +61,8 @@ export default async function ReviewPage() {
   await Promise.all(
     [...wanted.entries()].map(async ([key, handle]) => {
       const product = await load_product(handle);
-      if (product?.description_html) {
-        notes[key] = { description_html: product.description_html, handle };
-      }
+      const schedule = parse_schedule(product?.description_html ?? "");
+      if (schedule.length) notes[key] = { schedule, handle };
     })
   );
 

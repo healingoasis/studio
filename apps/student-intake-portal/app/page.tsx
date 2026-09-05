@@ -6,15 +6,17 @@ import {
   class_term_of,
   load_product,
   load_shelves,
+  parse_schedule,
   type ProgramGroup,
+  type ScheduleEntry,
   type ShopItem,
 } from "@/lib/shop";
 import { load_records, student_key } from "@/lib/uploads";
 import StudentFile from "./student-file";
 
 export type ProgramNote = {
-  /** The store's own description of the class this student is on. */
-  description_html: string;
+  /** The module dates for this student's own class, and where each one is held. */
+  schedule: ScheduleEntry[];
   handle: string;
 };
 
@@ -120,9 +122,8 @@ export default async function Page() {
   await Promise.all(
     [...wanted.entries()].map(async ([key, handle]) => {
       const product = await load_product(handle);
-      if (product?.description_html) {
-        notes[key] = { description_html: product.description_html, handle };
-      }
+      const schedule = parse_schedule(product?.description_html ?? "");
+      if (schedule.length) notes[key] = { schedule, handle };
     })
   );
 

@@ -2242,11 +2242,66 @@ footer {
 
 .file-schedule {
   margin-top: 18px;
-  padding: 22px 24px;
+  padding: 6px 24px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 4px;
   max-width: none;
+  list-style: none;
+}
+
+/* One module per row: which one, when, and whether to travel for it. */
+.file-schedule li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 13px 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.file-schedule li:first-child {
+  border-top: 0;
+}
+
+.file-schedule .mod-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.file-schedule .mod-dates {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.file-schedule .mod-place {
+  justify-self: end;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.file-schedule .mod-place.school {
+  color: var(--st-ready);
+  background: var(--st-ready-bg);
+}
+
+.file-schedule .mod-place.virtual {
+  color: var(--accent);
+  background: var(--accent-tint);
+}
+
+@media (max-width: 640px) {
+  .file-schedule li {
+    grid-template-columns: 1fr auto;
+  }
+  .file-schedule .mod-label {
+    grid-column: 1 / -1;
+  }
 }
 
 .file-consider {

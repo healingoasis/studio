@@ -162,8 +162,12 @@ const SEASON_ORDER: Record<string, number> = { spring: 1, summer: 2, fall: 3, wi
 
 /** "VSMT 2027 Spring Class — Pay in Full" → sortable, and "Spring 2027" to show. */
 export function class_term_of(title: string): { label: string; sort: number } {
-  const a = /(20\d\d)\s*(spring|summer|fall|winter)/i.exec(title);
-  const b = /(spring|summer|fall|winter)\s*(20\d\d)/i.exec(title);
+  // Called with product titles ("VSMT 2027 Spring Class") and with handles
+  // ("vsmt-2027-spring-full"), so the separator may be a space or a hyphen. Matching
+  // only spaces silently returned "Next available class" for every handle, which sent
+  // every student to whichever class happened to be listed first.
+  const a = /(20\d\d)[\s_-]*(spring|summer|fall|winter)/i.exec(title);
+  const b = /(spring|summer|fall|winter)[\s_-]*(20\d\d)/i.exec(title);
 
   const year = a?.[1] ?? b?.[2];
   const season = (a?.[2] ?? b?.[1])?.toLowerCase();
@@ -519,3 +523,79 @@ export async function load_product(handle: string): Promise<ProductDetail | null
     fee_included: includes_card_fee(body.tags ?? undefined),
   };
 }
+
+// ---------------------------------------------------------------- class schedule
+
+/** Where a module is actually held. Null when the source does not say. */
+export type ModulePlace = "school" | "virtual";
+
+export type ScheduleEntry = {
+  /** "Module I", or null for a seminar that is a single block of dates. */
+  label: string | null;
+  /** The dates exactly as the school writes them: "July 29 – Aug 2, 2026". */
+  dates: string;
+  place: ModulePlace | null;
+};
+
+/**
+ * Pulls the module dates out of the store's own description of a class.
+ *
+ * The store writes these one of two ways — "Module I (Off-Campus): July 29 – Aug 2,
+ * 2026" for the VSMT hybrid, and a bare "Module I: Mar 11 – 14, 2027" for VMRT, which
+ * does not record where its modules are held. Where it is not written down it is left
+ * null rather than assumed; a guess here would tell a student to drive to Wisconsin for
+ * a webinar, or the reverse.
+ */
+export function parse_schedule(description_html: string): ScheduleEntry[] {
+  const text = description_html
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|div|li|h\d)>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&#8211;|&ndash;/g, "–");
+
+  const out: ScheduleEntry[] = [];
+
+  for (const raw of text.split("\n")) {
+    const line = raw.trim();
+    if (!line) continue;
+
+    const module = line.match(
+      /^Module\s+([IVX]+)\s*(?:\(([^)]*)\))?\s*:\s*(.+)$/i
+    );
+    if (module) {
+      const numeral = module[1] ?? "";
+      const dates = (module[3] ?? "").trim().replace(/\.$/, "");
+      if (!numeral || !dates) continue;
+      out.push({
+        label: `Module ${numeral.toUpperCase()}`,
+        dates,
+        place: place_of(module[2] ?? ""),
+      });
+      continue;
+    }
+
+    // A seminar states its dates in one block rather than by module, behind a "Dates:"
+    // label, and follows them with the daily times. Only the dates are wanted here.
+    const seminar = line.match(
+      /^(?:Dates?\s*:\s*)?([A-Z][a-z]+\.?\s+\d{1,2}\s*[–-]\s*(?:[A-Z][a-z]+\.?\s+)?\d{1,2},?\s*20\d\d)/
+    );
+    if (seminar?.[1]) {
+      out.push({ label: null, dates: seminar[1].trim(), place: null });
+    }
+  }
+
+  return out;
+}
+
+function place_of(marker: string): ModulePlace | null {
+  if (/off-?campus|idl|distance|online|virtual|webinar/i.test(marker)) return "virtual";
+  if (/on-?campus|in-?person|face-to-face/i.test(marker)) return "school";
+  return null;
+}
+
+export const PLACE_LABEL: Record<ModulePlace, string> = {
+  school: "At the school",
+  virtual: "Online",
+};

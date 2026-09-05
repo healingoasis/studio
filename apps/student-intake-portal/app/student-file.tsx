@@ -14,6 +14,7 @@ import {
 import {
   CARD_FEE_RATE,
   detail_url,
+  PLACE_LABEL,
   program_url,
   type ProgramGroup,
   type ShopItem,
@@ -476,10 +477,21 @@ export default function RecordView({
               Full details →
             </Link>
           </div>
-          <div
-            className="file-schedule product-copy"
-            dangerouslySetInnerHTML={{ __html: note.description_html }}
-          />
+          <ol className="file-schedule">
+            {note.schedule.map((entry, i) => (
+              <li key={i}>
+                {entry.label ? (
+                  <span className="mod-label">{entry.label}</span>
+                ) : null}
+                <span className="mod-dates">{entry.dates}</span>
+                {entry.place ? (
+                  <span className={`mod-place ${entry.place}`}>
+                    {PLACE_LABEL[entry.place]}
+                  </span>
+                ) : null}
+              </li>
+            ))}
+          </ol>
         </section>
       ) : null}
 

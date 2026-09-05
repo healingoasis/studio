@@ -109,3 +109,12 @@ who stops fielding those emails and chasing paperwork by hand before every modul
   the live admin portal the school already runs, not by this. The student file is now the
   whole product and opens at the front door. The old version is in git history if it is
   ever wanted back.
+- 2026-09-04: "Your program" is now just the module dates for that student's own class,
+  each marked at the school or online. It was dumping the store's whole marketing blurb.
+  Fixing it surfaced a real bug: `class_term_of` only allowed a space between year and
+  season, so it never matched a handle like `vsmt-2027-spring-full` and every student was
+  shown whichever class happened to be listed first. Noelani, on Spring 2027, was being
+  shown the Fall 2026 dates.
+  VMRT's classes carry no on/off-campus marker in the store or on the website, so those
+  rows show dates with no location rather than an assumed one — Daniel to confirm whether
+  VMRT is entirely at the school.
