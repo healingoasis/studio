@@ -107,3 +107,26 @@ at all. Their fifteen files were in `healing-oasis` the whole time, attached to 
 names no class, so the class folder never showed them. That is fixed: paperwork now follows the
 student rather than the order. It is not related to the `healing-io` problem, and it does not reduce
 what still has to be copied.
+
+---
+
+## Added 5 Sep, second thing — healingoasis.edu still talks to the old portal
+
+Verified against the live site today. The store is done: the Shopify theme's two references both
+read `admin--healing-oasis`. The website is not. Its footer carries:
+
+    <script src="https://admin--healing-io.us-central1.hosted.app/widget.js" data-persona="kevin" defer></script>
+
+So the assistant the public talks to on healingoasis.edu is answered by the old backend. Anything
+the school corrects in this portal never reaches it.
+
+**The change is one word.** `admin--healing-oasis` serves `/widget.js` already — same file, same
+size, verified with a request:
+
+    <script src="https://admin--healing-oasis.us-central1.hosted.app/widget.js" data-persona="kevin" defer></script>
+
+The site is served by Caddy behind Cloudflare, on your infrastructure. Daniel has no source for it
+on his Mac and I have no access, so this one is only yours to make.
+
+The portal now checks this itself every fifteen minutes — "The website points here" — and it goes
+green on its own the moment you deploy it.
