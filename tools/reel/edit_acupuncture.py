@@ -140,37 +140,60 @@ LITE = "3:2:4:3"
 
 LITE = "3:2:4:3"
 
+# Adds what Daniel asked for: needles going IN, watched happening, and a horse.
+#
+# The insertion sequence (205-208s) lives in the shadowed take that contains the
+# fly -- but cropped to 50% of frame height the background is a sliver of
+# defocused wall and the insect has nowhere to appear. Verified frame by frame
+# at that crop.
+#
+# Horse needling is C8188 46-49s: needles standing in the neck with the hand
+# working. That take measures shakier than the dog footage, so it is cut short
+# and framed tight, which is where movement reads least.
+#
+# Insertion runs at 0.8 speed -- slow enough to read as it happens, not so slow
+# it becomes a effect.
+
+LITE = "3:2:4:3"
+DARK = "5:3:7:5"
+
 EDIT = [
-    # steadiest run: the patient, calm, needles in
-    (shot("C8192", 272.8, 2.0, xoff=0.30, yoff=0.54, tight=0.56, speed=0.60,
+    # the question
+    (shot("C8192", 272.8, 1.8, xoff=0.30, yoff=0.54, tight=0.56, speed=0.62,
           push=0.05, denoise=LITE, sharpen=0.8),
-     [text("THIS DOG IS HAVING", 70, TOPY, 0.15, 3.4),
-      text("ACUPUNCTURE.", 82, TOPY+92, 0.5, 3.0, accent=True)]),
+     [text("THIS DOG IS HAVING", 70, TOPY, 0.15, 3.1),
+      text("ACUPUNCTURE.", 82, TOPY+92, 0.45, 2.8, accent=True)]),
 
-    (shot("C8192", 283.0, 1.8, xoff=0.44, yoff=0.58, tight=0.72,
-          push=0.06, denoise=LITE, sharpen=0.8),
-     [text("RIGHT NOW.", 86, TOPY, 0.1, 1.8, accent=True)]),
+    # --- the needle going in, watched ------------------------------------
+    (shot("C8192", 205.0, 2.2, xoff=0.46, yoff=0.50, tight=0.50, speed=0.80,
+          push=0.05, denoise=DARK, sharpen=0.85),
+     [text("WATCH.", 92, TOPY, 0.15, 2.6, accent=True)]),
 
-    (shot("C8192", 288.0, 1.8, xoff=0.44, yoff=0.58, tight=0.74,
-          push=0.05, denoise=LITE, sharpen=0.8),
-     [text("HE HASN'T MOVED.", 74, TOPY, 0.1, 1.8)]),
+    (shot("C8192", 206.6, 1.8, xoff=0.46, yoff=0.50, tight=0.52, speed=0.80,
+          push=0.05, denoise=DARK, sharpen=0.85), []),
 
-    # looser runs, cut short so the movement does not register
-    (shot("C8192", 278.2, 1.2, xoff=0.44, yoff=0.58, tight=0.70,
-          push=0.04, denoise=LITE, sharpen=0.8), []),
+    # --- same medicine, 500kg patient -------------------------------------
+    (shot("C8188", 46.6, 1.5, xoff=0.52, yoff=0.46, tight=0.44,
+          push=0.05, denoise=LITE, sharpen=0.95),
+     [text("DOGS AND HORSES.", 68, TOPY, 0.1, 1.5)]),
 
-    (shot("C8192", 285.4, 1.5, xoff=0.44, yoff=0.58, tight=0.72,
-          push=0.05, denoise=LITE, sharpen=0.8),
+    (shot("C8188", 48.2, 1.4, xoff=0.52, yoff=0.46, tight=0.46,
+          push=0.05, denoise=LITE, sharpen=0.95), []),
+
+    (shot("C8192", 207.8, 1.5, xoff=0.46, yoff=0.50, tight=0.52,
+          push=0.05, denoise=DARK, sharpen=0.85),
      [text("REAL PATIENTS.", MED, TOPY, 0.1, 1.5),
       text("NOT MODELS.", MED, TOPY+92, 0.24, 1.5, accent=True)]),
 
-    (shot("C8192", 280.6, 1.3, xoff=0.44, yoff=0.58, tight=0.70,
-          push=0.04, denoise=LITE, sharpen=0.8), []),
+    # --- the proof ---------------------------------------------------------
+    (shot("C8192", 283.0, 1.8, xoff=0.44, yoff=0.58, tight=0.72,
+          push=0.05, denoise=LITE, sharpen=0.8),
+     [text("HE HASN'T MOVED.", 74, TOPY, 0.1, 1.8)]),
 
-    (shot("C8192", 273.6, 2.0, xoff=0.44, yoff=0.58, tight=0.76,
+    (shot("C8192", 273.6, 1.9, xoff=0.44, yoff=0.58, tight=0.76,
           push=0.05, denoise=LITE, sharpen=0.75),
-     [text("FIVE MODULES.", MED, TOPY, 0.1, 2.0),
-      text("PART I IS ONLINE-LIVE.", 56, TOPY+92, 0.28, 2.0, accent=True)]),
+     [text("FIVE MODULES.", MED, TOPY, 0.1, 1.9),
+      text("PART I IS ONLINE-LIVE.", 56, TOPY+92, 0.26, 1.9, accent=True)]),
 
     (shot("C8192", 288.6, 1.9, xoff=0.44, yoff=0.58, tight=0.76,
           push=0.05, denoise=LITE, sharpen=0.75),
@@ -178,10 +201,10 @@ EDIT = [
       text("AND LICENSED", SMALL, TOPY+72, 0.1, 1.9),
       text("ACUPUNCTURISTS", SMALL, TOPY+144, 0.1, 1.9, accent=True)]),
 
-    (shot("C8192", 283.6, 2.0, xoff=0.44, yoff=0.58, tight=0.74, speed=0.62,
+    (shot("C8192", 283.6, 1.9, xoff=0.44, yoff=0.58, tight=0.74, speed=0.62,
           push=0.05, denoise=LITE, sharpen=0.75),
-     [text("VETERINARY", 96, TOPY, 0.25, 3.0),
-      text("ACUPUNCTURE", 96, TOPY+124, 0.25, 3.0, accent=True)]),
+     [text("VETERINARY", 96, TOPY, 0.25, 2.9),
+      text("ACUPUNCTURE", 96, TOPY+124, 0.25, 2.9, accent=True)]),
 
     (shot("C8192", 286.0, 2.8, xoff=0.44, yoff=0.58, tight=0.74, darken=0.30,
           push=0.04, denoise=LITE, sharpen=0.7),
